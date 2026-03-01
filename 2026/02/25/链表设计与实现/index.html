@@ -17,12 +17,12 @@
     
 <link rel="stylesheet" href="/css/loader.css">
 
-    <meta name="description" content="什么是链表链表不同于顺序表，但是得记住顺序表是随机排序，链表的空间不是连续的，而顺序表是连续的。它通过指针来连接一个个分散的节点，虽然物理上不相邻，但是在逻辑上是相邻的。  顺序表他不如链表，本质还是用数组来存的链表本身分为带头结点的链表和不带头结点，戴头结点的链表就是会有一个头指向后续的整个链表，但是头结点不存放数据。而不带头结点的链表就像上面那样，第一个节点就是用来存放数据的结点，一般设计链表">
+    <meta name="description" content="什么是链表 链表不同于顺序表，但是得记住顺序表是随机排序，链表的空间不是连续的，而顺序表是连续的。它通过指针来连接一个个分散的节点，虽然物理上不相邻，但是在逻辑上是相邻的。  顺序表他不如链表，本质还是用数组来存的  链表本身分为带头结点的链表和不带头结点，戴头结点的链表就是会有一个头指向后续的整个链表，但是头结点不存放数据。  而不带头结点的链表就像上面那样，第一个节点就是用来存放数据的结点，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="链表设计与实现">
 <meta property="og:url" content="http://example.com/2026/02/25/%E9%93%BE%E8%A1%A8%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/index.html">
 <meta property="og:site_name" content="史蒂芬の电台">
-<meta property="og:description" content="什么是链表链表不同于顺序表，但是得记住顺序表是随机排序，链表的空间不是连续的，而顺序表是连续的。它通过指针来连接一个个分散的节点，虽然物理上不相邻，但是在逻辑上是相邻的。  顺序表他不如链表，本质还是用数组来存的链表本身分为带头结点的链表和不带头结点，戴头结点的链表就是会有一个头指向后续的整个链表，但是头结点不存放数据。而不带头结点的链表就像上面那样，第一个节点就是用来存放数据的结点，一般设计链表">
+<meta property="og:description" content="什么是链表 链表不同于顺序表，但是得记住顺序表是随机排序，链表的空间不是连续的，而顺序表是连续的。它通过指针来连接一个个分散的节点，虽然物理上不相邻，但是在逻辑上是相邻的。  顺序表他不如链表，本质还是用数组来存的  链表本身分为带头结点的链表和不带头结点，戴头结点的链表就是会有一个头指向后续的整个链表，但是头结点不存放数据。  而不带头结点的链表就像上面那样，第一个节点就是用来存放数据的结点，">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260225131656.png">
 <meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260225182844.png">
@@ -46,6 +46,7 @@
 <link rel="stylesheet" href="/css/style.css">
 
   <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
+      <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.css" integrity="sha384-tTgKLjMYmJr94v8qu2PE5MUGSMbyN2xiH266JUB3gpm8vnnJywd1dWSOEfrFz+YI" crossorigin="anonymous">
     
 <script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
 
@@ -157,7 +158,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E9%93%BE%E8%A1%A8"><span class="toc-number">1.</span> <span class="toc-text">什么是链表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%93%BE%E8%A1%A8%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="toc-number">2.</span> <span class="toc-text">链表的操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%92%E5%85%A5%E9%93%BE%E8%A1%A8"><span class="toc-number">2.1.</span> <span class="toc-text">插入链表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E7%BB%93%E7%82%B9"><span class="toc-number">2.2.</span> <span class="toc-text">删除结点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E9%93%BE%E8%A1%A8%E5%AF%B9%E5%BA%94%E7%BB%93%E7%82%B9%E7%9A%84%E5%85%83%E7%B4%A0"><span class="toc-number">2.3.</span> <span class="toc-text">获取链表对应结点的元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE%E5%AF%B9%E5%BA%94%E5%85%83%E7%B4%A0%E7%9A%84%E4%BD%8D%E7%BD%AE"><span class="toc-number">2.4.</span> <span class="toc-text">查找对应元素的位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B1%82%E9%93%BE%E8%A1%A8%E7%9A%84%E9%95%BF%E5%BA%A6"><span class="toc-number">2.5.</span> <span class="toc-text">求链表的长度</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%93%BE%E8%A1%A8%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="toc-number">3.</span> <span class="toc-text">链表的性质</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%88%E7%8E%87%E6%96%B9%E9%9D%A2"><span class="toc-number">3.1.</span> <span class="toc-text">效率方面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BD%BF%E7%94%A8%E9%A1%BA%E5%BA%8F%E8%A1%A8%EF%BC%8C%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BD%BF%E7%94%A8%E9%93%BE%E8%A1%A8%E5%91%A2"><span class="toc-number">3.2.</span> <span class="toc-text">什么情况下使用顺序表，什么情况下使用链表呢</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E9%93%BE%E8%A1%A8"><span class="toc-number">1.</span> <span class="toc-text"> 什么是链表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%93%BE%E8%A1%A8%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="toc-number">2.</span> <span class="toc-text"> 链表的操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%92%E5%85%A5%E9%93%BE%E8%A1%A8"><span class="toc-number">2.1.</span> <span class="toc-text"> 插入链表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E7%BB%93%E7%82%B9"><span class="toc-number">2.2.</span> <span class="toc-text"> 删除结点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E9%93%BE%E8%A1%A8%E5%AF%B9%E5%BA%94%E7%BB%93%E7%82%B9%E7%9A%84%E5%85%83%E7%B4%A0"><span class="toc-number">2.3.</span> <span class="toc-text"> 获取链表对应结点的元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE%E5%AF%B9%E5%BA%94%E5%85%83%E7%B4%A0%E7%9A%84%E4%BD%8D%E7%BD%AE"><span class="toc-number">2.4.</span> <span class="toc-text"> 查找对应元素的位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B1%82%E9%93%BE%E8%A1%A8%E7%9A%84%E9%95%BF%E5%BA%A6"><span class="toc-number">2.5.</span> <span class="toc-text"> 求链表的长度</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%93%BE%E8%A1%A8%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="toc-number">3.</span> <span class="toc-text"> 链表的性质</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%88%E7%8E%87%E6%96%B9%E9%9D%A2"><span class="toc-number">3.1.</span> <span class="toc-text"> 效率方面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BD%BF%E7%94%A8%E9%A1%BA%E5%BA%8F%E8%A1%A8%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BD%BF%E7%94%A8%E9%93%BE%E8%A1%A8%E5%91%A2"><span class="toc-number">3.2.</span> <span class="toc-text"> 什么情况下使用顺序表，什么情况下使用链表呢</span></a></li></ol></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -168,15 +169,15 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">6</div>
+    <div class="sidebar-state-number">7</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
-    <div class="sidebar-state-number">5</div>
+    <div class="sidebar-state-number">6</div>
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">7</div>
+    <div class="sidebar-state-number">8</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -241,16 +242,27 @@
     <div class="hr-line"></div>
     
     <div class="e-content article-entry" itemprop="articleBody">
-        <h2 id="什么是链表"><a href="#什么是链表" class="headerlink" title="什么是链表"></a>什么是链表</h2><p>链表不同于顺序表，但是得记住顺序表是随机排序，链表的空间不是连续的，而顺序表是连续的。它通过指针来连接一个个分散的节点，虽然物理上不相邻，但是在逻辑上是相邻的。</p>
-<p><img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260225131656.png" alt="链表示意图"></p>
-<p>顺序表他不如链表，本质还是用数组来存的<br><br><br>链表本身分为带头结点的链表和不带头结点，戴头结点的链表就是会有一个头指向后续的整个链表，但是头结点不存放数据。<br><br><img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260225182844.png" alt="不带头结点的链表"><br>而不带头结点的链表就像上面那样，第一个节点就是用来存放数据的结点，一般设计链表都会采用带头结点的结构，因为操作更加方便。<br><br><br>那么我们先来写一个链表:</p>
+        <h2 id="什么是链表"><a class="markdownIt-Anchor" href="#什么是链表"></a> 什么是链表</h2>
+<p>链表不同于顺序表，但是得记住顺序表是随机排序，链表的空间不是连续的，而顺序表是连续的。它通过指针来连接一个个分散的节点，虽然物理上不相邻，但是在逻辑上是相邻的。</p>
+<p><img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260225131656.png" alt="链表示意图" /></p>
+<p>顺序表他不如链表，本质还是用数组来存的<br />
+<br><br />
+链表本身分为带头结点的链表和不带头结点，戴头结点的链表就是会有一个头指向后续的整个链表，但是头结点不存放数据。<br><br />
+<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260225182844.png" alt="不带头结点的链表" /><br />
+而不带头结点的链表就像上面那样，第一个节点就是用来存放数据的结点，一般设计链表都会采用带头结点的结构，因为操作更加方便。<br />
+<br><br />
+那么我们先来写一个链表:</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="type">int</span> E;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">ListNode</span> &#123;</span><br><span class="line">    E element;   <span class="comment">//保存当前元素</span></span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">ListNode</span> * next;   <span class="comment">//指向下一个结点的指针</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">ListNode</span> * Node;   <span class="comment">//这里我们直接为结点指针起别名，可以直接作为表实现</span></span><br></pre></td></tr></table></figure>
-
 <p>接着我们来编写初始化函数:</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">initList</span><span class="params">(Node head)</span></span>&#123;</span><br><span class="line">    head-&gt;next = <span class="literal">NULL</span>;   <span class="comment">//头结点默认下一个为NULL</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">ListNode</span> head;   <span class="comment">//这里创建一个新的头结点，头结点不存放任何元素，只做连接，连接整个链表</span></span><br><span class="line">    <span class="built_in">initList</span>(&amp;head);  <span class="comment">//先进行初始化</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="链表的操作"><a href="#链表的操作" class="headerlink" title="链表的操作"></a>链表的操作</h2><h3 id="插入链表"><a href="#插入链表" class="headerlink" title="插入链表"></a>插入链表</h3><p>那么链表的插入该如何做到呢？<br><br><img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260225185121.png" alt="插入演示图片1"><br><br><br>我们可以先修改新插入的结点和后继结点指向，指向原本在这个位置的结点</p>
-<p><img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260225185245.png" alt="插入演示图片2"><br></p>
-<p><img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260225185320.png" alt="演示插入图片3"></p>
+<h2 id="链表的操作"><a class="markdownIt-Anchor" href="#链表的操作"></a> 链表的操作</h2>
+<h3 id="插入链表"><a class="markdownIt-Anchor" href="#插入链表"></a> 插入链表</h3>
+<p>那么链表的插入该如何做到呢？<br><br />
+<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260225185121.png" alt="插入演示图片1" /><br />
+<br><br />
+我们可以先修改新插入的结点和后继结点指向，指向原本在这个位置的结点</p>
+<p><img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260225185245.png" alt="插入演示图片2" /><br></p>
+<p><img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260225185320.png" alt="演示插入图片3" /></p>
 <p>按照这个思路，我们来实现一下，首先设计一下函数:</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">insertList</span><span class="params">(Node head, E element, <span class="type">int</span> index)</span></span>&#123;</span><br><span class="line">		<span class="comment">//head是头结点，element为待插入元素，index是待插入下标</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>接着我们需要先找到待插入位置的前驱结点：</p>
@@ -259,19 +271,37 @@
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">_Bool <span class="title">insertList</span><span class="params">(Node head, E element, <span class="type">int</span> index)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(index &lt; <span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (--index) &#123;</span><br><span class="line">        head = head-&gt;next;</span><br><span class="line">      	<span class="keyword">if</span>(head == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    Node node = <span class="built_in">malloc</span>(<span class="built_in">sizeof</span> (<span class="keyword">struct</span> ListNode));</span><br><span class="line">    <span class="keyword">if</span>(node == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="number">0</span>;   <span class="comment">//创建一个新的结点，如果内存空间申请失败返回0</span></span><br><span class="line">    node-&gt;element = element;   <span class="comment">//将元素保存到新创建的结点中</span></span><br><span class="line">    node-&gt;next = head-&gt;next;   <span class="comment">//先让新插入的节点指向原本位置上的这个结点</span></span><br><span class="line">    head-&gt;next = node;   <span class="comment">//接着将前驱结点指向新的这个结点</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>接下来我们就可以使用打印函数来看一下:</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">printList</span><span class="params">(Node head)</span></span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (head-&gt;next) &#123;</span><br><span class="line">        head = head-&gt;next;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, head-&gt;element);   <span class="comment">//因为头结点不存放数据，所以从第二个开始打印</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">ListNode</span> head;</span><br><span class="line">    <span class="built_in">initList</span>(&amp;head);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;=<span class="number">3</span>; ++i) &#123;</span><br><span class="line">        <span class="built_in">insertList</span>(&amp;head, i * <span class="number">100</span>, i);   <span class="comment">//依次插入3个元素</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printList</span>(&amp;head);   <span class="comment">//打印一下看看</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>现在我们来看下结果<br><img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260226000748.png" alt="结果图片"><br><br></p>
-<h3 id="删除结点"><a href="#删除结点" class="headerlink" title="删除结点"></a>删除结点</h3><p>删除结点的话，我们只需要让该结点的next变为NULL，随之让后继结点指向该删除结点的前继结点即可。<br><img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260226153359.png" alt="删除结点操作图"><br><br><br><img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260226153515.png" alt="删除结点操作图"><br><br><br><img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260226153601.png" alt="删除节点操作图"><br><br>那么我们来根据这样的思路来编写代码，首先是设计删除函数:</p>
+<p>现在我们来看下结果<br />
+<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260226000748.png" alt="结果图片" /><br />
+<br></p>
+<h3 id="删除结点"><a class="markdownIt-Anchor" href="#删除结点"></a> 删除结点</h3>
+<p>删除结点的话，我们只需要让该结点的next变为NULL，随之让后继结点指向该删除结点的前继结点即可。<br />
+<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260226153359.png" alt="删除结点操作图" /><br />
+<br><br />
+<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260226153515.png" alt="删除结点操作图" /><br />
+<br><br />
+<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260226153601.png" alt="删除节点操作图" /><br><br />
+那么我们来根据这样的思路来编写代码，首先是设计删除函数:</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">deleteList</span><span class="params">(Node head, <span class="type">int</span> index)</span></span>&#123;</span><br><span class="line">    <span class="comment">//head就是头结点，index依然是待删除的结点位序</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>需要找到待删除结点的前驱结点：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">_Bool <span class="title">deleteList</span><span class="params">(Node head, <span class="type">int</span> index)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(index &lt; <span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>;   <span class="comment">//大体和上面是一样的</span></span><br><span class="line">    <span class="keyword">while</span> (--index) &#123;</span><br><span class="line">        head = head-&gt;next;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(head-&gt;next == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="number">0</span>;  <span class="comment">//注意删除的范围，如果前驱结点的下一个已经是NULL了，那么也说明超过了范围</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>最后就是按照我们上面说的删除结点了:</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">_Bool <span class="title">deleteList</span><span class="params">(Node head, <span class="type">int</span> index)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(index &lt; <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (index--) &#123;</span><br><span class="line">        head = head-&gt;next;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(head-&gt;next == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    Node tmp = head-&gt;next;   <span class="comment">//先拿到待删除结点</span></span><br><span class="line">    head-&gt;next = head-&gt;next-&gt;next;   <span class="comment">//直接让前驱结点指向下一个的下一个结点</span></span><br><span class="line">    <span class="built_in">free</span>(tmp);   <span class="comment">//最后使用free函数释放掉待删除结点的内存</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这样，我们就成功完成了链表的删除操作<br><br></p>
-<h3 id="获取链表对应结点的元素"><a href="#获取链表对应结点的元素" class="headerlink" title="获取链表对应结点的元素"></a>获取链表对应结点的元素</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">E * <span class="title">getList</span><span class="params">(Node head, <span class="type">int</span> index)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(index &lt; <span class="number">1</span>) <span class="keyword">return</span> <span class="literal">NULL</span>;   <span class="comment">//如果小于0那肯定不合法，返回NULL</span></span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        head = head-&gt;next;  <span class="comment">//因为不算头结点，所以使用do-while语句</span></span><br><span class="line">        <span class="keyword">if</span>(head == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="literal">NULL</span>;  <span class="comment">//如果已经超出长度那肯定也不行</span></span><br><span class="line">    &#125; <span class="keyword">while</span> (--index);  <span class="comment">//到达index就结束</span></span><br><span class="line">    <span class="keyword">return</span> &amp;head-&gt;element;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="查找对应元素的位置"><a href="#查找对应元素的位置" class="headerlink" title="查找对应元素的位置"></a>查找对应元素的位置</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">findList</span><span class="params">(Node head, E element)</span></span>&#123;</span><br><span class="line">    head = head-&gt;next;    <span class="comment">//先走到第一个结点</span></span><br><span class="line">    <span class="type">int</span> i = <span class="number">1</span>;   <span class="comment">//计数器</span></span><br><span class="line">    <span class="keyword">while</span> (head) &#123;</span><br><span class="line">        <span class="keyword">if</span>(head-&gt;element == element) <span class="keyword">return</span> i;   <span class="comment">//如果找到，那么就返回i</span></span><br><span class="line">        head = head-&gt;next;   <span class="comment">//没找到就继续向后看</span></span><br><span class="line">        i++;   <span class="comment">//i记住要自增</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;   <span class="comment">//都已经走到链表尾部了，那么就确实没找到了，返回-1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="求链表的长度"><a href="#求链表的长度" class="headerlink" title="求链表的长度"></a>求链表的长度</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">sizeList</span><span class="params">(Node head)</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> i = <span class="number">0</span>;  <span class="comment">//从0开始</span></span><br><span class="line">    <span class="keyword">while</span> (head-&gt;next) &#123;   <span class="comment">//如果下一个为NULL那就停止</span></span><br><span class="line">        head = head-&gt;next;</span><br><span class="line">        i++;   <span class="comment">//每向后找一个就+1</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="链表的性质"><a href="#链表的性质" class="headerlink" title="链表的性质"></a>链表的性质</h2><h3 id="效率方面"><a href="#效率方面" class="headerlink" title="效率方面"></a>效率方面</h3><p>因为要寻找对应位置的前驱结点，所以链式实现的线性表插入、删除操作的时间复杂度为<code>O(n)</code>，但是不需要做任何的移动操作，效率肯定是比顺序表要高的。<br><br>但由于必须要挨个向后寻找，才能找到对应的结点，所以时间复杂度为<code>O(n)</code>，不支持随机访问，只能顺序访问，比顺序表慢。<br></p>
-<h3 id="什么情况下使用顺序表，什么情况下使用链表呢"><a href="#什么情况下使用顺序表，什么情况下使用链表呢" class="headerlink" title="什么情况下使用顺序表，什么情况下使用链表呢"></a>什么情况下使用顺序表，什么情况下使用链表呢</h3><p>通过分析顺序表和链表的特性我们不难发现，链表在随机访问元素时，需要通过遍历来完成，而顺序表则利用数组的特性直接访问得到，所以，当我们读取数据多于插入或是删除数据的情况下时，使用顺序表会更好。<br><br>而顺序表在插入元素时就显得有些鸡肋了，因为需要移动后续元素，整个移动操作会浪费时间，而链表则不需要，只需要修改结点 指向即可完成插入，所以在频繁出现插入或删除的情况下，使用链表会更好。</p>
+<p>这样，我们就成功完成了链表的删除操作<br />
+<br></p>
+<h3 id="获取链表对应结点的元素"><a class="markdownIt-Anchor" href="#获取链表对应结点的元素"></a> 获取链表对应结点的元素</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">E * <span class="title">getList</span><span class="params">(Node head, <span class="type">int</span> index)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(index &lt; <span class="number">1</span>) <span class="keyword">return</span> <span class="literal">NULL</span>;   <span class="comment">//如果小于0那肯定不合法，返回NULL</span></span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        head = head-&gt;next;  <span class="comment">//因为不算头结点，所以使用do-while语句</span></span><br><span class="line">        <span class="keyword">if</span>(head == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="literal">NULL</span>;  <span class="comment">//如果已经超出长度那肯定也不行</span></span><br><span class="line">    &#125; <span class="keyword">while</span> (--index);  <span class="comment">//到达index就结束</span></span><br><span class="line">    <span class="keyword">return</span> &amp;head-&gt;element;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="查找对应元素的位置"><a class="markdownIt-Anchor" href="#查找对应元素的位置"></a> 查找对应元素的位置</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">findList</span><span class="params">(Node head, E element)</span></span>&#123;</span><br><span class="line">    head = head-&gt;next;    <span class="comment">//先走到第一个结点</span></span><br><span class="line">    <span class="type">int</span> i = <span class="number">1</span>;   <span class="comment">//计数器</span></span><br><span class="line">    <span class="keyword">while</span> (head) &#123;</span><br><span class="line">        <span class="keyword">if</span>(head-&gt;element == element) <span class="keyword">return</span> i;   <span class="comment">//如果找到，那么就返回i</span></span><br><span class="line">        head = head-&gt;next;   <span class="comment">//没找到就继续向后看</span></span><br><span class="line">        i++;   <span class="comment">//i记住要自增</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;   <span class="comment">//都已经走到链表尾部了，那么就确实没找到了，返回-1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="求链表的长度"><a class="markdownIt-Anchor" href="#求链表的长度"></a> 求链表的长度</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">sizeList</span><span class="params">(Node head)</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> i = <span class="number">0</span>;  <span class="comment">//从0开始</span></span><br><span class="line">    <span class="keyword">while</span> (head-&gt;next) &#123;   <span class="comment">//如果下一个为NULL那就停止</span></span><br><span class="line">        head = head-&gt;next;</span><br><span class="line">        i++;   <span class="comment">//每向后找一个就+1</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="链表的性质"><a class="markdownIt-Anchor" href="#链表的性质"></a> 链表的性质</h2>
+<h3 id="效率方面"><a class="markdownIt-Anchor" href="#效率方面"></a> 效率方面</h3>
+<p>因为要寻找对应位置的前驱结点，所以链式实现的线性表插入、删除操作的时间复杂度为<code>O(n)</code>，但是不需要做任何的移动操作，效率肯定是比顺序表要高的。<br><br />
+但由于必须要挨个向后寻找，才能找到对应的结点，所以时间复杂度为<code>O(n)</code>，不支持随机访问，只能顺序访问，比顺序表慢。<br></p>
+<h3 id="什么情况下使用顺序表什么情况下使用链表呢"><a class="markdownIt-Anchor" href="#什么情况下使用顺序表什么情况下使用链表呢"></a> 什么情况下使用顺序表，什么情况下使用链表呢</h3>
+<p>通过分析顺序表和链表的特性我们不难发现，链表在随机访问元素时，需要通过遍历来完成，而顺序表则利用数组的特性直接访问得到，所以，当我们读取数据多于插入或是删除数据的情况下时，使用顺序表会更好。<br><br />
+而顺序表在插入元素时就显得有些鸡肋了，因为需要移动后续元素，整个移动操作会浪费时间，而链表则不需要，只需要修改结点 指向即可完成插入，所以在频繁出现插入或删除的情况下，使用链表会更好。</p>
 
     </div>
     <footer class="article-footer">
@@ -344,10 +374,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        7.8k
+        12.1k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        00:32
+        00:49
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -369,7 +399,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E9%93%BE%E8%A1%A8"><span class="toc-number">1.</span> <span class="toc-text">什么是链表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%93%BE%E8%A1%A8%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="toc-number">2.</span> <span class="toc-text">链表的操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%92%E5%85%A5%E9%93%BE%E8%A1%A8"><span class="toc-number">2.1.</span> <span class="toc-text">插入链表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E7%BB%93%E7%82%B9"><span class="toc-number">2.2.</span> <span class="toc-text">删除结点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E9%93%BE%E8%A1%A8%E5%AF%B9%E5%BA%94%E7%BB%93%E7%82%B9%E7%9A%84%E5%85%83%E7%B4%A0"><span class="toc-number">2.3.</span> <span class="toc-text">获取链表对应结点的元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE%E5%AF%B9%E5%BA%94%E5%85%83%E7%B4%A0%E7%9A%84%E4%BD%8D%E7%BD%AE"><span class="toc-number">2.4.</span> <span class="toc-text">查找对应元素的位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B1%82%E9%93%BE%E8%A1%A8%E7%9A%84%E9%95%BF%E5%BA%A6"><span class="toc-number">2.5.</span> <span class="toc-text">求链表的长度</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%93%BE%E8%A1%A8%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="toc-number">3.</span> <span class="toc-text">链表的性质</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%88%E7%8E%87%E6%96%B9%E9%9D%A2"><span class="toc-number">3.1.</span> <span class="toc-text">效率方面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BD%BF%E7%94%A8%E9%A1%BA%E5%BA%8F%E8%A1%A8%EF%BC%8C%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BD%BF%E7%94%A8%E9%93%BE%E8%A1%A8%E5%91%A2"><span class="toc-number">3.2.</span> <span class="toc-text">什么情况下使用顺序表，什么情况下使用链表呢</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E9%93%BE%E8%A1%A8"><span class="toc-number">1.</span> <span class="toc-text"> 什么是链表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%93%BE%E8%A1%A8%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="toc-number">2.</span> <span class="toc-text"> 链表的操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%92%E5%85%A5%E9%93%BE%E8%A1%A8"><span class="toc-number">2.1.</span> <span class="toc-text"> 插入链表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E7%BB%93%E7%82%B9"><span class="toc-number">2.2.</span> <span class="toc-text"> 删除结点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E9%93%BE%E8%A1%A8%E5%AF%B9%E5%BA%94%E7%BB%93%E7%82%B9%E7%9A%84%E5%85%83%E7%B4%A0"><span class="toc-number">2.3.</span> <span class="toc-text"> 获取链表对应结点的元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE%E5%AF%B9%E5%BA%94%E5%85%83%E7%B4%A0%E7%9A%84%E4%BD%8D%E7%BD%AE"><span class="toc-number">2.4.</span> <span class="toc-text"> 查找对应元素的位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B1%82%E9%93%BE%E8%A1%A8%E7%9A%84%E9%95%BF%E5%BA%A6"><span class="toc-number">2.5.</span> <span class="toc-text"> 求链表的长度</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%93%BE%E8%A1%A8%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="toc-number">3.</span> <span class="toc-text"> 链表的性质</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%88%E7%8E%87%E6%96%B9%E9%9D%A2"><span class="toc-number">3.1.</span> <span class="toc-text"> 效率方面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BD%BF%E7%94%A8%E9%A1%BA%E5%BA%8F%E8%A1%A8%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E4%BD%BF%E7%94%A8%E9%93%BE%E8%A1%A8%E5%91%A2"><span class="toc-number">3.2.</span> <span class="toc-text"> 什么情况下使用顺序表，什么情况下使用链表呢</span></a></li></ol></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -380,15 +410,15 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">6</div>
+    <div class="sidebar-state-number">7</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
-    <div class="sidebar-state-number">5</div>
+    <div class="sidebar-state-number">6</div>
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">7</div>
+    <div class="sidebar-state-number">8</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -498,7 +528,7 @@
           url: "http://example.com/2026/02/25/%E9%93%BE%E8%A1%A8%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/",
           excerpt: "",
           description: "",
-          stripContent: "什么是链表链表不同于顺序表，但是得记住顺序表是随机排序，链表的空间不是连续的，而顺序表是连续的。它通过指针来连接一个个分散的节点，虽然物理上不相邻，但是在逻辑上是相邻的。  顺序表他不如链表，本质还是用数组来存的链表本身分为带头结点的链表和不带头结点，戴头结点的链表就是会有一个头指向后续的整个链表，但是头结点不存放数据。而不带头结点的链表就像上面那样，第一个节点就是用来存放数据的结点，一般设计链表都会采用带头结点的结构，因为操作更加方便。那么我们先来写一个链表: 12345678typedef ",
+          stripContent: " 什么是链表 链表不同于顺序表，但是得记住顺序表是随机排序，链表的空间不是连续的，而顺序表是连续的。它通过指针来连接一个个分散的节点，虽然物理上不相邻，但是在逻辑上是相邻的。  顺序表他不如链表，本质还是用数组来存的  链表本身分为带头结点的链表和不带头结点，戴头结点的链表就是会有一个头指向后续的整个链表，但是头结点不存放数据。  而不带头结点的链表就像上面那样，第一个节点就是用来存放数据的结点，一般设计链表都会采用带头结点的结构，因为操作更加方便。  那么我们先来写一个链表: 12345678",
           date: "Wed Feb 25 2026 12:29:15 GMT+0800",
           updated: "Thu Feb 26 2026 15:55:24 GMT+0800",
           cover: "/../image/danlianbiao.webp",
@@ -567,7 +597,7 @@
               envId: 'https://pinglunqu.vercel.app',
               region: '',
               urls: [
-                '/about/index.html'
+                '/categories/index.html'
               ],
               includeReply: false
             }).then((res) => {
@@ -721,7 +751,13 @@
   }
 </script>
 
+    
+<script src="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.js" integrity="sha384-MWNUH0WmtsYGhn2cbH6ELRCbf9LG3QDqCC+gqPB3IBNO35xjZK3Ejb6oONRpDbPg" crossorigin="anonymous" defer data-pjax></script>
 
+    
+<script src="https://npm.webcache.cn/katex@0.16.24/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous" defer onload="renderMathInElement(_$(&#39;article&#39;), {delimiters: [{left: &#39;$$&#39;, right: &#39;$$&#39;, display: true},{left: &#39;$&#39;, right: &#39;$&#39;, display: false}]});" data-pjax></script>
+
+  
 
 
   </body>

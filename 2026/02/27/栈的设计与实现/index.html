@@ -17,12 +17,12 @@
     
 <link rel="stylesheet" href="/css/loader.css">
 
-    <meta name="description" content="什么是栈栈（Stack）是一种特殊的线性表，它只能在表尾进行插入和删除操作，就像下面这样：我们一般只在一端进行插入和删除，依次插入1，2，3，4后，如果进行删除操作，将会是4，3，2，1的顺序进行删除：底部称为栈底，顶部成为栈顶，所有操作只能在栈顶进行，先进后出，下面的元素想要进行操作需要让上面的元素先出去接着我们要来讲下栈的两个操作：  pop：出栈操作，从栈顶取出一个元素。 push：入栈操作">
+    <meta name="description" content="什么是栈 栈（Stack）是一种特殊的线性表，它只能在表尾进行插入和删除操作，就像下面这样：  我们一般只在一端进行插入和删除，依次插入1，2，3，4后，如果进行删除操作，将会是4，3，2，1的顺序进行删除：  底部称为栈底，顶部成为栈顶，所有操作只能在栈顶进行，先进后出，下面的元素想要进行操作需要让上面的元素先出去 接着我们要来讲下栈的两个操作：  pop：出栈操作，从栈顶取出一个元素。 pu">
 <meta property="og:type" content="article">
 <meta property="og:title" content="栈的设计与实现">
 <meta property="og:url" content="http://example.com/2026/02/27/%E6%A0%88%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/index.html">
 <meta property="og:site_name" content="史蒂芬の电台">
-<meta property="og:description" content="什么是栈栈（Stack）是一种特殊的线性表，它只能在表尾进行插入和删除操作，就像下面这样：我们一般只在一端进行插入和删除，依次插入1，2，3，4后，如果进行删除操作，将会是4，3，2，1的顺序进行删除：底部称为栈底，顶部成为栈顶，所有操作只能在栈顶进行，先进后出，下面的元素想要进行操作需要让上面的元素先出去接着我们要来讲下栈的两个操作：  pop：出栈操作，从栈顶取出一个元素。 push：入栈操作">
+<meta property="og:description" content="什么是栈 栈（Stack）是一种特殊的线性表，它只能在表尾进行插入和删除操作，就像下面这样：  我们一般只在一端进行插入和删除，依次插入1，2，3，4后，如果进行删除操作，将会是4，3，2，1的顺序进行删除：  底部称为栈底，顶部成为栈顶，所有操作只能在栈顶进行，先进后出，下面的元素想要进行操作需要让上面的元素先出去 接着我们要来讲下栈的两个操作：  pop：出栈操作，从栈顶取出一个元素。 pu">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260227155157.png">
 <meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260227155352.png">
@@ -43,6 +43,7 @@
 <link rel="stylesheet" href="/css/style.css">
 
   <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
+      <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.css" integrity="sha384-tTgKLjMYmJr94v8qu2PE5MUGSMbyN2xiH266JUB3gpm8vnnJywd1dWSOEfrFz+YI" crossorigin="anonymous">
     
 <script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
 
@@ -154,7 +155,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%A0%88"><span class="toc-number">1.</span> <span class="toc-text">什么是栈</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%BA%E5%BA%8F%E6%A0%88%E7%9A%84%E6%93%8D%E4%BD%9C%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">顺序栈的操作：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A5%E6%A0%88%E6%93%8D%E4%BD%9C"><span class="toc-number">2.1.</span> <span class="toc-text">入栈操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BA%E6%A0%88%E6%93%8D%E4%BD%9C"><span class="toc-number">2.2.</span> <span class="toc-text">出栈操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E9%93%BE%E6%A0%88%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="toc-number">3.</span> <span class="toc-text">单链栈的操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A5%E6%A0%88%E6%93%8D%E4%BD%9C-1"><span class="toc-number">3.1.</span> <span class="toc-text">入栈操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BA%E6%A0%88%E6%93%8D%E4%BD%9C-1"><span class="toc-number">3.2.</span> <span class="toc-text">出栈操作</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%A0%88"><span class="toc-number">1.</span> <span class="toc-text"> 什么是栈</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%BA%E5%BA%8F%E6%A0%88%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="toc-number">2.</span> <span class="toc-text"> 顺序栈的操作：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A5%E6%A0%88%E6%93%8D%E4%BD%9C"><span class="toc-number">2.1.</span> <span class="toc-text"> 入栈操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BA%E6%A0%88%E6%93%8D%E4%BD%9C"><span class="toc-number">2.2.</span> <span class="toc-text"> 出栈操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E9%93%BE%E6%A0%88%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="toc-number">3.</span> <span class="toc-text"> 单链栈的操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A5%E6%A0%88%E6%93%8D%E4%BD%9C-2"><span class="toc-number">3.1.</span> <span class="toc-text"> 入栈操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BA%E6%A0%88%E6%93%8D%E4%BD%9C-2"><span class="toc-number">3.2.</span> <span class="toc-text"> 出栈操作</span></a></li></ol></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -165,15 +166,15 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">6</div>
+    <div class="sidebar-state-number">7</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
-    <div class="sidebar-state-number">5</div>
+    <div class="sidebar-state-number">6</div>
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">7</div>
+    <div class="sidebar-state-number">8</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -238,31 +239,45 @@
     <div class="hr-line"></div>
     
     <div class="e-content article-entry" itemprop="articleBody">
-        <h2 id="什么是栈"><a href="#什么是栈" class="headerlink" title="什么是栈"></a>什么是栈</h2><p>栈（Stack）是一种特殊的线性表，它只能在表尾进行插入和删除操作，就像下面这样：<br><img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260227155157.png" alt="栈示意图"><br>我们一般只在一端进行插入和删除，依次插入1，2，3，4后，如果进行删除操作，将会是4，3，2，1的顺序进行删除：<br><img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260227155352.png" alt="栈示意图"><br><code>底部称为栈底，顶部成为栈顶，所有操作只能在栈顶进行，先进后出，下面的元素想要进行操作需要让上面的元素先出去</code><br>接着我们要来讲下栈的两个操作：</p>
+        <h2 id="什么是栈"><a class="markdownIt-Anchor" href="#什么是栈"></a> 什么是栈</h2>
+<p>栈（Stack）是一种特殊的线性表，它只能在表尾进行插入和删除操作，就像下面这样：<br />
+<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260227155157.png" alt="栈示意图" /><br />
+我们一般只在一端进行插入和删除，依次插入1，2，3，4后，如果进行删除操作，将会是4，3，2，1的顺序进行删除：<br />
+<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260227155352.png" alt="栈示意图" /><br />
+<code>底部称为栈底，顶部成为栈顶，所有操作只能在栈顶进行，先进后出，下面的元素想要进行操作需要让上面的元素先出去</code><br />
+接着我们要来讲下栈的两个操作：</p>
 <ul>
 <li>pop：出栈操作，从栈顶取出一个元素。</li>
-<li>push：入栈操作，向栈中压入一个新的元素。<br>我们先按照顺序表(也可以用链表)来编写：</li>
+<li>push：入栈操作，向栈中压入一个新的元素。<br />
+我们先按照顺序表(也可以用链表)来编写：</li>
 </ul>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="type">int</span> E;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Stack</span> &#123;</span><br><span class="line">    E * array;</span><br><span class="line">    <span class="type">int</span> capacity;</span><br><span class="line">    <span class="type">int</span> top;   <span class="comment">//这里使用top来表示当前的栈顶位置，存的是栈顶元素的下标</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">Stack</span> * ArrayStack;  <span class="comment">//起个别名</span></span><br></pre></td></tr></table></figure>
 <p>接着我们需要一个初始化方法：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">_Bool <span class="title">initStack</span><span class="params">(ArrayStack stack)</span></span>&#123;</span><br><span class="line">    stack-&gt;array = <span class="built_in">malloc</span>(<span class="built_in">sizeof</span>(E) * <span class="number">10</span>);</span><br><span class="line">    <span class="keyword">if</span>(stack-&gt;array == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    stack-&gt;capacity = <span class="number">10</span>;   <span class="comment">//容量还是10</span></span><br><span class="line">    stack-&gt;top = <span class="number">-1</span>;   <span class="comment">//由于栈内没有元素，那么栈顶默认就为-1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">Stack</span> stack;</span><br><span class="line">    <span class="built_in">initStack</span>(&amp;stack);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="顺序栈的操作："><a href="#顺序栈的操作：" class="headerlink" title="顺序栈的操作："></a>顺序栈的操作：</h2><h3 id="入栈操作"><a href="#入栈操作" class="headerlink" title="入栈操作"></a>入栈操作</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">_Bool <span class="title">pushStack</span><span class="params">(ArrayStack stack, E element)</span></span>&#123;</span><br><span class="line">    <span class="comment">//入栈操作只需要给元素就可以，不需要index，因为只能从尾部入栈</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="顺序栈的操作"><a class="markdownIt-Anchor" href="#顺序栈的操作"></a> 顺序栈的操作：</h2>
+<h3 id="入栈操作"><a class="markdownIt-Anchor" href="#入栈操作"></a> 入栈操作</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">_Bool <span class="title">pushStack</span><span class="params">(ArrayStack stack, E element)</span></span>&#123;</span><br><span class="line">    <span class="comment">//入栈操作只需要给元素就可以，不需要index，因为只能从尾部入栈</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>入栈只能在尾部插入：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">_Bool <span class="title">pushStack</span><span class="params">(ArrayStack stack, E element)</span></span>&#123;</span><br><span class="line">    stack-&gt;array[stack-&gt;top + <span class="number">1</span>] = element;   <span class="comment">//直接设定栈顶元素</span></span><br><span class="line">    stack-&gt;top++;   <span class="comment">//栈顶top变量记得自增</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>打印栈中元素:</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">printStack</span><span class="params">(ArrayStack stack)</span></span>&#123; </span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;| &quot;</span>);</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; stack-&gt;top + <span class="number">1</span>; ++i) &#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%d, &quot;</span>, stack-&gt;array[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	 <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>但是我们此时此刻要面临着一个问题，就是该顺序栈可能会被塞满，所以我们可以添加扩容操作:</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">_Bool <span class="title">pushStack</span><span class="params">(ArrayStack stack, E element)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(stack-&gt;top + <span class="number">1</span> == stack-&gt;capacity) &#123;  <span class="comment">//栈顶+1如果等于容量的话，那么说明已经塞满了</span></span><br><span class="line">        <span class="type">int</span> newCapacity = stack-&gt;capacity + (stack-&gt;capacity &gt;&gt; <span class="number">1</span>);   <span class="comment">//大体操作和顺序表一致</span></span><br><span class="line">        E * newArray = <span class="built_in">realloc</span>(stack-&gt;array, newCapacity * <span class="built_in">sizeof</span>(E));</span><br><span class="line">        <span class="keyword">if</span>(newArray == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        stack-&gt;array = newArray;</span><br><span class="line">        stack-&gt;capacity = newCapacity;</span><br><span class="line">    &#125;</span><br><span class="line">    stack-&gt;array[stack-&gt;top + <span class="number">1</span>] = element;</span><br><span class="line">    stack-&gt;top++;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="出栈操作"><a href="#出栈操作" class="headerlink" title="出栈操作"></a>出栈操作</h3><p>出栈操作比较简单，只需要输出当前栈顶元素即可;</p>
+<h3 id="出栈操作"><a class="markdownIt-Anchor" href="#出栈操作"></a> 出栈操作</h3>
+<p>出栈操作比较简单，只需要输出当前栈顶元素即可;</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">_Bool <span class="title">isEmpty</span><span class="params">(ArrayStack stack)</span></span>&#123;   <span class="comment">//在出栈之前，我们还需要使用isEmpty判断一下栈是否为空，空栈元素都没有出个毛</span></span><br><span class="line">    <span class="keyword">return</span> stack-&gt;top == <span class="number">-1</span>;   </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">E <span class="title">popStack</span><span class="params">(ArrayStack stack)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> stack-&gt;array[stack-&gt;top--];   <span class="comment">//直接返回栈顶元素，注意多加一个自减操作</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="单链栈的操作"><a href="#单链栈的操作" class="headerlink" title="单链栈的操作"></a>单链栈的操作</h2><p>前面我们演示了使用顺序表实现栈，我们接着来看如何使用链表来实现栈，实际上使用链表会更加的方便，我们可以直接将头结点指向栈顶结点，而栈顶结点连接后续的栈内结点：<br><img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260227194054.png" alt="单链栈示意图"></p>
+<h2 id="单链栈的操作"><a class="markdownIt-Anchor" href="#单链栈的操作"></a> 单链栈的操作</h2>
+<p>前面我们演示了使用顺序表实现栈，我们接着来看如何使用链表来实现栈，实际上使用链表会更加的方便，我们可以直接将头结点指向栈顶结点，而栈顶结点连接后续的栈内结点：<br />
+<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260227194054.png" alt="单链栈示意图" /></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="type">int</span> E;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">ListNode</span> &#123;</span><br><span class="line">    E element;</span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">ListNode</span> * next;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">ListNode</span> * Node;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">initStack</span><span class="params">(Node head)</span></span>&#123;</span><br><span class="line">    head-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">ListNode</span> head;</span><br><span class="line">    <span class="built_in">initStack</span>(&amp;head);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="入栈操作-1"><a href="#入栈操作-1" class="headerlink" title="入栈操作"></a>入栈操作</h3><p>当有新的元素入栈，只需要在链表头部插入新的结点即可，我们来尝试编写一下<br>接着我们来编写一下入栈操作：<br><img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260227194242.png" alt="单链栈入栈操作示意图"></p>
+<h3 id="入栈操作-2"><a class="markdownIt-Anchor" href="#入栈操作-2"></a> 入栈操作</h3>
+<p>当有新的元素入栈，只需要在链表头部插入新的结点即可，我们来尝试编写一下<br />
+接着我们来编写一下入栈操作：<br />
+<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260227194242.png" alt="单链栈入栈操作示意图" /></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">_Bool <span class="title">pushStack</span><span class="params">(Node head, E element)</span></span>&#123;</span><br><span class="line">    Node node = <span class="built_in">malloc</span>(<span class="built_in">sizeof</span>(<span class="keyword">struct</span> ListNode));   <span class="comment">//创建新的结点</span></span><br><span class="line">    <span class="keyword">if</span>(node == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="number">0</span>;   <span class="comment">//失败就返回0</span></span><br><span class="line">    node-&gt;next = head-&gt;next;   <span class="comment">//将当前结点的下一个设定为头结点的下一个</span></span><br><span class="line">    node-&gt;element = element;   <span class="comment">//设置元素</span></span><br><span class="line">    head-&gt;next = node;   <span class="comment">//将头结点的下一个设定为当前结点</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="出栈操作-1"><a href="#出栈操作-1" class="headerlink" title="出栈操作"></a>出栈操作</h3><p>同理得，移除第一个结点：</p>
+<h3 id="出栈操作-2"><a class="markdownIt-Anchor" href="#出栈操作-2"></a> 出栈操作</h3>
+<p>同理得，移除第一个结点：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">_Bool <span class="title">isEmpty</span><span class="params">(Node head)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> head-&gt;next == <span class="literal">NULL</span>;   <span class="comment">//判断栈是否为空只需要看头结点下一个是否为NULL即可</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">E <span class="title">popStack</span><span class="params">(Node head)</span></span>&#123;</span><br><span class="line">    Node top = head-&gt;next;</span><br><span class="line">    head-&gt;next = head-&gt;next-&gt;next;</span><br><span class="line">    E e = top-&gt;element;</span><br><span class="line">    <span class="built_in">free</span>(top);  <span class="comment">//别忘了释放结点的内存</span></span><br><span class="line">    <span class="keyword">return</span> e;   <span class="comment">//返回出栈元素</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
     </div>
@@ -336,10 +351,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        7.8k
+        12.1k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        00:32
+        00:49
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -361,7 +376,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%A0%88"><span class="toc-number">1.</span> <span class="toc-text">什么是栈</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%BA%E5%BA%8F%E6%A0%88%E7%9A%84%E6%93%8D%E4%BD%9C%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">顺序栈的操作：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A5%E6%A0%88%E6%93%8D%E4%BD%9C"><span class="toc-number">2.1.</span> <span class="toc-text">入栈操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BA%E6%A0%88%E6%93%8D%E4%BD%9C"><span class="toc-number">2.2.</span> <span class="toc-text">出栈操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E9%93%BE%E6%A0%88%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="toc-number">3.</span> <span class="toc-text">单链栈的操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A5%E6%A0%88%E6%93%8D%E4%BD%9C-1"><span class="toc-number">3.1.</span> <span class="toc-text">入栈操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BA%E6%A0%88%E6%93%8D%E4%BD%9C-1"><span class="toc-number">3.2.</span> <span class="toc-text">出栈操作</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%A0%88"><span class="toc-number">1.</span> <span class="toc-text"> 什么是栈</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%BA%E5%BA%8F%E6%A0%88%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="toc-number">2.</span> <span class="toc-text"> 顺序栈的操作：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A5%E6%A0%88%E6%93%8D%E4%BD%9C"><span class="toc-number">2.1.</span> <span class="toc-text"> 入栈操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BA%E6%A0%88%E6%93%8D%E4%BD%9C"><span class="toc-number">2.2.</span> <span class="toc-text"> 出栈操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E9%93%BE%E6%A0%88%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="toc-number">3.</span> <span class="toc-text"> 单链栈的操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A5%E6%A0%88%E6%93%8D%E4%BD%9C-2"><span class="toc-number">3.1.</span> <span class="toc-text"> 入栈操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BA%E6%A0%88%E6%93%8D%E4%BD%9C-2"><span class="toc-number">3.2.</span> <span class="toc-text"> 出栈操作</span></a></li></ol></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -372,15 +387,15 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">6</div>
+    <div class="sidebar-state-number">7</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
-    <div class="sidebar-state-number">5</div>
+    <div class="sidebar-state-number">6</div>
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">7</div>
+    <div class="sidebar-state-number">8</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -490,7 +505,7 @@
           url: "http://example.com/2026/02/27/%E6%A0%88%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/",
           excerpt: "",
           description: "",
-          stripContent: "什么是栈栈（Stack）是一种特殊的线性表，它只能在表尾进行插入和删除操作，就像下面这样：我们一般只在一端进行插入和删除，依次插入1，2，3，4后，如果进行删除操作，将会是4，3，2，1的顺序进行删除：底部称为栈底，顶部成为栈顶，所有操作只能在栈顶进行，先进后出，下面的元素想要进行操作需要让上面的元素先出去接着我们要来讲下栈的两个操作：  pop：出栈操作，从栈顶取出一个元素。 push：入栈操作，向栈中压入一个新的元素。我们先按照顺序表(也可以用链表)来编写：  123456789typede",
+          stripContent: " 什么是栈 栈（Stack）是一种特殊的线性表，它只能在表尾进行插入和删除操作，就像下面这样：  我们一般只在一端进行插入和删除，依次插入1，2，3，4后，如果进行删除操作，将会是4，3，2，1的顺序进行删除：  底部称为栈底，顶部成为栈顶，所有操作只能在栈顶进行，先进后出，下面的元素想要进行操作需要让上面的元素先出去 接着我们要来讲下栈的两个操作：  pop：出栈操作，从栈顶取出一个元素。 push：入栈操作，向栈中压入一个新的元素。 我们先按照顺序表(也可以用链表)来编写：  1234567",
           date: "Fri Feb 27 2026 19:49:14 GMT+0800",
           updated: "Fri Feb 27 2026 19:53:22 GMT+0800",
           cover: "/../image/%E6%A0%88.webp",
@@ -559,7 +574,7 @@
               envId: 'https://pinglunqu.vercel.app',
               region: '',
               urls: [
-                '/about/index.html'
+                '/categories/index.html'
               ],
               includeReply: false
             }).then((res) => {
@@ -713,7 +728,13 @@
   }
 </script>
 
+    
+<script src="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.js" integrity="sha384-MWNUH0WmtsYGhn2cbH6ELRCbf9LG3QDqCC+gqPB3IBNO35xjZK3Ejb6oONRpDbPg" crossorigin="anonymous" defer data-pjax></script>
 
+    
+<script src="https://npm.webcache.cn/katex@0.16.24/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous" defer onload="renderMathInElement(_$(&#39;article&#39;), {delimiters: [{left: &#39;$$&#39;, right: &#39;$$&#39;, display: true},{left: &#39;$&#39;, right: &#39;$&#39;, display: false}]});" data-pjax></script>
+
+  
 
 
   </body>

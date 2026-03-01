@@ -17,12 +17,12 @@
     
 <link rel="stylesheet" href="/css/loader.css">
 
-    <meta name="description" content="什么是队列栈中元素只能栈顶出入，它是一种特殊的线性表，同样的，队列（Queue）也是一种特殊的线性表。秉承先来后到的原则，队列中的元素只能从队尾进入，只能从队首出去，也就是说，入队顺序为1、2、3、4，那么出队顺序也一定是1、2、3、4，所以队列是一种先进先出（FIFO，First In, First Out）的数据结构。 顺序表队列想要实现队列也是很简单的，也可以通过两种线性表来实现，我们先来看">
+    <meta name="description" content="什么是队列 栈中元素只能栈顶出入，它是一种特殊的线性表，同样的，队列（Queue）也是一种特殊的线性表。 秉承先来后到的原则，队列中的元素只能从队尾进入，只能从队首出去，也就是说，入队顺序为1、2、3、4，那么出队顺序也一定是1、2、3、4，所以队列是一种先进先出（FIFO，First In, First Out）的数据结构。  顺序表队列 想要实现队列也是很简单的，也可以通过两种线性表来实现，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="队列的设计与实现">
 <meta property="og:url" content="http://example.com/2026/02/27/%E9%98%9F%E5%88%97%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/index.html">
 <meta property="og:site_name" content="史蒂芬の电台">
-<meta property="og:description" content="什么是队列栈中元素只能栈顶出入，它是一种特殊的线性表，同样的，队列（Queue）也是一种特殊的线性表。秉承先来后到的原则，队列中的元素只能从队尾进入，只能从队首出去，也就是说，入队顺序为1、2、3、4，那么出队顺序也一定是1、2、3、4，所以队列是一种先进先出（FIFO，First In, First Out）的数据结构。 顺序表队列想要实现队列也是很简单的，也可以通过两种线性表来实现，我们先来看">
+<meta property="og:description" content="什么是队列 栈中元素只能栈顶出入，它是一种特殊的线性表，同样的，队列（Queue）也是一种特殊的线性表。 秉承先来后到的原则，队列中的元素只能从队尾进入，只能从队首出去，也就是说，入队顺序为1、2、3、4，那么出队顺序也一定是1、2、3、4，所以队列是一种先进先出（FIFO，First In, First Out）的数据结构。  顺序表队列 想要实现队列也是很简单的，也可以通过两种线性表来实现，">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260227210319.png">
 <meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260227210403.png">
@@ -47,6 +47,7 @@
 <link rel="stylesheet" href="/css/style.css">
 
   <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
+      <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.css" integrity="sha384-tTgKLjMYmJr94v8qu2PE5MUGSMbyN2xiH266JUB3gpm8vnnJywd1dWSOEfrFz+YI" crossorigin="anonymous">
     
 <script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
 
@@ -158,7 +159,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E9%98%9F%E5%88%97"><span class="toc-number">1.</span> <span class="toc-text">什么是队列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%BA%E5%BA%8F%E8%A1%A8%E9%98%9F%E5%88%97"><span class="toc-number">2.</span> <span class="toc-text">顺序表队列</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A5%E9%98%9F%E6%93%8D%E4%BD%9C"><span class="toc-number">2.1.</span> <span class="toc-text">入队操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BA%E9%98%9F%E6%93%8D%E4%BD%9C"><span class="toc-number">2.2.</span> <span class="toc-text">出队操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E9%93%BE%E9%98%9F%E5%88%97"><span class="toc-number">3.</span> <span class="toc-text">单链队列</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A5%E9%98%9F%E6%93%8D%E4%BD%9C-1"><span class="toc-number">3.1.</span> <span class="toc-text">入队操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BA%E9%98%9F%E6%93%8D%E4%BD%9C-1"><span class="toc-number">3.2.</span> <span class="toc-text">出队操作</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E9%98%9F%E5%88%97"><span class="toc-number">1.</span> <span class="toc-text"> 什么是队列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%BA%E5%BA%8F%E8%A1%A8%E9%98%9F%E5%88%97"><span class="toc-number">2.</span> <span class="toc-text"> 顺序表队列</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A5%E9%98%9F%E6%93%8D%E4%BD%9C"><span class="toc-number">2.1.</span> <span class="toc-text"> 入队操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BA%E9%98%9F%E6%93%8D%E4%BD%9C"><span class="toc-number">2.2.</span> <span class="toc-text"> 出队操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E9%93%BE%E9%98%9F%E5%88%97"><span class="toc-number">3.</span> <span class="toc-text"> 单链队列</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A5%E9%98%9F%E6%93%8D%E4%BD%9C-2"><span class="toc-number">3.1.</span> <span class="toc-text"> 入队操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BA%E9%98%9F%E6%93%8D%E4%BD%9C-2"><span class="toc-number">3.2.</span> <span class="toc-text"> 出队操作</span></a></li></ol></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -169,15 +170,15 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">6</div>
+    <div class="sidebar-state-number">7</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
-    <div class="sidebar-state-number">5</div>
+    <div class="sidebar-state-number">6</div>
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">7</div>
+    <div class="sidebar-state-number">8</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -242,21 +243,45 @@
     <div class="hr-line"></div>
     
     <div class="e-content article-entry" itemprop="articleBody">
-        <h2 id="什么是队列"><a href="#什么是队列" class="headerlink" title="什么是队列"></a>什么是队列</h2><p>栈中元素只能栈顶出入，它是一种特殊的线性表，同样的，队列（Queue）也是一种特殊的线性表。<br><code>秉承先来后到的原则，队列中的元素只能从队尾进入，只能从队首出去，也就是说，入队顺序为1、2、3、4，那么出队顺序也一定是1、2、3、4，所以队列是一种先进先出（FIFO，First In, First Out）的数据结构。</code></p>
-<h2 id="顺序表队列"><a href="#顺序表队列" class="headerlink" title="顺序表队列"></a>顺序表队列</h2><p>想要实现队列也是很简单的，也可以通过两种线性表来实现，我们先来看看使用顺序表如何实现队列，假设一开始的时候队列中有0个元素，队首和队尾一般都初始都是<code>-1</code>这个位置：<br><img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260227210319.png" alt="顺序表队列示意图"><br>此时有新的元素入队了，队尾向后移动一格（<code>+1</code>），然后在所指向位置插入新的元素：<br><img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260227210403.png" alt="顺序表队列示意图"><br>之后都是同样的方式进行插入，队尾会一直向后移动：<br><img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260227210440.png" alt="顺序表队列示意图"><br>现在我们想要执行出队操作了，那么需要将队首向后移动一格，然后删除队首指向的元素：<br><img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260227210522.png" alt="顺序表队列示意图"><br>这样设计看起来很不错，但是队列是一次性的，最终会被用完，延长数组终究不是办法，所以我们队列上一般会使用<code>循环队列</code><br><img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260227210745.png" alt="循环队列示意图"><br>开始编写代码：</p>
+        <h2 id="什么是队列"><a class="markdownIt-Anchor" href="#什么是队列"></a> 什么是队列</h2>
+<p>栈中元素只能栈顶出入，它是一种特殊的线性表，同样的，队列（Queue）也是一种特殊的线性表。<br />
+<code>秉承先来后到的原则，队列中的元素只能从队尾进入，只能从队首出去，也就是说，入队顺序为1、2、3、4，那么出队顺序也一定是1、2、3、4，所以队列是一种先进先出（FIFO，First In, First Out）的数据结构。</code></p>
+<h2 id="顺序表队列"><a class="markdownIt-Anchor" href="#顺序表队列"></a> 顺序表队列</h2>
+<p>想要实现队列也是很简单的，也可以通过两种线性表来实现，我们先来看看使用顺序表如何实现队列，假设一开始的时候队列中有0个元素，队首和队尾一般都初始都是<code>-1</code>这个位置：<br />
+<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260227210319.png" alt="顺序表队列示意图" /><br />
+此时有新的元素入队了，队尾向后移动一格（<code>+1</code>），然后在所指向位置插入新的元素：<br />
+<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260227210403.png" alt="顺序表队列示意图" /><br />
+之后都是同样的方式进行插入，队尾会一直向后移动：<br />
+<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260227210440.png" alt="顺序表队列示意图" /><br />
+现在我们想要执行出队操作了，那么需要将队首向后移动一格，然后删除队首指向的元素：<br />
+<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260227210522.png" alt="顺序表队列示意图" /><br />
+这样设计看起来很不错，但是队列是一次性的，最终会被用完，延长数组终究不是办法，所以我们队列上一般会使用<code>循环队列</code><br />
+<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260227210745.png" alt="循环队列示意图" /><br />
+开始编写代码：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="type">int</span> E;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Queue</span> &#123;</span><br><span class="line">    E * array;</span><br><span class="line">    <span class="type">int</span> capacity;   <span class="comment">//数组容量</span></span><br><span class="line">    <span class="type">int</span> rear, front;   <span class="comment">//队尾、队首指针</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">Queue</span> * ArrayQueue;</span><br></pre></td></tr></table></figure>
 <p>初始化代码：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">_Bool <span class="title">initQueue</span><span class="params">(ArrayQueue queue)</span></span>&#123;</span><br><span class="line">    queue-&gt;array = <span class="built_in">malloc</span>(<span class="built_in">sizeof</span>(E) * <span class="number">10</span>);</span><br><span class="line">    <span class="keyword">if</span>(queue-&gt;array == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    queue-&gt;capacity = <span class="number">10</span>;</span><br><span class="line">    queue-&gt;front = queue-&gt;rear = <span class="number">0</span>;   <span class="comment">//默认情况下队首和队尾都指向0的位置</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">Queue</span> queue;</span><br><span class="line">    <span class="built_in">initQueue</span>(&amp;queue);   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="入队操作"><a href="#入队操作" class="headerlink" title="入队操作"></a>入队操作</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">_Bool <span class="title">offerQueue</span><span class="params">(ArrayQueue queue, E element)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>((queue-&gt;rear + <span class="number">1</span>) % queue-&gt;capacity == queue-&gt;front)   <span class="comment">//先判断队列是否已满，如果队尾下一个就是队首，那么说明已满</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    queue-&gt;rear = (queue-&gt;rear + <span class="number">1</span>) % queue-&gt;capacity;   <span class="comment">//队尾先向前移动一位，注意取余计算才能实现循环</span></span><br><span class="line">    queue-&gt;array[queue-&gt;rear] = element;   <span class="comment">//在新的位置插入元素</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="出队操作"><a href="#出队操作" class="headerlink" title="出队操作"></a>出队操作</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">_Bool <span class="title">isEmpty</span><span class="params">(ArrayQueue queue)</span></span>&#123;   <span class="comment">//在出队之前需要先看看容量是否足够</span></span><br><span class="line">    <span class="keyword">return</span> queue-&gt;rear == queue-&gt;front;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">E <span class="title">pollQueue</span><span class="params">(ArrayQueue queue)</span></span>&#123;</span><br><span class="line">    queue-&gt;front = (queue-&gt;front + <span class="number">1</span>) % queue-&gt;capacity;   <span class="comment">//先将队首指针后移</span></span><br><span class="line">    <span class="keyword">return</span> queue-&gt;array[queue-&gt;front];   <span class="comment">//出队，完事</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="入队操作"><a class="markdownIt-Anchor" href="#入队操作"></a> 入队操作</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">_Bool <span class="title">offerQueue</span><span class="params">(ArrayQueue queue, E element)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>((queue-&gt;rear + <span class="number">1</span>) % queue-&gt;capacity == queue-&gt;front)   <span class="comment">//先判断队列是否已满，如果队尾下一个就是队首，那么说明已满</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    queue-&gt;rear = (queue-&gt;rear + <span class="number">1</span>) % queue-&gt;capacity;   <span class="comment">//队尾先向前移动一位，注意取余计算才能实现循环</span></span><br><span class="line">    queue-&gt;array[queue-&gt;rear] = element;   <span class="comment">//在新的位置插入元素</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="出队操作"><a class="markdownIt-Anchor" href="#出队操作"></a> 出队操作</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">_Bool <span class="title">isEmpty</span><span class="params">(ArrayQueue queue)</span></span>&#123;   <span class="comment">//在出队之前需要先看看容量是否足够</span></span><br><span class="line">    <span class="keyword">return</span> queue-&gt;rear == queue-&gt;front;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">E <span class="title">pollQueue</span><span class="params">(ArrayQueue queue)</span></span>&#123;</span><br><span class="line">    queue-&gt;front = (queue-&gt;front + <span class="number">1</span>) % queue-&gt;capacity;   <span class="comment">//先将队首指针后移</span></span><br><span class="line">    <span class="keyword">return</span> queue-&gt;array[queue-&gt;front];   <span class="comment">//出队，完事</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><code>这里我们要记住，我们给的循环队列的大小看似是10，但我们写的这个代码会导致队头也就是front指着的空间始终是空的，他只是出队front+1的元素，与上方参考图有所不同</code></p>
-<h2 id="单链队列"><a href="#单链队列" class="headerlink" title="单链队列"></a>单链队列</h2><p>同样的，队列也可以使用链表来实现，并且使用链表的话就不需要关心容量之类的问题了，会更加灵活一些：<br><img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260227214617.png" alt="单链队列示意图"><br>当有新的元素入队时，只需要拼在队尾就行了，同时队尾指针也要后移一位：<br><img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260227214707.png" alt="单链队列示意图"><br>出队时，只需要移除队首指向的下一个元素即可：<br><img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260227214743.png" alt="单链队列示意图"><br>那么我们来编写代码：</p>
+<h2 id="单链队列"><a class="markdownIt-Anchor" href="#单链队列"></a> 单链队列</h2>
+<p>同样的，队列也可以使用链表来实现，并且使用链表的话就不需要关心容量之类的问题了，会更加灵活一些：<br />
+<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260227214617.png" alt="单链队列示意图" /><br />
+当有新的元素入队时，只需要拼在队尾就行了，同时队尾指针也要后移一位：<br />
+<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260227214707.png" alt="单链队列示意图" /><br />
+出队时，只需要移除队首指向的下一个元素即可：<br />
+<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260227214743.png" alt="单链队列示意图" /><br />
+那么我们来编写代码：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="type">int</span> E;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">LNode</span> &#123;</span><br><span class="line">    E element;</span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">LNode</span> * next;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">LNode</span> * Node;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Queue</span>&#123;</span><br><span class="line">    Node front, rear;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">Queue</span> * LinkedQueue;   <span class="comment">//因为要存储首位两个指针，所以这里封装一个新的结构体吧</span></span><br></pre></td></tr></table></figure>
 <p>接着是初始化，初始化的时候，需要把头结点先创建出来：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">_Bool <span class="title">initQueue</span><span class="params">(LinkedQueue queue)</span></span>&#123;</span><br><span class="line">    Node node = <span class="built_in">malloc</span>(<span class="built_in">sizeof</span>(<span class="keyword">struct</span> LNode));</span><br><span class="line">    <span class="keyword">if</span>(node == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  	node-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">    queue-&gt;front = queue-&gt;rear = node;   <span class="comment">//一开始两个指针都是指向头结点的，表示队列为空</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">Queue</span> queue;</span><br><span class="line">    <span class="built_in">initQueue</span>(&amp;queue);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="入队操作-1"><a href="#入队操作-1" class="headerlink" title="入队操作"></a>入队操作</h3><p>首先是入队操作，入队其实直接在后面插入新的结点就行了：</p>
+<h3 id="入队操作-2"><a class="markdownIt-Anchor" href="#入队操作-2"></a> 入队操作</h3>
+<p>首先是入队操作，入队其实直接在后面插入新的结点就行了：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">_Bool <span class="title">offerQueue</span><span class="params">(LinkedQueue queue, E element)</span></span>&#123;</span><br><span class="line">    Node node = <span class="built_in">malloc</span>(<span class="built_in">sizeof</span>(<span class="keyword">struct</span> LNode));</span><br><span class="line">    <span class="keyword">if</span>(node == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  	node-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">    node-&gt;element = element;</span><br><span class="line">    queue-&gt;rear-&gt;next = node;   <span class="comment">//先让尾结点的下一个指向新的结点</span></span><br><span class="line">    queue-&gt;rear = node;   <span class="comment">//然后让队尾指针指向新的尾结点</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="出队操作-1"><a href="#出队操作-1" class="headerlink" title="出队操作"></a>出队操作</h3><p>接着是出队操作，出队操作要相对麻烦一点：</p>
+<h3 id="出队操作-2"><a class="markdownIt-Anchor" href="#出队操作-2"></a> 出队操作</h3>
+<p>接着是出队操作，出队操作要相对麻烦一点：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">E <span class="title">pollQueue</span><span class="params">(LinkedQueue queue)</span></span>&#123;</span><br><span class="line">    E e = queue-&gt;front-&gt;next-&gt;element;</span><br><span class="line">    Node node = queue-&gt;front-&gt;next;</span><br><span class="line">    queue-&gt;front-&gt;next = queue-&gt;front-&gt;next-&gt;next;  <span class="comment">//直接让头结点指向下下个结点</span></span><br><span class="line">    <span class="keyword">if</span>(queue-&gt;rear == node) queue-&gt;rear = queue-&gt;front;   <span class="comment">//如果队尾就是待出队的结点，那么队尾回到队首位置上</span></span><br><span class="line">    <span class="built_in">free</span>(node);   <span class="comment">//释放内存</span></span><br><span class="line">    <span class="keyword">return</span> e;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>效果和前面的顺序表实现是一样的，只不过使用链表会更加灵活一些。</p>
 
@@ -273,6 +298,14 @@
     </footer>
   </div>
     <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
+      <div class="article-nav-link-wrap left">
+          <img data-src="/../image/%E4%BA%8C%E5%8F%89%E6%A0%91.webp" data-sizes="auto" alt="二叉树的设计与实现(树的开篇)" class="lazyload">
+        <a href="/2026/03/01/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0(%E6%A0%91%E7%9A%84%E5%BC%80%E7%AF%87)/" aria-label="前一篇: 二叉树的设计与实现(树的开篇)" title="前一篇: 二叉树的设计与实现(树的开篇)"></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">
+            二叉树的设计与实现(树的开篇)
+        </h3>
+      </div>
     <div class="article-nav-link-wrap right">
         <img data-src="/../image/%E6%A0%88.webp" data-sizes="auto" alt="栈的设计与实现" class="lazyload">
       <a href="/2026/02/27/%E6%A0%88%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/" aria-label="后一篇: 栈的设计与实现"  title="后一篇: 栈的设计与实现"></a>
@@ -323,10 +356,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        7.8k
+        12.1k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        00:32
+        00:49
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -348,7 +381,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E9%98%9F%E5%88%97"><span class="toc-number">1.</span> <span class="toc-text">什么是队列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%BA%E5%BA%8F%E8%A1%A8%E9%98%9F%E5%88%97"><span class="toc-number">2.</span> <span class="toc-text">顺序表队列</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A5%E9%98%9F%E6%93%8D%E4%BD%9C"><span class="toc-number">2.1.</span> <span class="toc-text">入队操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BA%E9%98%9F%E6%93%8D%E4%BD%9C"><span class="toc-number">2.2.</span> <span class="toc-text">出队操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E9%93%BE%E9%98%9F%E5%88%97"><span class="toc-number">3.</span> <span class="toc-text">单链队列</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A5%E9%98%9F%E6%93%8D%E4%BD%9C-1"><span class="toc-number">3.1.</span> <span class="toc-text">入队操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BA%E9%98%9F%E6%93%8D%E4%BD%9C-1"><span class="toc-number">3.2.</span> <span class="toc-text">出队操作</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E9%98%9F%E5%88%97"><span class="toc-number">1.</span> <span class="toc-text"> 什么是队列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%BA%E5%BA%8F%E8%A1%A8%E9%98%9F%E5%88%97"><span class="toc-number">2.</span> <span class="toc-text"> 顺序表队列</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A5%E9%98%9F%E6%93%8D%E4%BD%9C"><span class="toc-number">2.1.</span> <span class="toc-text"> 入队操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BA%E9%98%9F%E6%93%8D%E4%BD%9C"><span class="toc-number">2.2.</span> <span class="toc-text"> 出队操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E9%93%BE%E9%98%9F%E5%88%97"><span class="toc-number">3.</span> <span class="toc-text"> 单链队列</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A5%E9%98%9F%E6%93%8D%E4%BD%9C-2"><span class="toc-number">3.1.</span> <span class="toc-text"> 入队操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BA%E9%98%9F%E6%93%8D%E4%BD%9C-2"><span class="toc-number">3.2.</span> <span class="toc-text"> 出队操作</span></a></li></ol></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -359,15 +392,15 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">6</div>
+    <div class="sidebar-state-number">7</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
-    <div class="sidebar-state-number">5</div>
+    <div class="sidebar-state-number">6</div>
   </div>
   <div class="sidebar-state-tag">
     <div>标签</div>
-    <div class="sidebar-state-number">7</div>
+    <div class="sidebar-state-number">8</div>
   </div>
 </div>
 <div class="sidebar-social" >
@@ -477,7 +510,7 @@
           url: "http://example.com/2026/02/27/%E9%98%9F%E5%88%97%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/",
           excerpt: "",
           description: "",
-          stripContent: "什么是队列栈中元素只能栈顶出入，它是一种特殊的线性表，同样的，队列（Queue）也是一种特殊的线性表。秉承先来后到的原则，队列中的元素只能从队尾进入，只能从队首出去，也就是说，入队顺序为1、2、3、4，那么出队顺序也一定是1、2、3、4，所以队列是一种先进先出（FIFO，First In, First Out）的数据结构。 顺序表队列想要实现队列也是很简单的，也可以通过两种线性表来实现，我们先来看看使用顺序表如何实现队列，假设一开始的时候队列中有0个元素，队首和队尾一般都初始都是-1这个位置：此",
+          stripContent: " 什么是队列 栈中元素只能栈顶出入，它是一种特殊的线性表，同样的，队列（Queue）也是一种特殊的线性表。 秉承先来后到的原则，队列中的元素只能从队尾进入，只能从队首出去，也就是说，入队顺序为1、2、3、4，那么出队顺序也一定是1、2、3、4，所以队列是一种先进先出（FIFO，First In, First Out）的数据结构。  顺序表队列 想要实现队列也是很简单的，也可以通过两种线性表来实现，我们先来看看使用顺序表如何实现队列，假设一开始的时候队列中有0个元素，队首和队尾一般都初始都是-1这",
           date: "Fri Feb 27 2026 22:11:27 GMT+0800",
           updated: "Fri Feb 27 2026 22:18:32 GMT+0800",
           cover: "/../image/%E9%98%9F%E5%88%97.webp",
@@ -546,7 +579,7 @@
               envId: 'https://pinglunqu.vercel.app',
               region: '',
               urls: [
-                '/about/index.html'
+                '/categories/index.html'
               ],
               includeReply: false
             }).then((res) => {
@@ -700,7 +733,13 @@
   }
 </script>
 
+    
+<script src="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.js" integrity="sha384-MWNUH0WmtsYGhn2cbH6ELRCbf9LG3QDqCC+gqPB3IBNO35xjZK3Ejb6oONRpDbPg" crossorigin="anonymous" defer data-pjax></script>
 
+    
+<script src="https://npm.webcache.cn/katex@0.16.24/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous" defer onload="renderMathInElement(_$(&#39;article&#39;), {delimiters: [{left: &#39;$$&#39;, right: &#39;$$&#39;, display: true},{left: &#39;$&#39;, right: &#39;$&#39;, display: false}]});" data-pjax></script>
+
+  
 
 
   </body>
