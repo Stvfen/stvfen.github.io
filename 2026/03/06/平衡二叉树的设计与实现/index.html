@@ -1,0 +1,759 @@
+  <!DOCTYPE html>
+  <html lang="zh-CN"  
+      data-theme-mode="auto"
+  >
+  <head>
+  <meta charset="utf-8">
+  
+  
+  
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_4k4bc36ef96';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
+  <title>
+    平衡二叉树的设计与实现 | 史蒂芬の电台
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_4k4bc36ef96.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="什么是平衡二叉树 利用二叉查找树，我们在搜索某个值的时候，效率会得到巨大提升。但是虽然看起来比较完美，也是存在缺陷的，比如现在我们依次将下面的值插入到这棵二叉树中： 120 15 13 8 6 3 在插入完成后，我们会发现这棵二叉树竟然长这样：  其说它是一棵二叉树，不如说就是一个链表，如果这时我们想要查找某个结点，那么实际上查找的时间并没有得到任何优化，直接就退化成线性查找了。 所以，二叉查找">
+<meta property="og:type" content="article">
+<meta property="og:title" content="平衡二叉树的设计与实现">
+<meta property="og:url" content="http://example.com/2026/03/06/%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/index.html">
+<meta property="og:site_name" content="史蒂芬の电台">
+<meta property="og:description" content="什么是平衡二叉树 利用二叉查找树，我们在搜索某个值的时候，效率会得到巨大提升。但是虽然看起来比较完美，也是存在缺陷的，比如现在我们依次将下面的值插入到这棵二叉树中： 120 15 13 8 6 3 在插入完成后，我们会发现这棵二叉树竟然长这样：  其说它是一棵二叉树，不如说就是一个链表，如果这时我们想要查找某个结点，那么实际上查找的时间并没有得到任何优化，直接就退化成线性查找了。 所以，二叉查找">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260305140516.png">
+<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260305140640.png">
+<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260305145127.png">
+<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260305145205.png">
+<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260305145242.png">
+<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260305150344.png">
+<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260305150429.png">
+<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260305150522.png">
+<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260305150602.png">
+<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260305150629.png">
+<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260305150714.png">
+<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260305150832.png">
+<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260305151233.png">
+<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260305151321.png">
+<meta property="article:published_time" content="2026-03-05T18:21:48.000Z">
+<meta property="article:modified_time" content="2026-03-05T18:48:18.276Z">
+<meta property="article:author" content="Stvfen">
+<meta property="article:tag" content="二分">
+<meta property="article:tag" content="二叉树">
+<meta property="article:tag" content="单链表">
+<meta property="article:tag" content="数据结构">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260305140516.png">
+    <link rel="alternate" href="/atom.xml" title="史蒂芬の电台" type="application/atom+xml">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
+      <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.css" integrity="sha384-tTgKLjMYmJr94v8qu2PE5MUGSMbyN2xiH266JUB3gpm8vnnJywd1dWSOEfrFz+YI" crossorigin="anonymous">
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+  <body>
+      <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+      </div>
+      <div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script>
+<div id="copy-tooltip"></div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation">
+        <a class="main-nav-link-wrap" href="/">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">首页</span>
+        </span>
+        <a class="main-nav-link-wrap" href="/archives">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">归档</span>
+        </span>
+        <a class="main-nav-link-wrap" href="/about">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">关于</span>
+        </span>
+        <a class="main-nav-link-wrap" href="/friend">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">友链</span>
+        </span>
+    <a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation">
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅" aria-label="RSS 订阅" target="_blank"></a>
+  </nav>
+</div>
+<header id="header" aria-label="Site header">
+    <picture></picture>
+    <img  fetchpriority="high" src="/../image/%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91.webp" alt="平衡二叉树的设计与实现">
+  <div id="header-outer">
+    <div id="header-title">
+          <span id="logo">
+            <h1 data-aos="slide-up">平衡二叉树的设计与实现</h1>
+          </span>
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+        </h2>
+    </div>
+  </div>
+</header>
+
+        <div id="content" aria-label="Page content" class="sidebar-left"  >
+          <aside id="sidebar" aria-label="Sidebar">
+  <div class="sidebar-wrapper-container sticky">
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-number">1.</span> <span class="toc-text"> 什么是平衡二叉树</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ll%E5%BD%A2%E8%B0%83%E6%95%B4%E5%8F%B3%E6%97%8B"><span class="toc-number">1.1.</span> <span class="toc-text"> LL形调整(右旋)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rr%E5%9E%8B%E8%B0%83%E6%95%B4%E5%B7%A6%E6%97%8B"><span class="toc-number">1.2.</span> <span class="toc-text"> RR型调整(左旋)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rl%E5%9E%8B%E8%B0%83%E6%95%B4%E5%85%88%E5%8F%B3%E6%97%8B%E5%86%8D%E5%B7%A6%E6%97%8B"><span class="toc-number">1.3.</span> <span class="toc-text"> RL型调整(先右旋，再左旋)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lr%E5%9E%8B%E8%B0%83%E6%95%B4%E5%85%88%E5%B7%A6%E6%97%8B%E5%86%8D%E5%8F%B3%E6%97%8B"><span class="toc-number">1.4.</span> <span class="toc-text"> LR型调整(先左旋，再右旋)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.</span> <span class="toc-text"> 代码实现</span></a></li></ol>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Stvfen" class="lazyload">
+  <div class="sidebar-author-name">Stvfen</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">10</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">6</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">9</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/3546704989129249?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+    </div>
+  </div>
+  <div class="sidebar-widget">
+  </div>
+  </div>
+</aside>
+
+          <section id="main" aria-label="Main content"><article id="post-平衡二叉树的设计与实现" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2026-03-05T18:21:48.000Z" itemprop="datePublished">2026-03-06</time>
+    <time style="display: none;" id="post-update-time">2026-03-06</time>
+  </span>
+</div>
+
+    </div>
+    
+    <div class="hr-line"></div>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+        <h2 id="什么是平衡二叉树"><a class="markdownIt-Anchor" href="#什么是平衡二叉树"></a> 什么是平衡二叉树</h2>
+<p>利用二叉查找树，我们在搜索某个值的时候，效率会得到巨大提升。但是虽然看起来比较完美，也是存在缺陷的，比如现在我们依次将下面的值插入到这棵二叉树中：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">20 15 13 8 6 3</span><br></pre></td></tr></table></figure>
+<p>在插入完成后，我们会发现这棵二叉树竟然长这样：<br />
+<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260305140516.png" alt="示意图" /><br />
+其说它是一棵二叉树，不如说就是一个链表，如果这时我们想要查找某个结点，那么实际上查找的时间并没有得到任何优化，直接就退化成线性查找了。<br><br />
+所以，二叉查找树只有在理想情况下，查找效率才是最高的，而像这种极端情况，就性能而言几乎没有任何的提升。我们理想情况下，这样的效率是最高的：<br />
+<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260305140640.png" alt="示意图" /><br />
+所以，我们在进行结点插入时，需要尽可能地避免这种一边倒的情况，这里就需要引入<strong>平衡二叉树</strong>的概念了。实际上我们发现，在插入时如果不去维护二叉树的平衡，某一边只会无限制地延伸下去，出现极度不平衡的情况，而我们理想中的二叉查找树左右是尽可能保持平衡的，<strong>平衡二叉树</strong>（AVL树）就是为了解决这样的问题而生的。<br><br />
+它的性质如下：</p>
+<ul>
+<li>平衡二叉树一定是一棵<strong>二叉查找树</strong>。</li>
+<li>任意结点的左右子树也是一棵平衡二叉树。</li>
+<li>从根节点开始，左右子树都高度差不能超过1，否则视为不平衡。<br />
+<strong>一个节点的高度 = 从该节点到它所有叶子节点中，最长那条路径的边数（或节点数）</strong> <br><br><br />
+<code>我们接下来讲解的将会以包括自身的节点数来总计高度</code><br />
+<br><br />
+<br></li>
+</ul>
+<p>可以看到，这些性质规定了平衡二叉树需要保持高度平衡，这样我们的查找效率才不会因为数据的插入而出现降低的情况。二叉树上节点的左子树高度 减去 右子树高度， 得到的结果称为该节点的<strong>平衡因子</strong>（Balance Factor），比如：<br />
+<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260305145127.png" alt="示意图" /><br />
+通过计算平衡因子，我们就可以快速得到是否出现失衡的情况。比如下面的这棵二叉树，正在执行插入操作：<br />
+<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260305145205.png" alt="示意图" /><br />
+可以看到，当插入之后，不再满足平衡二叉树的定义时，就出现了失衡的情况，而对于这种失衡情况，为了继续保持平衡状态，我们就需要进行处理了。我们可能会遇到以下几种情况导致失衡：<br />
+<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260305145242.png" alt="示意图" /><br />
+<a target="_blank" rel="noopener" href="https://www.cs.usfca.edu/~galles/visualization/AVLtree.html">如果看不懂的话，点击我可以查看动画效果</a></p>
+<h3 id="ll形调整右旋"><a class="markdownIt-Anchor" href="#ll形调整右旋"></a> LL形调整(右旋)</h3>
+<p><img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260305150344.png" alt="示意图" /><br />
+对于LL型失衡，我们只需要进行右旋操作，首先我们先找到<strong>最小不平衡子树</strong>，注意是最小的那一个：<br />
+<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260305150429.png" alt="示意图" /><br />
+可以看到根结点的平衡因子是2，是目前最小的出现不平衡的点，所以说从根结点开始向左的三个结点需要进行右旋操作，右旋需要将这三个结点中间的结点作为新的根结点，而其他两个结点现在变成左右子树：<br />
+<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260305150522.png" alt="示意图" /></p>
+<h3 id="rr型调整左旋"><a class="markdownIt-Anchor" href="#rr型调整左旋"></a> RR型调整(左旋)</h3>
+<p>前面我们介绍了LL型以及右旋解决方案，相反的，当遇到RR型时，我们只需要进行左旋操作即可：<br />
+<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260305150602.png" alt="示意图" /><br />
+操作和上面是一样的，只不过现在反过来了而已：<br />
+<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260305150629.png" alt="示意图" /></p>
+<h3 id="rl型调整先右旋再左旋"><a class="markdownIt-Anchor" href="#rl型调整先右旋再左旋"></a> RL型调整(先右旋，再左旋)</h3>
+<p>剩下两种类型比较麻烦，需要旋转两次才行。我们来看看RL型长啥样：<br />
+<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260305150714.png" alt="示意图" /><br />
+可以看到现在的形状是一个回旋镖形状的，先右后左的一个状态，也就是RL型，针对于这种情况，我们需要先进行右旋操作，注意这里的右旋操作针对的是<strong>后两个结点</strong>：<br />
+<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260305150832.png" alt="示意图" /><br />
+其中右旋和左旋的操作，与之前一样，该怎么分配左右子树就怎么分配，完成两次旋转后，可以看到二叉树重新变回了平衡状态。</p>
+<h3 id="lr型调整先左旋再右旋"><a class="markdownIt-Anchor" href="#lr型调整先左旋再右旋"></a> LR型调整(先左旋，再右旋)</h3>
+<p>和上面一样，我们来看看LR型长啥样，其实就是反着的：<br />
+<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260305151233.png" alt="示意图" /><br />
+形状是先向左再向右，这就是典型的LR型了，我们同样需要对其进行两次旋转：<br />
+<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260305151321.png" alt="示意图" /></p>
+<h2 id="代码实现"><a class="markdownIt-Anchor" href="#代码实现"></a> 代码实现</h2>
+<p>这样，我们只需要在插入结点时注意维护整棵树的平衡因子，保证其处于稳定状态，这样就可以让这棵树一直处于高度平衡的状态，不会再退化了。这里我们就编写一个插入结点代码来实现一下吧，首先还是结点定义：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="type">int</span> E;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">TreeNode</span> &#123;</span></span><br><span class="line">    E element;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">TreeNode</span> * <span class="title">left</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">TreeNode</span> * <span class="title">right</span>;</span></span><br><span class="line">    <span class="type">int</span> height;   <span class="comment">//每个结点需要记录当前子树的高度，便于计算平衡因子</span></span><br><span class="line">&#125; * Node;</span><br><span class="line"></span><br><span class="line">Node <span class="title function_">createNode</span><span class="params">(E element)</span>&#123;</span><br><span class="line">    Node node = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> TreeNode));</span><br><span class="line">    node-&gt;left = node-&gt;right = <span class="literal">NULL</span>;</span><br><span class="line">    node-&gt;element = element;</span><br><span class="line">    node-&gt;height = <span class="number">1</span>;   <span class="comment">//初始化时，高度写为1就可以了</span></span><br><span class="line">    <span class="keyword">return</span> node;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接着我们需要先将左旋、右旋等操作编写出来，因为一会插入时可能需要用到：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">max</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">getHeight</span><span class="params">(Node root)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> root-&gt;height;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Node <span class="title function_">leftRotation</span><span class="params">(Node root)</span>&#123;  <span class="comment">//左旋操作，实际上就是把左边结点拿上来。传入原本的根节点，返回新的根节点</span></span><br><span class="line">    Node newRoot = root-&gt;right;   <span class="comment">//先得到左边结点</span></span><br><span class="line">    root-&gt;right = newRoot-&gt;left;   <span class="comment">//将左边结点的左子树丢到原本根结点的右边去</span></span><br><span class="line">    newRoot-&gt;left = root;   <span class="comment">//现在新的根结点左边就是原本的跟结点了</span></span><br><span class="line"></span><br><span class="line">    root-&gt;height = max(getHeight(root-&gt;right), getHeight(root-&gt;left)) + <span class="number">1</span>;</span><br><span class="line">    newRoot-&gt;height = max(getHeight(newRoot-&gt;right), getHeight(newRoot-&gt;left)) + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> newRoot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Node <span class="title function_">rightRotation</span><span class="params">(Node root)</span>&#123;</span><br><span class="line">    Node newRoot = root-&gt;left;</span><br><span class="line">    root-&gt;left = newRoot-&gt;right;</span><br><span class="line">    newRoot-&gt;right = root;</span><br><span class="line"></span><br><span class="line">    root-&gt;height = max(getHeight(root-&gt;right), getHeight(root-&gt;left)) + <span class="number">1</span>;</span><br><span class="line">    newRoot-&gt;height = max(getHeight(newRoot-&gt;right), getHeight(newRoot-&gt;left)) + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> newRoot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Node <span class="title function_">leftRightRotation</span><span class="params">(Node root)</span>&#123;</span><br><span class="line">    root-&gt;left = leftRotation(root-&gt;left);</span><br><span class="line">    <span class="keyword">return</span> rightRotation(root);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Node <span class="title function_">rightLeftRightRotation</span><span class="params">(Node root)</span>&#123;</span><br><span class="line">    root-&gt;right = rightRotation(root-&gt;right);</span><br><span class="line">    <span class="keyword">return</span> leftRotation(root);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最后就是我们的插入操作了，注意在插入时动态计算树的高度，一旦发现不平衡，那么就立即采取对应措施：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">Node <span class="title function_">insert</span><span class="params">(Node root, E element)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root == <span class="literal">NULL</span>) &#123;    <span class="comment">//如果结点为NULL，说明找到了插入位置，直接创建新的就完事</span></span><br><span class="line">        root = createNode(element);</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(root-&gt;element &gt; element) &#123;   <span class="comment">//和二叉搜索树一样，判断大小，该走哪边走哪边，直到找到对应插入位置</span></span><br><span class="line">        root-&gt;left = insert(root-&gt;left, element);</span><br><span class="line">        <span class="keyword">if</span>(getHeight(root-&gt;left) - getHeight(root-&gt;right) &gt; <span class="number">1</span>) &#123;   <span class="comment">//插入完成之后，需要计算平衡因子，看看是否失衡</span></span><br><span class="line">            <span class="keyword">if</span>(root-&gt;left-&gt;element &gt; element) <span class="comment">//接着需要判断一下是插入了左子树的左边还是右边，如果是左边那边说明是LL，如果是右边那说明是LR</span></span><br><span class="line">                root = rightRotation(root);   <span class="comment">//LL型得到左旋之后的结果，得到新的根结点</span></span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                root = leftRightRotation(root);    <span class="comment">//LR型得到先左旋再右旋之后的结果，得到新的根结点</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(root-&gt;element &lt; element)&#123;</span><br><span class="line">        root-&gt;right = insert(root-&gt;right, element);</span><br><span class="line">        <span class="keyword">if</span>(getHeight(root-&gt;left) - getHeight(root-&gt;right) &lt; <span class="number">-1</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(root-&gt;right-&gt;element &lt; element)</span><br><span class="line">                root = leftRotation(root);</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                root = rightLeftRightRotation(root);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//前面的操作完成之后记得更新一下树高度</span></span><br><span class="line">    root-&gt;height = max(getHeight(root-&gt;left), getHeight(root-&gt;right)) + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> root;  <span class="comment">//最后返回root到上一级</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样，我们就完成了平衡二叉树的插入操作，当然删除操作比较类似，也是需要在删除之后判断是否平衡，如果不平衡同样需要进行旋转操作，这里就不做演示了。</p>
+
+    </div>
+    <footer class="article-footer">
+        <a data-aos="zoom-in" href="/2026/03/06/%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/#comments" class="article-comment-link">
+          <span class="post-comments-count twikoo-comment-count" data-path="/2026/03/06/%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/" itemprop="commentCount"></span>
+          留言
+        </a>
+        <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/" title="笔记" data-aos="zoom-in">笔记</a><a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" title="数据结构" data-aos="zoom-in">数据结构</a><a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%A0%91%E5%BD%A2%E7%BB%93%E6%9E%84/" title="树形结构" data-aos="zoom-in">树形结构</a>
+
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E4%BA%8C%E5%88%86/" rel="tag" title="二分">二分</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/" rel="tag" title="二叉树">二叉树</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E5%8D%95%E9%93%BE%E8%A1%A8/" rel="tag" title="单链表">单链表</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag" title="数据结构">数据结构</a></li></ul>
+
+    </footer>
+  </div>
+    <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
+    <div class="article-nav-link-wrap right">
+        <img data-src="/../image/%E4%BA%8C%E5%8F%89%E6%9F%A5%E6%89%BE%E6%A0%91.webp" data-sizes="auto" alt="二叉查找树的设计与实现" class="lazyload">
+      <a href="/2026/03/04/%E4%BA%8C%E5%8F%89%E6%9F%A5%E6%89%BE%E6%A0%91%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/" aria-label="后一篇: 二叉查找树的设计与实现"  title="后一篇: 二叉查找树的设计与实现"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+          二叉查找树的设计与实现
+      </h3>
+    </div>
+  </nav>
+
+</article>
+
+  <section id="comments" data-aos="fade-up">
+    <div class="comment-header">
+        
+      <h2 class="comment-title">说些什么吧！</h2>
+      <div class="comment-selector">
+        <div class="comment-selector-wrap">
+            <div class="selector-item" data-selector="twikoo">
+              <span>twikoo</span>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="comment-content">
+          <div class="comment twikoo-comment" data-aos="fade-up"
+            id="twikoo-comment">
+          </div>
+    </div>
+  </section>
+
+</section>
+        </div>
+        <footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    <div>
+      <span class="icon-copyright"></span>
+        2020-2026
+        <span class="footer-info-sep rotate"></span>
+      Stvfen
+    </div>
+      <div>
+        基于&nbsp;<a href="https://hexo.io/" rel="noopener nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+      <div>
+        <span class="icon-brush"></span>
+        18.2k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        01:14
+      </div>
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+  </div>
+</footer>
+
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap">
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-number">1.</span> <span class="toc-text"> 什么是平衡二叉树</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ll%E5%BD%A2%E8%B0%83%E6%95%B4%E5%8F%B3%E6%97%8B"><span class="toc-number">1.1.</span> <span class="toc-text"> LL形调整(右旋)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rr%E5%9E%8B%E8%B0%83%E6%95%B4%E5%B7%A6%E6%97%8B"><span class="toc-number">1.2.</span> <span class="toc-text"> RR型调整(左旋)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rl%E5%9E%8B%E8%B0%83%E6%95%B4%E5%85%88%E5%8F%B3%E6%97%8B%E5%86%8D%E5%B7%A6%E6%97%8B"><span class="toc-number">1.3.</span> <span class="toc-text"> RL型调整(先右旋，再左旋)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lr%E5%9E%8B%E8%B0%83%E6%95%B4%E5%85%88%E5%B7%A6%E6%97%8B%E5%86%8D%E5%8F%B3%E6%97%8B"><span class="toc-number">1.4.</span> <span class="toc-text"> LR型调整(先左旋，再右旋)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.</span> <span class="toc-text"> 代码实现</span></a></li></ol>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Stvfen" class="lazyload">
+  <div class="sidebar-author-name">Stvfen</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">10</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">6</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">9</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/3546704989129249?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+  </div>
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+</nav>
+
+    </div>
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+  <script>
+    var setupFirework = () => {
+      if (!false || !window.matchMedia('(max-width: 768px)').matches) {
+        window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'));
+      }
+    }
+  </script>
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.2.0/dist/index.umd.js" integrity="sha384-qi9WggRt19tv8Vc7pCHW3ulMNLwrn515zaLEWZjl1px07vz8+pUoWX8n1rgq282T" crossorigin="anonymous" onload="setupFirework()" defer></script>
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "Stvfen",
+          title: "平衡二叉树的设计与实现",
+          url: "http://example.com/2026/03/06/%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/",
+          excerpt: "",
+          description: "",
+          stripContent: " 什么是平衡二叉树 利用二叉查找树，我们在搜索某个值的时候，效率会得到巨大提升。但是虽然看起来比较完美，也是存在缺陷的，比如现在我们依次将下面的值插入到这棵二叉树中： 120 15 13 8 6 3 在插入完成后，我们会发现这棵二叉树竟然长这样：  其说它是一棵二叉树，不如说就是一个链表，如果这时我们想要查找某个结点，那么实际上查找的时间并没有得到任何优化，直接就退化成线性查找了。 所以，二叉查找树只有在理想情况下，查找效率才是最高的，而像这种极端情况，就性能而言几乎没有任何的提升。我们理想情况",
+          date: "Fri Mar 06 2026 02:21:48 GMT+0800",
+          updated: "Fri Mar 06 2026 02:48:18 GMT+0800",
+          cover: "/../image/%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91.webp",
+        };
+      </script>
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+      
+<script src="/js/tabs.js" data-pjax defer></script>
+
+      <script type="module" data-pjax>
+        (async () => {
+          const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+          const initPswp = (gallery, children) => {
+            if (_$$(`${gallery} ${children}`).length > 0) {
+              new PhotoSwipeLightbox({
+                gallery,
+                children,
+                pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+              }).init();
+            }
+          }
+          const pswp = () => {
+            initPswp('.article-entry', 'a.article-gallery-item');
+            initPswp('.article-gallery', 'a.article-gallery-item');
+          }
+          pswp();
+        })();
+      </script>
+        
+
+<script data-pjax>
+  var loadScript = (src, integrity) => {
+    const script = document.createElement('script');
+    script.src = src;
+    if (integrity) script.integrity = integrity;
+    script.crossOrigin = 'anonymous';
+    return script;
+  };
+
+  var commentConfigKeys = ["twikoo"];
+  var commentConfig = {
+    twikoo: {
+      enable: true,
+      load: () => {
+        const container = document.querySelector('.twikoo-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        const script = loadScript(
+          'https://npm.webcache.cn/twikoo@1.6.44/dist/twikoo.all.min.js',
+          'sha384-kwWLC0HjeZZnVPqCJ1AncI8tsk+kQqF9TbAmCclcc9Z0hGkfgHRzeQZxmdmZhE0K'
+        );
+
+        script.onload = () => {
+          if (window.twikoo) {
+            twikoo.init({
+              envId: 'https://pinglunqu.vercel.app',
+              el: '.twikoo-comment',
+              region: '',
+              lang: document.documentElement.lang || 'en',
+            });
+
+            twikoo.getCommentsCount({
+              envId: 'https://pinglunqu.vercel.app',
+              region: '',
+              urls: [
+                '/categories/index.html'
+              ],
+              includeReply: false
+            }).then((res) => {
+              _$('.twikoo-comment-count').innerText = res[0].count;
+            }).catch((err) => {
+              console.error(err);
+            });
+          }
+        } 
+        document.head.appendChild(script);
+      }
+    },
+  }
+  commentConfig.enable = commentConfigKeys.some(key => commentConfig[key].enable);
+
+  var defaultComment = '';
+  if (commentConfig.enable) {
+    // 1. 首先检查localStorage中是否有保存的评论类型
+    var savedCommentType = localStorage.getItem('commentType');
+    
+    // 2. 如果localStorage中有值且对应的评论系统可用，就使用它
+    if (savedCommentType) {
+      if (commentConfig[savedCommentType]?.enable) {
+        defaultComment = savedCommentType;
+      }
+    }
+    
+    // 3. 如果localStorage无效，检查配置的默认评论系统
+    if (!defaultComment) {
+      var configDefault = 'waline';
+      if (commentConfig[configDefault]?.enable) {
+        defaultComment = configDefault;
+      }
+    }
+    
+    // 4. 如果前两项都无效，按指定顺序找到第一个可用的评论系统
+    if (!defaultComment) {
+      defaultComment = commentConfigKeys.find(sys => commentConfig[sys].enable) || '';
+    }
+  }
+  function loadComments() {
+    if (!commentConfig.enable) return;
+    const loadedComments = {
+      valine: false,
+      waline: false,
+      twikoo: false,
+      gitalk: false,
+      giscus: false
+    };
+
+    // 隐藏所有评论容器
+    const hideAllComments = () => {
+      const commentContainers = document.querySelectorAll('.comment');
+      commentContainers.forEach(container => {
+        container.style.display = 'none';
+      });
+    };
+
+    // 按需加载评论系统
+    const loadCommentSystem = (type) => {
+      if (loadedComments[type]) {
+        // 如果已加载，只需显示对应容器
+        document.querySelector(`.${type}-comment`).style.display = 'block';
+        return;
+      }
+
+      // 根据类型加载对应的脚本
+      commentConfig[type]?.load();
+      loadedComments[type] = true;
+    };
+
+    // 评论组件选择器
+    const changeActiveCommentItems = (item) => {
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let i = 0; i < commentItems.length; i++) {
+        commentItems[i].classList.remove('active');
+      }
+      item.classList.add('active');
+
+      // 获取要加载的评论系统类型
+      const commentType = item.getAttribute('data-selector');
+
+      // 隐藏所有评论系统
+      hideAllComments();
+
+      // 加载选中的评论系统
+      loadCommentSystem(commentType);
+    };
+
+    const commentInit = () => {
+      // 评论组件选择器点击事件
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let item of commentItems) {
+        item.addEventListener('click', () => {
+          // 保存选择器状态
+          const commentType = item.getAttribute('data-selector');
+          window.localStorage.setItem('commentType', commentType);
+          // 切换选中状态
+          changeActiveCommentItems(item);
+        });
+      }
+
+      // 检查是否需要加载默认评论系统
+      if (defaultComment) {
+        const defaultSelectorItem = document.querySelector(`[data-selector="${defaultComment}"]`);
+        if (!defaultSelectorItem) return;
+        defaultSelectorItem.style.display = 'block';
+        defaultSelectorItem.classList.add('active');
+        loadCommentSystem(defaultComment);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', commentInit);
+    } else {
+      commentInit();
+    }
+  };
+  loadComments();
+</script>
+
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.12.1' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+    
+<script src="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.js" integrity="sha384-MWNUH0WmtsYGhn2cbH6ELRCbf9LG3QDqCC+gqPB3IBNO35xjZK3Ejb6oONRpDbPg" crossorigin="anonymous" defer data-pjax></script>
+
+    
+<script src="https://npm.webcache.cn/katex@0.16.24/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous" defer onload="renderMathInElement(_$(&#39;article&#39;), {delimiters: [{left: &#39;$$&#39;, right: &#39;$$&#39;, display: true},{left: &#39;$&#39;, right: &#39;$&#39;, display: false}]});" data-pjax></script>
+
+  
+
+
+  </body>
+  </html>
