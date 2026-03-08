@@ -9,7 +9,7 @@
   
   <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_4k4bc36ef96';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
   <title>
-    蓦然回首——藤本树致所有创作者的一份情书 | 史蒂芬の电台
+    散列表(哈希)的设计与实现 | 史蒂芬の电台
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
@@ -17,17 +17,28 @@
     
 <link rel="stylesheet" href="/css/loader.css">
 
-    <meta name="description" content="蓦然回首——藤本树致所有创作者的一份情书  内容  藤本树，你是我的精神病人 在讨论藤本树的作品前，先让我们讨论下这个精神病人吧（笑）。 《电锯人公安篇》在2020年10月14日完结的时候，我才意识到藤本树是一个天才，为什么粉丝们总是说藤本树是一位“精神病人”，我想这是对藤本树的嘉奖，他的作品并没有迎合大众趋势，而是以自己所愿表达出自己所想——以超乎读者想象的方式。 藤本树早期短篇作品并不出众，藤">
+    <meta name="description" content="我们之前认识的查找算法，最快可以达到对数阶 $O(logN)二分$，那么我们能否追求极致，让查找性能突破到常数阶呢？这里就要介绍到我们的散列（也可以叫哈希 Hash）它采用直接寻址的方式，在理想情况下，查找的时间复杂度可以达到常数阶 $O(1)$。  散列表也就是哈希表有什么用 散列（Hashing）通过散列函数（哈希函数）将要参与检索的数据与散列值（哈希值）关联起来，生成一种便于搜索的数据结构，">
 <meta property="og:type" content="article">
-<meta property="og:title" content="蓦然回首——藤本树致所有创作者的一份情书">
-<meta property="og:url" content="http://example.com/2026/02/24/%E8%93%A6%E7%84%B6%E5%9B%9E%E9%A6%96%E2%80%94%E2%80%94%E8%97%A4%E6%9C%AC%E6%A0%91%E8%87%B4%E6%89%80%E6%9C%89%E5%88%9B%E4%BD%9C%E8%80%85%E7%9A%84%E4%B8%80%E4%BB%BD%E6%83%85%E4%B9%A6/index.html">
+<meta property="og:title" content="散列表(哈希)的设计与实现">
+<meta property="og:url" content="http://example.com/2026/03/08/%E6%95%A3%E5%88%97%E8%A1%A8-%E5%93%88%E5%B8%8C-%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/index.html">
 <meta property="og:site_name" content="史蒂芬の电台">
-<meta property="og:description" content="蓦然回首——藤本树致所有创作者的一份情书  内容  藤本树，你是我的精神病人 在讨论藤本树的作品前，先让我们讨论下这个精神病人吧（笑）。 《电锯人公安篇》在2020年10月14日完结的时候，我才意识到藤本树是一个天才，为什么粉丝们总是说藤本树是一位“精神病人”，我想这是对藤本树的嘉奖，他的作品并没有迎合大众趋势，而是以自己所愿表达出自己所想——以超乎读者想象的方式。 藤本树早期短篇作品并不出众，藤">
+<meta property="og:description" content="我们之前认识的查找算法，最快可以达到对数阶 $O(logN)二分$，那么我们能否追求极致，让查找性能突破到常数阶呢？这里就要介绍到我们的散列（也可以叫哈希 Hash）它采用直接寻址的方式，在理想情况下，查找的时间复杂度可以达到常数阶 $O(1)$。  散列表也就是哈希表有什么用 散列（Hashing）通过散列函数（哈希函数）将要参与检索的数据与散列值（哈希值）关联起来，生成一种便于搜索的数据结构，">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2026-02-24T07:36:19.000Z">
-<meta property="article:modified_time" content="2026-02-26T07:59:08.144Z">
+<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260308142940.png">
+<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260308143430.png">
+<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260308144128.png">
+<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260308144201.png">
+<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260308144225.png">
+<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260308144246.png">
+<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260308144312.png">
+<meta property="article:published_time" content="2026-03-08T06:56:57.000Z">
+<meta property="article:modified_time" content="2026-03-08T06:59:54.609Z">
 <meta property="article:author" content="Stvfen">
+<meta property="article:tag" content="哈希查找">
+<meta property="article:tag" content="散列表">
+<meta property="article:tag" content="数据结构">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260308142940.png">
     <link rel="alternate" href="/atom.xml" title="史蒂芬の电台" type="application/atom+xml">
     <link rel="shortcut icon" href="/images/favicon.ico">
   
@@ -127,11 +138,11 @@
 </div>
 <header id="header" aria-label="Site header">
     <picture></picture>
-    <img  fetchpriority="high" src="/../image/%E8%93%A6%E7%84%B6%E5%9B%9E%E9%A6%96.webp" alt="蓦然回首——藤本树致所有创作者的一份情书">
+    <img  fetchpriority="high" src="/../image/%E6%95%A3%E5%88%97%E8%A1%A8.webp" alt="散列表(哈希)的设计与实现">
   <div id="header-outer">
     <div id="header-title">
           <span id="logo">
-            <h1 data-aos="slide-up">蓦然回首——藤本树致所有创作者的一份情书</h1>
+            <h1 data-aos="slide-up">散列表(哈希)的设计与实现</h1>
           </span>
         <h2 id="subtitle-wrap" data-aos="slide-down">
         </h2>
@@ -146,7 +157,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AE%B9"><span class="toc-number">1.</span> <span class="toc-text"> 内容</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%97%A4%E6%9C%AC%E6%A0%91%E4%BD%A0%E6%98%AF%E6%88%91%E7%9A%84%E7%B2%BE%E7%A5%9E%E7%97%85%E4%BA%BA"><span class="toc-number">1.1.</span> <span class="toc-text"> 藤本树，你是我的精神病人</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E6%8A%B9%E5%A5%87%E5%B9%BB%E7%9A%84%E8%89%B2%E5%BD%A9"><span class="toc-number">1.2.</span> <span class="toc-text"> 一抹奇幻的色彩</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BC%AB%E7%94%BB-%E6%94%B9%E7%BC%96%E4%BA%8E-%E7%94%B5%E5%BD%B1"><span class="toc-number">1.3.</span> <span class="toc-text"> 漫画 改编于 电影</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%93%A6%E7%84%B6%E5%9B%9E%E9%A6%96%E4%B8%8D%E8%A6%81%E4%B8%BA%E5%BE%80%E4%BA%8B%E8%80%8C%E7%83%A6%E6%81%BC"><span class="toc-number">1.4.</span> <span class="toc-text"> 蓦然回首——不要为往事而烦恼</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8C%AE%E7%BB%99%E6%89%80%E6%9C%89%E5%88%9B%E4%BD%9C%E8%80%85%E7%9A%84%E4%B8%80%E4%BB%BD%E6%83%85%E4%B9%A6"><span class="toc-number">1.5.</span> <span class="toc-text"> 献给所有创作者的一份情书</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%99%E4%BD%9C%E5%8F%82%E8%80%83"><span class="toc-number">1.6.</span> <span class="toc-text"> 写作参考</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%A3%E5%88%97%E8%A1%A8%E4%B9%9F%E5%B0%B1%E6%98%AF%E5%93%88%E5%B8%8C%E8%A1%A8%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8"><span class="toc-number">1.</span> <span class="toc-text"> 散列表也就是哈希表有什么用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%A3%E5%88%97%E5%87%BD%E6%95%B0"><span class="toc-number">2.</span> <span class="toc-text"> 散列函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%A3%E5%88%97%E8%A1%A8"><span class="toc-number">3.</span> <span class="toc-text"> 散列表</span></a></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -215,13 +226,13 @@
   </div>
 </aside>
 
-          <section id="main" aria-label="Main content"><article id="post-蓦然回首——藤本树致所有创作者的一份情书" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+          <section id="main" aria-label="Main content"><article id="post-散列表-哈希-的设计与实现" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner" data-aos="fade-up">
     <div class="article-meta">
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
-    <time datetime="2026-02-24T07:36:19.000Z" itemprop="datePublished">2026-02-24</time>
-    <time style="display: none;" id="post-update-time">2026-02-26</time>
+    <time datetime="2026-03-08T06:56:57.000Z" itemprop="datePublished">2026-03-08</time>
+    <time style="display: none;" id="post-update-time">2026-03-08</time>
   </span>
 </div>
 
@@ -230,106 +241,55 @@
     <div class="hr-line"></div>
     
     <div class="e-content article-entry" itemprop="articleBody">
-        <p>蓦然回首——藤本树致所有创作者的一份情书</p>
-<h2 id="内容"><a class="markdownIt-Anchor" href="#内容"></a> 内容</h2>
-<h3 id="藤本树你是我的精神病人"><a class="markdownIt-Anchor" href="#藤本树你是我的精神病人"></a> 藤本树，你是我的精神病人</h3>
-<p>在讨论藤本树的作品前，先让我们讨论下这个精神病人吧（笑）。<br />
-《电锯人公安篇》在2020年10月14日完结的时候，我才意识到藤本树是一个天才，为什么粉丝们总是说藤本树是一位“精神病人”，我想这是对藤本树的嘉奖，他的作品并没有迎合大众趋势，而是以自己所愿表达出自己所想——以超乎读者想象的方式。<br />
-藤本树早期短篇作品并不出众，藤本树在《藤本树短篇集》中《预言中的那由多》的随笔中写到：“编剧总是说我画不出具有特点的角色，所以我创作了那由多。”藤本树对那由多的爱其实延续到了《电锯人》，玛奇玛死后再次重生的样子就和那由多一模一样。但是这么多的短篇使得藤本树这个漫画家的人设已经大概定了下来，为《炎拳》做了充分的准备。<br />
-《炎拳》一经刊登，立马获得了大量关注和好评。<br />
-本以为《炎拳》是藤本树的巅峰，谁知《电锯人》将最高点突破，再次达到新的高峰。《电锯人》和《炎拳》中荒诞的设定和剧情以及<br />
-那些剧情离谱的转折，使粉丝不仅感叹：“藤本树，你就是我滴精神病人！”<br />
-藤本树本人不是个省油的灯，上到网络上发布迷惑视频：“藤本树，要起飞了。”（跳起）。下到2022年“妹妹”事件。<br />
-而且史料记载枪之恶魔的死亡名单中好像是藤本树抄老家人名字写的，自己在访谈里说都不敢回家力。</p>
-<h3 id="一抹奇幻的色彩"><a class="markdownIt-Anchor" href="#一抹奇幻的色彩"></a> 一抹奇幻的色彩</h3>
-<p>是不是少了点什么？一抹奇幻的色彩。<br />
-藤本树的作品没有一部作品没有奇幻的色彩：《佐佐木同学接住了子弹》中在日常生活中佐佐木用手偶然接住了歹徒的子弹、《人鱼狂想曲》中人鱼与人类之间的恋歌（这部画风十分的不藤本树，太可爱）、《妹妹的姐姐》同在艺术大学的姐妹，妹妹用姐姐的裸体画像参展赢得了第一名，把这张画挂在了大学内，最后姐姐走出与妹妹的矛盾，又画了一张自己的裸照参展干掉了妹妹的画，表示你姐应该这样！<br />
-这都是日常生活中的一抹奇幻的色彩，吸引读者向下翻阅，一步步走进藤本树为我们设计的陷阱之中。（其实新海诚的作品普遍也有）<br />
-而在蓦然回首中，世界线的不同，便是我认为最奇幻的一抹的色彩。</p>
-<h3 id="漫画-改编于-电影"><a class="markdownIt-Anchor" href="#漫画-改编于-电影"></a> 漫画 改编于 电影</h3>
-<p>漫画改编于电影？什么奇怪的话。<br />
-没错，是很奇怪。但这是藤本树，不奇怪。<br />
-藤本树很喜欢看电影，他的作品处处体现着电影感，无论是漫画中电影般的分镜还是大部分作品主人公有看电影的场景（PS其实这些主人公看的电影都能搜索到）这些都有体现，以至于我这第一部改变于藤本树的电影很担心。因为原作本身就是电影分镜，观感极佳，如果电影只是照搬的话，那么对于原作党就只是一部会动的作品，没有假如创作者心血的商业作品。<br />
-事实证明，我错了。<br />
-首先电影中的分镜确实很多和漫画重合，但是一些小地方的改动十分巧妙，比如当藤本第一次意识到自己和常人一样时，教室的放大。还有给到镜头给到窗户的时候，班级里面人物的躁动，这都把漫画中本就体现的真实感拉的更高了。<br />
-蓦然回首本身就是小载体漫画，分量很小，我依旧记得我当时看漫画的时候花了不到40分钟，由于电影会使得某些静态场景展现出动态来延展时长，但我觉得也不会太长，所以我对时长也很担心。<br />
-事实证明，我对了。<br />
-电影正片不到1个小时，后面的将近20分钟都是制作组的讲谈。<br />
-但我可以很自信的说：“正是因为这长达20分钟的讲谈，艺术已成。”</p>
-<h3 id="蓦然回首不要为往事而烦恼"><a class="markdownIt-Anchor" href="#蓦然回首不要为往事而烦恼"></a> 蓦然回首——不要为往事而烦恼</h3>
-<p>《蓦然回首》于2021年7月19日公布，很多人表示：原来我滴精神病人还会画这种东西，反差太大。<br />
-其实不然，藤本树在早期的短篇集中也有很多日常温馨，但又带有奇幻色彩的小故事，大家可以去自行找资源看看（特别建议买实体书哦，国版也上了，顺带一提我是首刷喵）<br />
-两位主人公藤野和京本名字我觉得是取自于藤本树和京阿尼。（为什么我觉得取自京阿尼后面会讲解）<br />
-从小热爱创作的两人机缘巧合相遇在了一起，电影中镜头给了老师将毕业证书交到藤野手上时候的一个特写，这很耐人寻味。这何尝不是两人的命运开始重合在一起的时候。之后两人在创作的路上一直走了下去，藤野渐渐忘记了过去与京本的承诺——“我也会不断磨练画技”。以至于在京本要去提升自己上大学的时候和她闹了矛盾。当时看到这里的时候谁曾想是她们最后一次见面。<br />
-接着电影在这之后给了很多对比的镜头，比如京本带着笑容在墙壁上和画板上画画，而藤野边接电话边赶稿，慢慢的埋没在人群中。正如小时候的时候一样，不过正如大多打工人一样为生活而奔波。<br />
-大多人应该都和藤野一样吧，从抬起头来走向热爱，最后穿过热爱在滂沱大雨中低头跪在雨水中，身边的人拿着雨伞默默走过去的时候都不会理睬。<br />
-而京本则是作为创作者在追逐热爱的过程中失去了生命。<br />
-热爱与否，两人的结局都是悲剧。<br />
-这不对，这肯定不对。结局不应是这样，如果生活的压力只是引起藤野崩溃的导火索，那么京本的离世无疑点燃了它。<br />
-穿着黑色制服又到了过去的那个玄关，过去与京本第一次相遇的地方，物是人非，时间早已带走了太多，但是家具的摆设仿佛又被定格在了那一刻。<br />
-那么有没有一种可能，最开始的这一时刻，就已经错了呢？<br />
-藤本树用他唯有不多的温柔，掺和了一抹奇幻的色彩，给大家提供了另一种可能性，并让这一种可能性影响了崩溃当中的藤野。<br />
-创作并不是为了出名，创作并不是为了利益，创作是为了创作。<br />
-藤野已经忘记将初心忘记了太久太久了，以至于她不假思索的就开始自负，将京本的死归于自己。但是可能性的出现告诉了藤野两者都没有错，只是藤野忘记了创作的初心，忘记了那些四格漫画。<br />
-最后的四格名字很有趣《看着她的背影》。<br />
-京本正是一直在追逐着藤野的背影，一直都没有变，无论是小时候将藤野作为自己的偶像，还是长大后为了更加的提高自己而离开藤野。<br />
-都是因为她不只想停留在她的背影后面。<br />
-京本的初心重来没有变过。<br />
-也许会有人觉得藤本树只是设置了京本作为一个工具人来推进藤野的转变，其实不然。<br />
-创作出的角色，已经投入感情的角色，哪里他妈的是个工具！<br />
-根本目的并不是让藤野发生转变，而是想要告诉读者们，用她们两个人，告诉读者们</p>
-<p>初心，不止于创作。</p>
-<p>访谈的意义也是如此，告诉了大家不同岗位在创作过程中的不同职责，我是为了想做出这种效果，所以我为了达成这个效果而在不断努力着。<br />
-我们已经走了太久了，何以才能蓦然回首呢？<br />
-当我们蓦然回首时，我们在哪，还能看见那份初心吗？<br />
-Don’t back in anger,不要为往事而烦恼。<br />
-京本已经离去，人们不要总停留在过去，也不要后悔自己做过的事，而是在蓦然回首后应重拾初心向前看，因为我们最终会找到一个更美好的地方。</p>
-<h3 id="献给所有创作者的一份情书"><a class="markdownIt-Anchor" href="#献给所有创作者的一份情书"></a> 献给所有创作者的一份情书</h3>
-<p>前文我提到过京本的名字Neta于京阿尼，这是为什么。<br />
-这就要把时间回溯到蓦然回首首发日的前两年，那场大火烧掉了多少人的梦——京阿尼纵火案。<br />
-京阿尼，一个动画公司，一个梦工厂。<br />
-《紫罗兰的永恒花园》、《小林家的龙女仆》、《中二病也要谈恋爱》、《CLANNAD》等这些作品，有多少为曾给少年的我们很多的人生启发。<br />
-京本的死亡缘由和京阿尼纵火案凶手的犯罪动机及其相似，再加上发布时间正好为两年后，故这也是藤本树送给京阿尼逝者的一份离别书。<br />
-我有太多的话想要献给京阿尼，却无从下笔从何说起。<br />
-除了感谢没有更适合去代表内心所想的话语，蓦然回首,这一声谢谢，为了过去，为了现在，也为了</p>
-<p>未来。</p>
-<h3 id="写作参考"><a class="markdownIt-Anchor" href="#写作参考"></a> 写作参考</h3>
-<br>
-<br>
-<br>
-资料：
-萌娘百科藤本树事迹
-蓦然回首漫画
-蓦然回首电影
-致京阿尼：感谢有你从我的人生中路过——瓶子君152
-<p>Don’t Look Back In Anger — Oasis</p>
-<br>
-写作时播放：
-《Don't Look Back In Anger》- Oasis<br>
-漫画名字《Look Back》<br>
-第一页黑板写着《Don’t》<br>
-最后一页左下角写着《In Anger》<br>
+        <p>我们之前认识的查找算法，最快可以达到对数阶 $O(logN)二分$，那么我们能否追求极致，让查找性能突破到常数阶呢？这里就要介绍到我们的<code>散列</code>（也可以叫哈希 Hash）它采用直接寻址的方式，在理想情况下，查找的时间复杂度可以达到常数阶 $O(1)$。</p>
+<h2 id="散列表也就是哈希表有什么用"><a class="markdownIt-Anchor" href="#散列表也就是哈希表有什么用"></a> 散列表也就是哈希表有什么用</h2>
+<p><code>散列（Hashing）</code>通过<code>散列函数（哈希函数</code>）将要参与检索的数据与<code>散列值（哈希值）</code>关联起来，生成一种便于搜索的数据结构，我们称其为<code>散列表（哈希表）</code>，也就是说，现在我们需要将一堆数据保存起来，这些数据会通过哈希函数进行计算，得到与其对应的哈希值，当我们下次需要查找这些数据时，<code>只需要再次计算哈希值</code>就能快速找到对应的元素了：<br />
+<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260308142940.png" alt="示意图" /><br />
+一脸懵逼没关系，我们从哈希函数开始慢慢介绍。</p>
+<h2 id="散列函数"><a class="markdownIt-Anchor" href="#散列函数"></a> 散列函数</h2>
+<p><code>散列函数也叫哈希函数</code>，哈希函数可以对一个目标计算出其对应的哈希值，并且，只要是同一个目标，无论计算多少次，得到的哈希值都是一样的结果，不同的目标计算出的结果介乎都不同。哈希函数在现实生活中应用十分广泛，比如很多下载网站都提供下载文件的MD5码校验，可以用来判别文件是否完整，<code>哈希函数多种多样</code>，目前应用最为广泛的是<code>SHA-1</code>和<code>MD5</code>，比如我们在下载IDEA之后，会看到有一个验证文件SHA-256校验和的选项，我们可以点进去看看：<br />
+<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260308143430.png" alt="示意图" /><br />
+点进去之后，得到：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">e54a026da11d05d9bb0172f4ef936ba2366f985b5424e7eecf9e9341804d65bf *ideaIU-2022.2.1.dmg</span><br></pre></td></tr></table></figure>
+<p>这一串由数字和小写字母随意组合的一个字符串，就是安装包文件通过哈希算法计算得到的结果，那么这个东西有什么用呢？我们的网络可能有时候会出现卡顿的情况，导致我们下载的文件可能会出现不完整的情况，因为哈希函数对同一个文件计算得到的结果是一样的，我们可以在本地使用同样的哈希函数去计算下载文件的哈希值，如果与官方一致，那么就说明是同一个文件，如果不一致，那么说明文件在传输过程中出现了损坏。<br><br />
+可见，哈希函数在这些地方就显得非常实用，在我们的生活中起了很大的作用，它也可以用于<code>布隆过滤器和负载均衡</code>等场景，这里不多做介绍了。</p>
+<h2 id="散列表"><a class="markdownIt-Anchor" href="#散列表"></a> 散列表</h2>
+<p>前面我们介绍了散列函数，我们知道可以通过散列函数计算一个目标的哈希值，那么这个哈希值计算出来有什么用呢，对我们的程序设计有什么意义呢？我们可以利用哈希值的特性，设计一张全新的表结构，这种表结构是专为哈希设立的，我们称其为<code>哈希表（散列表）</code><br />
+<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260308144128.png" alt="示意图" /><br />
+我们可以将这些元素保存到哈希表中，而保存的位置则与其对应的哈希值有关，哈希值是通过哈希函数计算得到的，我们只需要将对应元素的关键字（一般是整数）提供给哈希函数就可以进行计算了，<code>一般比较简单的哈希函数就是取模操作，哈希表长度是多少（长度最好是一个素数），模就是多少</code>：<br />
+<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260308144201.png" alt="示意图" /><br />
+比如现在我们需要插入一个新的元素（关键字为17）到哈希表中：<br />
+<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260308144225.png" alt="示意图" /><br />
+插入的位置为计算出来的哈希值，比如上面是8，那么就在下标位置8插入元素，同样的，我们继续插入27：<br />
+<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260308144246.png" alt="示意图" /><br />
+这样，我们就可以将多种多样的数据保存到哈希表中了，<code>注意保存的数据是无序的，因为我们也不清楚计算完哈希值最后会放到哪个位置</code>。那么如果现在我们想要从哈希表中查找数据呢？比如我们现在需要查找哈希表中是否有14这个元素：<br />
+<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260308144312.png" alt="示意图" /><br />
+同样的，直接去看哈希值对应位置上看看有没有这个元素，如果没有，那么就说明哈希表中没有这个元素。可以看到，哈希表在查找时只需要进行一次哈希函数计算就能直接找到对应元素的存储位置，效率极高。<br />
+我们可以通过代码来实现一下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> SIZE 9</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Element</span> &#123;</span>   <span class="comment">//这里用一个Element将值包装一下</span></span><br><span class="line">    <span class="type">int</span> key;    <span class="comment">//这里元素设定为int</span></span><br><span class="line">&#125; * E;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">HashTable</span>&#123;</span>   <span class="comment">//这里把数组封装为一个哈希表</span></span><br><span class="line">    E * table;</span><br><span class="line">&#125; * HashTable;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">hash</span><span class="params">(<span class="type">int</span> key)</span>&#123;   <span class="comment">//哈希函数</span></span><br><span class="line">    <span class="keyword">return</span> key % SIZE;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">init</span><span class="params">(HashTable hashTable)</span>&#123;   <span class="comment">//初始化函数</span></span><br><span class="line">    hashTable-&gt;table = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> Element) * SIZE);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; SIZE; ++i)</span><br><span class="line">        hashTable-&gt;table[i] = <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">insert</span><span class="params">(HashTable hashTable, E element)</span>&#123;   <span class="comment">//插入操作，为了方便就不考虑装满的情况了</span></span><br><span class="line">    <span class="type">int</span> hashCode = hash(element-&gt;key);   <span class="comment">//首先计算元素的哈希值</span></span><br><span class="line">    hashTable-&gt;table[hashCode] = element;   <span class="comment">//对号入座</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">_Bool</span> <span class="title function_">find</span><span class="params">(HashTable hashTable, <span class="type">int</span> key)</span>&#123;</span><br><span class="line">    <span class="type">int</span> hashCode = hash(key);   <span class="comment">//首先计算元素的哈希值</span></span><br><span class="line">    <span class="keyword">if</span>(!hashTable-&gt;table[hashCode]) <span class="keyword">return</span> <span class="number">0</span>;   <span class="comment">//如果为NULL那就说明没有</span></span><br><span class="line">    <span class="keyword">return</span> hashTable-&gt;table[hashCode]-&gt;key == key;  <span class="comment">//如果有，直接看是不是就完事</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">E <span class="title function_">create</span><span class="params">(<span class="type">int</span> key)</span>&#123;    <span class="comment">//创建一个新的元素</span></span><br><span class="line">    E e = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> Element));</span><br><span class="line">    e-&gt;key = key;</span><br><span class="line">    <span class="keyword">return</span> e;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">HashTable</span> <span class="title">hashTable</span>;</span></span><br><span class="line">    init(&amp;hashTable);</span><br><span class="line">    insert(&amp;hashTable, create(<span class="number">10</span>));</span><br><span class="line">    insert(&amp;hashTable, create(<span class="number">7</span>));</span><br><span class="line">    insert(&amp;hashTable, create(<span class="number">13</span>));</span><br><span class="line">    insert(&amp;hashTable, create(<span class="number">29</span>));</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, find(&amp;hashTable, <span class="number">1</span>));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, find(&amp;hashTable, <span class="number">13</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样，我们就实现了一个简单的哈希表和哈希函数，通过哈希表，我们可以将数据的查找时间复杂度提升到常数阶。</p>
 
     </div>
     <footer class="article-footer">
-        <a data-aos="zoom-in" href="/2026/02/24/%E8%93%A6%E7%84%B6%E5%9B%9E%E9%A6%96%E2%80%94%E2%80%94%E8%97%A4%E6%9C%AC%E6%A0%91%E8%87%B4%E6%89%80%E6%9C%89%E5%88%9B%E4%BD%9C%E8%80%85%E7%9A%84%E4%B8%80%E4%BB%BD%E6%83%85%E4%B9%A6/#comments" class="article-comment-link">
-          <span class="post-comments-count twikoo-comment-count" data-path="/2026/02/24/%E8%93%A6%E7%84%B6%E5%9B%9E%E9%A6%96%E2%80%94%E2%80%94%E8%97%A4%E6%9C%AC%E6%A0%91%E8%87%B4%E6%89%80%E6%9C%89%E5%88%9B%E4%BD%9C%E8%80%85%E7%9A%84%E4%B8%80%E4%BB%BD%E6%83%85%E4%B9%A6/" itemprop="commentCount"></span>
+        <a data-aos="zoom-in" href="/2026/03/08/%E6%95%A3%E5%88%97%E8%A1%A8-%E5%93%88%E5%B8%8C-%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/#comments" class="article-comment-link">
+          <span class="post-comments-count twikoo-comment-count" data-path="/2026/03/08/%E6%95%A3%E5%88%97%E8%A1%A8-%E5%93%88%E5%B8%8C-%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/" itemprop="commentCount"></span>
           留言
         </a>
-        <a class="article-category-link" href="/categories/%E5%8A%A8%E6%BC%AB/" title="动漫" data-aos="zoom-in">动漫</a><a class="article-category-link" href="/categories/%E5%8A%A8%E6%BC%AB/%E6%9D%82%E8%B0%88/" title="杂谈" data-aos="zoom-in">杂谈</a>
+        <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/" title="笔记" data-aos="zoom-in">笔记</a><a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" title="数据结构" data-aos="zoom-in">数据结构</a><a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%95%A3%E5%88%97%E8%A1%A8/" title="散列表" data-aos="zoom-in">散列表</a>
 
-      
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E5%93%88%E5%B8%8C%E6%9F%A5%E6%89%BE/" rel="tag" title="哈希查找">哈希查找</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E6%95%A3%E5%88%97%E8%A1%A8/" rel="tag" title="散列表">散列表</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag" title="数据结构">数据结构</a></li></ul>
+
     </footer>
   </div>
     <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
-      <div class="article-nav-link-wrap left">
-          <img data-src="/../image/danlianbiao.webp" data-sizes="auto" alt="链表设计与实现" class="lazyload">
-        <a href="/2026/02/25/%E9%93%BE%E8%A1%A8%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/" aria-label="前一篇: 链表设计与实现" title="前一篇: 链表设计与实现"></a>
-        <div class="article-nav-caption">前一篇</div>
-        <h3 class="article-nav-title">
-            链表设计与实现
-        </h3>
-      </div>
+    <div class="article-nav-link-wrap right">
+        <img data-src="/../image/%E5%93%88%E5%A4%AB%E6%9B%BC%E6%A0%91.webp" data-sizes="auto" alt="哈夫曼树的设计与实现" class="lazyload">
+      <a href="/2026/03/08/%E5%93%88%E5%A4%AB%E6%9B%BC%E6%A0%91%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/" aria-label="后一篇: 哈夫曼树的设计与实现"  title="后一篇: 哈夫曼树的设计与实现"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+          哈夫曼树的设计与实现
+      </h3>
+    </div>
   </nav>
 
 </article>
@@ -397,7 +357,7 @@ Don’t back in anger,不要为往事而烦恼。<br />
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AE%B9"><span class="toc-number">1.</span> <span class="toc-text"> 内容</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%97%A4%E6%9C%AC%E6%A0%91%E4%BD%A0%E6%98%AF%E6%88%91%E7%9A%84%E7%B2%BE%E7%A5%9E%E7%97%85%E4%BA%BA"><span class="toc-number">1.1.</span> <span class="toc-text"> 藤本树，你是我的精神病人</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E6%8A%B9%E5%A5%87%E5%B9%BB%E7%9A%84%E8%89%B2%E5%BD%A9"><span class="toc-number">1.2.</span> <span class="toc-text"> 一抹奇幻的色彩</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BC%AB%E7%94%BB-%E6%94%B9%E7%BC%96%E4%BA%8E-%E7%94%B5%E5%BD%B1"><span class="toc-number">1.3.</span> <span class="toc-text"> 漫画 改编于 电影</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%93%A6%E7%84%B6%E5%9B%9E%E9%A6%96%E4%B8%8D%E8%A6%81%E4%B8%BA%E5%BE%80%E4%BA%8B%E8%80%8C%E7%83%A6%E6%81%BC"><span class="toc-number">1.4.</span> <span class="toc-text"> 蓦然回首——不要为往事而烦恼</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8C%AE%E7%BB%99%E6%89%80%E6%9C%89%E5%88%9B%E4%BD%9C%E8%80%85%E7%9A%84%E4%B8%80%E4%BB%BD%E6%83%85%E4%B9%A6"><span class="toc-number">1.5.</span> <span class="toc-text"> 献给所有创作者的一份情书</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%99%E4%BD%9C%E5%8F%82%E8%80%83"><span class="toc-number">1.6.</span> <span class="toc-text"> 写作参考</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%A3%E5%88%97%E8%A1%A8%E4%B9%9F%E5%B0%B1%E6%98%AF%E5%93%88%E5%B8%8C%E8%A1%A8%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8"><span class="toc-number">1.</span> <span class="toc-text"> 散列表也就是哈希表有什么用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%A3%E5%88%97%E5%87%BD%E6%95%B0"><span class="toc-number">2.</span> <span class="toc-text"> 散列函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%A3%E5%88%97%E8%A1%A8"><span class="toc-number">3.</span> <span class="toc-text"> 散列表</span></a></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -522,14 +482,14 @@ Don’t back in anger,不要为往事而烦恼。<br />
       <script data-pjax>
         window.REIMU_POST = {
           author: "Stvfen",
-          title: "蓦然回首——藤本树致所有创作者的一份情书",
-          url: "http://example.com/2026/02/24/%E8%93%A6%E7%84%B6%E5%9B%9E%E9%A6%96%E2%80%94%E2%80%94%E8%97%A4%E6%9C%AC%E6%A0%91%E8%87%B4%E6%89%80%E6%9C%89%E5%88%9B%E4%BD%9C%E8%80%85%E7%9A%84%E4%B8%80%E4%BB%BD%E6%83%85%E4%B9%A6/",
+          title: "散列表(哈希)的设计与实现",
+          url: "http://example.com/2026/03/08/%E6%95%A3%E5%88%97%E8%A1%A8-%E5%93%88%E5%B8%8C-%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/",
           excerpt: "",
           description: "",
-          stripContent: "蓦然回首——藤本树致所有创作者的一份情书  内容  藤本树，你是我的精神病人 在讨论藤本树的作品前，先让我们讨论下这个精神病人吧（笑）。 《电锯人公安篇》在2020年10月14日完结的时候，我才意识到藤本树是一个天才，为什么粉丝们总是说藤本树是一位“精神病人”，我想这是对藤本树的嘉奖，他的作品并没有迎合大众趋势，而是以自己所愿表达出自己所想——以超乎读者想象的方式。 藤本树早期短篇作品并不出众，藤本树在《藤本树短篇集》中《预言中的那由多》的随笔中写到：“编剧总是说我画不出具有特点的角色，所以我创",
-          date: "Tue Feb 24 2026 15:36:19 GMT+0800",
-          updated: "Thu Feb 26 2026 15:59:08 GMT+0800",
-          cover: "/../image/%E8%93%A6%E7%84%B6%E5%9B%9E%E9%A6%96.webp",
+          stripContent: "我们之前认识的查找算法，最快可以达到对数阶 $O(logN)二分$，那么我们能否追求极致，让查找性能突破到常数阶呢？这里就要介绍到我们的散列（也可以叫哈希 Hash）它采用直接寻址的方式，在理想情况下，查找的时间复杂度可以达到常数阶 $O(1)$。  散列表也就是哈希表有什么用 散列（Hashing）通过散列函数（哈希函数）将要参与检索的数据与散列值（哈希值）关联起来，生成一种便于搜索的数据结构，我们称其为散列表（哈希表），也就是说，现在我们需要将一堆数据保存起来，这些数据会通过哈希函数进行计算",
+          date: "Sun Mar 08 2026 14:56:57 GMT+0800",
+          updated: "Sun Mar 08 2026 14:59:54 GMT+0800",
+          cover: "/../image/%E6%95%A3%E5%88%97%E8%A1%A8.webp",
         };
       </script>
         
