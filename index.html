@@ -152,7 +152,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">12</div>
+    <div class="sidebar-state-number">13</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -238,7 +238,7 @@
           <div class="post-categories-cover">
               <img data-src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/%E6%88%91%E5%96%9C%E6%AC%A2%E7%9A%84.jpg" data-sizes="auto" alt="笔记" class="lazyload">
             <h2>笔记</h2>
-            <h3>10 篇文章</h3>
+            <h3>11 篇文章</h3>
           </div>
         </div>
         <div class="post-categories-wrap">
@@ -273,8 +273,35 @@
 </div>
       <div class="post-wrapper">
   <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2026/03/08/%E6%95%A3%E5%88%97%E8%A1%A8-%E5%93%88%E5%B8%8C-%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/" aria-label="散列表(哈希)的设计与实现" title="散列表(哈希)的设计与实现"></a>
+      <a class="post-link" href="/2026/03/09/%E5%93%88%E5%B8%8C%E5%86%B2%E7%AA%81%E7%9A%84%E5%A4%84%E7%90%86/" aria-label="哈希冲突的处理" title="哈希冲突的处理"></a>
     <div class="post-cover right">
+        <img data-src="/../image/%E5%93%88%E5%B8%8C%E5%86%B2%E7%AA%81.webp" data-sizes="auto" alt="哈希冲突的处理" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-03-09</span>
+        <span><span class="icon-pencil"></span>1.3k 字</span>
+        <span><span class="icon-clock"></span>6 分钟</span>
+      </div>
+      <h2 class="post-title">哈希冲突的处理</h2>
+      <article class="post-article">
+           什么是哈希冲突
+前面我介绍了哈希函数，通过哈希函数计算得到一个目标的哈希值，但是在某些情况下，哈希值可能会出现相同的情况：
+
+这种情况，我们称为哈希碰撞（哈希冲突）
+这种情况是不可避免的，我们只能通过使用更加高级的哈希函数来尽可能避免这种情况，但是无法完全避免。当然，如果要完全解决这种问题，我们还需要去寻找更好的方法。
+ 线性探测法
+我们可以选择退让，不去进行争抢，我们可以去找找哈希表中相邻的位置上有没有为空的，只要哈希表没装满，那么我们肯定是可以找到位置装下这个元素的，这种类型的解决方案我们统称为线性探测法
+既然第一次发生了哈希冲突，那么我们就继续去找下一个空位：
+$$h_i(\text{
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2026/03/08/%E6%95%A3%E5%88%97%E8%A1%A8-%E5%93%88%E5%B8%8C-%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/" aria-label="散列表(哈希)的设计与实现" title="散列表(哈希)的设计与实现"></a>
+    <div class="post-cover left">
         <img data-src="/../image/%E6%95%A3%E5%88%97%E8%A1%A8.webp" data-sizes="auto" alt="散列表(哈希)的设计与实现" class="lazyload">
     </div>
     <div class="post-info">
@@ -293,9 +320,9 @@
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/03/08/%E5%93%88%E5%A4%AB%E6%9B%BC%E6%A0%91%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/" aria-label="哈夫曼树的设计与实现" title="哈夫曼树的设计与实现"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
         <img data-src="/../image/%E5%93%88%E5%A4%AB%E6%9B%BC%E6%A0%91.webp" data-sizes="auto" alt="哈夫曼树的设计与实现" class="lazyload">
     </div>
     <div class="post-info">
@@ -318,9 +345,9 @@ $$WPL &amp;#x3D; \sum_{i&amp;#x3D;1}^{n} \big( value(i) \times depth(i) \big)
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/03/06/%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/" aria-label="平衡二叉树的设计与实现" title="平衡二叉树的设计与实现"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
         <img data-src="/../image/%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91.webp" data-sizes="auto" alt="平衡二叉树的设计与实现" class="lazyload">
     </div>
     <div class="post-info">
@@ -345,9 +372,9 @@ $$WPL &amp;#x3D; \sum_{i&amp;#x3D;1}^{n} \big( value(i) \times depth(i) \big)
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/03/04/%E4%BA%8C%E5%8F%89%E6%9F%A5%E6%89%BE%E6%A0%91%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/" aria-label="二叉查找树的设计与实现" title="二叉查找树的设计与实现"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
         <img data-src="/../image/%E4%BA%8C%E5%8F%89%E6%9F%A5%E6%89%BE%E6%A0%91.webp" data-sizes="auto" alt="二叉查找树的设计与实现" class="lazyload">
     </div>
     <div class="post-info">
@@ -380,9 +407,9 @@ $$WPL &amp;#x3D; \sum_{i&amp;#x3D;1}^{n} \big( value(i) \times depth(i) \big)
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/03/02/%E7%BA%BF%E7%B4%A2%E5%8C%96%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/" aria-label="线索化二叉树的设计与实现" title="线索化二叉树的设计与实现"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
         <img data-src="/../image/%E7%BA%BF%E7%B4%A2%E5%8C%96%E4%BA%8C%E5%8F%89%E6%A0%91.webp" data-sizes="auto" alt="线索化二叉树的设计与实现" class="lazyload">
     </div>
     <div class="post-info">
@@ -408,9 +435,9 @@ $$WPL &amp;#x3D; \sum_{i&amp;#x3D;1}^{n} \big( value(i) \times depth(i) \big)
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/03/01/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0(%E6%A0%91%E7%9A%84%E5%BC%80%E7%AF%87)/" aria-label="二叉树的设计与实现(树的开篇)" title="二叉树的设计与实现(树的开篇)"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
         <img data-src="/../image/%E4%BA%8C%E5%8F%89%E6%A0%91.webp" data-sizes="auto" alt="二叉树的设计与实现(树的开篇)" class="lazyload">
     </div>
     <div class="post-info">
@@ -436,9 +463,9 @@ $$WPL &amp;#x3D; \sum_{i&amp;#x3D;1}^{n} \big( value(i) \times depth(i) \big)
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/02/27/%E9%98%9F%E5%88%97%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/" aria-label="队列的设计与实现" title="队列的设计与实现"></a>
-    <div class="post-cover right">
+    <div class="post-cover left">
         <img data-src="/../image/%E9%98%9F%E5%88%97.webp" data-sizes="auto" alt="队列的设计与实现" class="lazyload">
     </div>
     <div class="post-info">
@@ -463,9 +490,9 @@ $$WPL &amp;#x3D; \sum_{i&amp;#x3D;1}^{n} \big( value(i) \times depth(i) \big)
   </div>
 </div>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up">
       <a class="post-link" href="/2026/02/27/%E6%A0%88%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/" aria-label="栈的设计与实现" title="栈的设计与实现"></a>
-    <div class="post-cover left">
+    <div class="post-cover right">
         <img data-src="/../image/%E6%A0%88.webp" data-sizes="auto" alt="栈的设计与实现" class="lazyload">
     </div>
     <div class="post-info">
@@ -493,32 +520,6 @@ push：入栈操作，向栈中压入一个新的元素。
     </div>
   </div>
 </div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2026/02/26/%E5%8F%8C%E9%93%BE%E8%A1%A8%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/" aria-label="双链表和循环链表的设计与实现" title="双链表和循环链表的设计与实现"></a>
-    <div class="post-cover right">
-        <img data-src="/../image/%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8.webp" data-sizes="auto" alt="双链表和循环链表的设计与实现" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2026-02-26</span>
-        <span><span class="icon-pencil"></span>1.2k 字</span>
-        <span><span class="icon-clock"></span>5 分钟</span>
-      </div>
-      <h2 class="post-title">双链表和循环链表的设计与实现</h2>
-      <article class="post-article">
-           什么是双向链表
-单链表，通过这样的链式存储，我们不用再像顺序表那样一次性申请一段连续的空间，而是只需要单独为结点申请内存空间，同时在插入和删除的速度上也比顺序表轻松。不过有一个问题就是，如果我们想要操作某一个结点，比如删除或是插入，那么由于单链表的性质，我们只能先去找到它的前驱结点，才能进行。
-并且双向链表从前从后都可遍历
-为了解决这种查找前驱结点非常麻烦的问题，我们可以让结点不仅保存指向后续结点的指针，同时也保存指向前驱结点的指针：
-
-这样我们无论在哪个结点，都能够快速找到对应的前驱结点，就很方便了，这样的链表我们成为双向链表（双链表）
-首先定义好结构体
-123456789typedef 
-      </article>
-    </div>
-  </div>
-</div>
   <nav id="page-nav" aria-label="Pagination navigation" data-aos="fade-up">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
   </nav>
@@ -542,10 +543,10 @@ push：入栈操作，向栈中压入一个新的元素。
       </div>
       <div>
         <span class="icon-brush"></span>
-        21.7k
+        23k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        01:29
+        01:35
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -573,7 +574,7 @@ push：入栈操作，向栈中压入一个新的元素。
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">12</div>
+    <div class="sidebar-state-number">13</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
