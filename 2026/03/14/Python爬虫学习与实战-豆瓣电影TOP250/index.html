@@ -1,0 +1,914 @@
+  <!DOCTYPE html>
+  <html lang="zh-CN"  
+      data-theme-mode="auto"
+  >
+  <head>
+  <meta charset="utf-8">
+  
+  
+  
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_4k4bc36ef96';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
+  <title>
+    Python爬虫学习与实战-豆瓣电影TOP250 | 史蒂芬の电台
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_4k4bc36ef96.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="什么是爬虫 爬虫爬的好，牢饭吃的早。但本身来讲数据是无罪的，爬虫作为一个便携且低成本获取数据的方式，现如今非常广泛，但还是要遵纪守法的，有些东西不该你知道就别动。 还要记住，爬虫的请求数量和频率不能过高，要不然和DDoS攻击没什么区别了。如果网站本身有反爬机制，那就别去强行突破了。 我们可以通过查看网站的robots.txt文件，了解可爬取的网页路径范围，这个文件会指明哪些网站会允许被爬取，哪些">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python爬虫学习与实战-豆瓣电影TOP250">
+<meta property="og:url" content="http://example.com/2026/03/14/Python%E7%88%AC%E8%99%AB%E5%AD%A6%E4%B9%A0%E4%B8%8E%E5%AE%9E%E6%88%98-%E8%B1%86%E7%93%A3%E7%94%B5%E5%BD%B1TOP250/index.html">
+<meta property="og:site_name" content="史蒂芬の电台">
+<meta property="og:description" content="什么是爬虫 爬虫爬的好，牢饭吃的早。但本身来讲数据是无罪的，爬虫作为一个便携且低成本获取数据的方式，现如今非常广泛，但还是要遵纪守法的，有些东西不该你知道就别动。 还要记住，爬虫的请求数量和频率不能过高，要不然和DDoS攻击没什么区别了。如果网站本身有反爬机制，那就别去强行突破了。 我们可以通过查看网站的robots.txt文件，了解可爬取的网页路径范围，这个文件会指明哪些网站会允许被爬取，哪些">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260313220740.png">
+<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260313215509.png">
+<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260313215721.png">
+<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260313215834.png">
+<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260313221240.png">
+<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260314095752.png">
+<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260314095902.png">
+<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260314100145.png">
+<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260314110833.png">
+<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260314111251.png">
+<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260314112317.png">
+<meta property="article:published_time" content="2026-03-14T03:48:24.000Z">
+<meta property="article:modified_time" content="2026-03-14T03:58:33.227Z">
+<meta property="article:author" content="Stvfen">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="爬虫">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260313220740.png">
+    <link rel="alternate" href="/atom.xml" title="史蒂芬の电台" type="application/atom+xml">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
+      <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.css" integrity="sha384-tTgKLjMYmJr94v8qu2PE5MUGSMbyN2xiH266JUB3gpm8vnnJywd1dWSOEfrFz+YI" crossorigin="anonymous">
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+  <body>
+      <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+      </div>
+      <div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script>
+<div id="copy-tooltip"></div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation">
+        <a class="main-nav-link-wrap" href="/">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">首页</span>
+        </span>
+        <a class="main-nav-link-wrap" href="/archives">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">归档</span>
+        </span>
+        <a class="main-nav-link-wrap" href="/about">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">关于</span>
+        </span>
+        <a class="main-nav-link-wrap" href="/friend">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">友链</span>
+        </span>
+    <a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation">
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅" aria-label="RSS 订阅" target="_blank"></a>
+      <a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索" aria-label="搜索"></a>
+  </nav>
+</div>
+<header id="header" aria-label="Site header">
+    <picture></picture>
+    <img  fetchpriority="high" src="/../image/Python%E7%88%AC%E8%99%AB%E5%9F%BA%E7%A1%80.webp" alt="Python爬虫学习与实战-豆瓣电影TOP250">
+  <div id="header-outer">
+    <div id="header-title">
+          <span id="logo">
+            <h1 data-aos="slide-up">Python爬虫学习与实战-豆瓣电影TOP250</h1>
+          </span>
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+        </h2>
+    </div>
+  </div>
+</header>
+
+        <div id="content" aria-label="Page content" class="sidebar-left"  >
+          <aside id="sidebar" aria-label="Sidebar">
+  <div class="sidebar-wrapper-container sticky">
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%88%AC%E8%99%AB"><span class="toc-number">1.</span> <span class="toc-text"> 什么是爬虫</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%88%AC%E8%99%AB%E7%9A%84%E6%B5%81%E7%A8%8B"><span class="toc-number">2.</span> <span class="toc-text"> 爬虫的流程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%E8%8E%B7%E5%8F%96%E7%BD%91%E9%A1%B5%E5%86%85%E5%AE%B9"><span class="toc-number">2.1.</span> <span class="toc-text"> 第一步：获取网页内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%E8%A7%A3%E6%9E%90%E7%BD%91%E9%A1%B5%E5%86%85%E5%AE%B9"><span class="toc-number">2.2.</span> <span class="toc-text"> 第二步：解析网页内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%E5%82%A8%E5%AD%98%E6%88%96%E5%88%86%E6%9E%90%E6%95%B0%E6%8D%AE"><span class="toc-number">2.3.</span> <span class="toc-text"> 第三步：储存或分析数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">2.4.</span> <span class="toc-text"> 总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#http%E8%AF%B7%E6%B1%82%E5%92%8C%E5%93%8D%E5%BA%94"><span class="toc-number">3.</span> <span class="toc-text"> HTTP请求和响应</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4%E7%9A%84http%E8%AF%B7%E6%B1%82"><span class="toc-number">3.1.</span> <span class="toc-text"> 完整的HTTP请求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4%E7%9A%84http%E5%93%8D%E5%BA%94"><span class="toc-number">3.2.</span> <span class="toc-text"> 完整的HTTP响应</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E7%94%A8python-requests%E5%8F%91%E9%80%81http%E8%AF%B7%E6%B1%82"><span class="toc-number">3.3.</span> <span class="toc-text"> 如何用Python Requests发送HTTP请求</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85requests%E5%BA%93"><span class="toc-number">3.3.1.</span> <span class="toc-text"> 安装Requests库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#requestsget%E5%8F%91%E9%80%81%E8%AF%B7%E6%B1%82"><span class="toc-number">3.3.2.</span> <span class="toc-text"> requests.get发送请求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%93%8D%E5%BA%94%E7%A0%81"><span class="toc-number">3.3.3.</span> <span class="toc-text"> 响应码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%93%8D%E5%BA%94%E5%86%85%E5%AE%B9"><span class="toc-number">3.3.4.</span> <span class="toc-text"> 获取响应内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E5%A4%B4headers"><span class="toc-number">3.3.5.</span> <span class="toc-text"> 请求头headers</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E7%94%A8python-requests%E6%8B%BF%E5%88%B0%E8%B1%86%E7%93%A3%E6%BA%90%E7%A0%81"><span class="toc-number">3.4.</span> <span class="toc-text"> 如何用Python Requests拿到豆瓣源码</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E6%BA%90%E4%BB%A3%E7%A0%81"><span class="toc-number">3.4.1.</span> <span class="toc-text"> 获取源代码</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#html"><span class="toc-number">4.</span> <span class="toc-text"> HTML</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFhtml"><span class="toc-number">4.1.</span> <span class="toc-text"> 什么是HTML？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#html%E5%B8%B8%E8%A7%81%E6%A0%87%E7%AD%BE"><span class="toc-number">4.2.</span> <span class="toc-text"> HTML常见标签</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%87%E9%A2%98"><span class="toc-number">4.2.1.</span> <span class="toc-text"> 标题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E6%AE%B5%E8%90%BD"><span class="toc-number">4.2.2.</span> <span class="toc-text"> 文本段落</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8D%A2%E8%A1%8C%E6%A0%87%E7%AD%BE"><span class="toc-number">4.2.3.</span> <span class="toc-text"> 换行标签</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%A0%E7%B2%97"><span class="toc-number">4.2.4.</span> <span class="toc-text"> 加粗</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%9C%E4%BD%93"><span class="toc-number">4.2.5.</span> <span class="toc-text"> 斜体</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8B%E5%88%92%E7%BA%BF"><span class="toc-number">4.2.6.</span> <span class="toc-text"> 下划线</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%BE%E7%89%87"><span class="toc-number">4.2.7.</span> <span class="toc-text"> 图片</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%93%BE%E6%8E%A5"><span class="toc-number">4.2.8.</span> <span class="toc-text"> 链接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8"><span class="toc-number">4.2.9.</span> <span class="toc-text"> 容器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%89%E5%BA%8F%E5%88%97%E8%A1%A8"><span class="toc-number">4.2.10.</span> <span class="toc-text"> 有序列表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%97%A0%E5%BA%8F%E5%88%97%E8%A1%A8"><span class="toc-number">4.2.11.</span> <span class="toc-text"> 无序列表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A1%A8%E6%A0%BC"><span class="toc-number">4.2.12.</span> <span class="toc-text"> 表格</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#class%E5%B1%9E%E6%80%A7"><span class="toc-number">4.2.13.</span> <span class="toc-text"> class属性</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E7%94%A8beautiful-soup%E6%9D%A5%E8%A7%A3%E6%9E%90html%E5%86%85%E5%AE%B9"><span class="toc-number">5.</span> <span class="toc-text"> 如何用Beautiful Soup来解析HTML内容</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E6%89%80%E6%9C%89%E4%B9%A6%E7%9A%84%E4%BB%B7%E6%A0%BC"><span class="toc-number">5.1.</span> <span class="toc-text"> 获取所有书的价格</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E6%89%80%E6%9C%89%E4%B9%A6%E5%90%8D"><span class="toc-number">5.2.</span> <span class="toc-text"> 获取所有书名</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%88%AC%E8%99%AB%E5%AE%9E%E6%88%98-%E8%8E%B7%E5%8F%96%E8%B1%86%E7%93%A3%E7%94%B5%E5%BD%B1top-250%E7%9A%84%E6%89%80%E6%9C%89%E6%A0%87%E9%A2%98"><span class="toc-number">6.</span> <span class="toc-text"> 爬虫实战-获取豆瓣电影top 250的所有标题</span></a></li></ol>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Stvfen" class="lazyload">
+  <div class="sidebar-author-name">Stvfen</div>
+  <div class="sidebar-description">电台组组长</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">20</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">9</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">15</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/3546704989129249?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+    </div>
+  </div>
+  <div class="sidebar-widget">
+  </div>
+  </div>
+</aside>
+
+          <section id="main" aria-label="Main content"><article id="post-Python爬虫学习与实战-豆瓣电影TOP250" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2026-03-14T03:48:24.000Z" itemprop="datePublished">2026-03-14</time>
+    <time style="display: none;" id="post-update-time">2026-03-14</time>
+  </span>
+</div>
+
+    </div>
+    
+    <div class="hr-line"></div>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+        <h2 id="什么是爬虫"><a class="markdownIt-Anchor" href="#什么是爬虫"></a> 什么是爬虫</h2>
+<p>爬虫爬的好，牢饭吃的早。但本身来讲数据是无罪的，爬虫作为一个便携且低成本获取数据的方式，现如今非常广泛，但还是要遵纪守法的，有些东西不该你知道就别动。<br><br />
+还要记住，爬虫的请求数量和频率不能过高，要不然和DDoS攻击没什么区别了。如果网站本身有反爬机制，那就别去强行突破了。<br><br />
+我们可以通过查看网站的robots.txt文件，了解可爬取的网页路径范围，这个文件会指明哪些网站会允许被爬取，哪些不允许被爬取。<br />
+<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260313220740.png" alt="示意图" /></p>
+<h2 id="爬虫的流程"><a class="markdownIt-Anchor" href="#爬虫的流程"></a> 爬虫的流程</h2>
+<p>爬虫的流程可能比你想象中的更简单</p>
+<h3 id="第一步获取网页内容"><a class="markdownIt-Anchor" href="#第一步获取网页内容"></a> 第一步：获取网页内容</h3>
+<p>我们会通过代码给一个网站服务器发送请求，它会返回给我们网页上的内容。<br />
+<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260313215509.png" alt="示意图" /><br />
+在我们平时使用浏览器访问网页内容时，本质上也是给网站服务器发送一个请求，服务器返回网页内容，只不过浏览器还会进行一个额外的步骤，就是把内容渲染成直观美观的页面。而用程序获得的内容，因为没有渲染步骤，所以我们看到的更加原始。</p>
+<h3 id="第二步解析网页内容"><a class="markdownIt-Anchor" href="#第二步解析网页内容"></a> 第二步：解析网页内容</h3>
+<p><img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260313215721.png" alt="示意图" /><br />
+我们在上一个步骤可以获取整个网页的内容，但那太多太全了，很可能不是我们想要的，所以需要把我们想要的内容提取出来。<br />
+<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260313215834.png" alt="示意图" /></p>
+<h3 id="第三步储存或分析数据"><a class="markdownIt-Anchor" href="#第三步储存或分析数据"></a> 第三步：储存或分析数据</h3>
+<p>这一步的如何执行就是看用户的具体需求了。</p>
+<ul>
+<li>收集数据集：把数据储存进数据库</li>
+<li>分析数据趋势：把数据做成可视化图表</li>
+<li>舆论监控：用AI做文本情绪分析</li>
+</ul>
+<h3 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h3>
+<p>这些步骤适用于一个网页内容的情况，当然我们还可以给一串网址，让程序一个一个去爬取；或者让程序以某个网址为根，顺着把那个网页上链接指向的地址也爬取一遍。</p>
+<h2 id="http请求和响应"><a class="markdownIt-Anchor" href="#http请求和响应"></a> HTTP请求和响应</h2>
+<p>我们将通过发送HTTP请求来获取网页内容。<code>HTTP（Hypertext Transfer Protocol）</code>意思是超文本传输协议。它是一种客户端和服务器之间请求-响应协议。我们可以把浏览器看成一个客户端，我们输入网址按下回车就会向服务器发送一个HTTP请求，然后等待服务器返回给浏览器响应。<br />
+<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260313221240.png" alt="示意图" /><br />
+HTTP实际上有不同的请求方法，最常见的是GET和POST</p>
+<ul>
+<li>GET：主要用于获取数据，爬虫最常用于这个</li>
+<li>POST：用于创建数据<br />
+比如说我们进入一个网页，浏览器会发送GET请求，得到网页内容；当我们提交账号注册表单时，浏览器会发送一个POST请求，把你的用户名、密码等信息放到请求主题里，给到服务器。<br></li>
+</ul>
+<h4 id="完整的http请求"><a class="markdownIt-Anchor" href="#完整的http请求"></a> 完整的HTTP请求</h4>
+<p>完整的HTTP请求就只有三个：<code>请求行、请求头、请求体</code>三大部分</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">POST /user/info HTTP/1.1    请求行   方法类型 资源路径 协议版本</span><br><span class="line"></span><br><span class="line">	什么是资源路径，比如www.douban.com/movie/top250  /movie/top250就是资源路径</span><br><span class="line">	</span><br><span class="line">	然后网址的&quot;?&quot;后面接着的是查询参数，比如↓↓↓</span><br><span class="line">	www.douban.com/movie/top250?start=75&amp;filter=unwatched</span><br><span class="line">	我们展示给用户的页面内容，从排在第75个电影往后展示</span><br><span class="line">	</span><br><span class="line">	最后一项是协议版本，指的是HTTP协议的版本</span><br><span class="line">--------------------------------------------------------------------------</span><br><span class="line">Host:www.example.com        请求头</span><br><span class="line">	Host指的是主机域名，加上请求行中的资源路径可以组合成一个完整的网址</span><br><span class="line">	</span><br><span class="line"><span class="attribute">User-Agent</span><span class="punctuation">: </span>curl/7.77.0     请求头</span><br><span class="line">	User-Agent用来告知服务器客户端的相关信息，比如请求时浏览器发出来的还是其他东西发出来的。如     果是浏览器的话，类型是什么，版本是什么等等</span><br><span class="line">	</span><br><span class="line">Accpet:*/*                  请求头</span><br><span class="line">	Accpet客户端像接受的响应数据是什么类型的。</span><br><span class="line">	接受HTML-&gt;text/html</span><br><span class="line">	接受JSON-&gt;application/json</span><br><span class="line">	接受HTML和JSON-&gt;text/html,application/json</span><br><span class="line">	接收任意类型-&gt;*/*</span><br><span class="line">--------------------------------------------------------------------------</span><br><span class="line">&#123;&quot;username&quot;:&quot;史蒂芬&quot;,&quot;email&quot;:&quot;534320747@qq.com&quot;&#125;    请求体 </span><br><span class="line">	客户端传给服务器的其他任意数据，但是GET方法的请求体，一般是空的</span><br></pre></td></tr></table></figure>
+<h4 id="完整的http响应"><a class="markdownIt-Anchor" href="#完整的http响应"></a> 完整的HTTP响应</h4>
+<p>当服务器接收到HTTP请求后，它会根据所有这些信息，返回HTTP响应。响应也由三个部分组成：<code>状态体、响应头、响应体</code></p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">HTTP/1.1</span> <span class="number">200</span> OK       状态行     协议版本 状态码 状态消息</span><br><span class="line">	状态消息有如下图几种。</span><br><span class="line">	反正除了2开头表示客户端请求成功</span><br><span class="line">	3开头的表示重定向，需要进一步操作</span><br><span class="line">	4开头的表示客户端错误</span><br><span class="line">	5开头的表示服务器错误</span><br><span class="line">------------------------------------------------------------------------</span><br><span class="line"><span class="attribute">Date</span><span class="punctuation">: </span>Fri, 27 Jan 2023 02:10:48 GMT        响应头</span><br><span class="line">	生成响应的日期和时间</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>text/html; charset=utf-8     响应头</span><br><span class="line">	返回内容的类型及编码格式</span><br><span class="line">------------------------------------------------------------------------</span><br><span class="line">&lt;!DOCTYPE html&gt;                            响应体</span><br><span class="line">	&lt;head&gt;&lt;title&gt;首页&lt;/title&gt;&lt;/head&gt;</span><br><span class="line">	&lt;body&gt;&lt;h1&gt;🐂处&lt;/h1&gt;&lt;p&gt;哈喽！&lt;/p&gt;&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line">	就是服务器想给客户端的数据内容，比如前面内容类型是HTML，那么这里就是HTML内容</span><br></pre></td></tr></table></figure>
+<p>那么我们如何通过Python去构建和发送一个HTTP请求呢，又要如何获取HTTP相应呢？</p>
+<h3 id="如何用python-requests发送http请求"><a class="markdownIt-Anchor" href="#如何用python-requests发送http请求"></a> 如何用Python Requests发送HTTP请求</h3>
+<h4 id="安装requests库"><a class="markdownIt-Anchor" href="#安装requests库"></a> 安装Requests库</h4>
+<p>Python的Requests库让我们可以通过Python代码去构建和发送HTTP请求，由于这个库是第三方库，并不是Python自带的，我们要先安装它，在终端内输入这个即可安装</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install requests</span><br></pre></td></tr></table></figure>
+<p>如果显示Successfully installed requests的话，那么就是安装成功；<Br><br />
+如果显示already satisfied的话，那么就是已经安装过</p>
+<h4 id="requestsget发送请求"><a class="markdownIt-Anchor" href="#requestsget发送请求"></a> requests.get发送请求</h4>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">response= requests.get(<span class="string">&quot;http://fm404.top&quot;</span>)  <span class="comment">#注意这列http://协议也得放上去</span></span><br><span class="line"><span class="built_in">print</span>(response)</span><br></pre></td></tr></table></figure>
+<p>运行结果为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Response [200]&gt;</span><br></pre></td></tr></table></figure>
+<p>可以看出response是一个Response类的实例，代表着服务器发送给我们的响应。<br></p>
+<h4 id="响应码"><a class="markdownIt-Anchor" href="#响应码"></a> 响应码</h4>
+<p>响应实例包含的属性有<code>status_code</code>，表示为响应码。</p>
+<ul>
+<li>状态码=200：请求成功</li>
+<li>状态码=404：检查传入的URL是不是有问题，资源不存在<br />
+我们可以通过状态码来判断成没成功：</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">response= requests.get(<span class="string">&quot;http://fm404.top&quot;</span>)  <span class="comment">#注意这列http://协议也得放上去</span></span><br><span class="line"><span class="keyword">if</span> response.status_code &gt;= <span class="number">200</span> <span class="keyword">and</span> response.status_code &lt; <span class="number">400</span>:</span><br><span class="line">	... <span class="comment">#获取响应体内容</span></span><br><span class="line"><span class="keyword">elif</span> response.status_code &gt;=<span class="number">400</span> <span class="keyword">and</span> response.status_code &lt; <span class="number">500</span>:</span><br><span class="line">	<span class="built_in">print</span>(<span class="string">&quot;请求失败，客户端错误&quot;</span>)</span><br><span class="line"><span class="keyword">elif</span> response.status_code &gt;=<span class="number">500</span>:</span><br><span class="line">	<span class="built_in">print</span>(<span class="string">&quot;请求失败,服务器错误&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>但是这样有点繁琐，所以我们可以使用Response类的ok属性。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">response= requests.get(<span class="string">&quot;http://fm404.top&quot;</span>)  <span class="comment">#注意这列http://协议也得放上去</span></span><br><span class="line"><span class="keyword">if</span> response.ok:</span><br><span class="line">	...<span class="comment">#获取响应体内容</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">	<span class="built_in">print</span>(<span class="string">&quot;请求失败&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="获取响应内容"><a class="markdownIt-Anchor" href="#获取响应内容"></a> 获取响应内容</h4>
+<p>如果我们想要获取相应内容，Response类的text属性会以字符串储存响应内容：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">response= requests.get(<span class="string">&quot;http://fm404.top&quot;</span>)  <span class="comment">#注意这列http://协议也得放上去</span></span><br><span class="line"><span class="keyword">if</span> response.ok:</span><br><span class="line">	<span class="built_in">print</span>(response.text)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">	<span class="built_in">print</span>(<span class="string">&quot;请求失败&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>输出结果将会为网页的源码，也就是HTML</p>
+<h4 id="请求头headers"><a class="markdownIt-Anchor" href="#请求头headers"></a> 请求头headers</h4>
+<p>headers是requests.get函数的一个参数，它的数据类型是字典，它的各个键值对就对应着我们要传入的请求头，就像我们上面所说的那样，它本意就是请求头内容。如果我们不在get函数中输入headers参数，那么程序将会自动设置。但我们有些时候需要让python程序伪装成浏览器来进行爬取，所以我们需要更改headers参数里面的User-Agent。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests  </span><br><span class="line">head = &#123;<span class="string">&quot;User-Agent&quot;</span>:<span class="string">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0&quot;</span>&#125;  </span><br><span class="line">response= requests.get(<span class="string">&quot;http://fm404.top&quot;</span>,headers = head)  <span class="comment">#注意这列http://协议也得放上去  </span></span><br><span class="line"><span class="keyword">if</span> response.ok:  </span><br><span class="line">    <span class="built_in">print</span>(response.text)  </span><br><span class="line"><span class="keyword">else</span>:  </span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;请求失败&quot;</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="如何用python-requests拿到豆瓣源码"><a class="markdownIt-Anchor" href="#如何用python-requests拿到豆瓣源码"></a> 如何用Python Requests拿到豆瓣源码</h3>
+<p>豆瓣网站并不支持Python程序来直接访问，所以我们需要浏览器的User-Agent来进行访问。那么如何得到自己浏览器的User-Agent呢？<br><br />
+我们先随便打开一个网站，然后右键空白处点击检查。<br />
+<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260314095752.png" alt="步骤1示意图" /><br />
+接着进入Network，也就是网络<br />
+<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260314095902.png" alt="步骤2示意图" /><br />
+接着按下F5刷新页面，就能看到浏览器发送的所有HTTP请求。我们随便打开一个请求，然后打开它的Header也就是标头，来看看里面一个叫做User-Agent的属性，它就是我们想要的浏览器User-Agent。<br />
+<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260314100145.png" alt="示意图" /></p>
+<h4 id="获取源代码"><a class="markdownIt-Anchor" href="#获取源代码"></a> 获取源代码</h4>
+<p>接着我们来获取豆瓣源代码，编写python代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests  </span><br><span class="line">head = &#123;<span class="string">&quot;User-Agent&quot;</span>:<span class="string">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0&quot;</span>&#125;  </span><br><span class="line">response= requests.get(<span class="string">&quot;https://movie.douban.com/top250&quot;</span>,headers = head)  <span class="comment">#注意这列http://协议也得放上去  </span></span><br><span class="line"><span class="keyword">if</span> response.ok:  </span><br><span class="line">    <span class="built_in">print</span>(response.text)  </span><br><span class="line"><span class="keyword">else</span>:  </span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;请求失败&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>这样就会响应成功</p>
+<h2 id="html"><a class="markdownIt-Anchor" href="#html"></a> HTML</h2>
+<h3 id="什么是html"><a class="markdownIt-Anchor" href="#什么是html"></a> 什么是HTML？</h3>
+<p>一个网页有三大技术要素，<code>HTML,CSS,JavaScript</code></p>
+<ul>
+<li>HTML：定义了网页的结构和信息</li>
+<li>CSS：定义网页的样式</li>
+<li>JavaScript：定义了用户和网页的交互逻辑<br />
+我们爬虫最关注的是网页信息，所以一般只跟HTML打交道，一个最最简单的HTML长这样：</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">HTML</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>每个被尖括号包围的都是一个HTML标签，最开头的<code>&lt;!DOCTYPE HTML&gt;</code>用来告知浏览器这个文件类型是HTML。而尖括号开头和结尾分别是起始标签和闭合标签，他们中间的内容一般被称之为<code>元素</code>我们现在来里面填充内容：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">HTML</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">h1</span>&gt;</span>这是一个一级标题<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">p</span>&gt;</span>这是一段文字<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><code>body</code>表示的是文档的主体内容，<code>html</code>整个页面东西都要放里面，<code>h1</code>表示一级标题，<code>p</code>表示一个段落。那么我们就说h1元素和p元素都是body元素的子元素，而h1和p之间又是兄弟元素。</p>
+<h3 id="html常见标签"><a class="markdownIt-Anchor" href="#html常见标签"></a> HTML常见标签</h3>
+<h4 id="标题"><a class="markdownIt-Anchor" href="#标题"></a> 标题</h4>
+<ul>
+<li>h1：一级标签</li>
+<li>h2：二级标签</li>
+<li>h3：三级标签</li>
+<li>h4：四级标签</li>
+</ul>
+<h4 id="文本段落"><a class="markdownIt-Anchor" href="#文本段落"></a> 文本段落</h4>
+<ul>
+<li>p</li>
+</ul>
+<h4 id="换行标签"><a class="markdownIt-Anchor" href="#换行标签"></a> 换行标签</h4>
+<ul>
+<li>br</li>
+</ul>
+<h4 id="加粗"><a class="markdownIt-Anchor" href="#加粗"></a> 加粗</h4>
+<ul>
+<li>b</li>
+</ul>
+<h4 id="斜体"><a class="markdownIt-Anchor" href="#斜体"></a> 斜体</h4>
+<ul>
+<li>i</li>
+</ul>
+<h4 id="下划线"><a class="markdownIt-Anchor" href="#下划线"></a> 下划线</h4>
+<ul>
+<li>u</li>
+</ul>
+<h4 id="图片"><a class="markdownIt-Anchor" href="#图片"></a> 图片</h4>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;图片URL或者路径&quot;</span> <span class="attr">width</span>=<span class="string">&quot;宽度&quot;</span> <span class="attr">height</span>=<span class="string">&quot;高度&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="链接"><a class="markdownIt-Anchor" href="#链接"></a> 链接</h4>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;https://fm404.top&quot;</span>&gt;</span>我的主页<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">还有一个属性叫做target</span><br><span class="line">target = &quot;_self&quot;就是当前窗口跳转链接</span><br><span class="line">target = &quot;_blank&quot;新窗口跳转</span><br></pre></td></tr></table></figure>
+<h4 id="容器"><a class="markdownIt-Anchor" href="#容器"></a> 容器</h4>
+<ul>
+<li>div：块级容器，独占自己的一块区域，一行最多放一个div元素</li>
+<li>span：内联容器，不会独占一块，一行可以有多个span元素</li>
+</ul>
+<h4 id="有序列表"><a class="markdownIt-Anchor" href="#有序列表"></a> 有序列表</h4>
+<ul>
+<li>ol：表示列表</li>
+<li>li：列表内元素</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ol</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>博士<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>阿米娅<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>凯尔希<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>运行样式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.博士</span><br><span class="line">2.阿米娅</span><br><span class="line">3.凯尔希</span><br></pre></td></tr></table></figure>
+<h4 id="无序列表"><a class="markdownIt-Anchor" href="#无序列表"></a> 无序列表</h4>
+<ul>
+<li>ul：表示列表</li>
+<li>li：列表内元素</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>博士<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>阿米娅<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">li</span>&gt;</span>凯尔希<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>运行样式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">· 博士</span><br><span class="line">· 阿米娅</span><br><span class="line">· 凯尔希</span><br></pre></td></tr></table></figure>
+<h4 id="表格"><a class="markdownIt-Anchor" href="#表格"></a> 表格</h4>
+<ul>
+<li>table：定义表格标签</li>
+<li>thead：表格头部，一般是表格第一行</li>
+<li>tbody：表示表格的主体</li>
+<li>tr：定义表格行</li>
+<li>td：表格行内的单元格</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">thead</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">td</span>&gt;</span>表头1<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">td</span>&gt;</span>表头2<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">thead</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">tbody</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">td</span>&gt;</span>111<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">td</span>&gt;</span>222<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">td</span>&gt;</span>333<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">td</span>&gt;</span>444<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">tbody</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>运行样式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">表头1 表头2</span><br><span class="line">111  222</span><br><span class="line">333  444</span><br></pre></td></tr></table></figure>
+<p>我们可以为table加上一些属性</p>
+<ul>
+<li>border：表格边框</li>
+</ul>
+<h4 id="class属性"><a class="markdownIt-Anchor" href="#class属性"></a> class属性</h4>
+<p>这个属性可被用在所有元素上，定义元素的类的名称。类可以帮助我们分组，比如说一个网页上可能有多个文本段落：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;content&quot;</span>&gt;</span>给岁月以文明<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;content&quot;</span>&gt;</span>而不是给文明以岁月<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;review&quot;</span>&gt;</span>人类并不感谢罗辑！<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>那么我们可以通过<code>class = &quot;content</code>和<code>class = &quot;review&quot;</code>来区分哪些文本段落是文章，哪些文本段落是用户评论</p>
+<h2 id="如何用beautiful-soup来解析html内容"><a class="markdownIt-Anchor" href="#如何用beautiful-soup来解析html内容"></a> 如何用Beautiful Soup来解析HTML内容</h2>
+<p>我们首先要知道BeautifulSoup是bs4库内的一个供我们用来解析的类<br />
+老规矩第三方库先安装</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install bs4</span><br></pre></td></tr></table></figure>
+<p>接着开始写代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">content = requests.get(<span class="string">&quot;http://www.examplecom/&quot;</span>).text  <span class="comment">#得到网站的HTML</span></span><br><span class="line">soup = BeautifulSoup(content,<span class="string">&quot;html.parser&quot;</span>) <span class="comment">#由于BeautifulSoup除了HTML还能解析其他内容，所以需要第二个参数来指明解析器</span></span><br></pre></td></tr></table></figure>
+<p>接着BeautifulSoup会把看似复杂的HTML内容解析成如下图的树状结构，让搜索和修改HTML结构变得更加容易：<br />
+<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260314110833.png" alt="示意图" /><br />
+我们要知道对象有方法和属性，这个soup对象就有非常多的方法和属性。如果我们的html有多个p标签，那么我们输入<code>print(soup.p)</code>将会获得第一个p标签。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;内容&lt;\p&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="获取所有书的价格"><a class="markdownIt-Anchor" href="#获取所有书的价格"></a> 获取所有书的价格</h4>
+<p>但我们不是想要找到第一个类型元素，比如我们要爬取书籍网站，就是要爬取网页上所有的书名和价格，这该怎么办呢？这个时候我们就要分析下想要信息的特点，浏览器的检查功能就很好用了。<br />
+<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260314111251.png" alt="示意图" /><br />
+比如在这个网站里，所有价格标签p中都会有一个class属性为price_color。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup  </span><br><span class="line"><span class="keyword">import</span> requests  </span><br><span class="line">content = requests.get(<span class="string">&quot;http://books.toscrape.com/&quot;</span>).text  <span class="comment">#得到网站的HTML  </span></span><br><span class="line">soup = BeautifulSoup(content,<span class="string">&quot;html.parser&quot;</span>) <span class="comment">#由于BeautifulSoup除了HTML还能解析其他内容，所以需要第二个参数来指明解析器  </span></span><br><span class="line">all_prices = soup.find_all(<span class="string">&quot;p&quot;</span>,attrs=&#123;<span class="string">&quot;class&quot;</span>:<span class="string">&quot;price_color&quot;</span>&#125;)<span class="comment">#attrs属性是一个字典参数，键值对就是想要搜索的属性和值，接着find_all会返回一个可迭代对象，接着我们可以一个一个返回对象  </span></span><br><span class="line"><span class="keyword">for</span> price <span class="keyword">in</span> all_prices:  </span><br><span class="line">    <span class="built_in">print</span>(price)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;p class=&quot;price_color&quot;&gt;Â£51.77&lt;/p&gt;</span><br><span class="line">&lt;p class=&quot;price_color&quot;&gt;Â£53.74&lt;/p&gt;</span><br><span class="line">&lt;p class=&quot;price_color&quot;&gt;Â£50.10&lt;/p&gt;</span><br><span class="line">&lt;p class=&quot;price_color&quot;&gt;Â£47.82&lt;/p&gt;</span><br><span class="line">&lt;p class=&quot;price_color&quot;&gt;Â£54.23&lt;/p&gt;</span><br><span class="line">&lt;p class=&quot;price_color&quot;&gt;Â£22.65&lt;/p&gt;</span><br><span class="line">&lt;p class=&quot;price_color&quot;&gt;Â£33.34&lt;/p&gt;</span><br><span class="line">&lt;p class=&quot;price_color&quot;&gt;Â£17.93&lt;/p&gt;</span><br><span class="line">&lt;p class=&quot;price_color&quot;&gt;Â£22.60&lt;/p&gt;</span><br><span class="line">&lt;p class=&quot;price_color&quot;&gt;Â£52.15&lt;/p&gt;</span><br><span class="line">&lt;p class=&quot;price_color&quot;&gt;Â£13.99&lt;/p&gt;</span><br><span class="line">&lt;p class=&quot;price_color&quot;&gt;Â£20.66&lt;/p&gt;</span><br><span class="line">&lt;p class=&quot;price_color&quot;&gt;Â£17.46&lt;/p&gt;</span><br><span class="line">&lt;p class=&quot;price_color&quot;&gt;Â£52.29&lt;/p&gt;</span><br><span class="line">&lt;p class=&quot;price_color&quot;&gt;Â£35.02&lt;/p&gt;</span><br><span class="line">&lt;p class=&quot;price_color&quot;&gt;Â£57.25&lt;/p&gt;</span><br><span class="line">&lt;p class=&quot;price_color&quot;&gt;Â£23.88&lt;/p&gt;</span><br><span class="line">&lt;p class=&quot;price_color&quot;&gt;Â£37.59&lt;/p&gt;</span><br><span class="line">&lt;p class=&quot;price_color&quot;&gt;Â£51.33&lt;/p&gt;</span><br><span class="line">&lt;p class=&quot;price_color&quot;&gt;Â£45.17&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+<p>但还有一个问题是，如果我们只想要数字那么该怎么办呢？我们可以打印对象的string值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup  </span><br><span class="line"><span class="keyword">import</span> requests  </span><br><span class="line">content = requests.get(<span class="string">&quot;http://books.toscrape.com/&quot;</span>).text  <span class="comment">#得到网站的HTML  </span></span><br><span class="line">soup = BeautifulSoup(content,<span class="string">&quot;html.parser&quot;</span>) <span class="comment">#由于BeautifulSoup除了HTML还能解析其他内容，所以需要第二个参数来指明解析器  </span></span><br><span class="line">all_prices = soup.find_all(<span class="string">&quot;p&quot;</span>,attrs=&#123;<span class="string">&quot;class&quot;</span>:<span class="string">&quot;price_color&quot;</span>&#125;)<span class="comment">#attrs属性是一个字典参数，键值对就是想要搜索的属性和值，接着find_all会返回一个可迭代对象，接着我们可以一个一个返回对象  </span></span><br><span class="line"><span class="keyword">for</span> price <span class="keyword">in</span> all_prices:  </span><br><span class="line">    <span class="built_in">print</span>(price.string)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Â£51.77</span><br><span class="line">Â£53.74</span><br><span class="line">Â£50.10</span><br><span class="line">Â£47.82</span><br><span class="line">Â£54.23</span><br><span class="line">Â£22.65</span><br><span class="line">Â£33.34</span><br><span class="line">Â£17.93</span><br><span class="line">Â£22.60</span><br><span class="line">Â£52.15</span><br><span class="line">Â£13.99</span><br><span class="line">Â£20.66</span><br><span class="line">Â£17.46</span><br><span class="line">Â£52.29</span><br><span class="line">Â£35.02</span><br><span class="line">Â£57.25</span><br><span class="line">Â£23.88</span><br><span class="line">Â£37.59</span><br><span class="line">Â£51.33</span><br><span class="line">Â£45.17</span><br></pre></td></tr></table></figure>
+<p>如果我们不想要这个价格标签那么该怎么办呢？我们可以通过切片操作来进行</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(price.string[<span class="number">2</span>:])</span><br></pre></td></tr></table></figure>
+<p>就是打印字符串索引2开始的后面字符</p>
+<h4 id="获取所有书名"><a class="markdownIt-Anchor" href="#获取所有书名"></a> 获取所有书名</h4>
+<p>获取书名这个有点难搞，因为我们会发现这些书名并没有什么公共的class属性之类的<br />
+<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260314112317.png" alt="示意图" /><br />
+那么我们换个角度去找共性，我们会发现都是h3标题的子元素。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup  </span><br><span class="line"><span class="keyword">import</span> requests  </span><br><span class="line">content = requests.get(<span class="string">&quot;http://books.toscrape.com/&quot;</span>).text  <span class="comment">#得到网站的HTML  </span></span><br><span class="line">soup = BeautifulSoup(content,<span class="string">&quot;html.parser&quot;</span>) <span class="comment">#由于BeautifulSoup除了HTML还能解析其他内容，所以需要第二个参数来指明解析器  </span></span><br><span class="line">all_titles = soup.find_all(<span class="string">&quot;h3&quot;</span>)<span class="comment">#attrs属性是一个字典参数，键值对就是想要搜索的属性和值，接着find_all会返回一个可迭代对象，接着我们可以一个一个返回对象  </span></span><br><span class="line"><span class="keyword">for</span> title <span class="keyword">in</span> all_titles:</span><br><span class="line">	all_links = title.find_all(<span class="string">&quot;a&quot;</span>)</span><br><span class="line">	<span class="keyword">for</span> link <span class="keyword">in</span> all_links:</span><br><span class="line">		<span class="built_in">print</span>(link.string)</span><br><span class="line">		</span><br><span class="line"><span class="comment">#for title in all_titles:</span></span><br><span class="line">	<span class="comment">#link = title.find(&quot;a&quot;)</span></span><br><span class="line">	<span class="comment">#print(link.string)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">A Light in the ...</span><br><span class="line">Tipping the Velvet</span><br><span class="line">Soumission</span><br><span class="line">Sharp Objects</span><br><span class="line">Sapiens: A Brief History ...</span><br><span class="line">The Requiem Red</span><br><span class="line">The Dirty Little Secrets ...</span><br><span class="line">The Coming Woman: A ...</span><br><span class="line">The Boys in the ...</span><br><span class="line">The Black Maria</span><br><span class="line">Starving Hearts (Triangular Trade ...</span><br><span class="line">Shakespeare&#x27;s Sonnets</span><br><span class="line">Set Me Free</span><br><span class="line">Scott Pilgrim&#x27;s Precious Little ...</span><br><span class="line">Rip it Up and ...</span><br><span class="line">Our Band Could Be ...</span><br><span class="line">Olio</span><br><span class="line">Mesaerion: The Best Science ...</span><br><span class="line">Libertarianism for Beginners</span><br><span class="line">It&#x27;s Only the Himalayas</span><br></pre></td></tr></table></figure>
+<h2 id="爬虫实战-获取豆瓣电影top-250的所有标题"><a class="markdownIt-Anchor" href="#爬虫实战-获取豆瓣电影top-250的所有标题"></a> 爬虫实战-获取豆瓣电影top 250的所有标题</h2>
+<p>安装上面的步骤来做即可</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup  </span><br><span class="line"><span class="keyword">import</span> requests  </span><br><span class="line">head = &#123;<span class="string">&quot;User-Agent&quot;</span>:<span class="string">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0&quot;</span>&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">for</span> start_num <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">250</span>,<span class="number">25</span>):  </span><br><span class="line">    content = requests.get(<span class="string">f&quot;https://movie.douban.com/top250?start=<span class="subst">&#123;start_num&#125;</span>&quot;</span>, headers = head).text  <span class="comment">#得到网站的HTML  </span></span><br><span class="line">    soup = BeautifulSoup(content, <span class="string">&quot;html.parser&quot;</span>)  </span><br><span class="line">    all_div = soup.find_all(<span class="string">&quot;div&quot;</span>, &#123;<span class="string">&quot;class&quot;</span>:<span class="string">&quot;hd&quot;</span>&#125;)  </span><br><span class="line">    <span class="keyword">for</span> one_div <span class="keyword">in</span> all_div:  </span><br><span class="line">       <span class="built_in">str</span> = <span class="string">&quot;&quot;</span>  </span><br><span class="line">       title = one_div.find_all(<span class="string">&quot;span&quot;</span>, &#123;<span class="string">&quot;class&quot;</span>:<span class="string">&quot;title&quot;</span>&#125;)  </span><br><span class="line">       <span class="keyword">for</span> i <span class="keyword">in</span> title:  </span><br><span class="line">          <span class="built_in">str</span> += i.string  </span><br><span class="line">       title = one_div.find_all(<span class="string">&quot;span&quot;</span>, &#123;<span class="string">&quot;class&quot;</span>:<span class="string">&quot;other&quot;</span>&#125;)  </span><br><span class="line">       <span class="keyword">for</span> i <span class="keyword">in</span> title:  </span><br><span class="line">          <span class="built_in">str</span> += i.string  </span><br><span class="line">       <span class="built_in">print</span>(<span class="built_in">str</span>)</span><br></pre></td></tr></table></figure>
+<p>运行结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br></pre></td><td class="code"><pre><span class="line">肖申克的救赎 / The Shawshank Redemption / 月黑高飞(港)  /  刺激1995(台)</span><br><span class="line">霸王别姬 / 再见，我的妾  /  Farewell My Concubine</span><br><span class="line">泰坦尼克号 / Titanic / 铁达尼号(港 / 台)</span><br><span class="line">阿甘正传 / Forrest Gump / 福雷斯特·冈普</span><br><span class="line">千与千寻 / 千と千尋の神隠し / 神隐少女(台)  /  千与千寻的神隐</span><br><span class="line">美丽人生 / La vita è bella / 一个快乐的传说(港)  /  Life Is Beautiful</span><br><span class="line">星际穿越 / Interstellar / 星际启示录(港)  /  星际效应(台)</span><br><span class="line">这个杀手不太冷 / Léon / 终极追杀令(台)  /  杀手莱昂</span><br><span class="line">盗梦空间 / Inception / 潜行凶间(港)  /  全面启动(台)</span><br><span class="line">楚门的世界 / The Truman Show / 真人Show(港)  /  真人戏</span><br><span class="line">辛德勒的名单 / Schindler&#x27;s List / 舒特拉的名单(港)  /  辛德勒名单</span><br><span class="line">忠犬八公的故事 / Hachi: A Dog&#x27;s Tale / 秋田犬八千(港)  /  忠犬小八(台)</span><br><span class="line">海上钢琴师 / La leggenda del pianista sull&#x27;oceano / 声光伴我飞(港)  /  一九零零的传奇</span><br><span class="line">疯狂动物城 / Zootopia / 优兽大都会(港)  /  动物方城市(台)</span><br><span class="line">三傻大闹宝莱坞 / 3 Idiots / 三个傻瓜(台)  /  作死不离3兄弟(港)</span><br><span class="line">机器人总动员 / WALL·E / 太空奇兵·威E(港)  /  瓦力(台)</span><br><span class="line">放牛班的春天 / Les choristes / 歌声伴我心(港)  /  唱诗班男孩</span><br><span class="line">无间道 / 無間道 / Infernal Affairs  /  Mou gaan dou</span><br><span class="line">控方证人 / Witness for the Prosecution / 雄才伟略  /  情妇</span><br><span class="line">寻梦环游记 / Coco / 玩转极乐园(港)  /  可可夜总会(台)</span><br><span class="line">大话西游之大圣娶亲 / 西遊記大結局之仙履奇緣 / 西游记完结篇仙履奇缘  /  齐天大圣西游记</span><br><span class="line">熔炉 / 도가니 / 无声呐喊(港)  /  漩涡</span><br><span class="line">触不可及 / Intouchables / 闪亮人生(港)  /  逆转人生(台)</span><br><span class="line">教父 / The Godfather / Mario Puzo&#x27;s The Godfather</span><br><span class="line">末代皇帝 / The Last Emperor / 末代皇帝溥仪(港)  /  L&#x27;ultimo imperatore</span><br><span class="line">哈利·波特与魔法石 / Harry Potter and the Sorcerer&#x27;s Stone / 哈利波特1：神秘的魔法石(港 / 台) </span><br><span class="line">当幸福来敲门 / The Pursuit of Happyness / 寻找快乐的故事(港)  /  追求快乐</span><br><span class="line">龙猫 / となりのトトロ / 邻居托托罗  /  邻家的豆豆龙</span><br><span class="line">活着 / 人生  /  Lifetimes</span><br><span class="line">怦然心动 / Flipped / 萌动青春  /  青春萌动</span><br><span class="line">蝙蝠侠：黑暗骑士 / The Dark Knight / 蝙蝠侠前传2：黑暗骑士  /  黑暗骑士(台)</span><br><span class="line">指环王3：王者无敌 / The Lord of the Rings: The Return of the King / 魔戒三部曲：王者再临(台 / 港) </span><br><span class="line">我不是药神 / 中国药神  /  印度药神</span><br><span class="line">乱世佳人 / Gone with the Wind / 飘</span><br><span class="line">飞屋环游记 / Up / 冲天救兵(港)  /  天外奇迹(台)</span><br><span class="line">让子弹飞 / 让子弹飞一会儿  /  火烧云</span><br><span class="line">哈尔的移动城堡 / ハウルの動く城 / 哈尔移动城堡(港)  /  霍尔的移动城堡(台)</span><br><span class="line">十二怒汉 / 12 Angry Men / 12怒汉  /  十二怒汉</span><br><span class="line">海蒂和爷爷 / Heidi / 飘零燕(港)  /  海蒂</span><br><span class="line">素媛 / 소원 / 许愿  /  希望：为爱重生(台)</span><br><span class="line">猫鼠游戏 / Catch Me If You Can / 逍遥法外  /  捉智双雄(港)</span><br><span class="line">天空之城 / 天空の城ラピュタ / 天空之城拉普他  /  空中城堡拉普他</span><br><span class="line">鬼子来了 / Devils on the Doorstep</span><br><span class="line">摔跤吧！爸爸 / Dangal / 我和我的冠军女儿(台)  /  打死不离3父女(港)</span><br><span class="line">少年派的奇幻漂流 / Life of Pi / 少年Pi的奇幻漂流  /  漂流少年Pi</span><br><span class="line">钢琴家 / The Pianist / 钢琴战曲(港)  /  战地琴人(台)</span><br><span class="line">指环王2：双塔奇兵 / The Lord of the Rings: The Two Towers / 魔戒二部曲：双城奇谋  /  指环王II：双塔</span><br><span class="line">死亡诗社 / Dead Poets Society / 暴雨骄阳(港)  /  春风化雨(台)</span><br><span class="line">大话西游之月光宝盒 / 西遊記第壹佰零壹回之月光寶盒 / 西游记101回月光宝盒  /  齐天大圣东游记</span><br><span class="line">何以为家 / كفرناحوم / 迦百农  /  星仔打官司(港)</span><br><span class="line">绿皮书 / Green Book / 绿簿旅友(港)  /  幸福绿皮书(台)</span><br><span class="line">闻香识女人 / Scent of a Woman / 女人香  /  女人的芳香</span><br><span class="line">大闹天宫 / 大闹天宫 上下集  /  The Monkey King</span><br><span class="line">黑客帝国 / The Matrix / 22世纪杀人网络(港)  /  廿二世纪杀人网络(港)</span><br><span class="line">指环王1：护戒使者 / The Lord of the Rings: The Fellowship of the Ring / 指环王1：魔戒再现  /  指环王I：护戒使者</span><br><span class="line">罗马假日 / Roman Holiday / 金枝玉叶(港)  /  罗马假期(台)</span><br><span class="line">教父2 / The Godfather: Part II / 教父续集(港)  /  教父II</span><br><span class="line">狮子王 / The Lion King / 狮子王3D</span><br><span class="line">天堂电影院 / Nuovo Cinema Paradiso / 星光伴我心(港)  /  新天堂乐园(台)</span><br><span class="line">饮食男女 / 飲食男女 / Eat Drink Man Woman</span><br><span class="line">辩护人 / 변호인 / 逆权大状(港)  /  正义辩护人(台)</span><br><span class="line">本杰明·巴顿奇事 / The Curious Case of Benjamin Button / 奇幻逆缘(港)  /  班杰明的奇幻旅程(台)</span><br><span class="line">搏击俱乐部 / Fight Club / 搏击会(港)  /  斗阵俱乐部(台)</span><br><span class="line">美丽心灵 / A Beautiful Mind / 有你终生美丽(港)  /  美丽境界(台)</span><br><span class="line">穿条纹睡衣的男孩 / The Boy in the Striped Pajamas / 穿条纹衣服的男孩  /  穿条纹衣的男孩</span><br><span class="line">情书 / Love Letter / When I Close My Eyes  /  Letters of Love</span><br><span class="line">哈利·波特与死亡圣器(下) / Harry Potter and the Deathly Hallows: Part 2 / 哈利波特7：死神的圣物2(港 / 台) </span><br><span class="line">两杆大烟枪 / Lock, Stock and Two Smoking Barrels / 够姜四小强(港)  /  两根枪管(台)</span><br><span class="line">窃听风暴 / Das Leben der Anderen / 窃听者(港)  /  他人的生活</span><br><span class="line">音乐之声 / The Sound of Music / 仙乐飘飘处处闻(港)  /  真善美(台)</span><br><span class="line">功夫 / 功夫3D  /  Kung Fu Hustle</span><br><span class="line">哈利·波特与阿兹卡班的囚徒 / Harry Potter and the Prisoner of Azkaban / 哈利波特3：阿兹卡班的逃犯(港 / 台) </span><br><span class="line">西西里的美丽传说 / Malèna / 真爱伴我行(台)  /  玛莲娜</span><br><span class="line">阿凡达 / Avatar / </span><br><span class="line">看不见的客人 / Contratiempo / 死无对证(港)  /  布局(台)</span><br><span class="line">拯救大兵瑞恩 / Saving Private Ryan / 雷霆救兵(港)  /  抢救雷恩大兵(台)</span><br><span class="line">沉默的羔羊 / The Silence of the Lambs / 沉默的羔羊</span><br><span class="line">小鞋子 / بچه های آسمان / 天堂的孩子  /  小童鞋</span><br><span class="line">布达佩斯大饭店 / The Grand Budapest Hotel / 布达佩斯大酒店(港)  /  欢迎来到布达佩斯大饭店(台)</span><br><span class="line">蝴蝶效应 / The Butterfly Effect / 蝴蝶效应</span><br><span class="line">飞越疯人院 / One Flew Over the Cuckoo&#x27;s Nest / 飞越杜鹃窝(台)  /  飞越喜鹊巢</span><br><span class="line">禁闭岛 / Shutter Island / 不赦岛(港)  /  隔离岛(台)</span><br><span class="line">还有明天 / C&#x27;è ancora domani / 明天还有梦(港)  /  我们还有明天(台)</span><br><span class="line">心灵捕手 / Good Will Hunting / 骄阳似我(港)  /  心灵捕手</span><br><span class="line">致命魔术 / The Prestige / 死亡魔法(港)  /  顶尖对决(台)</span><br><span class="line">低俗小说 / Pulp Fiction / 危险人物(港)  /  黑色追缉令(台)</span><br><span class="line">超脱 / Detachment / 人间师格(台)</span><br><span class="line">哈利·波特与密室 / Harry Potter and the Chamber of Secrets / 哈利波特2：消失的密室(港 / 台) </span><br><span class="line">一一 / Yi yi  /  Yi yi: A One and a Two</span><br><span class="line">喜剧之王 / 喜劇之王 / King of Comedy</span><br><span class="line">摩登时代 / Modern Times / The Masses  /  Les Temps modernes</span><br><span class="line">杀人回忆 / 살인의 추억 / 谋杀回忆  /  杀手回忆录</span><br><span class="line">致命ID / Identity / 杀人游戏  /  致命身份</span><br><span class="line">春光乍泄 / 春光乍洩 / 一起快乐  /  Happy Together</span><br><span class="line">加勒比海盗 / Pirates of the Caribbean: The Curse of the Black Pearl / 加勒比海盗1：黑珍珠号的诅咒  /  神鬼奇航：鬼盗船魔咒(台)</span><br><span class="line">海豚湾 / The Cove / 血色海湾(台)  /  海湾</span><br><span class="line">美国往事 / Once Upon a Time in America / 四海兄弟(台)  /  义薄云天(港)</span><br><span class="line">红辣椒 / パプリカ / 盗梦侦探(港 / 台) </span><br><span class="line">七宗罪 / Se7en / 火线追缉令(台)  /  7宗罪</span><br><span class="line">唐伯虎点秋香 / 唐伯虎點秋香 / Flirting Scholar</span><br><span class="line">狩猎 / Jagten / 诬网(港)  /  谎言的烙印(台)</span><br><span class="line">幽灵公主 / もののけ姫 / 魔法公主  /  幽灵少女</span><br><span class="line">甜蜜蜜 / Comrades: Almost a Love Story</span><br><span class="line">寄生虫 / 기생충 / 寄生上流(台)  /  上流寄生族(港)</span><br><span class="line">天书奇谭 / 天书奇谭4K纪念版  /  The Legend of Sealed Book</span><br><span class="line">蝙蝠侠：黑暗骑士崛起 / The Dark Knight Rises / 蝙蝠侠前传3：黑暗骑士崛起  /  黑暗骑士：黎明升起(台)</span><br><span class="line">7号房的礼物 / 7번방의 선물 / 戆爸的礼物(港)  /  7号囚房的礼物</span><br><span class="line">超能陆战队 / Big Hero 6 / 大英雄联盟(港)  /  大英雄天团(台)</span><br><span class="line">第六感 / The Sixth Sense / 鬼眼(港)  /  灵异第六感(台)</span><br><span class="line">茶馆 / The Teahouse</span><br><span class="line">爱在黎明破晓前 / Before Sunrise / 情留半天(港)  /  爱在黎明破晓时(台)</span><br><span class="line">爱在日落黄昏时 / Before Sunset / 日落巴黎(港)  /  爱在日落巴黎时(台)</span><br><span class="line">被嫌弃的松子的一生 / 嫌われ松子の一生 / 花样奇缘(港)  /  令人讨厌的松子的一生(台)</span><br><span class="line">哈利·波特与火焰杯 / Harry Potter and the Goblet of Fire / 哈利波特4：火杯的考验(港 / 台) </span><br><span class="line">头脑特工队 / Inside Out / 玩转脑朋友(港)  /  脑筋急转弯(台)</span><br><span class="line">未麻的部屋 / Perfect Blue / 蓝色恐惧(港 / 台) </span><br><span class="line">重庆森林 / 重慶森林 / Chungking Express</span><br><span class="line">借东西的小人阿莉埃蒂 / 借りぐらしのアリエッティ / 借物少女艾莉缇(台)  /  借东西的小矮人亚莉亚蒂(港)</span><br><span class="line">入殓师 / おくりびと / 礼仪师之奏鸣曲(港)  /  礼仪师(台)</span><br><span class="line">菊次郎的夏天 / 菊次郎の夏 / 菊次郎之夏  /  Kikujirô no natsu</span><br><span class="line">断背山 / Brokeback Mountain / 断臂山  /  BBM</span><br><span class="line">剪刀手爱德华 / Edward Scissorhands / 幻海奇缘(港)  /  剪刀手爱德华</span><br><span class="line">勇敢的心 / Braveheart / 惊世未了缘(港)  /  梅尔吉勃逊之英雄本色(台)</span><br><span class="line">时空恋旅人 / About Time / 回到最爱的一天(港)  /  真爱每一天(台)</span><br><span class="line">驯龙高手 / How to Train Your Dragon / 驯龙记(港)</span><br><span class="line">消失的爱人 / Gone Girl / 失踪的女孩  /  失踪女孩</span><br><span class="line">无人知晓 / 誰も知らない / 谁知赤子心(港)  /  无人知晓的夏日清晨(台)</span><br><span class="line">倩女幽魂 / 倩女幽魂(87版)  /  倩女幽魂：妖魔道</span><br><span class="line">傲慢与偏见 / Pride &amp; Prejudice / 傲慢与偏见2005  /  Pride And Prejudice</span><br><span class="line">花样年华 / 花樣年華 / 花样年华导演特别版  /  花样年华4K修复版</span><br><span class="line">新世界 / 신세계 / 暗黑新世界(台)  /  New World</span><br><span class="line">玩具总动员3 / Toy Story 3 / 反斗奇兵3(港)  /  玩具的故事3</span><br><span class="line">一个叫欧维的男人决定去死 / En man som heter Ove / 明天别再来敲门(台)  /  想死冇咁易(港)</span><br><span class="line">完美的世界 / A Perfect World / 强盗保镳</span><br><span class="line">色，戒 / 色|戒  /  色·戒</span><br><span class="line">阳光灿烂的日子 / In the Heat of the Sun</span><br><span class="line">怪兽电力公司 / Monsters, Inc. / 怪兽公司(港)  /  怪物公司</span><br><span class="line">小森林 夏秋篇 / リトル・フォレスト 夏・秋 / 小森食光 / 夏秋篇(台) </span><br><span class="line">天使爱美丽 / Le Fabuleux destin d&#x27;Amélie Poulain / 艾蜜莉的异想世界(台)  /  天使艾米莉</span><br><span class="line">教父3 / The Godfather: Part III / 教父第三集  /  教父 III</span><br><span class="line">侧耳倾听 / 耳をすませば / 心之谷(台)  /  梦幻街少女(港)</span><br><span class="line">哪吒闹海 / Prince Nezha&#x27;s Triumph Against Dragon King  /  Nezha Conquers the Dragon King</span><br><span class="line">九品芝麻官 / 九品芝麻官之白面包青天  /  Hail the Judge</span><br><span class="line">被解救的姜戈 / Django Unchained / 被解放的姜戈  /  决杀令(台)</span><br><span class="line">请以你的名字呼唤我 / Call Me by Your Name / 以你的名字呼唤我(港 / 台) </span><br><span class="line">幸福终点站 / The Terminal / 机场客运站(港)  /  航站情缘(台)</span><br><span class="line">釜山行 / 부산행 / 尸杀列车(港)  /  尸速列车(台)</span><br><span class="line">神偷奶爸 / Despicable Me / 卑鄙的我  /  坏蛋奖门人(港)</span><br><span class="line">小森林 冬春篇 / リトル・フォレスト 冬・春 / 小森食光 / 冬春篇(台) </span><br><span class="line">喜宴 / 囍宴 / The Wedding Banquet</span><br><span class="line">萤火之森 / 蛍火の杜へ / 萤火之社  /  Hotarubi no mori e</span><br><span class="line">告白 / 自白  /  母亲</span><br><span class="line">玛丽和麦克斯 / Mary and Max / 玛丽和马克思  /  巧克力情缘(台)</span><br><span class="line">七武士 / 七人の侍 / 七侠四义(港)  /  七剑客(港)</span><br><span class="line">头号玩家 / Ready Player One / 玩家一号  /  挑战者1号(港)</span><br><span class="line">模仿游戏 / The Imitation Game / 解码游戏(港)  /  模拟游戏</span><br><span class="line">惊魂记 / Psycho / 精神病患者  /  触目惊心(港)</span><br><span class="line">大鱼 / Big Fish / 大鱼奇缘(港)  /  大智若鱼(台)</span><br><span class="line">心灵奇旅 / Soul / 灵魂奇遇记(港)  /  灵魂急转弯(台)</span><br><span class="line">射雕英雄传之东成西就 / 射鵰英雄傳之東成西就 / 东成西就  /  大英雄 (日本)</span><br><span class="line">血战钢锯岭 / Hacksaw Ridge / 钢锯岭  /  钢铁英雄(台)</span><br><span class="line">背靠背，脸对脸 / 背对背，脸对脸  /  Back to Back, Face to Face</span><br><span class="line">你的名字。 / 君の名は。 / 你的名字  /  君之名</span><br><span class="line">机器人之梦 / Robot Dreams / 再见机器人(台)  /  汪汪梦里人(港)</span><br><span class="line">我是山姆 / I Am Sam / 不一样的爸爸(港)  /  他不笨，他是我爸爸(台)</span><br><span class="line">阳光姐妹淘 / 써니 / 阳光姊妹淘(港)  /  桑尼</span><br><span class="line">恐怖直播 / 더 테러 라이브 / 死亡“动”新闻(港)  /  恐怖攻击直播(台)</span><br><span class="line">黑客帝国3：矩阵革命 / The Matrix Revolutions / 22世纪杀人网络3：惊变世纪(港)  /  骇客任务完结篇：最后战役(台)</span><br><span class="line">小丑 / Joker / 小丑起源电影：罗密欧  /  Romeo</span><br><span class="line">三块广告牌 / Three Billboards Outside Ebbing, Missouri / 广告牌杀人事件(港)  /  意外(台)</span><br><span class="line">谍影重重3 / The Bourne Ultimatum / 叛谍追击3：最后通牒(港)  /  神鬼认证：最后通牒 (台)</span><br><span class="line">末路狂花 / Thelma &amp; Louise / 塞尔玛与路易丝</span><br><span class="line">电锯惊魂 / Saw / 恐惧斗室(港)  /  夺魂锯(台)</span><br><span class="line">高山下的花环 / 卫国军魂(港)  /  Wreaths at the Foot of the Mountain</span><br><span class="line">无间道2 / 無間道II / 无间道前传  /  Infernal Affairs II</span><br><span class="line">达拉斯买家俱乐部 / Dallas Buyers Club / 续命枭雄(港)  /  药命俱乐部(台)</span><br><span class="line">疯狂原始人 / The Croods / 古鲁家族(港 / 台) </span><br><span class="line">绿里奇迹 / The Green Mile / 绿色奇迹(台)  /  绿色英里</span><br><span class="line">爱在午夜降临前 / Before Midnight / 情约半生(港)  /  爱在午夜希腊时(台)</span><br><span class="line">疯狂的石头 / Crazy Stone</span><br><span class="line">雨中曲 / Singin&#x27; in the Rain / 万花嬉春(港 / 台) </span><br><span class="line">2001太空漫游 / 2001: A Space Odyssey / 2001：星际漫游  /  2001：太空奥德赛</span><br><span class="line">海街日记 / 海街diary / 海街女孩日记(港)  /  Kamakura Diary</span><br><span class="line">风之谷 / 風の谷のナウシカ / 风谷少女  /  Kaze no tani no Naushika</span><br><span class="line">上帝之城 / Cidade de Deus / 无主之城(港)  /  无法无天(台)</span><br><span class="line">心迷宫 / 殡棺  /  The Coffin in the Mountain</span><br><span class="line">英雄本色 / A Better Tomorrow  /  Gangland Boss</span><br><span class="line">记忆碎片 / Memento / 凶心人(港)  /  记忆拼图(台)</span><br><span class="line">纵横四海 / 縱橫四海 / Once a Thief</span><br><span class="line">无敌破坏王 / Wreck-It Ralph / 破坏王拉尔夫  /  破坏王大冒险</span><br><span class="line">卢旺达饭店 / Hotel Rwanda / 卢安达饭店(台)</span><br><span class="line">东京教父 / 東京ゴッドファーザーズ / Tokyo Godfathers</span><br><span class="line">小偷家族 / 万引き家族 / Shoplifters  /  Une Affaire de Famille</span><br><span class="line">恐怖游轮 / Triangle / 汪洋血迷宮(台)  /  轮回三角</span><br><span class="line">牯岭街少年杀人事件 / 牯嶺街少年殺人事件 / A Brighter Summer Day</span><br><span class="line">冰川时代 / Ice Age / 冰河世纪  /  冰原历险记</span><br><span class="line">魔女宅急便 / 魔女の宅急便 / 魔女琪琪(台)  /  小魔女限时专送</span><br><span class="line">芙蓉镇 / Hibiscus Town</span><br><span class="line">忠犬八公物语 / ハチ公物語 / 八千公物语  /  阿八的故事</span><br><span class="line">岁月神偷 / 歲月神偷 / 1969太空漫游  /  Echoes Of The Rainbow</span><br><span class="line">荒蛮故事 / Relatos salvajes / 蛮荒故事  /  生命中最抓狂的小事(台)</span><br><span class="line">遗愿清单 / The Bucket List / 玩转身前事(港)  /  一路玩到挂(台)</span><br><span class="line">大佛普拉斯 / The Great Buddha+</span><br><span class="line">源代码 / Source Code / 启动原始码(台)  /  危机解密(港)</span><br><span class="line">花束般的恋爱 / 花束みたいな恋をした / 她和他的恋爱花期(港)  /  爱如花束 恋恋不忘</span><br><span class="line">疯狂的麦克斯4：狂暴之路 / Mad Max: Fury Road / 末日先锋：战甲飞车(港)  /  疯狂麦斯：愤怒道(台)</span><br><span class="line">白日梦想家 / The Secret Life of Walter Mitty / 发梦王大历险(港)  /  白日梦冒险王(台)</span><br><span class="line">你看起来好像很好吃 / おまえうまそうだな / 你看起来很好吃(台)  /  你看上去好像很好吃</span><br><span class="line">可可西里 / Kekexili: Mountain Patrol</span><br><span class="line">贫民窟的百万富翁 / Slumdog Millionaire / 一百万零一夜(港)  /  贫民百万富翁(台)</span><br><span class="line">爱乐之城 / La La Land / 星声梦里人(港)  /  乐来越爱你(台)</span><br><span class="line">波西米亚狂想曲 / Bohemian Rhapsody / 波希米亚狂想曲：摇滚传说(港)  /  波希米亚狂想曲(台)</span><br><span class="line">城市之光 / City Lights / City Lights: A Comedy Romance in Pantomime  /  Lichter der Großstadt</span><br><span class="line">爆裂鼓手 / Whiplash / 鼓动真我(港)  /  进击的鼓手(台)</span><br><span class="line">东邪西毒 / 東邪西毒 / Ashes of Time</span><br><span class="line">青蛇 / Green Snake</span><br><span class="line">哈利·波特与死亡圣器(上) / Harry Potter and the Deathly Hallows: Part 1 / 哈利波特7：死神的圣物1(港 / 台) </span><br><span class="line">无耻混蛋 / Inglourious Basterds / 希魔撞正杀人狂(港)  /  恶棍特工(台)</span><br><span class="line">终结者2：审判日 / Terminator 2: Judgment Day / 未来战士2(港)  /  魔鬼终结者2(台)</span><br><span class="line">大红灯笼高高挂 / Raise The Red Lantern  /  Épouses et concubines</span><br><span class="line">黑天鹅 / Black Swan / 夺命黑天鹅  /  霸王别鹅(豆友译名)</span><br><span class="line">新龙门客栈 / 新龍門客棧 / New Dragon Gate Inn</span><br><span class="line">初恋这件小事 / สิ่งเล็กเล็กที่เรียกว่า...รัก / 初恋那件小事(港)  /  暗恋那点小事</span><br><span class="line">人工智能 / A.I. Artificial Intelligence / AI人工智慧</span><br><span class="line">千钧一发 / Gattaca / 变种异煞(港)  /  自然人</span><br><span class="line">崖上的波妞 / 崖の上のポニョ / 悬崖上的金鱼姬  /  悬崖上的金鱼公主</span><br><span class="line">雨人 / Rain Man / 手足情未了(港)  /  手足情深</span><br><span class="line">虎口脱险 / La grande vadrouille / 横冲直撞出重围(港)  /  大進擊(台)</span><br><span class="line">哈利·波特与凤凰社 / Harry Potter and the Order of the Phoenix / 哈利波特5：凤凰会的密令(港 / 台) </span><br><span class="line">彗星来的那一夜 / Coherence / 相干性  /  相干效应</span><br><span class="line">罗生门 / 羅生門 / Rashomon</span><br><span class="line">海边的曼彻斯特 / Manchester by the Sea / 情系海边之城(港)</span><br><span class="line">恋恋笔记本 / The Notebook / 忘了·忘不了(港)  /  手札情缘(台)</span><br><span class="line">真爱至上 / Love Actually / 真的恋爱了(港)  /  爱是您，爱是我(台)</span><br><span class="line">火星救援 / The Martian / 火星任务(港)  /  绝地救援(台)</span><br><span class="line">黑客帝国2：重装上阵 / The Matrix Reloaded / 22世纪杀人网络2：决战未来(港)  /  骇客任务：重装上阵(台)</span><br><span class="line">步履不停 / 歩いても 歩いても / 横山家之味(港 / 台) </span><br><span class="line">冰雪奇缘 / Frozen / 魔雪奇缘(港)  /  冰雪大冒险</span><br><span class="line">奇迹男孩 / Wonder / 奇迹</span><br><span class="line">千年女优 / 千年女優 / Millennium Actress</span><br><span class="line">战争之王 / Lord of War / 军火之王(台 / 港) </span><br><span class="line">谍影重重2 / The Bourne Supremacy / 叛谍追击2：机密圈套(港)  /  神鬼认证：神鬼疑云(台)</span><br><span class="line">蜘蛛侠：平行宇宙 / Spider-Man: Into the Spider-Verse / 蜘蛛侠：新纪元  /  蜘蛛人：新宇宙(台)</span><br><span class="line">攻壳机动队 / 攻殻機動隊 / Ghost in the Shell</span><br><span class="line">血钻 / Blood Diamond / 血钻石(台)  /  血腥钻石</span><br><span class="line">小姐 / 아가씨 / 下女诱罪(港)  /  下女的诱惑(台)</span><br><span class="line">隐藏人物 / Hidden Figures / NASA无名英雌(港)  /  关键少数(台)</span><br><span class="line">魂断蓝桥 / Waterloo Bridge / 滑铁卢桥  /  断桥残梦</span><br><span class="line">血观音 / 血觀音 / 修罗花  /  The Bold, the Corrupt, and the Beautiful</span><br><span class="line">房间 / Room / 不存在的房间(台)  /  抖室(港)</span><br></pre></td></tr></table></figure>
+    </div>
+    <footer class="article-footer">
+        <a data-aos="zoom-in" href="/2026/03/14/Python%E7%88%AC%E8%99%AB%E5%AD%A6%E4%B9%A0%E4%B8%8E%E5%AE%9E%E6%88%98-%E8%B1%86%E7%93%A3%E7%94%B5%E5%BD%B1TOP250/#comments" class="article-comment-link">
+          <span class="post-comments-count twikoo-comment-count" data-path="/2026/03/14/Python%E7%88%AC%E8%99%AB%E5%AD%A6%E4%B9%A0%E4%B8%8E%E5%AE%9E%E6%88%98-%E8%B1%86%E7%93%A3%E7%94%B5%E5%BD%B1TOP250/" itemprop="commentCount"></span>
+          留言
+        </a>
+        <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/" title="笔记" data-aos="zoom-in">笔记</a>
+
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Python/" rel="tag" title="Python">Python</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag" title="爬虫">爬虫</a></li></ul>
+
+    </footer>
+  </div>
+    <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
+    <div class="article-nav-link-wrap right">
+        <img data-src="/../image/%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8Python.webp" data-sizes="auto" alt="从其他语言快速入门Python" class="lazyload">
+      <a href="/2026/03/13/%E4%BB%8E%E5%85%B6%E4%BB%96%E8%AF%AD%E8%A8%80%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8Python/" aria-label="后一篇: 从其他语言快速入门Python"  title="后一篇: 从其他语言快速入门Python"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+          从其他语言快速入门Python
+      </h3>
+    </div>
+  </nav>
+
+</article>
+
+  <section id="comments" data-aos="fade-up">
+    <div class="comment-header">
+        
+      <h2 class="comment-title">说些什么吧！</h2>
+      <div class="comment-selector">
+        <div class="comment-selector-wrap">
+            <div class="selector-item" data-selector="twikoo">
+              <span>twikoo</span>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="comment-content">
+          <div class="comment twikoo-comment" data-aos="fade-up"
+            id="twikoo-comment">
+          </div>
+    </div>
+  </section>
+
+</section>
+        </div>
+        <footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    <div>
+      <span class="icon-copyright"></span>
+        2020-2026
+        <span class="footer-info-sep rotate"></span>
+      Stvfen
+    </div>
+      <div>
+        基于&nbsp;<a href="https://hexo.io/" rel="noopener nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+      <div>
+        <span class="icon-brush"></span>
+        51.2k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        03:30
+      </div>
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+  </div>
+</footer>
+
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap">
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%88%AC%E8%99%AB"><span class="toc-number">1.</span> <span class="toc-text"> 什么是爬虫</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%88%AC%E8%99%AB%E7%9A%84%E6%B5%81%E7%A8%8B"><span class="toc-number">2.</span> <span class="toc-text"> 爬虫的流程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%E8%8E%B7%E5%8F%96%E7%BD%91%E9%A1%B5%E5%86%85%E5%AE%B9"><span class="toc-number">2.1.</span> <span class="toc-text"> 第一步：获取网页内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%E8%A7%A3%E6%9E%90%E7%BD%91%E9%A1%B5%E5%86%85%E5%AE%B9"><span class="toc-number">2.2.</span> <span class="toc-text"> 第二步：解析网页内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%E5%82%A8%E5%AD%98%E6%88%96%E5%88%86%E6%9E%90%E6%95%B0%E6%8D%AE"><span class="toc-number">2.3.</span> <span class="toc-text"> 第三步：储存或分析数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">2.4.</span> <span class="toc-text"> 总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#http%E8%AF%B7%E6%B1%82%E5%92%8C%E5%93%8D%E5%BA%94"><span class="toc-number">3.</span> <span class="toc-text"> HTTP请求和响应</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4%E7%9A%84http%E8%AF%B7%E6%B1%82"><span class="toc-number">3.1.</span> <span class="toc-text"> 完整的HTTP请求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4%E7%9A%84http%E5%93%8D%E5%BA%94"><span class="toc-number">3.2.</span> <span class="toc-text"> 完整的HTTP响应</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E7%94%A8python-requests%E5%8F%91%E9%80%81http%E8%AF%B7%E6%B1%82"><span class="toc-number">3.3.</span> <span class="toc-text"> 如何用Python Requests发送HTTP请求</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85requests%E5%BA%93"><span class="toc-number">3.3.1.</span> <span class="toc-text"> 安装Requests库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#requestsget%E5%8F%91%E9%80%81%E8%AF%B7%E6%B1%82"><span class="toc-number">3.3.2.</span> <span class="toc-text"> requests.get发送请求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%93%8D%E5%BA%94%E7%A0%81"><span class="toc-number">3.3.3.</span> <span class="toc-text"> 响应码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%93%8D%E5%BA%94%E5%86%85%E5%AE%B9"><span class="toc-number">3.3.4.</span> <span class="toc-text"> 获取响应内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E5%A4%B4headers"><span class="toc-number">3.3.5.</span> <span class="toc-text"> 请求头headers</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E7%94%A8python-requests%E6%8B%BF%E5%88%B0%E8%B1%86%E7%93%A3%E6%BA%90%E7%A0%81"><span class="toc-number">3.4.</span> <span class="toc-text"> 如何用Python Requests拿到豆瓣源码</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E6%BA%90%E4%BB%A3%E7%A0%81"><span class="toc-number">3.4.1.</span> <span class="toc-text"> 获取源代码</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#html"><span class="toc-number">4.</span> <span class="toc-text"> HTML</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFhtml"><span class="toc-number">4.1.</span> <span class="toc-text"> 什么是HTML？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#html%E5%B8%B8%E8%A7%81%E6%A0%87%E7%AD%BE"><span class="toc-number">4.2.</span> <span class="toc-text"> HTML常见标签</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%87%E9%A2%98"><span class="toc-number">4.2.1.</span> <span class="toc-text"> 标题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E6%AE%B5%E8%90%BD"><span class="toc-number">4.2.2.</span> <span class="toc-text"> 文本段落</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8D%A2%E8%A1%8C%E6%A0%87%E7%AD%BE"><span class="toc-number">4.2.3.</span> <span class="toc-text"> 换行标签</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%A0%E7%B2%97"><span class="toc-number">4.2.4.</span> <span class="toc-text"> 加粗</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%9C%E4%BD%93"><span class="toc-number">4.2.5.</span> <span class="toc-text"> 斜体</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8B%E5%88%92%E7%BA%BF"><span class="toc-number">4.2.6.</span> <span class="toc-text"> 下划线</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%BE%E7%89%87"><span class="toc-number">4.2.7.</span> <span class="toc-text"> 图片</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%93%BE%E6%8E%A5"><span class="toc-number">4.2.8.</span> <span class="toc-text"> 链接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8"><span class="toc-number">4.2.9.</span> <span class="toc-text"> 容器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%89%E5%BA%8F%E5%88%97%E8%A1%A8"><span class="toc-number">4.2.10.</span> <span class="toc-text"> 有序列表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%97%A0%E5%BA%8F%E5%88%97%E8%A1%A8"><span class="toc-number">4.2.11.</span> <span class="toc-text"> 无序列表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A1%A8%E6%A0%BC"><span class="toc-number">4.2.12.</span> <span class="toc-text"> 表格</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#class%E5%B1%9E%E6%80%A7"><span class="toc-number">4.2.13.</span> <span class="toc-text"> class属性</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E7%94%A8beautiful-soup%E6%9D%A5%E8%A7%A3%E6%9E%90html%E5%86%85%E5%AE%B9"><span class="toc-number">5.</span> <span class="toc-text"> 如何用Beautiful Soup来解析HTML内容</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E6%89%80%E6%9C%89%E4%B9%A6%E7%9A%84%E4%BB%B7%E6%A0%BC"><span class="toc-number">5.1.</span> <span class="toc-text"> 获取所有书的价格</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E6%89%80%E6%9C%89%E4%B9%A6%E5%90%8D"><span class="toc-number">5.2.</span> <span class="toc-text"> 获取所有书名</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%88%AC%E8%99%AB%E5%AE%9E%E6%88%98-%E8%8E%B7%E5%8F%96%E8%B1%86%E7%93%A3%E7%94%B5%E5%BD%B1top-250%E7%9A%84%E6%89%80%E6%9C%89%E6%A0%87%E9%A2%98"><span class="toc-number">6.</span> <span class="toc-text"> 爬虫实战-获取豆瓣电影top 250的所有标题</span></a></li></ol>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Stvfen" class="lazyload">
+  <div class="sidebar-author-name">Stvfen</div>
+  <div class="sidebar-description">电台组组长</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">20</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">9</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">15</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/3546704989129249?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+  </div>
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+</nav>
+
+    </div>
+      <div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/images/reimu.png"/>
+        </div>
+      </div>
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+  
+<script src="/js/generator_search.js" defer></script>
+
+
+
+  <script>
+    var setupFirework = () => {
+      if (!false || !window.matchMedia('(max-width: 768px)').matches) {
+        window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'));
+      }
+    }
+  </script>
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.2.0/dist/index.umd.js" integrity="sha384-qi9WggRt19tv8Vc7pCHW3ulMNLwrn515zaLEWZjl1px07vz8+pUoWX8n1rgq282T" crossorigin="anonymous" onload="setupFirework()" defer></script>
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "Stvfen",
+          title: "Python爬虫学习与实战-豆瓣电影TOP250",
+          url: "http://example.com/2026/03/14/Python%E7%88%AC%E8%99%AB%E5%AD%A6%E4%B9%A0%E4%B8%8E%E5%AE%9E%E6%88%98-%E8%B1%86%E7%93%A3%E7%94%B5%E5%BD%B1TOP250/",
+          excerpt: "",
+          description: "",
+          stripContent: " 什么是爬虫 爬虫爬的好，牢饭吃的早。但本身来讲数据是无罪的，爬虫作为一个便携且低成本获取数据的方式，现如今非常广泛，但还是要遵纪守法的，有些东西不该你知道就别动。 还要记住，爬虫的请求数量和频率不能过高，要不然和DDoS攻击没什么区别了。如果网站本身有反爬机制，那就别去强行突破了。 我们可以通过查看网站的robots.txt文件，了解可爬取的网页路径范围，这个文件会指明哪些网站会允许被爬取，哪些不允许被爬取。   爬虫的流程 爬虫的流程可能比你想象中的更简单  第一步：获取网页内容 我们会通过",
+          date: "Sat Mar 14 2026 11:48:24 GMT+0800",
+          updated: "Sat Mar 14 2026 11:58:33 GMT+0800",
+          cover: "/../image/Python%E7%88%AC%E8%99%AB%E5%9F%BA%E7%A1%80.webp",
+        };
+      </script>
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+      
+<script src="/js/tabs.js" data-pjax defer></script>
+
+      <script type="module" data-pjax>
+        (async () => {
+          const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+          const initPswp = (gallery, children) => {
+            if (_$$(`${gallery} ${children}`).length > 0) {
+              new PhotoSwipeLightbox({
+                gallery,
+                children,
+                pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+              }).init();
+            }
+          }
+          const pswp = () => {
+            initPswp('.article-entry', 'a.article-gallery-item');
+            initPswp('.article-gallery', 'a.article-gallery-item');
+          }
+          pswp();
+        })();
+      </script>
+        
+
+<script data-pjax>
+  var loadScript = (src, integrity) => {
+    const script = document.createElement('script');
+    script.src = src;
+    if (integrity) script.integrity = integrity;
+    script.crossOrigin = 'anonymous';
+    return script;
+  };
+
+  var commentConfigKeys = ["twikoo"];
+  var commentConfig = {
+    twikoo: {
+      enable: true,
+      load: () => {
+        const container = document.querySelector('.twikoo-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        const script = loadScript(
+          'https://npm.webcache.cn/twikoo@1.6.44/dist/twikoo.all.min.js',
+          'sha384-kwWLC0HjeZZnVPqCJ1AncI8tsk+kQqF9TbAmCclcc9Z0hGkfgHRzeQZxmdmZhE0K'
+        );
+
+        script.onload = () => {
+          if (window.twikoo) {
+            twikoo.init({
+              envId: 'https://pinglunqu.vercel.app',
+              el: '.twikoo-comment',
+              region: '',
+              lang: document.documentElement.lang || 'en',
+            });
+
+            twikoo.getCommentsCount({
+              envId: 'https://pinglunqu.vercel.app',
+              region: '',
+              urls: [
+                '/categories/index.html'
+              ],
+              includeReply: false
+            }).then((res) => {
+              _$('.twikoo-comment-count').innerText = res[0].count;
+            }).catch((err) => {
+              console.error(err);
+            });
+          }
+        } 
+        document.head.appendChild(script);
+      }
+    },
+  }
+  commentConfig.enable = commentConfigKeys.some(key => commentConfig[key].enable);
+
+  var defaultComment = '';
+  if (commentConfig.enable) {
+    // 1. 首先检查localStorage中是否有保存的评论类型
+    var savedCommentType = localStorage.getItem('commentType');
+    
+    // 2. 如果localStorage中有值且对应的评论系统可用，就使用它
+    if (savedCommentType) {
+      if (commentConfig[savedCommentType]?.enable) {
+        defaultComment = savedCommentType;
+      }
+    }
+    
+    // 3. 如果localStorage无效，检查配置的默认评论系统
+    if (!defaultComment) {
+      var configDefault = 'waline';
+      if (commentConfig[configDefault]?.enable) {
+        defaultComment = configDefault;
+      }
+    }
+    
+    // 4. 如果前两项都无效，按指定顺序找到第一个可用的评论系统
+    if (!defaultComment) {
+      defaultComment = commentConfigKeys.find(sys => commentConfig[sys].enable) || '';
+    }
+  }
+  function loadComments() {
+    if (!commentConfig.enable) return;
+    const loadedComments = {
+      valine: false,
+      waline: false,
+      twikoo: false,
+      gitalk: false,
+      giscus: false
+    };
+
+    // 隐藏所有评论容器
+    const hideAllComments = () => {
+      const commentContainers = document.querySelectorAll('.comment');
+      commentContainers.forEach(container => {
+        container.style.display = 'none';
+      });
+    };
+
+    // 按需加载评论系统
+    const loadCommentSystem = (type) => {
+      if (loadedComments[type]) {
+        // 如果已加载，只需显示对应容器
+        document.querySelector(`.${type}-comment`).style.display = 'block';
+        return;
+      }
+
+      // 根据类型加载对应的脚本
+      commentConfig[type]?.load();
+      loadedComments[type] = true;
+    };
+
+    // 评论组件选择器
+    const changeActiveCommentItems = (item) => {
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let i = 0; i < commentItems.length; i++) {
+        commentItems[i].classList.remove('active');
+      }
+      item.classList.add('active');
+
+      // 获取要加载的评论系统类型
+      const commentType = item.getAttribute('data-selector');
+
+      // 隐藏所有评论系统
+      hideAllComments();
+
+      // 加载选中的评论系统
+      loadCommentSystem(commentType);
+    };
+
+    const commentInit = () => {
+      // 评论组件选择器点击事件
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let item of commentItems) {
+        item.addEventListener('click', () => {
+          // 保存选择器状态
+          const commentType = item.getAttribute('data-selector');
+          window.localStorage.setItem('commentType', commentType);
+          // 切换选中状态
+          changeActiveCommentItems(item);
+        });
+      }
+
+      // 检查是否需要加载默认评论系统
+      if (defaultComment) {
+        const defaultSelectorItem = document.querySelector(`[data-selector="${defaultComment}"]`);
+        if (!defaultSelectorItem) return;
+        defaultSelectorItem.style.display = 'block';
+        defaultSelectorItem.classList.add('active');
+        loadCommentSystem(defaultComment);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', commentInit);
+    } else {
+      commentInit();
+    }
+  };
+  loadComments();
+</script>
+
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.12.1' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+    
+<script src="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.js" integrity="sha384-MWNUH0WmtsYGhn2cbH6ELRCbf9LG3QDqCC+gqPB3IBNO35xjZK3Ejb6oONRpDbPg" crossorigin="anonymous" defer data-pjax></script>
+
+    
+<script src="https://npm.webcache.cn/katex@0.16.24/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous" defer onload="renderMathInElement(_$(&#39;article&#39;), {delimiters: [{left: &#39;$$&#39;, right: &#39;$$&#39;, display: true},{left: &#39;$&#39;, right: &#39;$&#39;, display: false}]});" data-pjax></script>
+
+  
+
+
+  </body>
+  </html>
