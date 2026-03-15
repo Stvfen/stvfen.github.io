@@ -24,17 +24,17 @@
 <meta property="og:site_name" content="史蒂芬の电台">
 <meta property="og:description" content="什么是哈夫曼树 各位了解文件压缩吗？它是怎么做到的呢？我们都会在这一节进行探讨。 给定N个权值作为N个叶子结点，构造一棵二叉树，若该树的带权路径长度达到最小，称这样的二叉树为最优二叉树，也称为哈夫曼树（Huffman Tree）  啥叫带权路径长度达到最小？就是树中所有的叶结点的权值乘上其到根结点根结点的路径长度（若根结点为0层，叶结点到根结点的路径长度为叶结点的层数）  这里我们分别将叶子结点">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260306135354.png">
-<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260306135552.png">
-<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260306140855.png">
-<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260306140923.png">
-<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260306140943.png">
-<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260306141044.png">
-<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260306141232.png">
-<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260306141259.png">
-<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260308012656.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260306135354.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260306135552.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260306140855.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260306140923.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260306140943.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260306141044.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260306141232.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260306141259.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260308012656.png">
 <meta property="article:published_time" content="2026-03-07T17:27:51.000Z">
-<meta property="article:modified_time" content="2026-03-09T04:14:26.875Z">
+<meta property="article:modified_time" content="2026-03-15T11:07:17.504Z">
 <meta property="article:author" content="Stvfen">
 <meta property="article:tag" content="二叉树">
 <meta property="article:tag" content="单链表">
@@ -42,7 +42,7 @@
 <meta property="article:tag" content="数据结构">
 <meta property="article:tag" content="队列">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260306135354.png">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260306135354.png">
     <link rel="alternate" href="/atom.xml" title="史蒂芬の电台" type="application/atom+xml">
     <link rel="shortcut icon" href="/images/favicon.ico">
   
@@ -237,7 +237,7 @@
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
     <time datetime="2026-03-07T17:27:51.000Z" itemprop="datePublished">2026-03-08</time>
-    <time style="display: none;" id="post-update-time">2026-03-09</time>
+    <time style="display: none;" id="post-update-time">2026-03-15</time>
   </span>
 </div>
 
@@ -250,7 +250,7 @@
 <p>各位了解文件压缩吗？它是怎么做到的呢？我们都会在这一节进行探讨。<br><br />
 <code>给定N个权值作为N个叶子结点，构造一棵二叉树，若该树的带权路径长度达到最小，称这样的二叉树为最优二叉树，也称为哈夫曼树（Huffman Tree）</code> <br><br />
 啥叫带权路径长度达到最小？就是树中所有的叶结点的权值乘上其到根结点根结点的路径长度（若根结点为0层，叶结点到根结点的路径长度为叶结点的层数）<br />
-<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260306135354.png" alt="示意图" /><br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260306135354.png" alt="示意图" /><br />
 这里我们分别将叶子结点ABCD都赋予一个权值，我们来尝试计算一下，计算公式如下：</p>
 <p>$$WPL &#x3D; \sum_{i&#x3D;1}^{n} \big( value(i) \times depth(i) \big) 
 $$</p><p>那么左右两边的计算结果为：</p>
@@ -262,17 +262,17 @@ $$</p><p>那么左右两边的计算结果为：</p>
 <p>右图： $WPL&#x3D;5×3+2×3+7×2+13×1&#x3D;48$<br />
 通过计算结果可知，右图的带权路径长度最小，实际上右图是一棵哈夫曼树。<br><br />
 那么现在给了我们这些带权的叶子结点，我们怎么去构建一颗哈夫曼树呢？首先我们可以将这些结点视为4棵树，他们共同构成了一片森林：<br />
-<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260306135552.png" alt="示意图" /><br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260306135552.png" alt="示意图" /><br />
 首先我们选择两棵权值最小的树作为一颗新的树的左右子树，左右顺序不重要（因为哈夫曼编码不唯一，后面会说），得到的树根结点权值为这两个结点之和：<br />
-<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260306140855.png" alt="示意图" /><br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260306140855.png" alt="示意图" /><br />
 接着，我们需要将这这棵树放回到森林中，重复上面的操作，继续选择两个最小的出来组成一颗新的树，此时得到：<br />
-<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260306140923.png" alt="示意图" /><br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260306140923.png" alt="示意图" /><br />
 继续重复上述操作，直到森林里面只剩下一棵树为止：<br />
-<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260306140943.png" alt="示意图" /><br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260306140943.png" alt="示意图" /><br />
 这样，我们就得到了一棵哈夫曼树，因为只要保证越大的值越靠近根结点，那么出来的一定是哈夫曼树。<br><br />
 我们辛辛苦苦把这棵树构造出来干嘛呢？实际上哈夫曼树的一个比较重要应用就是对数据进行压缩，它是现代压缩算法的基础，我们常常可以看到网上很多文件都是以压缩包（.zip、.7z、.rar等格式）形式存在的，我们将文件压缩之后。<br><br />
 比如这一堆字符串：ABCABCD，现在我们想要将其进行压缩然后保存到硬盘上，此时就可以使用哈夫曼编码。那么怎么对这些数据进行压缩呢？这里我们就可以采用刚刚构建好的哈夫曼树，我们需要先对其进行标注：<br />
-<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260306141044.png" alt="示意图" /><br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260306141044.png" alt="示意图" /><br />
 向左走是0，向右走是1，比如现在我们要求出A的哈夫曼编码，那么就是根结点到A整条路径上的值拼接：</p>
 </li>
 <li>
@@ -300,8 +300,8 @@ $$</p><p>那么左右两边的计算结果为：</p>
 <p>我们来尝试编写一下代码实现一下哈夫曼树的构建和哈夫曼编码的获取把，因为构建哈夫曼树需要选取最小的两个结点，这里需要使用到<code>优先级队列</code>。</p>
 <h3 id="什么是优先级队列"><a class="markdownIt-Anchor" href="#什么是优先级队列"></a> 什么是优先级队列</h3>
 <p>优先级队列与普通队列不同，它允许VIP插队（权值越大的元素优先排到前面去），当然出队还是一律从队首出来。<br />
-<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260306141232.png" alt="示意图" /><br />
-<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260306141259.png" alt="示意图" /><br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260306141232.png" alt="示意图" /><br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260306141259.png" alt="示意图" /><br />
 这就是优先级队列，VIP插队机制，要实现这样的优先级队列，我们只需要修改一下入队操作即可：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">_Bool</span> <span class="title function_">initQueue</span><span class="params">(LinkedQueue <span class="built_in">queue</span>)</span>&#123;</span><br><span class="line">    LNode node = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> LNode));</span><br><span class="line">    <span class="keyword">if</span>(node == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">queue</span>-&gt;front = <span class="built_in">queue</span>-&gt;rear = node;</span><br><span class="line">    node-&gt;next = <span class="literal">NULL</span>;   <span class="comment">//因为下面用到了判断结点的下一个为NULL，所以说记得默认设定为NULL</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">_Bool</span> <span class="title function_">offerQueue</span><span class="params">(LinkedQueue <span class="built_in">queue</span>, T element)</span>&#123;</span><br><span class="line">    LNode node = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> LNode));</span><br><span class="line">    <span class="keyword">if</span>(node == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    node-&gt;element = element;</span><br><span class="line">  	node-&gt;next = <span class="literal">NULL</span>;   <span class="comment">//因为下面用到了判断结点的下一个为NULL，所以说记得默认设定为NULL</span></span><br><span class="line">    LNode pre = <span class="built_in">queue</span>-&gt;front;   <span class="comment">//我们从头结点开始往后挨个看，直到找到第一个小于当前值的结点，或者到头为止</span></span><br><span class="line">    <span class="keyword">while</span> (pre-&gt;next &amp;&amp; pre-&gt;next-&gt;element &gt;= element)</span><br><span class="line">        pre = pre-&gt;next;</span><br><span class="line">    <span class="keyword">if</span>(pre == <span class="built_in">queue</span>-&gt;rear) &#123;   <span class="comment">//如果说找到的位置已经是最后了，那么直接插入就行，这里跟之前是一样的</span></span><br><span class="line">        <span class="built_in">queue</span>-&gt;rear-&gt;next = node;</span><br><span class="line">        <span class="built_in">queue</span>-&gt;rear = node;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;    <span class="comment">//否则开启VIP模式，直接插队</span></span><br><span class="line">        node-&gt;next = pre-&gt;next;</span><br><span class="line">        pre-&gt;next = node;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="构建哈夫曼树"><a class="markdownIt-Anchor" href="#构建哈夫曼树"></a> 构建哈夫曼树</h3>
@@ -317,7 +317,7 @@ $$</p><p>那么左右两边的计算结果为：</p>
 <p>最后测试：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Queue</span> <span class="title">queue</span>;</span></span><br><span class="line">    initQueue(&amp;<span class="built_in">queue</span>);</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line">      </span><br><span class="line">    Node root = pollQueue(&amp;<span class="built_in">queue</span>);</span><br><span class="line">    printEncode(root, <span class="string">&#x27;A&#x27;</span>);</span><br><span class="line">    printEncode(root, <span class="string">&#x27;B&#x27;</span>);</span><br><span class="line">    printEncode(root, <span class="string">&#x27;C&#x27;</span>);</span><br><span class="line">    printEncode(root, <span class="string">&#x27;D&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>成功得到对应的编码：<br />
-<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260308012656.png" alt="示意图" /><br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260308012656.png" alt="示意图" /><br />
 可以看到结果就是优先级队列的出队结果，这样，我们就编写好了大顶堆的插入和删除操作了。</p>
 <p>当然，堆在排序上也有着非常方便的地方，在后面的排序算法篇中，我们还会再次说起它。</p>
 
@@ -566,7 +566,7 @@ $$</p><p>那么左右两边的计算结果为：</p>
           description: "",
           stripContent: " 什么是哈夫曼树 各位了解文件压缩吗？它是怎么做到的呢？我们都会在这一节进行探讨。 给定N个权值作为N个叶子结点，构造一棵二叉树，若该树的带权路径长度达到最小，称这样的二叉树为最优二叉树，也称为哈夫曼树（Huffman Tree）  啥叫带权路径长度达到最小？就是树中所有的叶结点的权值乘上其到根结点根结点的路径长度（若根结点为0层，叶结点到根结点的路径长度为叶结点的层数）  这里我们分别将叶子结点ABCD都赋予一个权值，我们来尝试计算一下，计算公式如下： $$WPL &amp;#x3D; \sum_{i",
           date: "Sun Mar 08 2026 01:27:51 GMT+0800",
-          updated: "Mon Mar 09 2026 12:14:26 GMT+0800",
+          updated: "Sun Mar 15 2026 19:07:17 GMT+0800",
           cover: "/../image/%E5%93%88%E5%A4%AB%E6%9B%BC%E6%A0%91.webp",
         };
       </script>

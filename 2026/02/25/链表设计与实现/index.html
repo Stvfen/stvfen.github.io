@@ -24,22 +24,22 @@
 <meta property="og:site_name" content="史蒂芬の电台">
 <meta property="og:description" content="什么是链表 链表不同于顺序表，但是得记住顺序表是随机排序，链表的空间不是连续的，而顺序表是连续的。它通过指针来连接一个个分散的节点，虽然物理上不相邻，但是在逻辑上是相邻的。  顺序表他不如链表，本质还是用数组来存的  链表本身分为带头结点的链表和不带头结点，戴头结点的链表就是会有一个头指向后续的整个链表，但是头结点不存放数据。  而不带头结点的链表就像上面那样，第一个节点就是用来存放数据的结点，">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260225131656.png">
-<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260225182844.png">
-<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260225185121.png">
-<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260225185245.png">
-<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260225185320.png">
-<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260226000748.png">
-<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260226153359.png">
-<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260226153515.png">
-<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260226153601.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260225131656.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260225182844.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260225185121.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260225185245.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260225185320.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260226000748.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260226153359.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260226153515.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260226153601.png">
 <meta property="article:published_time" content="2026-02-25T04:29:15.000Z">
-<meta property="article:modified_time" content="2026-02-26T07:55:24.591Z">
+<meta property="article:modified_time" content="2026-03-15T11:07:17.519Z">
 <meta property="article:author" content="Stvfen">
 <meta property="article:tag" content="单链表">
 <meta property="article:tag" content="数据结构">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260225131656.png">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260225131656.png">
     <link rel="alternate" href="/atom.xml" title="史蒂芬の电台" type="application/atom+xml">
     <link rel="shortcut icon" href="/images/favicon.ico">
   
@@ -234,7 +234,7 @@
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
     <time datetime="2026-02-25T04:29:15.000Z" itemprop="datePublished">2026-02-25</time>
-    <time style="display: none;" id="post-update-time">2026-02-26</time>
+    <time style="display: none;" id="post-update-time">2026-03-15</time>
   </span>
 </div>
 
@@ -245,11 +245,11 @@
     <div class="e-content article-entry" itemprop="articleBody">
         <h2 id="什么是链表"><a class="markdownIt-Anchor" href="#什么是链表"></a> 什么是链表</h2>
 <p>链表不同于顺序表，但是得记住顺序表是随机排序，链表的空间不是连续的，而顺序表是连续的。它通过指针来连接一个个分散的节点，虽然物理上不相邻，但是在逻辑上是相邻的。</p>
-<p><img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260225131656.png" alt="链表示意图" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260225131656.png" alt="链表示意图" /></p>
 <p>顺序表他不如链表，本质还是用数组来存的<br />
 <br><br />
 链表本身分为带头结点的链表和不带头结点，戴头结点的链表就是会有一个头指向后续的整个链表，但是头结点不存放数据。<br><br />
-<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260225182844.png" alt="不带头结点的链表" /><br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260225182844.png" alt="不带头结点的链表" /><br />
 而不带头结点的链表就像上面那样，第一个节点就是用来存放数据的结点，一般设计链表都会采用带头结点的结构，因为操作更加方便。<br />
 <br><br />
 那么我们先来写一个链表:</p>
@@ -259,11 +259,11 @@
 <h2 id="链表的操作"><a class="markdownIt-Anchor" href="#链表的操作"></a> 链表的操作</h2>
 <h3 id="插入链表"><a class="markdownIt-Anchor" href="#插入链表"></a> 插入链表</h3>
 <p>那么链表的插入该如何做到呢？<br><br />
-<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260225185121.png" alt="插入演示图片1" /><br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260225185121.png" alt="插入演示图片1" /><br />
 <br><br />
 我们可以先修改新插入的结点和后继结点指向，指向原本在这个位置的结点</p>
-<p><img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260225185245.png" alt="插入演示图片2" /><br></p>
-<p><img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260225185320.png" alt="演示插入图片3" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260225185245.png" alt="插入演示图片2" /><br></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260225185320.png" alt="演示插入图片3" /></p>
 <p>按照这个思路，我们来实现一下，首先设计一下函数:</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">insertList</span><span class="params">(Node head, E element, <span class="type">int</span> index)</span></span>&#123;</span><br><span class="line">		<span class="comment">//head是头结点，element为待插入元素，index是待插入下标</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>接着我们需要先找到待插入位置的前驱结点：</p>
@@ -273,15 +273,15 @@
 <p>接下来我们就可以使用打印函数来看一下:</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">printList</span><span class="params">(Node head)</span></span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (head-&gt;next) &#123;</span><br><span class="line">        head = head-&gt;next;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, head-&gt;element);   <span class="comment">//因为头结点不存放数据，所以从第二个开始打印</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">struct</span> <span class="title class_">ListNode</span> head;</span><br><span class="line">    <span class="built_in">initList</span>(&amp;head);</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;=<span class="number">3</span>; ++i) &#123;</span><br><span class="line">        <span class="built_in">insertList</span>(&amp;head, i * <span class="number">100</span>, i);   <span class="comment">//依次插入3个元素</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printList</span>(&amp;head);   <span class="comment">//打印一下看看</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>现在我们来看下结果<br />
-<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260226000748.png" alt="结果图片" /><br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260226000748.png" alt="结果图片" /><br />
 <br></p>
 <h3 id="删除结点"><a class="markdownIt-Anchor" href="#删除结点"></a> 删除结点</h3>
 <p>删除结点的话，我们只需要让该结点的next变为NULL，随之让后继结点指向该删除结点的前继结点即可。<br />
-<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260226153359.png" alt="删除结点操作图" /><br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260226153359.png" alt="删除结点操作图" /><br />
 <br><br />
-<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260226153515.png" alt="删除结点操作图" /><br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260226153515.png" alt="删除结点操作图" /><br />
 <br><br />
-<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260226153601.png" alt="删除节点操作图" /><br><br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260226153601.png" alt="删除节点操作图" /><br><br />
 那么我们来根据这样的思路来编写代码，首先是设计删除函数:</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">deleteList</span><span class="params">(Node head, <span class="type">int</span> index)</span></span>&#123;</span><br><span class="line">    <span class="comment">//head就是头结点，index依然是待删除的结点位序</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>需要找到待删除结点的前驱结点：</p>
@@ -549,7 +549,7 @@
           description: "",
           stripContent: " 什么是链表 链表不同于顺序表，但是得记住顺序表是随机排序，链表的空间不是连续的，而顺序表是连续的。它通过指针来连接一个个分散的节点，虽然物理上不相邻，但是在逻辑上是相邻的。  顺序表他不如链表，本质还是用数组来存的  链表本身分为带头结点的链表和不带头结点，戴头结点的链表就是会有一个头指向后续的整个链表，但是头结点不存放数据。  而不带头结点的链表就像上面那样，第一个节点就是用来存放数据的结点，一般设计链表都会采用带头结点的结构，因为操作更加方便。  那么我们先来写一个链表: 12345678",
           date: "Wed Feb 25 2026 12:29:15 GMT+0800",
-          updated: "Thu Feb 26 2026 15:55:24 GMT+0800",
+          updated: "Sun Mar 15 2026 19:07:17 GMT+0800",
           cover: "/../image/danlianbiao.webp",
         };
       </script>

@@ -24,25 +24,25 @@
 <meta property="og:site_name" content="史蒂芬の电台">
 <meta property="og:description" content="前面我们介绍了图的一些基本概念，我们接着来看如何在程序中对图结构进行表示，这一部分可能会涉及到某些在《线性代数》这门课程中出现的概念。  邻接矩阵  有向图邻接矩阵 邻接矩阵实际上就是用矩阵去表示图中各顶点之间的邻接关系和权值。假设有一个图 $G&#x3D;(V,E)$，其中有N个顶点，那么我们就可以使用一个N×N的矩阵来表示，比如下面有A、B、C、D四个顶点的图：  此时我们需要使用邻接矩阵来表">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260309233729.png">
-<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260309233758.png">
-<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260309233957.png">
-<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260309234059.png">
-<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260309235404.png">
-<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260310075903.png">
-<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260310080055.png">
-<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260310080323.png">
-<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260310080437.png">
-<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260310082215.png">
-<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260310082304.png">
-<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260310082411.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260309233729.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260309233758.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260309233957.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260309234059.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260309235404.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260310075903.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260310080055.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260310080323.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260310080437.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260310082215.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260310082304.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260310082411.png">
 <meta property="article:published_time" content="2026-03-10T00:33:59.000Z">
-<meta property="article:modified_time" content="2026-03-10T00:51:33.692Z">
+<meta property="article:modified_time" content="2026-03-15T11:07:17.513Z">
 <meta property="article:author" content="Stvfen">
 <meta property="article:tag" content="图结构">
 <meta property="article:tag" content="数据结构">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260309233729.png">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260309233729.png">
     <link rel="alternate" href="/atom.xml" title="史蒂芬の电台" type="application/atom+xml">
     <link rel="shortcut icon" href="/images/favicon.ico">
   
@@ -237,7 +237,7 @@
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
     <time datetime="2026-03-10T00:33:59.000Z" itemprop="datePublished">2026-03-10</time>
-    <time style="display: none;" id="post-update-time">2026-03-10</time>
+    <time style="display: none;" id="post-update-time">2026-03-15</time>
   </span>
 </div>
 
@@ -250,20 +250,20 @@
 <h2 id="邻接矩阵"><a class="markdownIt-Anchor" href="#邻接矩阵"></a> 邻接矩阵</h2>
 <h3 id="有向图邻接矩阵"><a class="markdownIt-Anchor" href="#有向图邻接矩阵"></a> 有向图邻接矩阵</h3>
 <p>邻接矩阵实际上就是用矩阵去表示图中各顶点之间的邻接关系和权值。假设有一个图 $G&#x3D;(V,E)$，其中有N个顶点，那么我们就可以使用一个N×N的矩阵来表示，比如下面有A、B、C、D四个顶点的图：<br />
-<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260309233729.png" alt="示意图" /><br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260309233729.png" alt="示意图" /><br />
 此时我们需要使用邻接矩阵来表示它，就像下面这样：<br />
-<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260309233758.png" alt="示意图" /><br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260309233758.png" alt="示意图" /><br />
 对于一个不带权值的图来说：</p>
 <p>$$G_{ij} &#x3D; \begin{cases} 1, &amp; \text{无向图的 } (v_i, v_j) \text{ 或有向图的 } &lt;v_i, v_j&gt; \text{ 是图中的边} \\ 0, &amp; \text{无向图的 } (v_i, v_j) \text{ 或有向图的 } &lt;v_i, v_j&gt; \text{ 不是图中的边} \end{cases} 
 $$</p><p>对于一个带权值的图来说，如果有边，则直接填写对应边的权值，如果没有，那么就填写0或是∞（因为某些图会认为0也是权值，所以说可以用∞，它可以是一个计算机允许的最大值大于所有边的权值的数）来进行表示：</p>
 <p>$$G_{ij} &#x3D; \begin{cases} w_{ij}, &amp; \text{无向图的 } (v_i, v_j) \text{ 或有向图的 } &lt;v_i, v_j&gt; \text{ 是图中的边} \\ 0 \text{ 或 } \infty, &amp; \text{无向图的 } (v_i, v_j) \text{ 或有向图的 } &lt;v_i, v_j&gt; \text{ 不是图中的边} \end{cases} 
 $$</p><p>所以说，对于上面的有向图，我们应该像这样填写：<br />
-<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260309233957.png" alt="示意图" /></p>
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260309233957.png" alt="示意图" /></p>
 <h3 id="无向图邻接矩阵"><a class="markdownIt-Anchor" href="#无向图邻接矩阵"></a> 无向图邻接矩阵</h3>
 <p>那么我们来看看无向图的邻接矩阵呢？比如下面的这个图：<br />
-<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260309234059.png" alt="示意图" /><br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260309234059.png" alt="示意图" /><br />
 对于无向图来说，一条边两边是相互连接的，所以说，A连接B，那么B也连接A，所以说就像这样：<br />
-<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260309235404.png" alt="示意图" /><br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260309235404.png" alt="示意图" /><br />
 <code>所以说无向图的邻接矩阵必定是一个对称矩阵。</code></p>
 <h3 id="性质"><a class="markdownIt-Anchor" href="#性质"></a> 性质</h3>
 <p>我们可以来总结一下性质：</p>
@@ -283,20 +283,20 @@ $$</p><p>所以说，对于上面的有向图，我们应该像这样填写：<b
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">addVertex</span><span class="params">(Graph graph, E element)</span>&#123;   <span class="comment">//添加顶点</span></span><br><span class="line">    <span class="keyword">if</span>(graph-&gt;vertexCount &gt;= MaxVertex) <span class="keyword">return</span>;</span><br><span class="line">    graph-&gt;data[graph-&gt;vertexCount++] = element;   <span class="comment">//添加新元素</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">addEdge</span><span class="params">(Graph graph, <span class="type">int</span> a, <span class="type">int</span> b)</span>&#123;   <span class="comment">//添加几号顶点到几号顶点的边</span></span><br><span class="line">    <span class="keyword">if</span>(graph-&gt;matrix[a][b] == <span class="number">0</span>) &#123;</span><br><span class="line">        graph-&gt;matrix[a][b] = <span class="number">1</span>;  <span class="comment">//注意如果是无向图的话，需要[a][b]和[b][a]都置为1</span></span><br><span class="line">        graph-&gt;edgeCount++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="案例"><a class="markdownIt-Anchor" href="#案例"></a> 案例</h4>
 <p>我们来尝试构建一下这个有向图：<br />
-<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260310075903.png" alt="示意图" /></p>
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260310075903.png" alt="示意图" /></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Graph graph = create();</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> c = <span class="string">&#x27;A&#x27;</span>; c &lt;= <span class="string">&#x27;D&#x27;</span> ; ++c) </span><br><span class="line">    addVertex(graph, (<span class="type">char</span>) c);</span><br><span class="line">addEdge(graph, <span class="number">0</span>, <span class="number">1</span>);   <span class="comment">//A -&gt; B</span></span><br><span class="line">addEdge(graph, <span class="number">1</span>, <span class="number">2</span>);   <span class="comment">//B -&gt; C</span></span><br><span class="line">addEdge(graph, <span class="number">2</span>, <span class="number">3</span>);   <span class="comment">//C -&gt; D</span></span><br><span class="line">addEdge(graph, <span class="number">3</span>, <span class="number">0</span>);   <span class="comment">//D -&gt; A</span></span><br><span class="line">addEdge(graph, <span class="number">2</span>, <span class="number">0</span>);   <span class="comment">//C -&gt; A</span></span><br></pre></td></tr></table></figure>
 <p>接着我们打印此领接矩阵，看看是否变成了我们预想中的那样：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">printGraph</span><span class="params">(Graph graph)</span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">-1</span>; i &lt; graph-&gt;vertexCount; ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">-1</span>; j &lt; graph-&gt;vertexCount; ++j) &#123;</span><br><span class="line">            <span class="keyword">if</span>(j == <span class="number">-1</span>)</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>, <span class="string">&#x27;A&#x27;</span> + i);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(i == <span class="number">-1</span>)</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;%3c&quot;</span>, <span class="string">&#x27;A&#x27;</span> + j);</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;%3d&quot;</span>, graph-&gt;matrix[i][j]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">putchar</span>(<span class="string">&#x27;\n&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>最后得到：<br />
-<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260310080055.png" alt="答案" /><br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260310080055.png" alt="答案" /><br />
 可以看到结果跟我们上面推导得出的邻接矩阵一模一样，当然这里仅仅是演示了普通的有向图，我们也可以稍微将代码进行修改，将其变成一个无向图或是带权有向图<br></p>
 <h2 id="邻接表"><a class="markdownIt-Anchor" href="#邻接表"></a> 邻接表</h2>
 <h4 id="什么是邻接表"><a class="markdownIt-Anchor" href="#什么是邻接表"></a> 什么是邻接表</h4>
 <p>前面我们介绍了领接矩阵，我们可以使用邻接矩阵在程序中保存一个图的边相关信息，它采用二维数组的形式，将对应边的连接关系进行存储，但是我们知道，数组存在容量上的局限性（学了这么多节课了，应该能体会到，数组需要一段连续空间，无论是申请还是用起来都很麻烦）同时，我们创建邻接矩阵后，如果图的边数较多（稠密图）利用率还是挺高的，但是一旦遇到边数很少的图（稀疏图）那么表中大量的位置实际上都是<code>0</code>，根本没有被利用起来，是很浪费的。<br><br />
 此时，我们可以考虑使用链式结构来解决这种问题，就像下面这样：<br />
-<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260310080323.png" alt="示意图" /><br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260310080323.png" alt="示意图" /><br />
 对于图中的每个顶点，建立一个数组，存放一个头结点，我们将与其邻接的顶点，通过一个链表进行记录（看着挺像前面讲的哈希表）这样，也可以表示一个图的连接关系，并且内存空间能够得到更加有效的利用。当然，对于无向图来说，跟之前一样，两边都需要进行保存：<br />
-<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260310080437.png" alt="示意图" /></p>
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260310080437.png" alt="示意图" /></p>
 <h3 id="代码操作"><a class="markdownIt-Anchor" href="#代码操作"></a> 代码操作</h3>
 <h4 id="初始化"><a class="markdownIt-Anchor" href="#初始化"></a> 初始化</h4>
 <p>我们来尝试编写一下代码实现，首先还是定义：</p>
@@ -307,16 +307,16 @@ $$</p><p>所以说，对于上面的有向图，我们应该像这样填写：<b
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">addVertex</span><span class="params">(Graph graph, E element)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(graph-&gt;vertexCount &gt;= MaxVertex) <span class="keyword">return</span>;   <span class="comment">//跟之前一样</span></span><br><span class="line">    graph-&gt;vertex[graph-&gt;vertexCount].element = element;   <span class="comment">//添加新结点时，再来修改也行</span></span><br><span class="line">    graph-&gt;vertex[graph-&gt;vertexCount].next = <span class="literal">NULL</span>;</span><br><span class="line">  	graph-&gt;vertexCount++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">addEdge</span><span class="params">(Graph graph, <span class="type">int</span> a, <span class="type">int</span> b)</span>&#123;</span><br><span class="line">    Node node = graph-&gt;vertex[a].next;</span><br><span class="line">    Node newNode = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> Node));</span><br><span class="line">    newNode-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">    newNode-&gt;nextVertex = b;</span><br><span class="line">    <span class="keyword">if</span>(!node) &#123;    <span class="comment">//如果头结点下一个都没有，那么直接连上去</span></span><br><span class="line">        graph-&gt;vertex[a].next = newNode;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;   <span class="comment">//否则说明当前顶点已经连接了至少一个其他顶点了，有可能会出现已经连接过的情况，所以说要特别处理一下</span></span><br><span class="line">        <span class="keyword">do</span> &#123;</span><br><span class="line">            <span class="keyword">if</span>(node-&gt;nextVertex == b) <span class="keyword">return</span>;   <span class="comment">//如果已经连接了对应的顶点，那么直接返回</span></span><br><span class="line">            <span class="keyword">if</span>(node-&gt;next) node = node-&gt;next;   <span class="comment">//否则继续向后遍历</span></span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">break</span>;   <span class="comment">//如果没有下一个了，那就找到最后一个结点了，直接结束</span></span><br><span class="line">        &#125; <span class="keyword">while</span> (<span class="number">1</span>);</span><br><span class="line">        node-&gt;next = newNode;</span><br><span class="line">    &#125;</span><br><span class="line">  	graph-&gt;edgeCount++;   <span class="comment">//边数计数+1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="案例-2"><a class="markdownIt-Anchor" href="#案例-2"></a> 案例</h4>
 <p>我们来将其构建一下吧，还是以上面的图为例：<br />
-<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260310082215.png" alt="示意图" /></p>
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260310082215.png" alt="示意图" /></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    Graph graph = create();</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> c = <span class="string">&#x27;A&#x27;</span>; c &lt;= <span class="string">&#x27;D&#x27;</span> ; ++c)</span><br><span class="line">        addVertex(graph, (<span class="type">char</span>) c);</span><br><span class="line">    addEdge(graph, <span class="number">0</span>, <span class="number">1</span>);   <span class="comment">//A -&gt; B</span></span><br><span class="line">    addEdge(graph, <span class="number">1</span>, <span class="number">2</span>);   <span class="comment">//B -&gt; C</span></span><br><span class="line">    addEdge(graph, <span class="number">2</span>, <span class="number">3</span>);   <span class="comment">//C -&gt; D</span></span><br><span class="line">    addEdge(graph, <span class="number">3</span>, <span class="number">0</span>);   <span class="comment">//D -&gt; A</span></span><br><span class="line">    addEdge(graph, <span class="number">2</span>, <span class="number">0</span>);   <span class="comment">//C -&gt; A</span></span><br><span class="line"></span><br><span class="line">    printGraph(graph);</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
 <p>我们来打印看看效果：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">printGraph</span><span class="params">(Graph graph)</span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; graph-&gt;vertexCount; ++i) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d | %c&quot;</span>, i, graph-&gt;vertex[i].element);</span><br><span class="line">        Node node = graph-&gt;vertex[i].next;</span><br><span class="line">        <span class="keyword">while</span> (node) &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot; -&gt; %d&quot;</span>, node-&gt;nextVertex);</span><br><span class="line">            node = node-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">putchar</span>(<span class="string">&#x27;\n&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>得到结果如下：<br />
-<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260310082304.png" alt="答案" /></p>
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260310082304.png" alt="答案" /></p>
 <h2 id="逆邻接表"><a class="markdownIt-Anchor" href="#逆邻接表"></a> 逆邻接表</h2>
 <p>虽然邻接表的方式看上去更加的简单高效，但是会给我们带来一些不必要的麻烦，比如上面创建的领接表，我们只能快速得到某个顶点指向了哪些顶点，也就是只能计算到顶点的<code>出度</code>，但是无法快速计算顶点的<code>入度</code>，只能将所有结点统计之后才能得到<code>入度</code>。所以说在表示有向图时，查找上并没有邻接矩阵来的方便。<br><br />
 为了解决这种问题，我们可以建立一个逆领接表，来表示所有指向当前顶点的顶点列表：<br />
-<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260310082411.png" alt="示意图" /><br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260310082411.png" alt="示意图" /><br />
 实际上就是反着来而已，通过建立这两个领接表，就能在一定程度上缓解不方便的情况。</p>
 
     </div>
@@ -564,7 +564,7 @@ $$</p><p>所以说，对于上面的有向图，我们应该像这样填写：<b
           description: "",
           stripContent: "前面我们介绍了图的一些基本概念，我们接着来看如何在程序中对图结构进行表示，这一部分可能会涉及到某些在《线性代数》这门课程中出现的概念。  邻接矩阵  有向图邻接矩阵 邻接矩阵实际上就是用矩阵去表示图中各顶点之间的邻接关系和权值。假设有一个图 $G&amp;#x3D;(V,E)$，其中有N个顶点，那么我们就可以使用一个N×N的矩阵来表示，比如下面有A、B、C、D四个顶点的图：  此时我们需要使用邻接矩阵来表示它，就像下面这样：  对于一个不带权值的图来说： $$G_{ij} &amp;#x3D; \begin{c",
           date: "Tue Mar 10 2026 08:33:59 GMT+0800",
-          updated: "Tue Mar 10 2026 08:51:33 GMT+0800",
+          updated: "Sun Mar 15 2026 19:07:17 GMT+0800",
           cover: "/../image/%E5%9B%BE%E7%9A%84%E5%AD%98%E5%82%A8.webp",
         };
       </script>

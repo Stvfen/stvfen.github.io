@@ -24,20 +24,20 @@
 <meta property="og:site_name" content="史蒂芬の电台">
 <meta property="og:description" content="什么是二叉查找树 二叉查找树本质就是通过二分搜索的方法来快速查找 二叉查找树也叫二叉搜索树或是二叉排序树，它具有一定的规则：  左子树中所有结点的值，均小于其根结点的值。 右子树中所有结点的值，均大于其根结点的值。 二叉搜索树的子树也是二叉搜索树。 一棵二叉搜索树长这样：  查找值为15的结点：   从根结点18开始，因为15小于18，所以从左边开始找。 接着来到10，发现10比15小，所以继续">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260303170858.png">
-<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260303173511.png">
-<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260303191917.png">
-<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260303192001.png">
-<meta property="og:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260303192025.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260303170858.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260303173511.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260303191917.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260303192001.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260303192025.png">
 <meta property="article:published_time" content="2026-03-04T13:18:31.000Z">
-<meta property="article:modified_time" content="2026-03-04T16:46:48.919Z">
+<meta property="article:modified_time" content="2026-03-15T11:07:17.495Z">
 <meta property="article:author" content="Stvfen">
 <meta property="article:tag" content="二分">
 <meta property="article:tag" content="二叉树">
 <meta property="article:tag" content="单链表">
 <meta property="article:tag" content="数据结构">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260303170858.png">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260303170858.png">
     <link rel="alternate" href="/atom.xml" title="史蒂芬の电台" type="application/atom+xml">
     <link rel="shortcut icon" href="/images/favicon.ico">
   
@@ -232,7 +232,7 @@
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
     <time datetime="2026-03-04T13:18:31.000Z" itemprop="datePublished">2026-03-04</time>
-    <time style="display: none;" id="post-update-time">2026-03-05</time>
+    <time style="display: none;" id="post-update-time">2026-03-15</time>
   </span>
 </div>
 
@@ -249,7 +249,7 @@
 <li>右子树中所有结点的值，均大于其根结点的值。</li>
 <li>二叉搜索树的子树也是二叉搜索树。<br />
 一棵二叉搜索树长这样：<br />
-<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260303170858.png" alt="二叉查找树示意图" /><br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260303170858.png" alt="二叉查找树示意图" /><br />
 查找值为15的结点：</li>
 </ul>
 <ol>
@@ -269,7 +269,7 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">inOrder</span><span class="params">(Node root)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root == <span class="literal">NULL</span>) <span class="keyword">return</span>;</span><br><span class="line">    inOrder(root-&gt;left);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, root-&gt;element);</span><br><span class="line">    inOrder(root-&gt;right);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    Node root = insert(<span class="literal">NULL</span>, <span class="number">18</span>);   <span class="comment">//插入后，得到根结点</span></span><br><span class="line">    inOrder(root);   <span class="comment">//用中序遍历查看一下结果</span></span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    Node root = insert(<span class="literal">NULL</span>, <span class="number">18</span>);   <span class="comment">//插入后，得到根结点</span></span><br><span class="line">    insert(root, <span class="number">10</span>);</span><br><span class="line">    insert(root, <span class="number">20</span>);</span><br><span class="line">    inOrder(root);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>可以看到中序结果为：<br />
-<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260303173511.png" alt="结果图" /></p>
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260303173511.png" alt="结果图" /></p>
 <h3 id="搜索操作"><a class="markdownIt-Anchor" href="#搜索操作"></a> 搜索操作</h3>
 <p>那么插入写好之后，我们怎么找到对应的结点呢？实际上也是按照规律来就行了：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Node <span class="title function_">find</span><span class="params">(Node root, E target)</span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (root) &#123;</span><br><span class="line">        <span class="keyword">if</span>(root-&gt;element &gt; target)    <span class="comment">//如果要找的值比当前结点小，说明肯定在左边</span></span><br><span class="line">            root = root-&gt;left;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(root-&gt;element &lt; target)   <span class="comment">//如果要找的值比当前结点大，说明肯定在右边</span></span><br><span class="line">            root = root-&gt;right;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> root;   <span class="comment">//等于的话，说明找到了，就直接返回</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>;   <span class="comment">//都找到底了还没有，那就是真没有了</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Node <span class="title function_">findMax</span><span class="params">(Node root)</span>&#123;   <span class="comment">//查找最大值就更简单了，最右边的一定是最大的</span></span><br><span class="line">    <span class="keyword">while</span> (root &amp;&amp; root-&gt;right) </span><br><span class="line">        root = root-&gt;right;</span><br><span class="line">    <span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -280,9 +280,9 @@
 <li>要删除的结点是只有一个孩子结点。</li>
 <li>要删除的结点有两个孩子结点。<br />
 首先我们来看第一种情况，这种情况实际上最好办，直接删除就完事了：<br />
-<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260303191917.png" alt="示意图" /><br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260303191917.png" alt="示意图" /><br />
 而第二种情况，就有点麻烦了，因为有一个孩子，当移除后，需要将孩子结点连接上去：<br />
-<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260303192001.png" alt="示意图" /><br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260303192001.png" alt="示意图" /><br />
 可以看到在调整后，依然满足二叉查找树的性质。最后是最麻烦的有两个孩子的情况，这种该怎么办呢？前面只有一个孩子直接上位就完事，但是现在两个孩子，到底谁上位呢？这就不好办了，为了保持二叉查找树的性质，现在有两种选择：</li>
 </ol>
 <ul>
@@ -290,7 +290,7 @@
 <li>选择其右子树中最小结点上位</li>
 </ul>
 <p>这里我们以第一种方式为例：<br />
-<img src="https://jsd.onmicrosoft.cn/gh/Stvfen/tuchuang@main/img/20260303192025.png" alt="示意图" /><br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260303192025.png" alt="示意图" /><br />
 现在我们已经分析完三种情况了，那么我们就来编写一下代码吧：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">Node <span class="title function_">delete</span><span class="params">(Node root, E target)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="literal">NULL</span>;   <span class="comment">//都走到底了还是没有找到要删除的结点，说明没有，直接返回空</span></span><br><span class="line">    <span class="keyword">if</span>(root-&gt;element &gt; target)   <span class="comment">//这里的判断跟之前插入是一样的，继续往后找就完事，直到找到为止</span></span><br><span class="line">        root-&gt;left = delete(root-&gt;left, target);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(root-&gt;element &lt; target)</span><br><span class="line">        root-&gt;right = delete(root-&gt;right, target);</span><br><span class="line">    <span class="keyword">else</span> &#123;   <span class="comment">//这种情况就是找到了</span></span><br><span class="line">        <span class="keyword">if</span>(root-&gt;left &amp;&amp; root-&gt;right) &#123;   <span class="comment">//先处理最麻烦的左右孩子都有的情况</span></span><br><span class="line">            Node max = findMax(root-&gt;left);  <span class="comment">//寻找左子树中最大的元素</span></span><br><span class="line">            root-&gt;element = max-&gt;element;  <span class="comment">//找到后将值替换</span></span><br><span class="line">            root-&gt;left = delete(root-&gt;left, root-&gt;element);  <span class="comment">//替换好后，以同样的方式去删除那个替换上来的结点</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;   <span class="comment">//其他两种情况可以一起处理，只需要删除这个结点就行，然后将root指定为其中一个孩子，最后返回就完事</span></span><br><span class="line">            Node tmp = root;</span><br><span class="line">            <span class="keyword">if</span>(root-&gt;right) &#123;   <span class="comment">//不是左边就是右边</span></span><br><span class="line">                root = root-&gt;right;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                root = root-&gt;left;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">free</span>(tmp);   <span class="comment">//开删</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> root;   <span class="comment">//返回最终的结点</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -539,7 +539,7 @@
           description: "",
           stripContent: " 什么是二叉查找树 二叉查找树本质就是通过二分搜索的方法来快速查找 二叉查找树也叫二叉搜索树或是二叉排序树，它具有一定的规则：  左子树中所有结点的值，均小于其根结点的值。 右子树中所有结点的值，均大于其根结点的值。 二叉搜索树的子树也是二叉搜索树。 一棵二叉搜索树长这样：  查找值为15的结点：   从根结点18开始，因为15小于18，所以从左边开始找。 接着来到10，发现10比15小，所以继续往右边走。 来到15，成功找到。 实际上，我们在对普通二叉树进行搜索时，可能需要挨个进行查看比较，而",
           date: "Wed Mar 04 2026 21:18:31 GMT+0800",
-          updated: "Thu Mar 05 2026 00:46:48 GMT+0800",
+          updated: "Sun Mar 15 2026 19:07:17 GMT+0800",
           cover: "/../image/%E4%BA%8C%E5%8F%89%E6%9F%A5%E6%89%BE%E6%A0%91.webp",
         };
       </script>
