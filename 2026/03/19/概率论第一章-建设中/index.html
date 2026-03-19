@@ -1,0 +1,840 @@
+  <!DOCTYPE html>
+  <html lang="zh-CN"  
+      data-theme-mode="auto"
+  >
+  <head>
+  <meta charset="utf-8">
+  
+  
+  
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_4k4bc36ef96';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
+  <title>
+    概率论第一章-建设中 | 史蒂芬の电台
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_4k4bc36ef96.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="随机事件与样本空间  确定性 随机性的对立是确定性，那么我们先来思考一下什么是确定性。比如说月亮绕着地球转，地球绕着太阳转，明天天一定会亮，字母表AB后一定是C，这些都是确定一定会发生的事情，也就是说只有一个结果的事件，我们就说这个事件有确定性。  随机性 那么和确定相对的就是随机性，也就是说我们事先不知道它会不会发生。比如说明天下雨啊，那么这个事情在明天到来前有多个结果，那么就是随机性。  随">
+<meta property="og:type" content="article">
+<meta property="og:title" content="概率论第一章-建设中">
+<meta property="og:url" content="http://example.com/2026/03/19/%E6%A6%82%E7%8E%87%E8%AE%BA%E7%AC%AC%E4%B8%80%E7%AB%A0-%E5%BB%BA%E8%AE%BE%E4%B8%AD/index.html">
+<meta property="og:site_name" content="史蒂芬の电台">
+<meta property="og:description" content="随机事件与样本空间  确定性 随机性的对立是确定性，那么我们先来思考一下什么是确定性。比如说月亮绕着地球转，地球绕着太阳转，明天天一定会亮，字母表AB后一定是C，这些都是确定一定会发生的事情，也就是说只有一个结果的事件，我们就说这个事件有确定性。  随机性 那么和确定相对的就是随机性，也就是说我们事先不知道它会不会发生。比如说明天下雨啊，那么这个事情在明天到来前有多个结果，那么就是随机性。  随">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260319153956.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260319163520.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260319205951.png">
+<meta property="article:published_time" content="2026-03-19T15:58:39.000Z">
+<meta property="article:modified_time" content="2026-03-19T16:43:16.615Z">
+<meta property="article:author" content="Stvfen">
+<meta property="article:tag" content="古典概型">
+<meta property="article:tag" content="概率论">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260319153956.png">
+    <link rel="alternate" href="/atom.xml" title="史蒂芬の电台" type="application/atom+xml">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
+      <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.css" integrity="sha384-tTgKLjMYmJr94v8qu2PE5MUGSMbyN2xiH266JUB3gpm8vnnJywd1dWSOEfrFz+YI" crossorigin="anonymous">
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+  <body>
+      <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+      </div>
+      <div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script>
+<div id="copy-tooltip"></div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation">
+        <a class="main-nav-link-wrap" href="/">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">首页</span>
+        </span>
+        <a class="main-nav-link-wrap" href="/archives">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">归档</span>
+        </span>
+        <a class="main-nav-link-wrap" href="/about">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">关于</span>
+        </span>
+        <a class="main-nav-link-wrap" href="/friend">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">友链</span>
+        </span>
+    <a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation">
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅" aria-label="RSS 订阅" target="_blank"></a>
+      <a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索" aria-label="搜索"></a>
+  </nav>
+</div>
+<header id="header" aria-label="Site header">
+    <picture></picture>
+    <img  fetchpriority="high" src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260320004150.png" alt="概率论第一章-建设中">
+  <div id="header-outer">
+    <div id="header-title">
+          <span id="logo">
+            <h1 data-aos="slide-up">概率论第一章-建设中</h1>
+          </span>
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+        </h2>
+    </div>
+  </div>
+</header>
+
+        <div id="content" aria-label="Page content" class="sidebar-left"  >
+          <aside id="sidebar" aria-label="Sidebar">
+  <div class="sidebar-wrapper-container sticky">
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9A%8F%E6%9C%BA%E4%BA%8B%E4%BB%B6%E4%B8%8E%E6%A0%B7%E6%9C%AC%E7%A9%BA%E9%97%B4"><span class="toc-number">1.</span> <span class="toc-text"> 随机事件与样本空间</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A1%AE%E5%AE%9A%E6%80%A7"><span class="toc-number">1.1.</span> <span class="toc-text"> 确定性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%8F%E6%9C%BA%E6%80%A7"><span class="toc-number">1.2.</span> <span class="toc-text"> 随机性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%8F%E6%9C%BA%E8%AF%95%E9%AA%8C"><span class="toc-number">1.3.</span> <span class="toc-text"> 随机试验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B7%E6%9C%AC"><span class="toc-number">1.4.</span> <span class="toc-text"> 样本</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%B7%E6%9C%AC%E7%82%B9"><span class="toc-number">1.4.1.</span> <span class="toc-text"> 样本点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%B7%E6%9C%AC%E7%A9%BA%E9%97%B4"><span class="toc-number">1.4.2.</span> <span class="toc-text"> 样本空间</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BE%8B%E5%AD%90"><span class="toc-number">1.4.3.</span> <span class="toc-text"> 例子</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%8F%E6%9C%BA%E4%BA%8B%E4%BB%B6"><span class="toc-number">1.5.</span> <span class="toc-text"> 随机事件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E4%BA%8B%E4%BB%B6"><span class="toc-number">1.5.1.</span> <span class="toc-text"> 基本事件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8D%E5%8F%AF%E8%83%BD%E4%BA%8B%E4%BB%B6"><span class="toc-number">1.5.2.</span> <span class="toc-text"> 不可能事件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BF%85%E7%84%B6%E4%BA%8B%E4%BB%B6"><span class="toc-number">1.5.3.</span> <span class="toc-text"> 必然事件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E4%BA%8B%E4%BB%B6%E5%8F%91%E7%94%9F"><span class="toc-number">1.5.4.</span> <span class="toc-text"> 什么是事件发生</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.6.</span> <span class="toc-text"> 总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E7%9A%84%E5%85%B3%E7%B3%BB%E5%92%8C%E8%BF%90%E7%AE%97"><span class="toc-number">2.</span> <span class="toc-text"> 事件的关系和运算</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">2.1.</span> <span class="toc-text"> 事件间的关系</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8C%85%E5%90%AB%E5%85%B3%E7%B3%BB"><span class="toc-number">2.1.1.</span> <span class="toc-text"> 包含关系</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%B8%E7%AD%89%E5%85%B3%E7%B3%BB"><span class="toc-number">2.1.2.</span> <span class="toc-text"> 相等关系</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%92%8C%E4%BA%8B%E4%BB%B6%E4%BA%8B%E4%BB%B6%E7%9A%84%E5%B9%B6"><span class="toc-number">2.1.3.</span> <span class="toc-text"> 和事件（事件的并）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A7%AF%E4%BA%8B%E4%BB%B6%E4%BA%8B%E4%BB%B6%E7%9A%84%E4%BA%A4"><span class="toc-number">2.1.4.</span> <span class="toc-text"> 积事件（事件的交）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B7%AE%E4%BA%8B%E4%BB%B6"><span class="toc-number">2.1.5.</span> <span class="toc-text"> 差事件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%92%E6%96%A5%E4%BA%92%E4%B8%8D%E7%9B%B8%E5%AE%B9%E4%BA%8B%E4%BB%B6"><span class="toc-number">2.1.6.</span> <span class="toc-text"> 互斥（互不相容）事件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%92%E9%80%86%E5%AF%B9%E7%AB%8B%E4%BA%8B%E4%BB%B6"><span class="toc-number">2.1.7.</span> <span class="toc-text"> 互逆（对立）事件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-number">2.1.8.</span> <span class="toc-text"> 例题</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%86%E5%90%88%E8%BF%90%E7%AE%97%E4%B8%89%E5%A4%A7%E5%AE%9A%E5%BE%8B%E6%A6%82%E7%8E%87%E8%AE%BA%E7%89%88"><span class="toc-number">2.2.</span> <span class="toc-text"> 集合运算三大定律（概率论版）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%A4%E6%8D%A2%E5%BE%8B"><span class="toc-number">2.2.1.</span> <span class="toc-text"> 交换律</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E9%85%8D%E5%BE%8B"><span class="toc-number">2.2.2.</span> <span class="toc-text"> 分配律</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%B9%E5%81%B6%E5%BE%8B%E5%BE%B7%E6%91%A9%E6%A0%B9%E5%BE%8B"><span class="toc-number">2.2.3.</span> <span class="toc-text"> 对偶律（德摩根律）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4-1%E8%AE%A1%E7%AE%97%E6%80%BB%E6%94%BE%E6%B3%95%E6%95%B0%E5%88%86%E6%AF%8D"><span class="toc-number">2.2.4.</span> <span class="toc-text"> 步骤 1：计算总放法数（分母）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4-2%E8%AE%A1%E7%AE%97%E6%BB%A1%E8%B6%B3%E6%9D%A1%E4%BB%B6%E7%9A%84%E6%94%BE%E6%B3%95%E6%95%B0%E5%88%86%E5%AD%90"><span class="toc-number">2.2.5.</span> <span class="toc-text"> 步骤 2：计算满足条件的放法数（分子）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E7%9B%92%E5%AD%90"><span class="toc-number">2.2.5.1.</span> <span class="toc-text"> 选择盒子</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%94%BE%E7%BD%AE%E7%90%83"><span class="toc-number">2.2.5.2.</span> <span class="toc-text"> 放置球</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%90%88%E5%B9%B6%E8%AE%A1%E7%AE%97"><span class="toc-number">2.2.5.3.</span> <span class="toc-text"> 合并计算</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4-3%E8%AE%A1%E7%AE%97%E6%A6%82%E7%8E%87"><span class="toc-number">2.2.6.</span> <span class="toc-text"> 步骤 3：计算概率</span></a></li></ol></li></ol></li></ol>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Stvfen" class="lazyload">
+  <div class="sidebar-author-name">Stvfen</div>
+  <div class="sidebar-description">电台组组长</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">24</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">14</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">21</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/3546704989129249?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+    </div>
+  </div>
+  <div class="sidebar-widget">
+  </div>
+  </div>
+</aside>
+
+          <section id="main" aria-label="Main content"><article id="post-概率论第一章-建设中" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2026-03-19T15:58:39.000Z" itemprop="datePublished">2026-03-19</time>
+    <time style="display: none;" id="post-update-time">2026-03-20</time>
+  </span>
+</div>
+
+    </div>
+    
+    <div class="hr-line"></div>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+        <h2 id="随机事件与样本空间"><a class="markdownIt-Anchor" href="#随机事件与样本空间"></a> 随机事件与样本空间</h2>
+<h3 id="确定性"><a class="markdownIt-Anchor" href="#确定性"></a> 确定性</h3>
+<p>随机性的对立是确定性，那么我们先来思考一下什么是确定性。比如说月亮绕着地球转，地球绕着太阳转，明天天一定会亮，字母表AB后一定是C，这些都是确定一定会发生的事情，也就是说<code>只有一个结果的事件</code>，我们就说这个事件有确定性。</p>
+<h3 id="随机性"><a class="markdownIt-Anchor" href="#随机性"></a> 随机性</h3>
+<p>那么和确定相对的就是随机性，也就是说我们事先不知道它会不会发生。比如说明天下雨啊，那么这个事情在明天到来前<code>有多个结果</code>，那么就是随机性。</p>
+<h3 id="随机试验"><a class="markdownIt-Anchor" href="#随机试验"></a> 随机试验</h3>
+<p>我么将满足以下三个特点的试验称为随机试验：</p>
+<ol>
+<li>可以在相同条件下重复地进行</li>
+<li>每次试验的可能结果不只一个，但是事先能明确试验的所有可能结果<code>可知性</code></li>
+<li>进行一次试验之前不能确定哪一个结果发生 <code>随机性</code><br />
+随机试验简称<code>试验</code>，记作$E$</li>
+</ol>
+<h3 id="样本"><a class="markdownIt-Anchor" href="#样本"></a> 样本</h3>
+<h4 id="样本点"><a class="markdownIt-Anchor" href="#样本点"></a> 样本点</h4>
+<p><code>样本点</code>：试验$E$的每个不可再分的可能结果，记作<code>ω</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">不可再分结果是什么呢？比如说我掷一枚骰子，我掷出1和掷出2这个最终的不可再分的结果叫做样本点</span><br><span class="line">可再分结果呢？比如说我掷一枚骰子，我掷出偶数的结果就可以再分为掷出2，4，6的结果。</span><br></pre></td></tr></table></figure>
+<h4 id="样本空间"><a class="markdownIt-Anchor" href="#样本空间"></a> 样本空间</h4>
+<p>所有样本点组成的集合叫做样本空间，记作<code>Ω</code><br><br />
+注意：</p>
+<ul>
+<li>样本空间至少有两个样本点</li>
+<li>样本点为有限个体或可列无限个的样本空间称为 <mark>离散样本空间</mark> ；样本点个数为不可列无限个的样本空间称为 <mark>连续样本空间</mark></li>
+<li>这里连续样本空间我们一般说可以取到区间了，就是不可列无限个<br />
+简要记忆：：<strong>整数 / 自然数是可列的，实数 / 区间 / 平面点集是不可列的</strong>。</li>
+</ul>
+<h4 id="例子"><a class="markdownIt-Anchor" href="#例子"></a> 例子</h4>
+<ul>
+<li>掷一枚骰子，出现的点数。——$Ω &#x3D; \{1,2,3,4,5,6\}$，<code>这个样本点的个数是有限的，很有特色的样本空间</code> <mark>离散样本空间</mark></li>
+<li>观察某短视频在一小时内的播放量。——$Ω&#x3D;\{0,1,2,...\}$，这个也是有可知性的，我们确定了肯定是一个自然数。<code>无穷可列多个样本点的样本空间</code>   <mark>离散样本空间</mark></li>
+<li>某种型号机械的寿命。——$Ω&#x3D;(0,+∞)或Ω&#x3D;[a,b]$ <code>样本空间也可以取连续的区间</code> <mark>连续样本空间</mark></li>
+<li>观察某班同学的身高和体重。——$Ω&#x3D;\{(x,y)|x&gt;0,y&gt;0\}$<code>样本点也可以呈现出一个二维坐标点的形态</code> <mark>连续样本空间</mark></li>
+</ul>
+<h3 id="随机事件"><a class="markdownIt-Anchor" href="#随机事件"></a> 随机事件</h3>
+<p>试验$E$的结果称为随机事件，简称<code>事件</code>，对应样本空间$Ω$的一个子集，常记作$A,B,C$等。</p>
+<h4 id="基本事件"><a class="markdownIt-Anchor" href="#基本事件"></a> 基本事件</h4>
+<p>由一个样本点组成的单点集，称为<code>基本事件</code></p>
+<h4 id="不可能事件"><a class="markdownIt-Anchor" href="#不可能事件"></a> 不可能事件</h4>
+<p>空集$Φ$不包含任何样本点，它也作为样本空间的子集，它在每次试验中都不发生，$Φ$称为不可能发生事件</p>
+<h4 id="必然事件"><a class="markdownIt-Anchor" href="#必然事件"></a> 必然事件</h4>
+<p>样本空间$Ω$包含所有的样本点，它是Ω自身的子集，在每次试验中它总是发生的，$Ω$称为必然事件</p>
+<h4 id="什么是事件发生"><a class="markdownIt-Anchor" href="#什么是事件发生"></a> 什么是事件发生</h4>
+<p>在每次试验中，事件中<code>有且仅有一个样本点</code>出现，就称该事件发生。<br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260319153956.png" alt="示意图" /></p>
+<h3 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h3>
+<ul>
+<li><strong>样本点</strong>：最小的 “结果颗粒”</li>
+<li><strong>样本空间</strong>：装所有结果的 “大盒子”</li>
+<li><strong>事件</strong>：从大盒子里挑出的 “部分结果组合”</li>
+</ul>
+<h2 id="事件的关系和运算"><a class="markdownIt-Anchor" href="#事件的关系和运算"></a> 事件的关系和运算</h2>
+<h3 id="事件间的关系"><a class="markdownIt-Anchor" href="#事件间的关系"></a> 事件间的关系</h3>
+<h4 id="包含关系"><a class="markdownIt-Anchor" href="#包含关系"></a> 包含关系</h4>
+<p>若$A⊂B$，称事件A包含于事件B（即A的样本点都在B中），表示“A如果发生，那么B必然发生”</p>
+<h4 id="相等关系"><a class="markdownIt-Anchor" href="#相等关系"></a> 相等关系</h4>
+<p>若$A⊂B$且$B⊂A$，记为A=B，称事件A和B相等，表示“A如果发生，则B必然发生”或“B发生，A必然发生”<code>相等的事件含有相同的样本点</code></p>
+<h4 id="和事件事件的并"><a class="markdownIt-Anchor" href="#和事件事件的并"></a> 和事件（事件的并）</h4>
+<p>事件$A∪B&#x3D;\{ω:ω∈A或ω∈B\}$称为事件A与事件B的<code>和事件</code>，也记作A+B，表示“A或B至少有一个发生”</p>
+<h4 id="积事件事件的交"><a class="markdownIt-Anchor" href="#积事件事件的交"></a> 积事件（事件的交）</h4>
+<p>事件$A∩B&#x3D;\{ω:ω∈A或ω∈B\}$称为事件A与事件B的<code>积事件</code>，也记作A+B，表示“A和B同时发生”</p>
+<h4 id="差事件"><a class="markdownIt-Anchor" href="#差事件"></a> 差事件</h4>
+<p>事件$A-B&#x3D;\{ω:ω∈A或ω∉B\}$称为事件A与事件B的<code>差事件</code>，也记作$A-B&#x3D;A\overline B$，表示“A发生了且B不发生”</p>
+<h4 id="互斥互不相容事件"><a class="markdownIt-Anchor" href="#互斥互不相容事件"></a> 互斥（互不相容）事件</h4>
+<p>若$A∩B&#x3D;Φ$，称事件A与B互不相容（或互斥），表示“事件A与事件B不能同时发生”</p>
+<h4 id="互逆对立事件"><a class="markdownIt-Anchor" href="#互逆对立事件"></a> 互逆（对立）事件</h4>
+<p>事件$A∪B&#x3D;Ω$则称事件A和事件B互为逆事件（对立事件）。对每次试验而言，事件A与B中必定有一个发生，且仅有一个发生。事件A的对立事件记作$\overline A$</p>
+<h4 id="例题"><a class="markdownIt-Anchor" href="#例题"></a> 例题</h4>
+<p><img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260319163520.png" alt="示意图" /></p>
+<ol>
+<li>$C$</li>
+<li>$AB\overline C$</li>
+<li>$AB\overline{C} \cup A\overline{B}C \cup \overline{A}BC$</li>
+<li>$AB∪AC∪BC$</li>
+</ol>
+<h3 id="集合运算三大定律概率论版"><a class="markdownIt-Anchor" href="#集合运算三大定律概率论版"></a> 集合运算三大定律（概率论版）</h3>
+<h4 id="交换律"><a class="markdownIt-Anchor" href="#交换律"></a> 交换律</h4>
+<p>$$ A \cup B &#x3D; B \cup A,\quad A \cap B &#x3D; B \cap A $$ ---
+#### 结合律
+$$</p><h4 id="分配律"><a class="markdownIt-Anchor" href="#分配律"></a> 分配律</h4>
+<p>$$A \cup (B \cap C) &#x3D; (A \cup B) \cap (A \cup C) 
+$$</p><p>$$A \cap (B \cup C) &#x3D; (A \cap B) \cup (A \cap C) 
+$$</p><h4 id="对偶律德摩根律"><a class="markdownIt-Anchor" href="#对偶律德摩根律"></a> 对偶律（德摩根律）</h4>
+<p>$$ \overline{A \cup B} &#x3D; \overline{A} \cap \overline{B},\quad \overline{A \cap B} &#x3D; \overline{A} \cup \overline{B} $$ **直观记忆**：**去括号，变符号**（并变交，交变并，上划线分到每个字母）。
+#### 注意
+在事件运算中“加括号”“去括号”的运算规律一般不成立
+## 古典概型（也叫古典概率)或者说二叉树的世界
+### 什么是概率
+称随机事件A发生可能性大小的度量为事件A发生的概率，记为$P(A)$
+### 古典概型
+定义：称具有以下两个特点的试验为古典概型（等可能概型）
+1. 试验E的样本空间Ω只包含有限个样本点，即$\Omega &#x3D; \{\omega_1, \omega_2, \dots, \omega_n\};$
+2. 每个样本出现的可能性相同
+计算公式：若事件A由k个基本事件组成，则有：$$P(A) &#x3D; \dfrac{k}{n} &#x3D; \dfrac{\text{A包含的基本事件数}}{\Omega \text{中的基本事件总数}}$$</p><p><img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260319205951.png" alt="史蒂芬" /><br />
+根据古典概型公式：</p>
+<p>$$P(A) &#x3D; \frac{\text{事件}A\text{包含的基本事件数}}{\text{样本空间}\Omega\text{中的基本事件总数}}
+$$</p><p>我们需要分别计算：</p>
+<ol>
+<li><strong>总放法数</strong>（分母）：所有可能的放球方式</li>
+<li><strong>满足条件的放法数</strong>（分子）：每个盒子最多放 1 个球的放球方式</li>
+</ol>
+<hr />
+<h4 id="步骤-1计算总放法数分母"><a class="markdownIt-Anchor" href="#步骤-1计算总放法数分母"></a> 步骤 1：计算总放法数（分母）</h4>
+<ul>
+<li>每个球都可以独立选择 N 个盒子中的任意一个</li>
+<li>第 1 个球：N 种选择</li>
+<li>第 2 个球：N 种选择</li>
+<li>…</li>
+<li>第 n 个球：N 种选择<br />
+根据乘法原理，总放法数为：</li>
+</ul>
+<p>$$\underbrace{N \times N \times \dots \times N}_{n \text{ 次}} &#x3D; N^n
+$$</p><hr />
+<h4 id="步骤-2计算满足条件的放法数分子"><a class="markdownIt-Anchor" href="#步骤-2计算满足条件的放法数分子"></a> 步骤 2：计算满足条件的放法数（分子）</h4>
+<p>要满足 “每个盒子最多 1 个球”，需分两步操作：</p>
+<h5 id="选择盒子"><a class="markdownIt-Anchor" href="#选择盒子"></a> 选择盒子</h5>
+<p>从 N 个盒子中选出 n 个盒子来放置这 n 个球，这是一个<strong>组合问题</strong>：</p>
+<p>$$C_N^n &#x3D; \frac{N!}{n!(N-n)!}
+$$</p><p>含义：从 N 个不同盒子中选出 n 个，不考虑顺序。</p>
+<h5 id="放置球"><a class="markdownIt-Anchor" href="#放置球"></a> 放置球</h5>
+<p>将 n 个<strong>不同的球</strong>放入已选出的 n 个盒子中，每个盒子恰好放 1 个球，这是一个<strong>全排列问题</strong>：</p>
+<p>$$n! &#x3D; n \times (n-1) \times \dots \times 1
+$$</p><p>含义：n 个不同元素的全排列数。</p>
+<h5 id="合并计算"><a class="markdownIt-Anchor" href="#合并计算"></a> 合并计算</h5>
+<p>满足条件的总放法数 = 选盒子的方法数 × 放球的方法数：</p>
+<p>$$C_N^n \cdot n!
+$$</p><p>该式可化简为排列数形式：</p>
+<p>$$C_N^n \cdot n! &#x3D; \frac{N!}{n!(N-n)!} \cdot n! &#x3D; \frac{N!}{(N-n)!} &#x3D; P_N^n
+$$</p><hr />
+<h4 id="步骤-3计算概率"><a class="markdownIt-Anchor" href="#步骤-3计算概率"></a> 步骤 3：计算概率</h4>
+<p>将分子和分母代入古典概型公式，得到最终概率：</p>
+<p>$$p_1 &#x3D; \frac{C_N^n \cdot n!}{N^n} &#x3D; \frac{N!}{(N-n)! \cdot N^n}
+$$</p>
+    </div>
+    <footer class="article-footer">
+        <a data-aos="zoom-in" href="/2026/03/19/%E6%A6%82%E7%8E%87%E8%AE%BA%E7%AC%AC%E4%B8%80%E7%AB%A0-%E5%BB%BA%E8%AE%BE%E4%B8%AD/#comments" class="article-comment-link">
+          <span class="post-comments-count twikoo-comment-count" data-path="/2026/03/19/%E6%A6%82%E7%8E%87%E8%AE%BA%E7%AC%AC%E4%B8%80%E7%AB%A0-%E5%BB%BA%E8%AE%BE%E4%B8%AD/" itemprop="commentCount"></span>
+          留言
+        </a>
+        <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/" title="笔记" data-aos="zoom-in">笔记</a><a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/%E6%A6%82%E7%8E%87%E8%AE%BA/" title="概率论" data-aos="zoom-in">概率论</a>
+
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E5%8F%A4%E5%85%B8%E6%A6%82%E5%9E%8B/" rel="tag" title="古典概型">古典概型</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E6%A6%82%E7%8E%87%E8%AE%BA/" rel="tag" title="概率论">概率论</a></li></ul>
+
+    </footer>
+  </div>
+    <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
+    <div class="article-nav-link-wrap right">
+        <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260318003035.png" data-sizes="auto" alt="JavaIO流" class="lazyload">
+      <a href="/2026/03/18/JavaIO%E6%B5%81/" aria-label="后一篇: JavaIO流"  title="后一篇: JavaIO流"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+          JavaIO流
+      </h3>
+    </div>
+  </nav>
+
+</article>
+
+  <section id="comments" data-aos="fade-up">
+    <div class="comment-header">
+        
+      <h2 class="comment-title">说些什么吧！</h2>
+      <div class="comment-selector">
+        <div class="comment-selector-wrap">
+            <div class="selector-item" data-selector="twikoo">
+              <span>twikoo</span>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="comment-content">
+          <div class="comment twikoo-comment" data-aos="fade-up"
+            id="twikoo-comment">
+          </div>
+    </div>
+  </section>
+
+</section>
+        </div>
+        <footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    <div>
+      <span class="icon-copyright"></span>
+        2020-2026
+        <span class="footer-info-sep rotate"></span>
+      Stvfen
+    </div>
+      <div>
+        基于&nbsp;<a href="https://hexo.io/" rel="noopener nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+      <div>
+        <span class="icon-brush"></span>
+        68.7k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        04:41
+      </div>
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+  </div>
+</footer>
+
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap">
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9A%8F%E6%9C%BA%E4%BA%8B%E4%BB%B6%E4%B8%8E%E6%A0%B7%E6%9C%AC%E7%A9%BA%E9%97%B4"><span class="toc-number">1.</span> <span class="toc-text"> 随机事件与样本空间</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A1%AE%E5%AE%9A%E6%80%A7"><span class="toc-number">1.1.</span> <span class="toc-text"> 确定性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%8F%E6%9C%BA%E6%80%A7"><span class="toc-number">1.2.</span> <span class="toc-text"> 随机性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%8F%E6%9C%BA%E8%AF%95%E9%AA%8C"><span class="toc-number">1.3.</span> <span class="toc-text"> 随机试验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B7%E6%9C%AC"><span class="toc-number">1.4.</span> <span class="toc-text"> 样本</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%B7%E6%9C%AC%E7%82%B9"><span class="toc-number">1.4.1.</span> <span class="toc-text"> 样本点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%B7%E6%9C%AC%E7%A9%BA%E9%97%B4"><span class="toc-number">1.4.2.</span> <span class="toc-text"> 样本空间</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BE%8B%E5%AD%90"><span class="toc-number">1.4.3.</span> <span class="toc-text"> 例子</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%8F%E6%9C%BA%E4%BA%8B%E4%BB%B6"><span class="toc-number">1.5.</span> <span class="toc-text"> 随机事件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E4%BA%8B%E4%BB%B6"><span class="toc-number">1.5.1.</span> <span class="toc-text"> 基本事件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8D%E5%8F%AF%E8%83%BD%E4%BA%8B%E4%BB%B6"><span class="toc-number">1.5.2.</span> <span class="toc-text"> 不可能事件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BF%85%E7%84%B6%E4%BA%8B%E4%BB%B6"><span class="toc-number">1.5.3.</span> <span class="toc-text"> 必然事件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E4%BA%8B%E4%BB%B6%E5%8F%91%E7%94%9F"><span class="toc-number">1.5.4.</span> <span class="toc-text"> 什么是事件发生</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.6.</span> <span class="toc-text"> 总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E7%9A%84%E5%85%B3%E7%B3%BB%E5%92%8C%E8%BF%90%E7%AE%97"><span class="toc-number">2.</span> <span class="toc-text"> 事件的关系和运算</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">2.1.</span> <span class="toc-text"> 事件间的关系</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8C%85%E5%90%AB%E5%85%B3%E7%B3%BB"><span class="toc-number">2.1.1.</span> <span class="toc-text"> 包含关系</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%B8%E7%AD%89%E5%85%B3%E7%B3%BB"><span class="toc-number">2.1.2.</span> <span class="toc-text"> 相等关系</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%92%8C%E4%BA%8B%E4%BB%B6%E4%BA%8B%E4%BB%B6%E7%9A%84%E5%B9%B6"><span class="toc-number">2.1.3.</span> <span class="toc-text"> 和事件（事件的并）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A7%AF%E4%BA%8B%E4%BB%B6%E4%BA%8B%E4%BB%B6%E7%9A%84%E4%BA%A4"><span class="toc-number">2.1.4.</span> <span class="toc-text"> 积事件（事件的交）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B7%AE%E4%BA%8B%E4%BB%B6"><span class="toc-number">2.1.5.</span> <span class="toc-text"> 差事件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%92%E6%96%A5%E4%BA%92%E4%B8%8D%E7%9B%B8%E5%AE%B9%E4%BA%8B%E4%BB%B6"><span class="toc-number">2.1.6.</span> <span class="toc-text"> 互斥（互不相容）事件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%92%E9%80%86%E5%AF%B9%E7%AB%8B%E4%BA%8B%E4%BB%B6"><span class="toc-number">2.1.7.</span> <span class="toc-text"> 互逆（对立）事件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-number">2.1.8.</span> <span class="toc-text"> 例题</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%86%E5%90%88%E8%BF%90%E7%AE%97%E4%B8%89%E5%A4%A7%E5%AE%9A%E5%BE%8B%E6%A6%82%E7%8E%87%E8%AE%BA%E7%89%88"><span class="toc-number">2.2.</span> <span class="toc-text"> 集合运算三大定律（概率论版）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%A4%E6%8D%A2%E5%BE%8B"><span class="toc-number">2.2.1.</span> <span class="toc-text"> 交换律</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E9%85%8D%E5%BE%8B"><span class="toc-number">2.2.2.</span> <span class="toc-text"> 分配律</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%B9%E5%81%B6%E5%BE%8B%E5%BE%B7%E6%91%A9%E6%A0%B9%E5%BE%8B"><span class="toc-number">2.2.3.</span> <span class="toc-text"> 对偶律（德摩根律）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4-1%E8%AE%A1%E7%AE%97%E6%80%BB%E6%94%BE%E6%B3%95%E6%95%B0%E5%88%86%E6%AF%8D"><span class="toc-number">2.2.4.</span> <span class="toc-text"> 步骤 1：计算总放法数（分母）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4-2%E8%AE%A1%E7%AE%97%E6%BB%A1%E8%B6%B3%E6%9D%A1%E4%BB%B6%E7%9A%84%E6%94%BE%E6%B3%95%E6%95%B0%E5%88%86%E5%AD%90"><span class="toc-number">2.2.5.</span> <span class="toc-text"> 步骤 2：计算满足条件的放法数（分子）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E7%9B%92%E5%AD%90"><span class="toc-number">2.2.5.1.</span> <span class="toc-text"> 选择盒子</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%94%BE%E7%BD%AE%E7%90%83"><span class="toc-number">2.2.5.2.</span> <span class="toc-text"> 放置球</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%90%88%E5%B9%B6%E8%AE%A1%E7%AE%97"><span class="toc-number">2.2.5.3.</span> <span class="toc-text"> 合并计算</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4-3%E8%AE%A1%E7%AE%97%E6%A6%82%E7%8E%87"><span class="toc-number">2.2.6.</span> <span class="toc-text"> 步骤 3：计算概率</span></a></li></ol></li></ol></li></ol>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Stvfen" class="lazyload">
+  <div class="sidebar-author-name">Stvfen</div>
+  <div class="sidebar-description">电台组组长</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">24</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">14</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">21</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/3546704989129249?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+  </div>
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+</nav>
+
+    </div>
+      <div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/images/reimu.png"/>
+        </div>
+      </div>
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+  
+<script src="/js/generator_search.js" defer></script>
+
+
+
+  <script>
+    var setupFirework = () => {
+      if (!false || !window.matchMedia('(max-width: 768px)').matches) {
+        window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'));
+      }
+    }
+  </script>
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.2.0/dist/index.umd.js" integrity="sha384-qi9WggRt19tv8Vc7pCHW3ulMNLwrn515zaLEWZjl1px07vz8+pUoWX8n1rgq282T" crossorigin="anonymous" onload="setupFirework()" defer></script>
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "Stvfen",
+          title: "概率论第一章-建设中",
+          url: "http://example.com/2026/03/19/%E6%A6%82%E7%8E%87%E8%AE%BA%E7%AC%AC%E4%B8%80%E7%AB%A0-%E5%BB%BA%E8%AE%BE%E4%B8%AD/",
+          excerpt: "",
+          description: "",
+          stripContent: " 随机事件与样本空间  确定性 随机性的对立是确定性，那么我们先来思考一下什么是确定性。比如说月亮绕着地球转，地球绕着太阳转，明天天一定会亮，字母表AB后一定是C，这些都是确定一定会发生的事情，也就是说只有一个结果的事件，我们就说这个事件有确定性。  随机性 那么和确定相对的就是随机性，也就是说我们事先不知道它会不会发生。比如说明天下雨啊，那么这个事情在明天到来前有多个结果，那么就是随机性。  随机试验 我么将满足以下三个特点的试验称为随机试验：  可以在相同条件下重复地进行 每次试验的可能结果",
+          date: "Thu Mar 19 2026 23:58:39 GMT+0800",
+          updated: "Fri Mar 20 2026 00:43:16 GMT+0800",
+          cover: "https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260320004150.png",
+        };
+      </script>
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+      
+<script src="/js/tabs.js" data-pjax defer></script>
+
+      <script type="module" data-pjax>
+        (async () => {
+          const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+          const initPswp = (gallery, children) => {
+            if (_$$(`${gallery} ${children}`).length > 0) {
+              new PhotoSwipeLightbox({
+                gallery,
+                children,
+                pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+              }).init();
+            }
+          }
+          const pswp = () => {
+            initPswp('.article-entry', 'a.article-gallery-item');
+            initPswp('.article-gallery', 'a.article-gallery-item');
+          }
+          pswp();
+        })();
+      </script>
+        
+
+<script data-pjax>
+  var loadScript = (src, integrity) => {
+    const script = document.createElement('script');
+    script.src = src;
+    if (integrity) script.integrity = integrity;
+    script.crossOrigin = 'anonymous';
+    return script;
+  };
+
+  var commentConfigKeys = ["twikoo"];
+  var commentConfig = {
+    twikoo: {
+      enable: true,
+      load: () => {
+        const container = document.querySelector('.twikoo-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        const script = loadScript(
+          'https://npm.webcache.cn/twikoo@1.6.44/dist/twikoo.all.min.js',
+          'sha384-kwWLC0HjeZZnVPqCJ1AncI8tsk+kQqF9TbAmCclcc9Z0hGkfgHRzeQZxmdmZhE0K'
+        );
+
+        script.onload = () => {
+          if (window.twikoo) {
+            twikoo.init({
+              envId: 'https://pinglunqu.vercel.app',
+              el: '.twikoo-comment',
+              region: '',
+              lang: document.documentElement.lang || 'en',
+            });
+
+            twikoo.getCommentsCount({
+              envId: 'https://pinglunqu.vercel.app',
+              region: '',
+              urls: [
+                '/friend/index.html'
+              ],
+              includeReply: false
+            }).then((res) => {
+              _$('.twikoo-comment-count').innerText = res[0].count;
+            }).catch((err) => {
+              console.error(err);
+            });
+          }
+        } 
+        document.head.appendChild(script);
+      }
+    },
+  }
+  commentConfig.enable = commentConfigKeys.some(key => commentConfig[key].enable);
+
+  var defaultComment = '';
+  if (commentConfig.enable) {
+    // 1. 首先检查localStorage中是否有保存的评论类型
+    var savedCommentType = localStorage.getItem('commentType');
+    
+    // 2. 如果localStorage中有值且对应的评论系统可用，就使用它
+    if (savedCommentType) {
+      if (commentConfig[savedCommentType]?.enable) {
+        defaultComment = savedCommentType;
+      }
+    }
+    
+    // 3. 如果localStorage无效，检查配置的默认评论系统
+    if (!defaultComment) {
+      var configDefault = 'waline';
+      if (commentConfig[configDefault]?.enable) {
+        defaultComment = configDefault;
+      }
+    }
+    
+    // 4. 如果前两项都无效，按指定顺序找到第一个可用的评论系统
+    if (!defaultComment) {
+      defaultComment = commentConfigKeys.find(sys => commentConfig[sys].enable) || '';
+    }
+  }
+  function loadComments() {
+    if (!commentConfig.enable) return;
+    const loadedComments = {
+      valine: false,
+      waline: false,
+      twikoo: false,
+      gitalk: false,
+      giscus: false
+    };
+
+    // 隐藏所有评论容器
+    const hideAllComments = () => {
+      const commentContainers = document.querySelectorAll('.comment');
+      commentContainers.forEach(container => {
+        container.style.display = 'none';
+      });
+    };
+
+    // 按需加载评论系统
+    const loadCommentSystem = (type) => {
+      if (loadedComments[type]) {
+        // 如果已加载，只需显示对应容器
+        document.querySelector(`.${type}-comment`).style.display = 'block';
+        return;
+      }
+
+      // 根据类型加载对应的脚本
+      commentConfig[type]?.load();
+      loadedComments[type] = true;
+    };
+
+    // 评论组件选择器
+    const changeActiveCommentItems = (item) => {
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let i = 0; i < commentItems.length; i++) {
+        commentItems[i].classList.remove('active');
+      }
+      item.classList.add('active');
+
+      // 获取要加载的评论系统类型
+      const commentType = item.getAttribute('data-selector');
+
+      // 隐藏所有评论系统
+      hideAllComments();
+
+      // 加载选中的评论系统
+      loadCommentSystem(commentType);
+    };
+
+    const commentInit = () => {
+      // 评论组件选择器点击事件
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let item of commentItems) {
+        item.addEventListener('click', () => {
+          // 保存选择器状态
+          const commentType = item.getAttribute('data-selector');
+          window.localStorage.setItem('commentType', commentType);
+          // 切换选中状态
+          changeActiveCommentItems(item);
+        });
+      }
+
+      // 检查是否需要加载默认评论系统
+      if (defaultComment) {
+        const defaultSelectorItem = document.querySelector(`[data-selector="${defaultComment}"]`);
+        if (!defaultSelectorItem) return;
+        defaultSelectorItem.style.display = 'block';
+        defaultSelectorItem.classList.add('active');
+        loadCommentSystem(defaultComment);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', commentInit);
+    } else {
+      commentInit();
+    }
+  };
+  loadComments();
+</script>
+
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.12.1' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+    
+<script src="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.js" integrity="sha384-MWNUH0WmtsYGhn2cbH6ELRCbf9LG3QDqCC+gqPB3IBNO35xjZK3Ejb6oONRpDbPg" crossorigin="anonymous" defer data-pjax></script>
+
+    
+<script src="https://npm.webcache.cn/katex@0.16.24/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous" defer onload="renderMathInElement(_$(&#39;article&#39;), {delimiters: [{left: &#39;$$&#39;, right: &#39;$$&#39;, display: true},{left: &#39;$&#39;, right: &#39;$&#39;, display: false}]});" data-pjax></script>
+
+  
+
+
+  </body>
+  </html>
