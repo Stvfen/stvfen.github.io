@@ -25,8 +25,16 @@
 <meta property="og:description" content="数据库系统概述  数据、数据库、数据库管理系统、数据库系统 数据（Data）：数据是数据库中存储的基本对象。，定义为描述事物的符号记录，也可以是文字、图像、图形、声音、语言等。  数据库（DataBase，简称DB）:数据库时长期储存在计算机内，有组织的，可共享的大量数据的集合。 数据库数据具有永久存储、有组织和可共享三个基本特点  有组织：在电脑内D盘和C盘都是可以的 可共享：可以给别人用">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260323-171217-display-0.png.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260324074651.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260324081506.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260324082027.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260324083358.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260324084100.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260324084351.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260324084935.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260324085631.png">
 <meta property="article:published_time" content="2026-03-23T13:54:33.000Z">
-<meta property="article:modified_time" content="2026-03-23T14:00:55.244Z">
+<meta property="article:modified_time" content="2026-03-24T01:08:01.058Z">
 <meta property="article:author" content="Stvfen">
 <meta property="article:tag" content="数据库">
 <meta name="twitter:card" content="summary">
@@ -150,7 +158,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text"> 数据库系统概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE-%E6%95%B0%E6%8D%AE%E5%BA%93-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.1.</span> <span class="toc-text"> 数据、数据库、数据库管理系统、数据库系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86%E6%8A%80%E6%9C%AF%E7%9A%84%E4%BA%A7%E7%94%9F%E5%92%8C%E5%8F%91%E5%B1%95"><span class="toc-number">1.2.</span> <span class="toc-text"> 数据管理技术的产生和发展</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.</span> <span class="toc-text"> 数据模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%A4%E7%B1%BB%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.1.</span> <span class="toc-text"> 两类数据模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%BB%84%E6%88%90%E8%A6%81%E7%B4%A0"><span class="toc-number">2.2.</span> <span class="toc-text"> 数据模型的组成要素</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text"> 数据库系统概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE-%E6%95%B0%E6%8D%AE%E5%BA%93-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.1.</span> <span class="toc-text"> 数据、数据库、数据库管理系统、数据库系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86%E6%8A%80%E6%9C%AF%E7%9A%84%E4%BA%A7%E7%94%9F%E5%92%8C%E5%8F%91%E5%B1%95"><span class="toc-number">1.2.</span> <span class="toc-text"> 数据管理技术的产生和发展</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.</span> <span class="toc-text"> 数据模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%A4%E7%B1%BB%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.1.</span> <span class="toc-text"> 两类数据模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%BB%84%E6%88%90%E8%A6%81%E7%B4%A0"><span class="toc-number">2.2.</span> <span class="toc-text"> 数据模型的组成要素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.3.</span> <span class="toc-text"> 概念模型</span></a></li></ol></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -225,7 +233,7 @@
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
     <time datetime="2026-03-23T13:54:33.000Z" itemprop="datePublished">2026-03-23</time>
-    <time style="display: none;" id="post-update-time">2026-03-23</time>
+    <time style="display: none;" id="post-update-time">2026-03-24</time>
   </span>
 </div>
 
@@ -305,7 +313,7 @@
 <hr />
 <p>根据模型应用的不同目的，可分为两类：<Br><br />
 <strong>第一类是概念模型（Conceptual Model)。</strong><Br><br />
-<strong>概率模型</strong>：也称信息模型，它是按照用户的观点来对数据和信息建模，主要用于数据库设计。其实就是我们在数据库的设计阶段，根据我们对用户数据和信息的理解，然后设计出来的模型。<br><br />
+<strong>概念模型</strong>：也称信息模型，它是按照用户的观点来对数据和信息建模，主要用于数据库设计。其实就是我们在数据库的设计阶段，根据我们对用户数据和信息的理解，然后设计出来的模型。<br><br />
 <strong>第二类模型是逻辑模型和物理模型。</strong><br></p>
 <ul>
 <li><strong>逻辑模型</strong>：主要包括<code>层次模型</code>，<code>网状模型</code>，<code>关系模型</code>，<code>面向对象模型</code>和<code>对象关系模型</code>等。<strong>它是按计算机系统的观点对数据建模 ，主要用于DBMS的实现</strong>。层次模型有二叉树；网状模型有图的结构；关系模型也就是主流的模型，也就是表格/二维表；</li>
@@ -324,6 +332,53 @@
 <li><strong>数据结构</strong>：数据结构描述数据库的组成对象以及对象之间的联系。数据结构是所描述的对象类型的集合，是对系统静态特征的描述。其实就是我们之前说的模型。</li>
 <li><strong>数据操作</strong>：数据库主要有查询和更新（包括插入、删除、修改）两大类操作。数据操作是对系统动态特征的描述。</li>
 <li><strong>数据的完整性约束条件</strong>：数据的完整性约束条件是一组完整性规则。在第一个表里学号001是张三，你第二个表学号001号就必须也得是张三；第二个就是你的身高和体重不能是图片，得是数字；成绩最高100，不能出现101。</li>
+</ul>
+<h3 id="概念模型"><a class="markdownIt-Anchor" href="#概念模型"></a> 概念模型</h3>
+<p>概念模型是现实世界到机器世界的一个中间层次，表现为：</p>
+<ul>
+<li>概念模型用于信息世界的建模</li>
+<li>现实世界到信息世界的第一层抽象</li>
+<li>数据库设计人员进行数据库设计的有力工具</li>
+<li>数据库设计人员和用户之间进行交流的语言：我设计的这个数据库符不符合你的实际应用？<br />
+<strong>概念模型设计要求</strong>：</li>
+<li>具有较强的语义表达能力：我这个模型要能非常清楚的表示出现实世界中它是什么意思</li>
+<li>能够方便、直接地表达应用中的各种语义知识：有学生姓名，就应该有学号等信息</li>
+<li>简单、清晰、易于用户理解</li>
+</ul>
+<hr />
+<p><strong>信息世界的基本概念</strong>：<br><br />
+<strong>实体(Entity)</strong>：<strong>客观存在并可相互区别的事务称为实体。</strong> 实体可以是具体的人、事、物，也可以是抽象的概念或联系。比如一个职工、一个部门、一门课。<br><br />
+<strong>属性（Attribute）</strong>：<strong>实体所具有的某一特征称为属性。</strong> 一个实体可以由若干个属性来刻画。比如一个学生实体可以有学号，姓名等若干个属性。<br><br />
+<strong>码（Key）</strong>：唯一标识实体的属性集称为码。比如学号是学生的码。<br><br />
+<strong>域（Domain）</strong>：域是一组具有相同数据类型的值的集合。属性的取值范围。比如说成绩域的范围是0-100，学号是8为整数。性别是男或女。<Br><br />
+<strong>实体型（Entity Type）</strong>：具有相同属性的实体必然具有相同的特征和性质。用实体名及其属性名集合来抽象和刻画同类实体，称为实体型。比如学生（学号，姓名，性别，出生年月）就是一个实体型。<br><br />
+<strong>实体集（Entity Set）</strong>：同一类型实体的集合称为实体集。比如全体学生就是一个实体集。<br><br />
+<strong>联系（Relationship）</strong>：在现实世界中，事物内部以及事物之间是有联系的，这个在信息世界中反映为实体（型）内部的联系和实体（型）之间的联系。实体内部通常是指组成实体的各属性之间的联系；实体之间的联系通常是指不同实体集之间的联系。</p>
+<hr />
+<p><strong>两个实体之间的联系</strong>：<br><br />
+<strong>一对一联系（1：1）</strong>：如果对于实体集A中的每一个实体，实体集B中最多有一个实体与之联系，反之亦然，则称实体集A与实体集B具有一对一联系，记作1：1。比如班级是实体集A，班长是实体集B，那么班级和班长具有一对一联系，如下图所示：<br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260324074651.png" alt="示意图" /><br />
+<strong>一对多联系（1：n）</strong>：如果对于实体集A中的每一个实体，实体集B中有n个实体(n&gt;=0)与之联系，反之，对于实体集B中的每一个实体，实体集A中至多只有一个实体与之联系，则称实体集A与实体集B有一对多联系，记为1：n。比如班级与学生之间的联系，如图：<br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260324081506.png" alt="示意图" /><br />
+<strong>多对多联系（m：n）</strong>：如果对于实体集A中的每一个实体，实体集B中有n个实体（m&gt;=0)与之联系，反之，对于实体集B中的每一个实体，实体集A中也有m个实体与之联系，则称实体集A与实体集B多对多联系，记为m：n。实际上1：1是1：多的特例，1：多又是多对多的特例。比如学校的选课系统，一门课可以由多个学生选，而一个学生又可以选多门课：<br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260324082027.png" alt="示意图" /></p>
+<hr />
+<p><strong>两个以上实体型的联系</strong>：<strong>两个以上的实体型之间也存在着一对一、一对多、多对多联系</strong>。若实体型$E_1,E_2,...,E_n$之间存在联系，对于实体型$E_i$中给定的实体，最多只和$E_i$中的一个实体相联系，则说$E_i$与$E_1,E_2,...,E_i-1,E_i+1,...,E_n$之间能联系是一对多的。比如对于课程，教师，参考书这三个实体型，如图：<br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260324083358.png" alt="示意图" /><br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260324084100.png" alt="示意图" /></p>
+<hr />
+<p><strong>单个实体型内的联系</strong>：同一个实体集内的各实体之间也可以存在一对一、一对多、多对多的联系。比如员工中的职工和领导：<br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260324084351.png" alt="示意图" /></p>
+<hr />
+<p><strong>概念模型的一种表示方法：实体-联系图（E-R图）</strong>：<br><br />
+E-R图提供了表示实体型、属性和联系的方法：</p>
+<ul>
+<li><strong>实体型</strong>：用矩形表示，矩形框内写明实体名。</li>
+<li><strong>属性</strong>：用椭圆形表示，并用无向边将其与相应的实体型连接起来。</li>
+<li><strong>联系</strong>：用菱形表示，菱形框内写明联系名，并用无向边分别与有关实体型连接起来，同时在无向边旁标上联系的类型（1：1、1：n、m：n等）。如果一个联系具有属性，则这些属性也要用无向边跟联系连接起来。<strong>联系的属性，本质就是为 “实体组合” 做 1:1 描述</strong>。<br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260324084935.png" alt="示意图" /><br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260324085631.png" alt="示意图" /><br />
+<strong>联系的属性，本质就是为 “实体组合” 做 1:1 描述</strong>。上面的含义是，某一个供应商，为某一个项目，供应了某一种零件，供应的数量是多少。</li>
 </ul>
 
     </div>
@@ -389,10 +444,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        75.9k
+        77.3k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        05:11
+        05:15
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -414,7 +469,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text"> 数据库系统概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE-%E6%95%B0%E6%8D%AE%E5%BA%93-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.1.</span> <span class="toc-text"> 数据、数据库、数据库管理系统、数据库系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86%E6%8A%80%E6%9C%AF%E7%9A%84%E4%BA%A7%E7%94%9F%E5%92%8C%E5%8F%91%E5%B1%95"><span class="toc-number">1.2.</span> <span class="toc-text"> 数据管理技术的产生和发展</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.</span> <span class="toc-text"> 数据模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%A4%E7%B1%BB%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.1.</span> <span class="toc-text"> 两类数据模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%BB%84%E6%88%90%E8%A6%81%E7%B4%A0"><span class="toc-number">2.2.</span> <span class="toc-text"> 数据模型的组成要素</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text"> 数据库系统概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE-%E6%95%B0%E6%8D%AE%E5%BA%93-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.1.</span> <span class="toc-text"> 数据、数据库、数据库管理系统、数据库系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86%E6%8A%80%E6%9C%AF%E7%9A%84%E4%BA%A7%E7%94%9F%E5%92%8C%E5%8F%91%E5%B1%95"><span class="toc-number">1.2.</span> <span class="toc-text"> 数据管理技术的产生和发展</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.</span> <span class="toc-text"> 数据模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%A4%E7%B1%BB%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.1.</span> <span class="toc-text"> 两类数据模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%BB%84%E6%88%90%E8%A6%81%E7%B4%A0"><span class="toc-number">2.2.</span> <span class="toc-text"> 数据模型的组成要素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.3.</span> <span class="toc-text"> 概念模型</span></a></li></ol></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -563,7 +618,7 @@
           description: "",
           stripContent: " 数据库系统概述  数据、数据库、数据库管理系统、数据库系统 数据（Data）：数据是数据库中存储的基本对象。，定义为描述事物的符号记录，也可以是文字、图像、图形、声音、语言等。  数据库（DataBase，简称DB）:数据库时长期储存在计算机内，有组织的，可共享的大量数据的集合。 数据库数据具有永久存储、有组织和可共享三个基本特点  有组织：在电脑内D盘和C盘都是可以的 可共享：可以给别人用   数据库管理系统（DataBase Management System，DBMS：我们可以把这个理解",
           date: "Mon Mar 23 2026 21:54:33 GMT+0800",
-          updated: "Mon Mar 23 2026 22:00:55 GMT+0800",
+          updated: "Tue Mar 24 2026 09:08:01 GMT+0800",
           cover: "https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260323220030.png",
         };
       </script>
@@ -630,7 +685,7 @@
               envId: 'https://pinglunqu.vercel.app',
               region: '',
               urls: [
-                '/categories/index.html'
+                '/about/index.html'
               ],
               includeReply: false
             }).then((res) => {
