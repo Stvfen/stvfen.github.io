@@ -1,0 +1,855 @@
+  <!DOCTYPE html>
+  <html lang="zh-CN"  
+      data-theme-mode="auto"
+  >
+  <head>
+  <meta charset="utf-8">
+  
+  
+  
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_4k4bc36ef96';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
+  <title>
+    计算机组成与原理第二章-定点数运算与算术逻辑单元（ALU）-施工中 | 史蒂芬の电台
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_4k4bc36ef96.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="加法器  如何用门电路实现一位加法 举个例子，比如我们来计算如下二进制：  比如我们来进行这两个二进制的加法，通过竖式我们会发现  我们每一位的加法其实都是加上上一位的进位$C_{i－1}$，$A_i$，$B_i$。 而我们产生的结果就是这一位的和$S_i$和下一位的进位$C_i$ 我们将1bit的加法器的逻辑写出来后，就如图所示。  同样的我们可以把它的电路图给画出来：  如果我们将其封装一下">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机组成与原理第二章-定点数运算与算术逻辑单元（ALU）-施工中">
+<meta property="og:url" content="http://example.com/2026/03/25/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E4%B8%8E%E5%8E%9F%E7%90%86%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%AE%9A%E7%82%B9%E6%95%B0%E8%BF%90%E7%AE%97%E4%B8%8E%E7%AE%97%E6%9C%AF%E9%80%BB%E8%BE%91%E5%8D%95%E5%85%83%EF%BC%88ALU%EF%BC%89-%E6%96%BD%E5%B7%A5%E4%B8%AD/index.html">
+<meta property="og:site_name" content="史蒂芬の电台">
+<meta property="og:description" content="加法器  如何用门电路实现一位加法 举个例子，比如我们来计算如下二进制：  比如我们来进行这两个二进制的加法，通过竖式我们会发现  我们每一位的加法其实都是加上上一位的进位$C_{i－1}$，$A_i$，$B_i$。 而我们产生的结果就是这一位的和$S_i$和下一位的进位$C_i$ 我们将1bit的加法器的逻辑写出来后，就如图所示。  同样的我们可以把它的电路图给画出来：  如果我们将其封装一下">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260325-083523-display-0.png.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260325-084627-display-0.png.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260325-084944-display-0.png.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260325-085159-display-0.png.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260325-085446-display-0_EDIT_1774400132818.png_EDIT_1774400132818.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260325111909.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260325112329.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260325113050.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260325115235.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260325120615.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260325130940.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260325131016.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260325131043.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260325131117.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260325131138.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260325131527.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260325131539.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260325131714.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260325132441.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260325132641.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260325132658.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260325132836.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260325134315.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260325134421.png">
+<meta property="article:published_time" content="2026-03-25T06:05:37.000Z">
+<meta property="article:modified_time" content="2026-03-25T06:08:16.892Z">
+<meta property="article:author" content="Stvfen">
+<meta property="article:tag" content="计算机组成原理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260325-083523-display-0.png.png">
+    <link rel="alternate" href="/atom.xml" title="史蒂芬の电台" type="application/atom+xml">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
+      <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.css" integrity="sha384-tTgKLjMYmJr94v8qu2PE5MUGSMbyN2xiH266JUB3gpm8vnnJywd1dWSOEfrFz+YI" crossorigin="anonymous">
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+  <body>
+      <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+      </div>
+      <div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script>
+<div id="copy-tooltip"></div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation">
+        <a class="main-nav-link-wrap" href="/">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">首页</span>
+        </span>
+        <a class="main-nav-link-wrap" href="/archives">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">归档</span>
+        </span>
+        <a class="main-nav-link-wrap" href="/about">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">关于</span>
+        </span>
+        <a class="main-nav-link-wrap" href="/friend">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">友链</span>
+        </span>
+    <a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation">
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅" aria-label="RSS 订阅" target="_blank"></a>
+      <a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索" aria-label="搜索"></a>
+  </nav>
+</div>
+<header id="header" aria-label="Site header">
+    <picture></picture>
+    <img  fetchpriority="high" src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260325140807.png" alt="计算机组成与原理第二章-定点数运算与算术逻辑单元（ALU）-施工中">
+  <div id="header-outer">
+    <div id="header-title">
+          <span id="logo">
+            <h1 data-aos="slide-up">计算机组成与原理第二章-定点数运算与算术逻辑单元（ALU）-施工中</h1>
+          </span>
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+        </h2>
+    </div>
+  </div>
+</header>
+
+        <div id="content" aria-label="Page content" class="sidebar-left"  >
+          <aside id="sidebar" aria-label="Sidebar">
+  <div class="sidebar-wrapper-container sticky">
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A0%E6%B3%95%E5%99%A8"><span class="toc-number">1.</span> <span class="toc-text"> 加法器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E7%94%A8%E9%97%A8%E7%94%B5%E8%B7%AF%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%BD%8D%E5%8A%A0%E6%B3%95"><span class="toc-number">1.1.</span> <span class="toc-text"> 如何用门电路实现一位加法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#n%E4%BD%8Dbit%E5%85%A8%E5%8A%A0%E5%99%A8"><span class="toc-number">1.2.</span> <span class="toc-text"> n位bit全加器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E8%B6%B3%E4%B9%8B%E5%A4%84"><span class="toc-number">1.3.</span> <span class="toc-text"> 不足之处</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%A6%E6%A0%87%E8%AF%86%E4%BD%8D%E7%9A%84%E5%8A%A0%E6%B3%95%E5%99%A8"><span class="toc-number">1.4.</span> <span class="toc-text"> 带标识位的加法器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%97%E6%9C%AF%E9%80%BB%E8%BE%91%E5%8D%95%E5%85%83alu"><span class="toc-number">2.</span> <span class="toc-text"> 算术逻辑单元(ALU)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%97%E6%9C%AF%E9%80%BB%E8%BE%91%E5%8D%95%E5%85%83alu%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number">2.1.</span> <span class="toc-text"> 算术逻辑单元（ALU）的作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#alu%E7%9A%84%E5%8A%9F%E8%83%BD"><span class="toc-number">2.2.</span> <span class="toc-text"> ALU的功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#alu%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E7%AE%80%E5%8D%95%E4%BA%86%E8%A7%A3%E5%8D%B3%E5%8F%AF"><span class="toc-number">2.3.</span> <span class="toc-text"> ALU的实现原理（简单了解即可）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9C%8B%E6%87%82alu%E5%9B%BE%E7%A4%BA"><span class="toc-number">2.4.</span> <span class="toc-text"> 看懂ALU图示</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E7%82%B9%E6%95%B0%E7%9A%84%E7%A7%BB%E4%BD%8D%E8%BF%90%E7%AE%97"><span class="toc-number">3.</span> <span class="toc-text"> 定点数的移位运算</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%81%E8%BF%9B%E5%88%B6%E7%9A%84%E7%A7%BB%E4%BD%8D%E8%BF%90%E7%AE%97"><span class="toc-number">3.1.</span> <span class="toc-text"> 十进制的移位运算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%BB%E8%BE%91%E7%A7%BB%E4%BD%8D%E5%B8%B8%E7%94%A8%E4%BA%8E%E5%A4%84%E7%90%86%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B4%E6%95%B0"><span class="toc-number">3.2.</span> <span class="toc-text"> 逻辑移位（常用于处理无符号整数）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%97%E6%95%B0%E4%BD%8D%E7%A7%BB%E5%B8%B8%E7%94%A8%E4%BA%8E%E5%A4%84%E7%90%86%E5%B8%A6%E7%AC%A6%E5%8F%B7%E6%95%B4%E6%95%B0"><span class="toc-number">3.3.</span> <span class="toc-text"> 算数位移（常用于处理带符号整数）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A5%E5%85%85"><span class="toc-number">3.4.</span> <span class="toc-text"> 补充</span></a></li></ol></li></ol>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Stvfen" class="lazyload">
+  <div class="sidebar-author-name">Stvfen</div>
+  <div class="sidebar-description">电台组组长</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">27</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">19</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">22</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/3546704989129249?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+    </div>
+  </div>
+  <div class="sidebar-widget">
+  </div>
+  </div>
+</aside>
+
+          <section id="main" aria-label="Main content"><article id="post-计算机组成与原理第二章-定点数运算与算术逻辑单元（ALU）-施工中" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2026-03-25T06:05:37.000Z" itemprop="datePublished">2026-03-25</time>
+    <time style="display: none;" id="post-update-time">2026-03-25</time>
+  </span>
+</div>
+
+    </div>
+    
+    <div class="hr-line"></div>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+        <h2 id="加法器"><a class="markdownIt-Anchor" href="#加法器"></a> 加法器</h2>
+<h3 id="如何用门电路实现一位加法"><a class="markdownIt-Anchor" href="#如何用门电路实现一位加法"></a> 如何用门电路实现一位加法</h3>
+<p>举个例子，比如我们来计算如下二进制：<br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260325-083523-display-0.png.png" alt="示意图" /><br />
+比如我们来进行这两个二进制的加法，通过竖式我们会发现</p>
+<ul>
+<li>我们每一位的加法其实都是加上上一位的进位$C_{i－1}$，$A_i$，$B_i$。</li>
+<li>而我们产生的结果就是这一位的和$S_i$和下一位的进位$C_i$<br />
+我们将1bit的加法器的逻辑写出来后，就如图所示。<br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260325-084627-display-0.png.png" alt="示意图" /><br />
+同样的我们可以把它的电路图给画出来：<br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260325-084944-display-0.png.png" alt="示意图" /><br />
+如果我们将其封装一下，就是我们的<strong>一位全加器</strong>：<br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260325-085159-display-0.png.png" alt="示意图" /></li>
+</ul>
+<hr />
+<h3 id="n位bit全加器"><a class="markdownIt-Anchor" href="#n位bit全加器"></a> n位bit全加器</h3>
+<p>我们只需要将n个1位加法器串联起来就可以得到一个n位全加器。<br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260325-085446-display-0_EDIT_1774400132818.png_EDIT_1774400132818.png" alt="示意图" /></p>
+<hr />
+<h3 id="不足之处"><a class="markdownIt-Anchor" href="#不足之处"></a> 不足之处</h3>
+<p>进位信息是串行产生的，计算速度取决于<strong>进位</strong>产生和传递的速度。位数越多，运算速度越慢。</p>
+<ul>
+<li>电信号达到稳态需要一定时间，因此进位产生速度会有延迟。</li>
+<li>串行进位又称为行波进位，就像水波一样往下传递，每一级进位直接依赖于前一级的进位，即进位信号是逐级形成的。<br />
+由于两个输入端允许并行输入 n bit，因此这种加法器属于：<strong>并行加法器</strong><BR><br />
+由于进位信息是串行产生的，因此从“进位方式”看，这种加法器属于：<strong>串行进位加法器</strong><BR><br />
+综上，很多教材把这种加法器称为 <strong>”串行进位的并行加法器“</strong></li>
+<li>“并行” 指的是：每一位的 $A_i$、$B_i$ 同时输入，有 n 个全加器在同时工作。</li>
+<li>“串行” 指的是：进位信号必须一位一位依次传递，这是速度慢的根源。</li>
+</ul>
+<hr />
+<h3 id="带标识位的加法器"><a class="markdownIt-Anchor" href="#带标识位的加法器"></a> 带标识位的加法器</h3>
+<p>我们在运用加法器进行运算的时候，通常要考虑<strong>溢出、为0、结果正负</strong>，所以我们这里有一些标识符可以使用：</p>
+<ul>
+<li><strong>OF(Overflow Flag)溢出标志</strong>：用于判断带符号数加减运算是否溢出。<code>OF＝1溢出；OF=0未溢出</code></li>
+<li><strong>SF(Sign Flag)符号标志</strong>：用于判断带符号数加减运算结果的正负性。<code>SF＝1结果为负；SF=0结果为正</code></li>
+<li><strong>ZF(Zero Flag)零标志</strong>：用于判断加减运算结果是否为0。<code>ZF=1表示结果为0；ZF=0表示结果不为零</code></li>
+<li><strong>CF(Carry Flag)进位/借位标志</strong>：用于判断无符号数加减运算是否溢出。<code>CF=1溢出；CF=0未溢出</code></li>
+</ul>
+<h2 id="算术逻辑单元alu"><a class="markdownIt-Anchor" href="#算术逻辑单元alu"></a> 算术逻辑单元(ALU)</h2>
+<h3 id="算术逻辑单元alu的作用"><a class="markdownIt-Anchor" href="#算术逻辑单元alu的作用"></a> 算术逻辑单元（ALU）的作用</h3>
+<p><img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260325111909.png" alt="示意图" /></p>
+<ul>
+<li>运算器负责对数据进行处理，如：加减乘除等。</li>
+<li>ALU是一种组合逻辑电路，实现了<strong>加/减/乘/除/与/或/非</strong>等功能。因此ALU是运算器的核心。</li>
+<li>由于加减乘除等运算都要<strong>基于“加法”来实现</strong>，因此加法器是ALU的<strong>核心</strong>。</li>
+<li>ALU是运算器的<strong>核心</strong></li>
+</ul>
+<hr />
+<h3 id="alu的功能"><a class="markdownIt-Anchor" href="#alu的功能"></a> ALU的功能</h3>
+<ul>
+<li>算术运算：加减乘除等</li>
+<li>逻辑运算：与或非、异或、移位等</li>
+<li>其他：求补码（计算B的补码）、直送（不进行计算直接通过，但是还是有控制信号）等<br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260325112329.png" alt="示意图" /><br />
+当我们要进行加法等其他方法时，控制器会传输一个指令信号为m来ALU中。<Br><br />
+考试重点：</li>
+<li><mark>如果ALU支持k种功能，则控制信号位数$m&gt;&#x3D;[log_2k]$</mark>=</li>
+</ul>
+<hr />
+<h3 id="alu的实现原理简单了解即可"><a class="markdownIt-Anchor" href="#alu的实现原理简单了解即可"></a> ALU的实现原理（简单了解即可）</h3>
+<p><img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260325113050.png" alt="示意图" /><br />
+这张图里的核心逻辑就是：</p>
+<ul>
+<li><strong>所有功能电路（加法、乘法、与运算、移位等）都会同时对输入 A、B 进行运算</strong>，各自产生结果。</li>
+<li><strong>多路选择器（MUX）会根据 m 位控制信号，从这些结果里选出一个，作为最终输出 F</strong>。</li>
+</ul>
+<hr />
+<h3 id="看懂alu图示"><a class="markdownIt-Anchor" href="#看懂alu图示"></a> 看懂ALU图示</h3>
+<p><img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260325115235.png" alt="示意图" /></p>
+<ul>
+<li><mark>如果ALU支持k种功能，则控制信号位数$m&gt;&#x3D;[log_2k]$</mark>=</li>
+<li>ALU的运算数、运算结果位数与计算机的机器<mark>字长相同</mark></li>
+<li><code>ZF/OF/SF/CF</code>标志位用于表示本次运算结果的特征</li>
+<li>这些标志信息通常会被送入<code>PSW</code>程序状态字寄存器</li>
+<li>有的计算机系统把PSW寄存器称为“<code>标志寄存器FR (Flag Register)</code></li>
+<li>Cin是进位输入信号、Cout是进位输出信号</li>
+</ul>
+<h2 id="定点数的移位运算"><a class="markdownIt-Anchor" href="#定点数的移位运算"></a> 定点数的移位运算</h2>
+<h3 id="十进制的移位运算"><a class="markdownIt-Anchor" href="#十进制的移位运算"></a> 十进制的移位运算</h3>
+<p>其实就是科学计数法，如图：<br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260325120615.png" alt="示意图" /><br />
+<strong>移位运算</strong>：通过改变各个数码位和小数点的相对位置，从而改变各数码位的位权应用：可以通过移位运算快速实现特殊数值的乘法、除法。</p>
+<h3 id="逻辑移位常用于处理无符号整数"><a class="markdownIt-Anchor" href="#逻辑移位常用于处理无符号整数"></a> 逻辑移位（常用于处理无符号整数）</h3>
+<p><strong>逻辑左移</strong>：高位移出丢弃，低位补零<br><br />
+给大家展示一下左移奥，献丑了：<br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260325130940.png" alt="示意图" /><br />
+逻辑左移一位：<br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260325131016.png" alt="示意图" /><br />
+逻辑左移两位：<br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260325131043.png" alt="示意图" /><br />
+逻辑左移三位：<br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260325131117.png" alt="示意图" /><br />
+逻辑左移四位：<br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260325131138.png" alt="示意图" />我们可以看出，对于无符号整数，每逻辑左移一位，则相当于乘2。若逻辑左移丢弃的位=1，则发生溢出（超出 n bit 无符号整数的表示范围）</p>
+<hr />
+<p><strong>逻辑右移</strong>：低位移出丢弃，高位补0<br><br />
+接下来给大家看看右移这么个事儿奥！<br><br />
+右移一位：<br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260325131527.png" alt="示意图" /><br />
+右移两位：<br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260325131539.png" alt="示意图" /><br />
+右移三位：<br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260325131714.png" alt="示意图" /><br />
+我们可以看出，对于无符号整数，每逻辑右移一位，相当于÷2。若逻辑右移丢弃的位=1，则会丢失精度。(小数失去)</p>
+<hr />
+<h3 id="算数位移常用于处理带符号整数"><a class="markdownIt-Anchor" href="#算数位移常用于处理带符号整数"></a> 算数位移（常用于处理带符号整数）</h3>
+<p>在计算机内部，带符号整数都是由补码表示的。<br><br />
+<strong>算术左移</strong>：高位移除丢弃，低位补零<br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260325132441.png" alt="示意图" /><br />
+我们现在来进行下算数左移一位：<br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260325132641.png" alt="示意图" /><br />
+左移两位：<br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260325132658.png" alt="示意图" /><br />
+左移三位：<br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260325132836.png" alt="示意图" /><br />
+对于带符号整数，每算数左移一位，则相当于乘2。若算数左移前后的符号为不同，则发生溢出（超出 n bit 带符号整数的表示范围）</p>
+<hr />
+<p>xdm到算术右移了，这个就有点神奇了，简直就是马猴🦄⭐。具体原理我现在也想不通，凑合着看看吧。<br />
+<strong>负数👇</strong><br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260325134315.png" alt="示意图" /><br />
+<strong>正数👇</strong><br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260325134421.png" alt="示意图" /></p>
+<h3 id="补充"><a class="markdownIt-Anchor" href="#补充"></a> 补充</h3>
+<p>逻辑位移常用于处理无符号整数，算术位移常用于处理带符号整数，是”常用于“而不是”只能用于“。对于计算机硬件来讲，只要给出二进制串，无论是什么数值类型，都可以通过指令进行逻辑移位、算数移位。</p>
+
+    </div>
+    <footer class="article-footer">
+        <a data-aos="zoom-in" href="/2026/03/25/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E4%B8%8E%E5%8E%9F%E7%90%86%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%AE%9A%E7%82%B9%E6%95%B0%E8%BF%90%E7%AE%97%E4%B8%8E%E7%AE%97%E6%9C%AF%E9%80%BB%E8%BE%91%E5%8D%95%E5%85%83%EF%BC%88ALU%EF%BC%89-%E6%96%BD%E5%B7%A5%E4%B8%AD/#comments" class="article-comment-link">
+          <span class="post-comments-count twikoo-comment-count" data-path="/2026/03/25/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E4%B8%8E%E5%8E%9F%E7%90%86%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%AE%9A%E7%82%B9%E6%95%B0%E8%BF%90%E7%AE%97%E4%B8%8E%E7%AE%97%E6%9C%AF%E9%80%BB%E8%BE%91%E5%8D%95%E5%85%83%EF%BC%88ALU%EF%BC%89-%E6%96%BD%E5%B7%A5%E4%B8%AD/" itemprop="commentCount"></span>
+          留言
+        </a>
+        <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/" title="笔记" data-aos="zoom-in">笔记</a><a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" title="计算机组成原理" data-aos="zoom-in">计算机组成原理</a><a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/%E7%AC%AC%E4%BA%8C%E7%AB%A0/" title="第二章" data-aos="zoom-in">第二章</a><a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/%E7%AC%AC%E4%BA%8C%E7%AB%A0/%E7%AC%AC%E4%BA%8C%E8%8A%82/" title="第二节" data-aos="zoom-in">第二节</a>
+
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag" title="计算机组成原理">计算机组成原理</a></li></ul>
+
+    </footer>
+  </div>
+    <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
+    <div class="article-nav-link-wrap right">
+        <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260323220030.png" data-sizes="auto" alt="数据库系统概论-绪论" class="lazyload">
+      <a href="/2026/03/23/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA-%E7%BB%AA%E8%AE%BA/" aria-label="后一篇: 数据库系统概论-绪论"  title="后一篇: 数据库系统概论-绪论"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+          数据库系统概论-绪论
+      </h3>
+    </div>
+  </nav>
+
+</article>
+
+  <section id="comments" data-aos="fade-up">
+    <div class="comment-header">
+        
+      <h2 class="comment-title">说些什么吧！</h2>
+      <div class="comment-selector">
+        <div class="comment-selector-wrap">
+            <div class="selector-item" data-selector="twikoo">
+              <span>twikoo</span>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="comment-content">
+          <div class="comment twikoo-comment" data-aos="fade-up"
+            id="twikoo-comment">
+          </div>
+    </div>
+  </section>
+
+</section>
+        </div>
+        <footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    <div>
+      <span class="icon-copyright"></span>
+        2020-2026
+        <span class="footer-info-sep rotate"></span>
+      Stvfen
+    </div>
+      <div>
+        基于&nbsp;<a href="https://hexo.io/" rel="noopener nofollow noreferrer" target="_blank">Hexo</a>&nbsp;
+        Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" rel="noopener nofollow noreferrer" target="_blank">Reimu</a>
+      </div>
+      <div>
+        <span class="icon-brush"></span>
+        80.8k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        05:28
+      </div>
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+  </div>
+</footer>
+
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap">
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A0%E6%B3%95%E5%99%A8"><span class="toc-number">1.</span> <span class="toc-text"> 加法器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E7%94%A8%E9%97%A8%E7%94%B5%E8%B7%AF%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%BD%8D%E5%8A%A0%E6%B3%95"><span class="toc-number">1.1.</span> <span class="toc-text"> 如何用门电路实现一位加法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#n%E4%BD%8Dbit%E5%85%A8%E5%8A%A0%E5%99%A8"><span class="toc-number">1.2.</span> <span class="toc-text"> n位bit全加器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E8%B6%B3%E4%B9%8B%E5%A4%84"><span class="toc-number">1.3.</span> <span class="toc-text"> 不足之处</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%A6%E6%A0%87%E8%AF%86%E4%BD%8D%E7%9A%84%E5%8A%A0%E6%B3%95%E5%99%A8"><span class="toc-number">1.4.</span> <span class="toc-text"> 带标识位的加法器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%97%E6%9C%AF%E9%80%BB%E8%BE%91%E5%8D%95%E5%85%83alu"><span class="toc-number">2.</span> <span class="toc-text"> 算术逻辑单元(ALU)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%97%E6%9C%AF%E9%80%BB%E8%BE%91%E5%8D%95%E5%85%83alu%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number">2.1.</span> <span class="toc-text"> 算术逻辑单元（ALU）的作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#alu%E7%9A%84%E5%8A%9F%E8%83%BD"><span class="toc-number">2.2.</span> <span class="toc-text"> ALU的功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#alu%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E7%AE%80%E5%8D%95%E4%BA%86%E8%A7%A3%E5%8D%B3%E5%8F%AF"><span class="toc-number">2.3.</span> <span class="toc-text"> ALU的实现原理（简单了解即可）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9C%8B%E6%87%82alu%E5%9B%BE%E7%A4%BA"><span class="toc-number">2.4.</span> <span class="toc-text"> 看懂ALU图示</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E7%82%B9%E6%95%B0%E7%9A%84%E7%A7%BB%E4%BD%8D%E8%BF%90%E7%AE%97"><span class="toc-number">3.</span> <span class="toc-text"> 定点数的移位运算</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%81%E8%BF%9B%E5%88%B6%E7%9A%84%E7%A7%BB%E4%BD%8D%E8%BF%90%E7%AE%97"><span class="toc-number">3.1.</span> <span class="toc-text"> 十进制的移位运算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%BB%E8%BE%91%E7%A7%BB%E4%BD%8D%E5%B8%B8%E7%94%A8%E4%BA%8E%E5%A4%84%E7%90%86%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B4%E6%95%B0"><span class="toc-number">3.2.</span> <span class="toc-text"> 逻辑移位（常用于处理无符号整数）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%97%E6%95%B0%E4%BD%8D%E7%A7%BB%E5%B8%B8%E7%94%A8%E4%BA%8E%E5%A4%84%E7%90%86%E5%B8%A6%E7%AC%A6%E5%8F%B7%E6%95%B4%E6%95%B0"><span class="toc-number">3.3.</span> <span class="toc-text"> 算数位移（常用于处理带符号整数）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A5%E5%85%85"><span class="toc-number">3.4.</span> <span class="toc-text"> 补充</span></a></li></ol></li></ol>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Stvfen" class="lazyload">
+  <div class="sidebar-author-name">Stvfen</div>
+  <div class="sidebar-description">电台组组长</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">27</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">19</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">22</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/3546704989129249?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="归档"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">归档</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+  </div>
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+</nav>
+
+    </div>
+      <div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/images/reimu.png"/>
+        </div>
+      </div>
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+  
+<script src="/js/generator_search.js" defer></script>
+
+
+
+  <script>
+    var setupFirework = () => {
+      if (!false || !window.matchMedia('(max-width: 768px)').matches) {
+        window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'));
+      }
+    }
+  </script>
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.2.0/dist/index.umd.js" integrity="sha384-qi9WggRt19tv8Vc7pCHW3ulMNLwrn515zaLEWZjl1px07vz8+pUoWX8n1rgq282T" crossorigin="anonymous" onload="setupFirework()" defer></script>
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "Stvfen",
+          title: "计算机组成与原理第二章-定点数运算与算术逻辑单元（ALU）-施工中",
+          url: "http://example.com/2026/03/25/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E4%B8%8E%E5%8E%9F%E7%90%86%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%AE%9A%E7%82%B9%E6%95%B0%E8%BF%90%E7%AE%97%E4%B8%8E%E7%AE%97%E6%9C%AF%E9%80%BB%E8%BE%91%E5%8D%95%E5%85%83%EF%BC%88ALU%EF%BC%89-%E6%96%BD%E5%B7%A5%E4%B8%AD/",
+          excerpt: "",
+          description: "",
+          stripContent: " 加法器  如何用门电路实现一位加法 举个例子，比如我们来计算如下二进制：  比如我们来进行这两个二进制的加法，通过竖式我们会发现  我们每一位的加法其实都是加上上一位的进位$C_{i－1}$，$A_i$，$B_i$。 而我们产生的结果就是这一位的和$S_i$和下一位的进位$C_i$ 我们将1bit的加法器的逻辑写出来后，就如图所示。  同样的我们可以把它的电路图给画出来：  如果我们将其封装一下，就是我们的一位全加器：     n位bit全加器 我们只需要将n个1位加法器串联起来就可以得到一个",
+          date: "Wed Mar 25 2026 14:05:37 GMT+0800",
+          updated: "Wed Mar 25 2026 14:08:16 GMT+0800",
+          cover: "https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260325140807.png",
+        };
+      </script>
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+      
+<script src="/js/tabs.js" data-pjax defer></script>
+
+      <script type="module" data-pjax>
+        (async () => {
+          const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+          const initPswp = (gallery, children) => {
+            if (_$$(`${gallery} ${children}`).length > 0) {
+              new PhotoSwipeLightbox({
+                gallery,
+                children,
+                pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+              }).init();
+            }
+          }
+          const pswp = () => {
+            initPswp('.article-entry', 'a.article-gallery-item');
+            initPswp('.article-gallery', 'a.article-gallery-item');
+          }
+          pswp();
+        })();
+      </script>
+        
+
+<script data-pjax>
+  var loadScript = (src, integrity) => {
+    const script = document.createElement('script');
+    script.src = src;
+    if (integrity) script.integrity = integrity;
+    script.crossOrigin = 'anonymous';
+    return script;
+  };
+
+  var commentConfigKeys = ["twikoo"];
+  var commentConfig = {
+    twikoo: {
+      enable: true,
+      load: () => {
+        const container = document.querySelector('.twikoo-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        const script = loadScript(
+          'https://npm.webcache.cn/twikoo@1.6.44/dist/twikoo.all.min.js',
+          'sha384-kwWLC0HjeZZnVPqCJ1AncI8tsk+kQqF9TbAmCclcc9Z0hGkfgHRzeQZxmdmZhE0K'
+        );
+
+        script.onload = () => {
+          if (window.twikoo) {
+            twikoo.init({
+              envId: 'https://pinglunqu.vercel.app',
+              el: '.twikoo-comment',
+              region: '',
+              lang: document.documentElement.lang || 'en',
+            });
+
+            twikoo.getCommentsCount({
+              envId: 'https://pinglunqu.vercel.app',
+              region: '',
+              urls: [
+                '/about/index.html'
+              ],
+              includeReply: false
+            }).then((res) => {
+              _$('.twikoo-comment-count').innerText = res[0].count;
+            }).catch((err) => {
+              console.error(err);
+            });
+          }
+        } 
+        document.head.appendChild(script);
+      }
+    },
+  }
+  commentConfig.enable = commentConfigKeys.some(key => commentConfig[key].enable);
+
+  var defaultComment = '';
+  if (commentConfig.enable) {
+    // 1. 首先检查localStorage中是否有保存的评论类型
+    var savedCommentType = localStorage.getItem('commentType');
+    
+    // 2. 如果localStorage中有值且对应的评论系统可用，就使用它
+    if (savedCommentType) {
+      if (commentConfig[savedCommentType]?.enable) {
+        defaultComment = savedCommentType;
+      }
+    }
+    
+    // 3. 如果localStorage无效，检查配置的默认评论系统
+    if (!defaultComment) {
+      var configDefault = 'waline';
+      if (commentConfig[configDefault]?.enable) {
+        defaultComment = configDefault;
+      }
+    }
+    
+    // 4. 如果前两项都无效，按指定顺序找到第一个可用的评论系统
+    if (!defaultComment) {
+      defaultComment = commentConfigKeys.find(sys => commentConfig[sys].enable) || '';
+    }
+  }
+  function loadComments() {
+    if (!commentConfig.enable) return;
+    const loadedComments = {
+      valine: false,
+      waline: false,
+      twikoo: false,
+      gitalk: false,
+      giscus: false
+    };
+
+    // 隐藏所有评论容器
+    const hideAllComments = () => {
+      const commentContainers = document.querySelectorAll('.comment');
+      commentContainers.forEach(container => {
+        container.style.display = 'none';
+      });
+    };
+
+    // 按需加载评论系统
+    const loadCommentSystem = (type) => {
+      if (loadedComments[type]) {
+        // 如果已加载，只需显示对应容器
+        document.querySelector(`.${type}-comment`).style.display = 'block';
+        return;
+      }
+
+      // 根据类型加载对应的脚本
+      commentConfig[type]?.load();
+      loadedComments[type] = true;
+    };
+
+    // 评论组件选择器
+    const changeActiveCommentItems = (item) => {
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let i = 0; i < commentItems.length; i++) {
+        commentItems[i].classList.remove('active');
+      }
+      item.classList.add('active');
+
+      // 获取要加载的评论系统类型
+      const commentType = item.getAttribute('data-selector');
+
+      // 隐藏所有评论系统
+      hideAllComments();
+
+      // 加载选中的评论系统
+      loadCommentSystem(commentType);
+    };
+
+    const commentInit = () => {
+      // 评论组件选择器点击事件
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let item of commentItems) {
+        item.addEventListener('click', () => {
+          // 保存选择器状态
+          const commentType = item.getAttribute('data-selector');
+          window.localStorage.setItem('commentType', commentType);
+          // 切换选中状态
+          changeActiveCommentItems(item);
+        });
+      }
+
+      // 检查是否需要加载默认评论系统
+      if (defaultComment) {
+        const defaultSelectorItem = document.querySelector(`[data-selector="${defaultComment}"]`);
+        if (!defaultSelectorItem) return;
+        defaultSelectorItem.style.display = 'block';
+        defaultSelectorItem.classList.add('active');
+        loadCommentSystem(defaultComment);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', commentInit);
+    } else {
+      commentInit();
+    }
+  };
+  loadComments();
+</script>
+
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.12.1' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+    
+<script src="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.js" integrity="sha384-MWNUH0WmtsYGhn2cbH6ELRCbf9LG3QDqCC+gqPB3IBNO35xjZK3Ejb6oONRpDbPg" crossorigin="anonymous" defer data-pjax></script>
+
+    
+<script src="https://npm.webcache.cn/katex@0.16.24/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous" defer onload="renderMathInElement(_$(&#39;article&#39;), {delimiters: [{left: &#39;$$&#39;, right: &#39;$$&#39;, display: true},{left: &#39;$&#39;, right: &#39;$&#39;, display: false}]});" data-pjax></script>
+
+  
+
+
+  </body>
+  </html>
