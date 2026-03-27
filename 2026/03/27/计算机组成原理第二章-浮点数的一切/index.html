@@ -9,7 +9,7 @@
   
   <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_4k4bc36ef96';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
   <title>
-    友情链接 | 史蒂芬の电台
+    计算机组成原理第二章-浮点数的一切 | 史蒂芬の电台
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
@@ -17,19 +17,27 @@
     
 <link rel="stylesheet" href="/css/loader.css">
 
-    <meta name="description" content="申请方式  添加本站后，在本页留言，格式如下：  1234- name: #您的名字  url: #您的网址  desc: #简短描述  image: #一张图片  小伙伴们 暂无，如果爱好相同的话非常欢迎申请友情链接">
-<meta property="og:type" content="website">
-<meta property="og:title" content="友情链接">
-<meta property="og:url" content="http://example.com/friend/index.html">
+    <meta name="description" content="浮点数的表示_IEEE 754  IEEE 754 标准的浮点数格式 啥玩意是IEEE?答案就是电气电子工程师学会（Institute of Electrical and Electronics Engineers），简称IEEE。 IEEE 754：由IEEE指定的二进制浮点数算术标准，规定了在计算机内部，如何使用二进制表示和运算符点数。主流的编程语言如C的float 32bit 单精度浮点型">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机组成原理第二章-浮点数的一切">
+<meta property="og:url" content="http://example.com/2026/03/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E4%B8%80%E5%88%87/index.html">
 <meta property="og:site_name" content="史蒂芬の电台">
-<meta property="og:description" content="申请方式  添加本站后，在本页留言，格式如下：  1234- name: #您的名字  url: #您的网址  desc: #简短描述  image: #一张图片  小伙伴们 暂无，如果爱好相同的话非常欢迎申请友情链接">
+<meta property="og:description" content="浮点数的表示_IEEE 754  IEEE 754 标准的浮点数格式 啥玩意是IEEE?答案就是电气电子工程师学会（Institute of Electrical and Electronics Engineers），简称IEEE。 IEEE 754：由IEEE指定的二进制浮点数算术标准，规定了在计算机内部，如何使用二进制表示和运算符点数。主流的编程语言如C的float 32bit 单精度浮点型">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/images/banner.webp">
-<meta property="article:published_time" content="2026-02-26T08:08:24.000Z">
-<meta property="article:modified_time" content="2026-03-13T00:47:11.890Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260324213712.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260324214518.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260324215003.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260324215153.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260324215617.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260324215634.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260324235310.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260327090201.png">
+<meta property="article:published_time" content="2026-03-27T01:20:40.000Z">
+<meta property="article:modified_time" content="2026-03-27T01:22:04.692Z">
 <meta property="article:author" content="Stvfen">
+<meta property="article:tag" content="计算机组成原理">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/images/banner.webp">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260324213712.png">
     <link rel="alternate" href="/atom.xml" title="史蒂芬の电台" type="application/atom+xml">
     <link rel="shortcut icon" href="/images/favicon.ico">
   
@@ -130,11 +138,11 @@
 </div>
 <header id="header" aria-label="Site header">
     <picture></picture>
-    <img  fetchpriority="high" src="/../image/%E5%85%B3%E4%BA%8E.webp" alt="友情链接">
+    <img  fetchpriority="high" src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260327092156.png" alt="计算机组成原理第二章-浮点数的一切">
   <div id="header-outer">
     <div id="header-title">
           <span id="logo">
-            <h1 data-aos="slide-up">友情链接</h1>
+            <h1 data-aos="slide-up">计算机组成原理第二章-浮点数的一切</h1>
           </span>
         <h2 id="subtitle-wrap" data-aos="slide-down">
         </h2>
@@ -144,10 +152,15 @@
 
         <div id="content" aria-label="Page content" class="sidebar-left"  >
           <aside id="sidebar" aria-label="Sidebar">
-  <div class="sidebar-wrapper-container ">
+  <div class="sidebar-wrapper-container sticky">
   <div class="sidebar-wrapper">
     <div class="sidebar-wrap" data-aos="fade-up">
-        <div class="sidebar-author">
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E8%A1%A8%E7%A4%BA_ieee-754"><span class="toc-number">1.</span> <span class="toc-text"> 浮点数的表示_IEEE 754</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ieee-754-%E6%A0%87%E5%87%86%E7%9A%84%E6%B5%AE%E7%82%B9%E6%95%B0%E6%A0%BC%E5%BC%8F"><span class="toc-number">1.1.</span> <span class="toc-text"> IEEE 754 标准的浮点数格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E7%82%B9%E6%95%B0%E7%9A%84%E5%B1%80%E9%99%90%E6%80%A7"><span class="toc-number">1.2.</span> <span class="toc-text"> 定点数的局限性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8E%E7%A7%91%E5%AD%A6%E8%AE%A1%E6%95%B0%E6%B3%95%E7%90%86%E8%A7%A3%E6%B5%AE%E7%82%B9%E6%95%B0"><span class="toc-number">1.3.</span> <span class="toc-text"> 从科学计数法理解浮点数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ieee-754-%E6%A0%87%E5%87%86%E5%AE%9A%E4%B9%89%E7%9A%84%E6%B5%AE%E7%82%B9%E6%95%B0%E6%A0%BC%E5%BC%8F"><span class="toc-number">1.4.</span> <span class="toc-text"> IEEE 754 标准定义的浮点数格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#float%E5%8D%95%E7%B2%BE%E5%BA%A6%E6%B5%AE%E7%82%B9%E5%9E%8B%E7%9A%84%E5%AD%98%E5%82%A8"><span class="toc-number">1.5.</span> <span class="toc-text"> float单精度浮点型的存储</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#double-%E5%8F%8C%E7%B2%BE%E5%BA%A6%E6%B5%AE%E7%82%B9%E5%9E%8B%E7%9A%84%E5%AD%98%E5%82%A8"><span class="toc-number">1.6.</span> <span class="toc-text"> double 双精度浮点型的存储</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B1%82-8-%E4%BD%8D%E7%A7%BB%E7%A0%81%E4%B8%A4%E7%A7%8D%E6%96%B9%E6%B3%95%E9%83%BD%E9%AA%8C%E8%AF%81"><span class="toc-number">1.7.</span> <span class="toc-text"> 求 8 位移码（两种方法都验证）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%E7%A7%BB%E7%A0%81%E5%AE%9A%E4%B9%89%E6%B3%95%E6%9C%80%E6%A0%B9%E6%9C%AC"><span class="toc-number">1.7.1.</span> <span class="toc-text"> 方法一：移码定义法（最根本）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%E8%A1%A5%E7%A0%81%E7%AC%A6%E5%8F%B7%E4%BD%8D%E5%8F%96%E5%8F%8D%E6%B3%95%E5%BF%AB%E6%8D%B7%E6%96%B9%E5%BC%8F"><span class="toc-number">1.7.2.</span> <span class="toc-text"> 方法二：补码符号位取反法（快捷方式）</span></a></li></ol></li></ol></li></ol>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
   <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Stvfen" class="lazyload">
   <div class="sidebar-author-name">Stvfen</div>
   <div class="sidebar-description">电台组组长</div>
@@ -201,39 +214,25 @@
         <div class="sidebar-menu-link">友链</div>
       </div>
 </div>
-
+</div>
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
     </div>
   </div>
   <div class="sidebar-widget">
-        <div class="widget-wrapper">
-    <div class="widget-wrap" data-aos="fade-up">
-      <h3 class="widget-title">分类</h3>
-      <div class="widget">
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8A%A8%E6%BC%AB/" title="动漫">动漫</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8A%A8%E6%BC%AB/%E6%9D%82%E8%B0%88/" title="杂谈">杂谈</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/" title="笔记">笔记</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/JavaSE/" title="JavaSE">JavaSE</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/JavaWeb%E5%AD%A6%E4%B9%A0/" title="JavaWeb学习">JavaWeb学习</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/JavaWeb%E5%AD%A6%E4%B9%A0/Java%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" title="Java网络编程">Java网络编程</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA/" title="数据库系统概论">数据库系统概论</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" title="数据结构">数据结构</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%9B%BE%E7%BB%93%E6%9E%84/" title="图结构">图结构</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" title="排序算法">排序算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%95%A3%E5%88%97%E8%A1%A8/" title="散列表">散列表</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%A0%91%E5%BD%A2%E7%BB%93%E6%9E%84/" title="树形结构">树形结构</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%BF%E6%80%A7%E8%A1%A8/" title="线性表">线性表</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/%E6%A6%82%E7%8E%87%E8%AE%BA/" title="概率论">概率论</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" title="计算机组成原理">计算机组成原理</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/%E7%AC%AC%E4%B8%80%E7%AB%A0/" title="第一章">第一章</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/%E7%AC%AC%E4%BA%8C%E7%AB%A0/" title="第二章">第二章</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/%E7%AC%AC%E4%BA%8C%E7%AB%A0/%E7%AC%AC%E4%B8%80%E8%8A%82/" title="第一节">第一节</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/%E7%AC%AC%E4%BA%8C%E7%AB%A0/%E7%AC%AC%E4%BA%8C%E8%8A%82/" title="第二节">第二节</a></li></ul></li></ul></li></ul></li></ul>
-      </div>
-    </div>
-  </div>
-
-        <div class="widget-wrapper">
-    <div class="widget-wrap" data-aos="fade-up">
-      <h3 class="widget-title">标签</h3>
-      <div class="widget">
-        <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/IO/" rel="tag" title="IO">IO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag" title="Java">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaWeb/" rel="tag" title="JavaWeb">JavaWeb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag" title="Python">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8C%E5%88%86/" rel="tag" title="二分">二分</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/" rel="tag" title="二叉树">二叉树</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8D%95%E9%93%BE%E8%A1%A8/" rel="tag" title="单链表">单链表</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%8C%E9%93%BE%E8%A1%A8/" rel="tag" title="双链表">双链表</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%8F%A4%E5%85%B8%E6%A6%82%E5%9E%8B/" rel="tag" title="古典概型">古典概型</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%93%88%E5%B8%8C%E6%9F%A5%E6%89%BE/" rel="tag" title="哈希查找">哈希查找</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9B%BE%E7%BB%93%E6%9E%84/" rel="tag" title="图结构">图结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A0%86/" rel="tag" title="堆">堆</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AA%E7%8E%AF%E9%93%BE%E8%A1%A8/" rel="tag" title="循环链表">循环链表</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%A3%E5%88%97%E8%A1%A8/" rel="tag" title="散列表">散列表</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag" title="数据库">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag" title="数据结构">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A0%88/" rel="tag" title="栈">栈</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A6%82%E7%8E%87%E8%AE%BA/" rel="tag" title="概率论">概率论</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag" title="爬虫">爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag" title="计算机组成原理">计算机组成原理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%98%9F%E5%88%97/" rel="tag" title="队列">队列</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%A1%BA%E5%BA%8F%E8%A1%A8/" rel="tag" title="顺序表">顺序表</a></li></ul>
-      </div>
-    </div>
-  </div>
-
   </div>
   </div>
 </aside>
 
-          <section id="main" aria-label="Main content"><article id="page-" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+          <section id="main" aria-label="Main content"><article id="post-计算机组成原理第二章-浮点数的一切" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner" data-aos="fade-up">
     <div class="article-meta">
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
-    <time datetime="2026-02-26T08:08:24.000Z" itemprop="datePublished">2026-02-26</time>
-    <time style="display: none;" id="post-update-time">2026-03-13</time>
+    <time datetime="2026-03-27T01:20:40.000Z" itemprop="datePublished">2026-03-27</time>
+    <time style="display: none;" id="post-update-time">2026-03-27</time>
   </span>
 </div>
 
@@ -242,25 +241,74 @@
     <div class="hr-line"></div>
     
     <div class="e-content article-entry" itemprop="articleBody">
-        <h2 id="申请方式"><a class="markdownIt-Anchor" href="#申请方式"></a> 申请方式</h2>
+        <h2 id="浮点数的表示_ieee-754"><a class="markdownIt-Anchor" href="#浮点数的表示_ieee-754"></a> 浮点数的表示_IEEE 754</h2>
+<h3 id="ieee-754-标准的浮点数格式"><a class="markdownIt-Anchor" href="#ieee-754-标准的浮点数格式"></a> IEEE 754 标准的浮点数格式</h3>
+<p>啥玩意是IEEE?答案就是电气电子工程师学会（Institute of Electrical and Electronics Engineers），简称IEEE。<br><br />
+<strong>IEEE 754</strong>：由IEEE指定的二进制浮点数算术标准，规定了在计算机内部，如何使用二进制表示和运算符点数。主流的编程语言如C的<code>float 32bit 单精度浮点型</code>和<code>double 64bit 双精度浮点型</code>就是符合IEEE 754标准的浮点数格式。<mark>在考研上只用IEEE 754表示浮点数。</mark><br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260324213712.png" alt="示意图" /></p>
+<hr />
+<h3 id="定点数的局限性"><a class="markdownIt-Anchor" href="#定点数的局限性"></a> 定点数的局限性</h3>
+<p>比如302657264526，我们用4Byte的定点整数int是表示不了的，虽然我们可以用8Byte，但是不能解决所有问题。计算机的机器字长位数有限，我们不能无限制地增加数据的长度。那么我们怎么在位数不变的情况下增加数据表示范围呢？</p>
+<hr />
+<h3 id="从科学计数法理解浮点数"><a class="markdownIt-Anchor" href="#从科学计数法理解浮点数"></a> 从科学计数法理解浮点数</h3>
+<p><img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260324214518.png" alt="示意图" /><br />
+我们普通计法转换为科学计法的时候，是允许丢失一些数据的。</p>
 <ul>
-<li>添加本站后，在本页留言，格式如下：</li>
+<li><strong>尾数</strong>：尾数反映了实际的值是多少，以及尾数的位数会影响精度。</li>
+<li><strong>基数</strong>：跟进制有关。</li>
+<li><strong>阶码</strong>：小数点应该移动几位。<br />
+我们不仅可以用于超级大的值，也可以用于超级小的值，但是记住规格化：”确保尾数的最高位非0数位刚好在小数点之前“。<br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260324215003.png" alt="示意图" /><br />
+那么我们这个可不可以用于二进制呢？当然可以得啦ヽ(✿ﾟ▽ﾟ)ノ<br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260324215153.png" alt="示意图" /></li>
 </ul>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="comment">#您的名字</span></span><br><span class="line">  <span class="attr">url:</span> <span class="comment">#您的网址</span></span><br><span class="line">  <span class="attr">desc:</span> <span class="comment">#简短描述</span></span><br><span class="line">  <span class="attr">image:</span> <span class="comment">#一张图片</span></span><br></pre></td></tr></table></figure>
-<h2 id="小伙伴们"><a class="markdownIt-Anchor" href="#小伙伴们"></a> 小伙伴们</h2>
-<p>暂无，如果爱好相同的话非常欢迎申请友情链接</p>
+<hr />
+<h3 id="ieee-754-标准定义的浮点数格式"><a class="markdownIt-Anchor" href="#ieee-754-标准定义的浮点数格式"></a> IEEE 754 标准定义的浮点数格式</h3>
+<p><img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260324215617.png" alt="示意图" /><br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260324215634.png" alt="示意图" /><br />
+我们的基数2去哪了？二进制肯定为2啊kuso！！！尾数代表了精度，我们可以看出来<code>double</code>型的精度比<code>float</code>型要高。</p>
+<hr />
+<h3 id="float单精度浮点型的存储"><a class="markdownIt-Anchor" href="#float单精度浮点型的存储"></a> float单精度浮点型的存储</h3>
+<p><img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260324235310.png" alt="示意图" /></p>
+<hr />
+<h3 id="double-双精度浮点型的存储"><a class="markdownIt-Anchor" href="#double-双精度浮点型的存储"></a> double 双精度浮点型的存储</h3>
+<p><img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260327090201.png" alt="示意图" /></p>
+<hr />
+<h3 id="求-8-位移码两种方法都验证"><a class="markdownIt-Anchor" href="#求-8-位移码两种方法都验证"></a> 求 8 位移码（两种方法都验证）</h3>
+<h4 id="方法一移码定义法最根本"><a class="markdownIt-Anchor" href="#方法一移码定义法最根本"></a> 方法一：移码定义法（最根本）</h4>
+<p>移码 = 真值 + 偏置值（单精度偏置值 = 127）</p>
+<p>移码数值12910​​=2+127=129=100000012​​</p>
+<p>→ 8 位移码：<strong><code>1000 0001</code></strong></p>
+<h4 id="方法二补码符号位取反法快捷方式"><a class="markdownIt-Anchor" href="#方法二补码符号位取反法快捷方式"></a> 方法二：补码符号位取反法（快捷方式）</h4>
+<p>移码 = 补码<strong>仅符号位取反</strong>，其余位不变</p>
+<ul>
+<li>补码：<code>0000 0010</code></li>
+<li>符号位 0→1，其余位不动 → <strong><code>1000 0010</code></strong></li>
+</ul>
 
     </div>
     <footer class="article-footer">
-        <a data-aos="zoom-in" href="/friend/index.html#comments" class="article-comment-link">
-          <span class="post-comments-count twikoo-comment-count" data-path="/friend/index.html" itemprop="commentCount"></span>
+        <a data-aos="zoom-in" href="/2026/03/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E4%B8%80%E5%88%87/#comments" class="article-comment-link">
+          <span class="post-comments-count twikoo-comment-count" data-path="/2026/03/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E4%B8%80%E5%88%87/" itemprop="commentCount"></span>
           留言
         </a>
-      
-      
+        <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/" title="笔记" data-aos="zoom-in">笔记</a><a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" title="计算机组成原理" data-aos="zoom-in">计算机组成原理</a><a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/%E7%AC%AC%E4%BA%8C%E7%AB%A0/" title="第二章" data-aos="zoom-in">第二章</a><a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/%E7%AC%AC%E4%BA%8C%E7%AB%A0/%E7%AC%AC%E4%BA%8C%E8%8A%82/" title="第二节" data-aos="zoom-in">第二节</a>
+
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag" title="计算机组成原理">计算机组成原理</a></li></ul>
+
     </footer>
   </div>
-  
+    <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
+    <div class="article-nav-link-wrap right">
+        <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260325140807.png" data-sizes="auto" alt="计算机组成与原理第二章-定点数运算与算术逻辑单元（ALU）" class="lazyload">
+      <a href="/2026/03/25/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E4%B8%8E%E5%8E%9F%E7%90%86%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%AE%9A%E7%82%B9%E6%95%B0%E8%BF%90%E7%AE%97%E4%B8%8E%E7%AE%97%E6%9C%AF%E9%80%BB%E8%BE%91%E5%8D%95%E5%85%83%EF%BC%88ALU%EF%BC%89/" aria-label="后一篇: 计算机组成与原理第二章-定点数运算与算术逻辑单元（ALU）"  title="后一篇: 计算机组成与原理第二章-定点数运算与算术逻辑单元（ALU）"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+          计算机组成与原理第二章-定点数运算与算术逻辑单元（ALU）
+      </h3>
+    </div>
+  </nav>
+
 </article>
 
   <section id="comments" data-aos="fade-up">
@@ -324,7 +372,12 @@
       </div>
       <nav id="mobile-nav" aria-label="Mobile navigation">
   <div class="sidebar-wrap">
-      <div class="sidebar-author">
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E8%A1%A8%E7%A4%BA_ieee-754"><span class="toc-number">1.</span> <span class="toc-text"> 浮点数的表示_IEEE 754</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ieee-754-%E6%A0%87%E5%87%86%E7%9A%84%E6%B5%AE%E7%82%B9%E6%95%B0%E6%A0%BC%E5%BC%8F"><span class="toc-number">1.1.</span> <span class="toc-text"> IEEE 754 标准的浮点数格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E7%82%B9%E6%95%B0%E7%9A%84%E5%B1%80%E9%99%90%E6%80%A7"><span class="toc-number">1.2.</span> <span class="toc-text"> 定点数的局限性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8E%E7%A7%91%E5%AD%A6%E8%AE%A1%E6%95%B0%E6%B3%95%E7%90%86%E8%A7%A3%E6%B5%AE%E7%82%B9%E6%95%B0"><span class="toc-number">1.3.</span> <span class="toc-text"> 从科学计数法理解浮点数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ieee-754-%E6%A0%87%E5%87%86%E5%AE%9A%E4%B9%89%E7%9A%84%E6%B5%AE%E7%82%B9%E6%95%B0%E6%A0%BC%E5%BC%8F"><span class="toc-number">1.4.</span> <span class="toc-text"> IEEE 754 标准定义的浮点数格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#float%E5%8D%95%E7%B2%BE%E5%BA%A6%E6%B5%AE%E7%82%B9%E5%9E%8B%E7%9A%84%E5%AD%98%E5%82%A8"><span class="toc-number">1.5.</span> <span class="toc-text"> float单精度浮点型的存储</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#double-%E5%8F%8C%E7%B2%BE%E5%BA%A6%E6%B5%AE%E7%82%B9%E5%9E%8B%E7%9A%84%E5%AD%98%E5%82%A8"><span class="toc-number">1.6.</span> <span class="toc-text"> double 双精度浮点型的存储</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B1%82-8-%E4%BD%8D%E7%A7%BB%E7%A0%81%E4%B8%A4%E7%A7%8D%E6%96%B9%E6%B3%95%E9%83%BD%E9%AA%8C%E8%AF%81"><span class="toc-number">1.7.</span> <span class="toc-text"> 求 8 位移码（两种方法都验证）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%E7%A7%BB%E7%A0%81%E5%AE%9A%E4%B9%89%E6%B3%95%E6%9C%80%E6%A0%B9%E6%9C%AC"><span class="toc-number">1.7.1.</span> <span class="toc-text"> 方法一：移码定义法（最根本）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%E8%A1%A5%E7%A0%81%E7%AC%A6%E5%8F%B7%E4%BD%8D%E5%8F%96%E5%8F%8D%E6%B3%95%E5%BF%AB%E6%8D%B7%E6%96%B9%E5%BC%8F"><span class="toc-number">1.7.2.</span> <span class="toc-text"> 方法二：补码符号位取反法（快捷方式）</span></a></li></ol></li></ol></li></ol>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
   <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Stvfen" class="lazyload">
   <div class="sidebar-author-name">Stvfen</div>
   <div class="sidebar-description">电台组组长</div>
@@ -378,8 +431,12 @@
         <div class="sidebar-menu-link">友链</div>
       </div>
 </div>
-
+</div>
   </div>
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
 </nav>
 
     </div>
@@ -460,14 +517,14 @@
       <script data-pjax>
         window.REIMU_POST = {
           author: "Stvfen",
-          title: "友情链接",
-          url: "http://example.com/friend/index.html",
+          title: "计算机组成原理第二章-浮点数的一切",
+          url: "http://example.com/2026/03/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E4%B8%80%E5%88%87/",
           excerpt: "",
           description: "",
-          stripContent: " 申请方式  添加本站后，在本页留言，格式如下：  1234- name: #您的名字  url: #您的网址  desc: #简短描述  image: #一张图片  小伙伴们 暂无，如果爱好相同的话非常欢迎申请友情链接 ",
-          date: "Thu Feb 26 2026 16:08:24 GMT+0800",
-          updated: "Fri Mar 13 2026 08:47:11 GMT+0800",
-          cover: "/../image/%E5%85%B3%E4%BA%8E.webp",
+          stripContent: " 浮点数的表示_IEEE 754  IEEE 754 标准的浮点数格式 啥玩意是IEEE?答案就是电气电子工程师学会（Institute of Electrical and Electronics Engineers），简称IEEE。 IEEE 754：由IEEE指定的二进制浮点数算术标准，规定了在计算机内部，如何使用二进制表示和运算符点数。主流的编程语言如C的float 32bit 单精度浮点型和double 64bit 双精度浮点型就是符合IEEE 754标准的浮点数格式。在考研上只用IEE",
+          date: "Fri Mar 27 2026 09:20:40 GMT+0800",
+          updated: "Fri Mar 27 2026 09:22:04 GMT+0800",
+          cover: "https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260327092156.png",
         };
       </script>
         
