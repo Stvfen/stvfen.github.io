@@ -9,7 +9,7 @@
   
   <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_4k4bc36ef96';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
   <title>
-    蓦然回首——藤本树致所有创作者的一份情书 | 史蒂芬の电台
+    概率论第二章-随机变量类型及其分布方法 | 史蒂芬の电台
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
@@ -17,17 +17,27 @@
     
 <link rel="stylesheet" href="/css/loader.css">
 
-    <meta name="description" content="蓦然回首——藤本树致所有创作者的一份情书  内容  藤本树，你是我的精神病人 在讨论藤本树的作品前，先让我们讨论下这个精神病人吧（笑）。 《电锯人公安篇》在2020年10月14日完结的时候，我才意识到藤本树是一个天才，为什么粉丝们总是说藤本树是一位“精神病人”，我想这是对藤本树的嘉奖，他的作品并没有迎合大众趋势，而是以自己所愿表达出自己所想——以超乎读者想象的方式。 藤本树早期短篇作品并不出众，藤">
+    <meta name="description" content="离散型随机变量 离散型随机变量：若随机变量全部可能取到的值是有限个或可列无限多个，这种随机变量称为离散型随机变量。  离散型随机变量$X$只可能离散地、孤立地取值，一但$X$的可能取值充满一个区间，就不再是离散型。   分布律：设离散型随机变量$X$所有可能取的值为$x_1,x_2,...,x_k,...$且$X$取各个可能值的概率，即事件{$X&#x3D;x_k$}的概率为：$$P\{X&amp;#x">
 <meta property="og:type" content="article">
-<meta property="og:title" content="蓦然回首——藤本树致所有创作者的一份情书">
-<meta property="og:url" content="http://example.com/2026/02/24/%E8%93%A6%E7%84%B6%E5%9B%9E%E9%A6%96%E2%80%94%E2%80%94%E8%97%A4%E6%9C%AC%E6%A0%91%E8%87%B4%E6%89%80%E6%9C%89%E5%88%9B%E4%BD%9C%E8%80%85%E7%9A%84%E4%B8%80%E4%BB%BD%E6%83%85%E4%B9%A6/index.html">
+<meta property="og:title" content="概率论第二章-随机变量类型及其分布方法">
+<meta property="og:url" content="http://example.com/2026/04/01/%E6%A6%82%E7%8E%87%E8%AE%BA%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%85%B6%E5%88%86%E5%B8%83%E6%96%B9%E6%B3%95/index.html">
 <meta property="og:site_name" content="史蒂芬の电台">
-<meta property="og:description" content="蓦然回首——藤本树致所有创作者的一份情书  内容  藤本树，你是我的精神病人 在讨论藤本树的作品前，先让我们讨论下这个精神病人吧（笑）。 《电锯人公安篇》在2020年10月14日完结的时候，我才意识到藤本树是一个天才，为什么粉丝们总是说藤本树是一位“精神病人”，我想这是对藤本树的嘉奖，他的作品并没有迎合大众趋势，而是以自己所愿表达出自己所想——以超乎读者想象的方式。 藤本树早期短篇作品并不出众，藤">
+<meta property="og:description" content="离散型随机变量 离散型随机变量：若随机变量全部可能取到的值是有限个或可列无限多个，这种随机变量称为离散型随机变量。  离散型随机变量$X$只可能离散地、孤立地取值，一但$X$的可能取值充满一个区间，就不再是离散型。   分布律：设离散型随机变量$X$所有可能取的值为$x_1,x_2,...,x_k,...$且$X$取各个可能值的概率，即事件{$X&#x3D;x_k$}的概率为：$$P\{X&amp;#x">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2026-02-24T07:36:19.000Z">
-<meta property="article:modified_time" content="2026-02-26T07:59:08.144Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260403-164309-display-0.png.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260403-170347-display-0.png.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260403-174509-display-0.png.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260404132708.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260404132907.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260404132943.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260404133636.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260404133733.png">
+<meta property="article:published_time" content="2026-04-01T13:49:00.000Z">
+<meta property="article:modified_time" content="2026-04-04T09:07:24.927Z">
 <meta property="article:author" content="Stvfen">
+<meta property="article:tag" content="概率论">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260403-164309-display-0.png.png">
     <link rel="alternate" href="/atom.xml" title="史蒂芬の电台" type="application/atom+xml">
     <link rel="shortcut icon" href="/images/favicon.ico">
   
@@ -128,11 +138,11 @@
 </div>
 <header id="header" aria-label="Site header">
     <picture></picture>
-    <img  fetchpriority="high" src="/../image/%E8%93%A6%E7%84%B6%E5%9B%9E%E9%A6%96.webp" alt="蓦然回首——藤本树致所有创作者的一份情书">
+    <img  fetchpriority="high" src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/1588615715103cdb64434d38931ae9f4.png" alt="概率论第二章-随机变量类型及其分布方法">
   <div id="header-outer">
     <div id="header-title">
           <span id="logo">
-            <h1 data-aos="slide-up">蓦然回首——藤本树致所有创作者的一份情书</h1>
+            <h1 data-aos="slide-up">概率论第二章-随机变量类型及其分布方法</h1>
           </span>
         <h2 id="subtitle-wrap" data-aos="slide-down">
         </h2>
@@ -147,7 +157,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AE%B9"><span class="toc-number">1.</span> <span class="toc-text"> 内容</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%97%A4%E6%9C%AC%E6%A0%91%E4%BD%A0%E6%98%AF%E6%88%91%E7%9A%84%E7%B2%BE%E7%A5%9E%E7%97%85%E4%BA%BA"><span class="toc-number">1.1.</span> <span class="toc-text"> 藤本树，你是我的精神病人</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E6%8A%B9%E5%A5%87%E5%B9%BB%E7%9A%84%E8%89%B2%E5%BD%A9"><span class="toc-number">1.2.</span> <span class="toc-text"> 一抹奇幻的色彩</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BC%AB%E7%94%BB-%E6%94%B9%E7%BC%96%E4%BA%8E-%E7%94%B5%E5%BD%B1"><span class="toc-number">1.3.</span> <span class="toc-text"> 漫画 改编于 电影</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%93%A6%E7%84%B6%E5%9B%9E%E9%A6%96%E4%B8%8D%E8%A6%81%E4%B8%BA%E5%BE%80%E4%BA%8B%E8%80%8C%E7%83%A6%E6%81%BC"><span class="toc-number">1.4.</span> <span class="toc-text"> 蓦然回首——不要为往事而烦恼</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8C%AE%E7%BB%99%E6%89%80%E6%9C%89%E5%88%9B%E4%BD%9C%E8%80%85%E7%9A%84%E4%B8%80%E4%BB%BD%E6%83%85%E4%B9%A6"><span class="toc-number">1.5.</span> <span class="toc-text"> 献给所有创作者的一份情书</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%99%E4%BD%9C%E5%8F%82%E8%80%83"><span class="toc-number">1.6.</span> <span class="toc-text"> 写作参考</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A6%BB%E6%95%A3%E5%9E%8B%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F"><span class="toc-number">1.</span> <span class="toc-text"> 离散型随机变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A6%BB%E6%95%A3%E5%9E%8B%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%88%86%E5%B8%83"><span class="toc-number">2.</span> <span class="toc-text"> 离散型随机变量分布</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E9%A1%B9%E5%88%86%E5%B8%83"><span class="toc-number">3.</span> <span class="toc-text"> 二项分布</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0-1%E5%88%86%E5%B8%83%E5%92%8C%E5%87%A0%E4%BD%95%E5%88%86%E5%B8%83"><span class="toc-number">4.</span> <span class="toc-text"> 0-1分布和几何分布</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0-1%E5%88%86%E5%B8%83%E4%B8%A4%E7%82%B9%E5%88%86%E5%B8%83"><span class="toc-number">4.1.</span> <span class="toc-text"> 0-1分布（两点分布）：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%A0%E4%BD%95%E5%88%86%E5%B8%83"><span class="toc-number">4.2.</span> <span class="toc-text"> 几何分布</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%8A%E6%9D%BE%E5%88%86%E5%B8%83%E4%B8%8E%E6%B3%8A%E6%9D%BE%E5%AE%9A%E7%90%86"><span class="toc-number">5.</span> <span class="toc-text"> 泊松分布与泊松定理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%8A%E6%9D%BE%E5%88%86%E5%B8%83"><span class="toc-number">5.1.</span> <span class="toc-text"> 泊松分布</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%8A%E6%9D%BE%E5%AE%9A%E7%90%86"><span class="toc-number">5.2.</span> <span class="toc-text"> 泊松定理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B6%85%E5%87%A0%E4%BD%95%E5%88%86%E5%B8%83"><span class="toc-number">6.</span> <span class="toc-text"> 超几何分布</span></a></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -216,13 +226,13 @@
   </div>
 </aside>
 
-          <section id="main" aria-label="Main content"><article id="post-蓦然回首——藤本树致所有创作者的一份情书" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+          <section id="main" aria-label="Main content"><article id="post-概率论第二章-随机变量类型及其分布方法" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner" data-aos="fade-up">
     <div class="article-meta">
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
-    <time datetime="2026-02-24T07:36:19.000Z" itemprop="datePublished">2026-02-24</time>
-    <time style="display: none;" id="post-update-time">2026-02-26</time>
+    <time datetime="2026-04-01T13:49:00.000Z" itemprop="datePublished">2026-04-01</time>
+    <time style="display: none;" id="post-update-time">2026-04-04</time>
   </span>
 </div>
 
@@ -231,106 +241,100 @@
     <div class="hr-line"></div>
     
     <div class="e-content article-entry" itemprop="articleBody">
-        <p>蓦然回首——藤本树致所有创作者的一份情书</p>
-<h2 id="内容"><a class="markdownIt-Anchor" href="#内容"></a> 内容</h2>
-<h3 id="藤本树你是我的精神病人"><a class="markdownIt-Anchor" href="#藤本树你是我的精神病人"></a> 藤本树，你是我的精神病人</h3>
-<p>在讨论藤本树的作品前，先让我们讨论下这个精神病人吧（笑）。<br />
-《电锯人公安篇》在2020年10月14日完结的时候，我才意识到藤本树是一个天才，为什么粉丝们总是说藤本树是一位“精神病人”，我想这是对藤本树的嘉奖，他的作品并没有迎合大众趋势，而是以自己所愿表达出自己所想——以超乎读者想象的方式。<br />
-藤本树早期短篇作品并不出众，藤本树在《藤本树短篇集》中《预言中的那由多》的随笔中写到：“编剧总是说我画不出具有特点的角色，所以我创作了那由多。”藤本树对那由多的爱其实延续到了《电锯人》，玛奇玛死后再次重生的样子就和那由多一模一样。但是这么多的短篇使得藤本树这个漫画家的人设已经大概定了下来，为《炎拳》做了充分的准备。<br />
-《炎拳》一经刊登，立马获得了大量关注和好评。<br />
-本以为《炎拳》是藤本树的巅峰，谁知《电锯人》将最高点突破，再次达到新的高峰。《电锯人》和《炎拳》中荒诞的设定和剧情以及<br />
-那些剧情离谱的转折，使粉丝不仅感叹：“藤本树，你就是我滴精神病人！”<br />
-藤本树本人不是个省油的灯，上到网络上发布迷惑视频：“藤本树，要起飞了。”（跳起）。下到2022年“妹妹”事件。<br />
-而且史料记载枪之恶魔的死亡名单中好像是藤本树抄老家人名字写的，自己在访谈里说都不敢回家力。</p>
-<h3 id="一抹奇幻的色彩"><a class="markdownIt-Anchor" href="#一抹奇幻的色彩"></a> 一抹奇幻的色彩</h3>
-<p>是不是少了点什么？一抹奇幻的色彩。<br />
-藤本树的作品没有一部作品没有奇幻的色彩：《佐佐木同学接住了子弹》中在日常生活中佐佐木用手偶然接住了歹徒的子弹、《人鱼狂想曲》中人鱼与人类之间的恋歌（这部画风十分的不藤本树，太可爱）、《妹妹的姐姐》同在艺术大学的姐妹，妹妹用姐姐的裸体画像参展赢得了第一名，把这张画挂在了大学内，最后姐姐走出与妹妹的矛盾，又画了一张自己的裸照参展干掉了妹妹的画，表示你姐应该这样！<br />
-这都是日常生活中的一抹奇幻的色彩，吸引读者向下翻阅，一步步走进藤本树为我们设计的陷阱之中。（其实新海诚的作品普遍也有）<br />
-而在蓦然回首中，世界线的不同，便是我认为最奇幻的一抹的色彩。</p>
-<h3 id="漫画-改编于-电影"><a class="markdownIt-Anchor" href="#漫画-改编于-电影"></a> 漫画 改编于 电影</h3>
-<p>漫画改编于电影？什么奇怪的话。<br />
-没错，是很奇怪。但这是藤本树，不奇怪。<br />
-藤本树很喜欢看电影，他的作品处处体现着电影感，无论是漫画中电影般的分镜还是大部分作品主人公有看电影的场景（PS其实这些主人公看的电影都能搜索到）这些都有体现，以至于我这第一部改变于藤本树的电影很担心。因为原作本身就是电影分镜，观感极佳，如果电影只是照搬的话，那么对于原作党就只是一部会动的作品，没有假如创作者心血的商业作品。<br />
-事实证明，我错了。<br />
-首先电影中的分镜确实很多和漫画重合，但是一些小地方的改动十分巧妙，比如当藤本第一次意识到自己和常人一样时，教室的放大。还有给到镜头给到窗户的时候，班级里面人物的躁动，这都把漫画中本就体现的真实感拉的更高了。<br />
-蓦然回首本身就是小载体漫画，分量很小，我依旧记得我当时看漫画的时候花了不到40分钟，由于电影会使得某些静态场景展现出动态来延展时长，但我觉得也不会太长，所以我对时长也很担心。<br />
-事实证明，我对了。<br />
-电影正片不到1个小时，后面的将近20分钟都是制作组的讲谈。<br />
-但我可以很自信的说：“正是因为这长达20分钟的讲谈，艺术已成。”</p>
-<h3 id="蓦然回首不要为往事而烦恼"><a class="markdownIt-Anchor" href="#蓦然回首不要为往事而烦恼"></a> 蓦然回首——不要为往事而烦恼</h3>
-<p>《蓦然回首》于2021年7月19日公布，很多人表示：原来我滴精神病人还会画这种东西，反差太大。<br />
-其实不然，藤本树在早期的短篇集中也有很多日常温馨，但又带有奇幻色彩的小故事，大家可以去自行找资源看看（特别建议买实体书哦，国版也上了，顺带一提我是首刷喵）<br />
-两位主人公藤野和京本名字我觉得是取自于藤本树和京阿尼。（为什么我觉得取自京阿尼后面会讲解）<br />
-从小热爱创作的两人机缘巧合相遇在了一起，电影中镜头给了老师将毕业证书交到藤野手上时候的一个特写，这很耐人寻味。这何尝不是两人的命运开始重合在一起的时候。之后两人在创作的路上一直走了下去，藤野渐渐忘记了过去与京本的承诺——“我也会不断磨练画技”。以至于在京本要去提升自己上大学的时候和她闹了矛盾。当时看到这里的时候谁曾想是她们最后一次见面。<br />
-接着电影在这之后给了很多对比的镜头，比如京本带着笑容在墙壁上和画板上画画，而藤野边接电话边赶稿，慢慢的埋没在人群中。正如小时候的时候一样，不过正如大多打工人一样为生活而奔波。<br />
-大多人应该都和藤野一样吧，从抬起头来走向热爱，最后穿过热爱在滂沱大雨中低头跪在雨水中，身边的人拿着雨伞默默走过去的时候都不会理睬。<br />
-而京本则是作为创作者在追逐热爱的过程中失去了生命。<br />
-热爱与否，两人的结局都是悲剧。<br />
-这不对，这肯定不对。结局不应是这样，如果生活的压力只是引起藤野崩溃的导火索，那么京本的离世无疑点燃了它。<br />
-穿着黑色制服又到了过去的那个玄关，过去与京本第一次相遇的地方，物是人非，时间早已带走了太多，但是家具的摆设仿佛又被定格在了那一刻。<br />
-那么有没有一种可能，最开始的这一时刻，就已经错了呢？<br />
-藤本树用他唯有不多的温柔，掺和了一抹奇幻的色彩，给大家提供了另一种可能性，并让这一种可能性影响了崩溃当中的藤野。<br />
-创作并不是为了出名，创作并不是为了利益，创作是为了创作。<br />
-藤野已经忘记将初心忘记了太久太久了，以至于她不假思索的就开始自负，将京本的死归于自己。但是可能性的出现告诉了藤野两者都没有错，只是藤野忘记了创作的初心，忘记了那些四格漫画。<br />
-最后的四格名字很有趣《看着她的背影》。<br />
-京本正是一直在追逐着藤野的背影，一直都没有变，无论是小时候将藤野作为自己的偶像，还是长大后为了更加的提高自己而离开藤野。<br />
-都是因为她不只想停留在她的背影后面。<br />
-京本的初心重来没有变过。<br />
-也许会有人觉得藤本树只是设置了京本作为一个工具人来推进藤野的转变，其实不然。<br />
-创作出的角色，已经投入感情的角色，哪里他妈的是个工具！<br />
-根本目的并不是让藤野发生转变，而是想要告诉读者们，用她们两个人，告诉读者们</p>
-<p>初心，不止于创作。</p>
-<p>访谈的意义也是如此，告诉了大家不同岗位在创作过程中的不同职责，我是为了想做出这种效果，所以我为了达成这个效果而在不断努力着。<br />
-我们已经走了太久了，何以才能蓦然回首呢？<br />
-当我们蓦然回首时，我们在哪，还能看见那份初心吗？<br />
-Don’t back in anger,不要为往事而烦恼。<br />
-京本已经离去，人们不要总停留在过去，也不要后悔自己做过的事，而是在蓦然回首后应重拾初心向前看，因为我们最终会找到一个更美好的地方。</p>
-<h3 id="献给所有创作者的一份情书"><a class="markdownIt-Anchor" href="#献给所有创作者的一份情书"></a> 献给所有创作者的一份情书</h3>
-<p>前文我提到过京本的名字Neta于京阿尼，这是为什么。<br />
-这就要把时间回溯到蓦然回首首发日的前两年，那场大火烧掉了多少人的梦——京阿尼纵火案。<br />
-京阿尼，一个动画公司，一个梦工厂。<br />
-《紫罗兰的永恒花园》、《小林家的龙女仆》、《中二病也要谈恋爱》、《CLANNAD》等这些作品，有多少为曾给少年的我们很多的人生启发。<br />
-京本的死亡缘由和京阿尼纵火案凶手的犯罪动机及其相似，再加上发布时间正好为两年后，故这也是藤本树送给京阿尼逝者的一份离别书。<br />
-我有太多的话想要献给京阿尼，却无从下笔从何说起。<br />
-除了感谢没有更适合去代表内心所想的话语，蓦然回首,这一声谢谢，为了过去，为了现在，也为了</p>
-<p>未来。</p>
-<h3 id="写作参考"><a class="markdownIt-Anchor" href="#写作参考"></a> 写作参考</h3>
-<br>
-<br>
-<br>
-资料：
-萌娘百科藤本树事迹
-蓦然回首漫画
-蓦然回首电影
-致京阿尼：感谢有你从我的人生中路过——瓶子君152
-<p>Don’t Look Back In Anger — Oasis</p>
-<br>
-写作时播放：
-《Don't Look Back In Anger》- Oasis<br>
-漫画名字《Look Back》<br>
-第一页黑板写着《Don’t》<br>
-最后一页左下角写着《In Anger》<br>
+        <h2 id="离散型随机变量"><a class="markdownIt-Anchor" href="#离散型随机变量"></a> 离散型随机变量</h2>
+<p><strong>离散型随机变量</strong>：若随机变量全部可能取到的值是有限个或可列无限多个，这种随机变量称为离散型随机变量。</p>
+<ul>
+<li>离散型随机变量$X$只可能离散地、孤立地取值，一但$X$的可能取值充满一个区间，就不再是离散型。</li>
+</ul>
+<hr />
+<p><strong>分布律</strong>：设离散型随机变量$X$所有可能取的值为$x_1,x_2,...,x_k,...$且$X$取各个可能值的概率，即事件{$X&#x3D;x_k$}的概率为：<p>$$P\{X&#x3D;x_k\}&#x3D;p_k,（k&#x3D;1,2,...)$$</p><br />
+称上式为离散型随机变量$X$的概率分布火分布律。<BR><br />
+分布律也可以用表格的形式来表示：<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260403-164309-display-0.png.png" alt="示意图" /></p>
+<hr />
+<p><strong>分布律的充要条件</strong>：</p>
+<ol>
+<li>$p_k&gt;&#x3D;0,k&#x3D;1,2,...$</li>
+<li>$全部加起来等于1$</li>
+</ol>
+<hr />
+<p><strong>离散型随机变量的分布函数</strong>：设离散型随机变量$X$的分布律为$P\{X&#x3D;x_k\}&#x3D;p_k，(k&#x3D;1,2,...)$，由概率的可列可加性得$X$的分布函数为<p>$$F(x) &#x3D; P\{X \leq x\} &#x3D; \sum_{x_k \leq x} P\{X &#x3D; x_k\} &#x3D; \sum_{x_k \leq x} p_k$$</p></p>
+<hr />
+<p>但凡说离散型，那么就有分布律。但是有分布律，不一定是离散。</p>
+<h2 id="离散型随机变量分布"><a class="markdownIt-Anchor" href="#离散型随机变量分布"></a> 离散型随机变量分布</h2>
+<p><img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260403-170347-display-0.png.png" alt="示意图" /><br />
+离散型随机变量我们将会讲很多分布方式，而这里我们要着重了解二项分布，而其他哪几种变量都算是二项分布的亲戚关系（这么理解就行）</p>
+<h2 id="二项分布"><a class="markdownIt-Anchor" href="#二项分布"></a> 二项分布</h2>
+<p><strong>定义</strong>：随即碧昂量$X$表示$n$重伯努利试验中事件$A$发生的次数，记每次试验中事件$A$发生的概率为$p$，则$X$的分布律为<p>$$P\{X &#x3D; k\} &#x3D; C_n^k p^k (1-p)^{n-k},\quad (k &#x3D; 0,1,\cdots,n)$$</p><br />
+其中$0&lt;p&lt;1$，则称$X$服从参数为$n,p$的二项分布，记为$X-B(n,p)$<BR><br />
+<strong>注</strong>：只有两个结果 $A$ 和 $\overline{A}$ 的试验称为伯努利（Bernoulli）试验，在相同条件下将伯努利试验独立重复进行 $n$ 次，则称为 $n$ 重伯努利试验。$n$ 重伯努利试验中，$n$ 次试验的结果相互独立，且每次试验中事件 $A$ 发生的概率相同。</p>
+<h2 id="0-1分布和几何分布"><a class="markdownIt-Anchor" href="#0-1分布和几何分布"></a> 0-1分布和几何分布</h2>
+<h3 id="0-1分布两点分布"><a class="markdownIt-Anchor" href="#0-1分布两点分布"></a> 0-1分布（两点分布）：</h3>
+<p>设随机变量$X$只可能取0与1两个值，它的分布律为<p>$$P\{X &#x3D; k\} &#x3D; p^k (1-p)^{1-k},\ k &#x3D; 0,1,\ (0 &lt; p &lt; 1)$$</p><br />
+或者<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260403-174509-display-0.png.png" alt="示意图" /><br />
+则称$X$服从参数为$p$的(0-1)分布或两点分布。其实也就是n取1时候的二项分布</p>
+<h3 id="几何分布"><a class="markdownIt-Anchor" href="#几何分布"></a> 几何分布</h3>
+<p>可列重伯努利试验中，记每次试验中事件A发生的概率为$p$，随机变量$X$表示事件$A$首次发生时的试验次数，其分布律为<p>$$P\{X &#x3D; k\} &#x3D; (1-p)^{k-1} p,\quad (k &#x3D; 1,2,\cdots)$$</p><br />
+其中0&lt;p&lt;1，则称$X$服从几何分布，记作X~Ge(p)<br><br />
+<strong>注</strong>：几何分布是负二项分布的特例，有点像是一直干到某件事就停止，这种感觉</p>
+<h2 id="泊松分布与泊松定理"><a class="markdownIt-Anchor" href="#泊松分布与泊松定理"></a> 泊松分布与泊松定理</h2>
+<h3 id="泊松分布"><a class="markdownIt-Anchor" href="#泊松分布"></a> 泊松分布</h3>
+<p><strong>定义</strong>：设随机变量$X$所有可能取值为$0,1,2,3,...，$其分布律为<p>$$ P\{X &#x3D; k\} &#x3D; \frac{\lambda^k e^{-\lambda}}{k!}, \quad (k &#x3D; 0,1,2,\dots) $$</p><br />
+其中$\lambda&gt;0$是常数，则称$X$服从参数为$\lambda$的泊松分布，记作$X \sim P(\lambda)$或$X \sim \pi(\lambda)$&gt;<br><br />
+<strong>在出泊松的题目时，题目当中一定会有泊松两个字</strong>，我们来看这道例题：<br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260404132708.png" alt="例题" /><br />
+我们直接来看X，可以解出$\lambda$<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260404132907.png" alt="示意图" /><br />
+接着带入X=1就能解出来了<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260404132943.png" alt="示意图" /></p>
+<hr />
+<h3 id="泊松定理"><a class="markdownIt-Anchor" href="#泊松定理"></a> 泊松定理</h3>
+<p><strong>泊松定理</strong>：设 $\lambda &gt; 0$ 是一个常数，$n$ 是任意正整数，设 $\lambda &#x3D; np_n$，则对于任意固定的非负整数 $k$ 有 <p>$$ \lim_{n \to \infty} P\{X &#x3D; k\} &#x3D; \lim_{n \to \infty} C_n^k p_n^k (1-p_n)^{n-k} \approx \frac{(np_n)^k}{k!} e^{-np_n} \quad (k &#x3D; 0,1,2,\dots) $$</p><br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260404133636.png" alt="示意图" /><br />
+我们可以得到以下这个：<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260404133733.png" alt="示意图" /><br />
+<strong>当然如果我们写题目的话，必须得出题人让你用你才能用，要不然继续使用二项分布计算。</strong></p>
+<ul>
+<li>
+<p>泊松定理直观解释：设一段时间内事件 $A$ 发生的次数 $X \sim P(\lambda)$ 表示，不妨记这段时间为 $[0,1]$ 并等分成 $n$ 段（$n$ 很大），每段时长 $\frac{1}{n}$。近似认为每段时间内 $A$ 发生的概率与时长成正比，即取 $p_n &#x3D; \frac{\lambda}{n}$，且因为 $\frac{1}{n}$ 足够短，$A$ 在每段时间内不可能发生两次以上。故每段时间内 $A$ 是否发生可近似视作伯努利试验，$X$ 近似服从$B\left(n, \frac{\lambda}{n}\right)$，当 $n \to \infty$ 时在数学上严格成立。</p>
+</li>
+<li>
+<p>一般当 $n$ 很大（$n \geq 20$），$p$ 很小（$p \leq 0.05$）时，二项分布 $B(n,p)$ 用泊松分布作近似效果较好。</p>
+</li>
+</ul>
+<h2 id="超几何分布"><a class="markdownIt-Anchor" href="#超几何分布"></a> 超几何分布</h2>
+<p>超几何分布 若随机变量 $X$ 的分布律为 <p>$$ P\{X &#x3D; k\} &#x3D; \frac{C_M^k C_{N-M}^{n-k}}{C_N^n}, \quad k &#x3D; \max\{0, n-N+M\}, \dots, \min\{n, M\} $$</p> 其中 $M,N,n$ 都是正整数，则称 $X$ 服从参数为 $M,N,n$ 的超几何分布，记作 $X \sim H(n,M,N)$（无放回抽样）。</p>
+<ul>
+<li>超几何分布的背景——设 $N$ 件产品中有 $M$ 件次品，从中无放回取 $n$ 次，则取到次品数 $X$ 服从超几何分布 $H(n,M,N)$</li>
+<li>当 $n$ 和 $\displaystyle \frac{M}{N}$ 固定，$N \to \infty$ 时，$X$ 近似服从二项分布 $X \sim B\left(n, \frac{M}{N}\right)$。<strong>其实就是数据量足够大的时候，取一个完全不影响</strong><br />
+<strong>其实本质就是无放回抽样，也就是说一次取n件</strong></li>
+</ul>
 
     </div>
     <footer class="article-footer">
-        <a data-aos="zoom-in" href="/2026/02/24/%E8%93%A6%E7%84%B6%E5%9B%9E%E9%A6%96%E2%80%94%E2%80%94%E8%97%A4%E6%9C%AC%E6%A0%91%E8%87%B4%E6%89%80%E6%9C%89%E5%88%9B%E4%BD%9C%E8%80%85%E7%9A%84%E4%B8%80%E4%BB%BD%E6%83%85%E4%B9%A6/#comments" class="article-comment-link">
-          <span class="post-comments-count twikoo-comment-count" data-path="/2026/02/24/%E8%93%A6%E7%84%B6%E5%9B%9E%E9%A6%96%E2%80%94%E2%80%94%E8%97%A4%E6%9C%AC%E6%A0%91%E8%87%B4%E6%89%80%E6%9C%89%E5%88%9B%E4%BD%9C%E8%80%85%E7%9A%84%E4%B8%80%E4%BB%BD%E6%83%85%E4%B9%A6/" itemprop="commentCount"></span>
+        <a data-aos="zoom-in" href="/2026/04/01/%E6%A6%82%E7%8E%87%E8%AE%BA%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%85%B6%E5%88%86%E5%B8%83%E6%96%B9%E6%B3%95/#comments" class="article-comment-link">
+          <span class="post-comments-count twikoo-comment-count" data-path="/2026/04/01/%E6%A6%82%E7%8E%87%E8%AE%BA%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%85%B6%E5%88%86%E5%B8%83%E6%96%B9%E6%B3%95/" itemprop="commentCount"></span>
           留言
         </a>
-        <a class="article-category-link" href="/categories/%E5%8A%A8%E6%BC%AB/" title="动漫" data-aos="zoom-in">动漫</a><a class="article-category-link" href="/categories/%E5%8A%A8%E6%BC%AB/%E6%9D%82%E8%B0%88/" title="杂谈" data-aos="zoom-in">杂谈</a>
+        <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/" title="笔记" data-aos="zoom-in">笔记</a><a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/%E6%A6%82%E7%8E%87%E8%AE%BA/" title="概率论" data-aos="zoom-in">概率论</a><a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/%E6%A6%82%E7%8E%87%E8%AE%BA/%E7%AC%AC%E4%BA%8C%E7%AB%A0/" title="第二章" data-aos="zoom-in">第二章</a>
 
-      
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E6%A6%82%E7%8E%87%E8%AE%BA/" rel="tag" title="概率论">概率论</a></li></ul>
+
     </footer>
   </div>
     <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
       <div class="article-nav-link-wrap left">
-          <img data-src="/../image/danlianbiao.webp" data-sizes="auto" alt="链表设计与实现" class="lazyload">
-        <a href="/2026/02/25/%E9%93%BE%E8%A1%A8%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/" aria-label="前一篇: 链表设计与实现" title="前一篇: 链表设计与实现"></a>
+          <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260401215053.png" data-sizes="auto" alt="概率论第二章-随机变量与分布函数" class="lazyload">
+        <a href="/2026/04/01/%E6%A6%82%E7%8E%87%E8%AE%BA%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E4%B8%8E%E5%88%86%E5%B8%83%E5%87%BD%E6%95%B0/" aria-label="前一篇: 概率论第二章-随机变量与分布函数" title="前一篇: 概率论第二章-随机变量与分布函数"></a>
         <div class="article-nav-caption">前一篇</div>
         <h3 class="article-nav-title">
-            链表设计与实现
+            概率论第二章-随机变量与分布函数
         </h3>
       </div>
+    <div class="article-nav-link-wrap right">
+        <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/9814c5e3be9c2cb413bbefe8fcc94a19.png" data-sizes="auto" alt="数据库系统概论-第二章-关系与其模式" class="lazyload">
+      <a href="/2026/03/30/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA-%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%85%B3%E7%B3%BB%E4%B8%8E%E5%85%B6%E6%A8%A1%E5%BC%8F/" aria-label="后一篇: 数据库系统概论-第二章-关系与其模式"  title="后一篇: 数据库系统概论-第二章-关系与其模式"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+          数据库系统概论-第二章-关系与其模式
+      </h3>
+    </div>
   </nav>
 
 </article>
@@ -398,7 +402,7 @@ Don’t back in anger,不要为往事而烦恼。<br />
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AE%B9"><span class="toc-number">1.</span> <span class="toc-text"> 内容</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%97%A4%E6%9C%AC%E6%A0%91%E4%BD%A0%E6%98%AF%E6%88%91%E7%9A%84%E7%B2%BE%E7%A5%9E%E7%97%85%E4%BA%BA"><span class="toc-number">1.1.</span> <span class="toc-text"> 藤本树，你是我的精神病人</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E6%8A%B9%E5%A5%87%E5%B9%BB%E7%9A%84%E8%89%B2%E5%BD%A9"><span class="toc-number">1.2.</span> <span class="toc-text"> 一抹奇幻的色彩</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BC%AB%E7%94%BB-%E6%94%B9%E7%BC%96%E4%BA%8E-%E7%94%B5%E5%BD%B1"><span class="toc-number">1.3.</span> <span class="toc-text"> 漫画 改编于 电影</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%93%A6%E7%84%B6%E5%9B%9E%E9%A6%96%E4%B8%8D%E8%A6%81%E4%B8%BA%E5%BE%80%E4%BA%8B%E8%80%8C%E7%83%A6%E6%81%BC"><span class="toc-number">1.4.</span> <span class="toc-text"> 蓦然回首——不要为往事而烦恼</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8C%AE%E7%BB%99%E6%89%80%E6%9C%89%E5%88%9B%E4%BD%9C%E8%80%85%E7%9A%84%E4%B8%80%E4%BB%BD%E6%83%85%E4%B9%A6"><span class="toc-number">1.5.</span> <span class="toc-text"> 献给所有创作者的一份情书</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%99%E4%BD%9C%E5%8F%82%E8%80%83"><span class="toc-number">1.6.</span> <span class="toc-text"> 写作参考</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A6%BB%E6%95%A3%E5%9E%8B%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F"><span class="toc-number">1.</span> <span class="toc-text"> 离散型随机变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A6%BB%E6%95%A3%E5%9E%8B%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%88%86%E5%B8%83"><span class="toc-number">2.</span> <span class="toc-text"> 离散型随机变量分布</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E9%A1%B9%E5%88%86%E5%B8%83"><span class="toc-number">3.</span> <span class="toc-text"> 二项分布</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0-1%E5%88%86%E5%B8%83%E5%92%8C%E5%87%A0%E4%BD%95%E5%88%86%E5%B8%83"><span class="toc-number">4.</span> <span class="toc-text"> 0-1分布和几何分布</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0-1%E5%88%86%E5%B8%83%E4%B8%A4%E7%82%B9%E5%88%86%E5%B8%83"><span class="toc-number">4.1.</span> <span class="toc-text"> 0-1分布（两点分布）：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%A0%E4%BD%95%E5%88%86%E5%B8%83"><span class="toc-number">4.2.</span> <span class="toc-text"> 几何分布</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%8A%E6%9D%BE%E5%88%86%E5%B8%83%E4%B8%8E%E6%B3%8A%E6%9D%BE%E5%AE%9A%E7%90%86"><span class="toc-number">5.</span> <span class="toc-text"> 泊松分布与泊松定理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%8A%E6%9D%BE%E5%88%86%E5%B8%83"><span class="toc-number">5.1.</span> <span class="toc-text"> 泊松分布</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%8A%E6%9D%BE%E5%AE%9A%E7%90%86"><span class="toc-number">5.2.</span> <span class="toc-text"> 泊松定理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B6%85%E5%87%A0%E4%BD%95%E5%88%86%E5%B8%83"><span class="toc-number">6.</span> <span class="toc-text"> 超几何分布</span></a></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -541,14 +545,14 @@ Don’t back in anger,不要为往事而烦恼。<br />
       <script data-pjax>
         window.REIMU_POST = {
           author: "Stvfen",
-          title: "蓦然回首——藤本树致所有创作者的一份情书",
-          url: "http://example.com/2026/02/24/%E8%93%A6%E7%84%B6%E5%9B%9E%E9%A6%96%E2%80%94%E2%80%94%E8%97%A4%E6%9C%AC%E6%A0%91%E8%87%B4%E6%89%80%E6%9C%89%E5%88%9B%E4%BD%9C%E8%80%85%E7%9A%84%E4%B8%80%E4%BB%BD%E6%83%85%E4%B9%A6/",
+          title: "概率论第二章-随机变量类型及其分布方法",
+          url: "http://example.com/2026/04/01/%E6%A6%82%E7%8E%87%E8%AE%BA%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%85%B6%E5%88%86%E5%B8%83%E6%96%B9%E6%B3%95/",
           excerpt: "",
           description: "",
-          stripContent: "蓦然回首——藤本树致所有创作者的一份情书  内容  藤本树，你是我的精神病人 在讨论藤本树的作品前，先让我们讨论下这个精神病人吧（笑）。 《电锯人公安篇》在2020年10月14日完结的时候，我才意识到藤本树是一个天才，为什么粉丝们总是说藤本树是一位“精神病人”，我想这是对藤本树的嘉奖，他的作品并没有迎合大众趋势，而是以自己所愿表达出自己所想——以超乎读者想象的方式。 藤本树早期短篇作品并不出众，藤本树在《藤本树短篇集》中《预言中的那由多》的随笔中写到：“编剧总是说我画不出具有特点的角色，所以我创",
-          date: "Tue Feb 24 2026 15:36:19 GMT+0800",
-          updated: "Thu Feb 26 2026 15:59:08 GMT+0800",
-          cover: "/../image/%E8%93%A6%E7%84%B6%E5%9B%9E%E9%A6%96.webp",
+          stripContent: " 离散型随机变量 离散型随机变量：若随机变量全部可能取到的值是有限个或可列无限多个，这种随机变量称为离散型随机变量。  离散型随机变量$X$只可能离散地、孤立地取值，一但$X$的可能取值充满一个区间，就不再是离散型。   分布律：设离散型随机变量$X$所有可能取的值为$x_1,x_2,...,x_k,...$且$X$取各个可能值的概率，即事件{$X&amp;#x3D;x_k$}的概率为：$$P\{X&amp;#x3D;x_k\}&amp;#x3D;p_k,（k&amp;#x3D;1,2,...)$$ 称上式为离散型随机变量$X",
+          date: "Wed Apr 01 2026 21:49:00 GMT+0800",
+          updated: "Sat Apr 04 2026 17:07:24 GMT+0800",
+          cover: "https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/1588615715103cdb64434d38931ae9f4.png",
         };
       </script>
         
