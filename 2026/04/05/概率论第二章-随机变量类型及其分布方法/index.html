@@ -9,7 +9,7 @@
   
   <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_4k4bc36ef96';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
   <title>
-    数据库系统概论-第二章-关系与其模式 | 史蒂芬の电台
+    概率论第二章-随机变量类型及其分布方法 | 史蒂芬の电台
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
@@ -17,23 +17,27 @@
     
 <link rel="stylesheet" href="/css/loader.css">
 
-    <meta name="description" content="1970年IBGM提出关系数据模型。 1972年提出了关系的第一、第二、第三范式 1974年提出了关系的BC范式 80年代后，关系数据库系统成为最重要、最流行的数据库系统   数据系统结构及形式化定义  关系  单一的数据结构——关系 逻辑结构——二维表 关系模型是建立在集合代数的基础上 域（domain）：域是一组具有相同数据类型的值的集合 整数、实数、介于某个取值范围的整数、字符串集合、｛”">
+    <meta name="description" content="离散型随机变量 离散型随机变量：若随机变量全部可能取到的值是有限个或可列无限多个，这种随机变量称为离散型随机变量。  离散型随机变量$X$只可能离散地、孤立地取值，一但$X$的可能取值充满一个区间，就不再是离散型。   分布律：设离散型随机变量$X$所有可能取的值为$x_1,x_2,...,x_k,...$且$X$取各个可能值的概率，即事件{$X&#x3D;x_k$}的概率为：$$P\{X&amp;#x">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据库系统概论-第二章-关系与其模式">
-<meta property="og:url" content="http://example.com/2026/03/30/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA-%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%85%B3%E7%B3%BB%E4%B8%8E%E5%85%B6%E6%A8%A1%E5%BC%8F/index.html">
+<meta property="og:title" content="概率论第二章-随机变量类型及其分布方法">
+<meta property="og:url" content="http://example.com/2026/04/05/%E6%A6%82%E7%8E%87%E8%AE%BA%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%85%B6%E5%88%86%E5%B8%83%E6%96%B9%E6%B3%95/index.html">
 <meta property="og:site_name" content="史蒂芬の电台">
-<meta property="og:description" content="1970年IBGM提出关系数据模型。 1972年提出了关系的第一、第二、第三范式 1974年提出了关系的BC范式 80年代后，关系数据库系统成为最重要、最流行的数据库系统   数据系统结构及形式化定义  关系  单一的数据结构——关系 逻辑结构——二维表 关系模型是建立在集合代数的基础上 域（domain）：域是一组具有相同数据类型的值的集合 整数、实数、介于某个取值范围的整数、字符串集合、｛”">
+<meta property="og:description" content="离散型随机变量 离散型随机变量：若随机变量全部可能取到的值是有限个或可列无限多个，这种随机变量称为离散型随机变量。  离散型随机变量$X$只可能离散地、孤立地取值，一但$X$的可能取值充满一个区间，就不再是离散型。   分布律：设离散型随机变量$X$所有可能取的值为$x_1,x_2,...,x_k,...$且$X$取各个可能值的概率，即事件{$X&#x3D;x_k$}的概率为：$$P\{X&amp;#x">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260330-102819-display-0.png.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260330-111453-display-0.png.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260330-112617-display-0.png.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260330143513.png">
-<meta property="article:published_time" content="2026-03-30T07:08:07.000Z">
-<meta property="article:modified_time" content="2026-03-30T07:09:19.610Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260403-164309-display-0.png.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260403-170347-display-0.png.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260403-174509-display-0.png.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260404132708.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260404132907.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260404132943.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260404133636.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260404133733.png">
+<meta property="article:published_time" content="2026-04-05T13:49:00.000Z">
+<meta property="article:modified_time" content="2026-04-07T05:41:50.479Z">
 <meta property="article:author" content="Stvfen">
-<meta property="article:tag" content="数据库">
+<meta property="article:tag" content="概率论">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260330-102819-display-0.png.png">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260403-164309-display-0.png.png">
     <link rel="alternate" href="/atom.xml" title="史蒂芬の电台" type="application/atom+xml">
     <link rel="shortcut icon" href="/images/favicon.ico">
   
@@ -134,11 +138,11 @@
 </div>
 <header id="header" aria-label="Site header">
     <picture></picture>
-    <img  fetchpriority="high" src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/9814c5e3be9c2cb413bbefe8fcc94a19.png" alt="数据库系统概论-第二章-关系与其模式">
+    <img  fetchpriority="high" src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/1588615715103cdb64434d38931ae9f4.png" alt="概率论第二章-随机变量类型及其分布方法">
   <div id="header-outer">
     <div id="header-title">
           <span id="logo">
-            <h1 data-aos="slide-up">数据库系统概论-第二章-关系与其模式</h1>
+            <h1 data-aos="slide-up">概率论第二章-随机变量类型及其分布方法</h1>
           </span>
         <h2 id="subtitle-wrap" data-aos="slide-down">
         </h2>
@@ -153,7 +157,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84%E5%8F%8A%E5%BD%A2%E5%BC%8F%E5%8C%96%E5%AE%9A%E4%B9%89"><span class="toc-number">1.</span> <span class="toc-text"> 数据系统结构及形式化定义</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB"><span class="toc-number">1.1.</span> <span class="toc-text"> 关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.2.</span> <span class="toc-text"> 关系模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.3.</span> <span class="toc-text"> 关系数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84"><span class="toc-number">1.4.</span> <span class="toc-text"> 关系模型的存储结构</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A6%BB%E6%95%A3%E5%9E%8B%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F"><span class="toc-number">1.</span> <span class="toc-text"> 离散型随机变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A6%BB%E6%95%A3%E5%9E%8B%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%88%86%E5%B8%83"><span class="toc-number">2.</span> <span class="toc-text"> 离散型随机变量分布</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E9%A1%B9%E5%88%86%E5%B8%83"><span class="toc-number">3.</span> <span class="toc-text"> 二项分布</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0-1%E5%88%86%E5%B8%83%E5%92%8C%E5%87%A0%E4%BD%95%E5%88%86%E5%B8%83"><span class="toc-number">4.</span> <span class="toc-text"> 0-1分布和几何分布</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0-1%E5%88%86%E5%B8%83%E4%B8%A4%E7%82%B9%E5%88%86%E5%B8%83"><span class="toc-number">4.1.</span> <span class="toc-text"> 0-1分布（两点分布）：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%A0%E4%BD%95%E5%88%86%E5%B8%83"><span class="toc-number">4.2.</span> <span class="toc-text"> 几何分布</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%8A%E6%9D%BE%E5%88%86%E5%B8%83%E4%B8%8E%E6%B3%8A%E6%9D%BE%E5%AE%9A%E7%90%86"><span class="toc-number">5.</span> <span class="toc-text"> 泊松分布与泊松定理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%8A%E6%9D%BE%E5%88%86%E5%B8%83"><span class="toc-number">5.1.</span> <span class="toc-text"> 泊松分布</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%8A%E6%9D%BE%E5%AE%9A%E7%90%86"><span class="toc-number">5.2.</span> <span class="toc-text"> 泊松定理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B6%85%E5%87%A0%E4%BD%95%E5%88%86%E5%B8%83"><span class="toc-number">6.</span> <span class="toc-text"> 超几何分布</span></a></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -222,13 +226,13 @@
   </div>
 </aside>
 
-          <section id="main" aria-label="Main content"><article id="post-数据库系统概论-第二章-关系与其模式" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+          <section id="main" aria-label="Main content"><article id="post-概率论第二章-随机变量类型及其分布方法" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner" data-aos="fade-up">
     <div class="article-meta">
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
-    <time datetime="2026-03-30T07:08:07.000Z" itemprop="datePublished">2026-03-30</time>
-    <time style="display: none;" id="post-update-time">2026-03-30</time>
+    <time datetime="2026-04-05T13:49:00.000Z" itemprop="datePublished">2026-04-05</time>
+    <time style="display: none;" id="post-update-time">2026-04-07</time>
   </span>
 </div>
 
@@ -237,126 +241,98 @@
     <div class="hr-line"></div>
     
     <div class="e-content article-entry" itemprop="articleBody">
-        <ul>
-<li>1970年IBGM提出关系数据模型。</li>
-<li>1972年提出了关系的第一、第二、第三范式</li>
-<li>1974年提出了关系的BC范式</li>
-<li>80年代后，关系数据库系统成为最重要、最流行的数据库系统</li>
-</ul>
-<h2 id="数据系统结构及形式化定义"><a class="markdownIt-Anchor" href="#数据系统结构及形式化定义"></a> 数据系统结构及形式化定义</h2>
-<h3 id="关系"><a class="markdownIt-Anchor" href="#关系"></a> 关系</h3>
+        <h2 id="离散型随机变量"><a class="markdownIt-Anchor" href="#离散型随机变量"></a> 离散型随机变量</h2>
+<p><strong>离散型随机变量</strong>：若随机变量全部可能取到的值是有限个或可列无限多个，这种随机变量称为离散型随机变量。</p>
 <ul>
-<li><strong>单一的数据结构——关系</strong></li>
-<li><strong>逻辑结构——二维表</strong></li>
-<li><strong>关系模型是建立在集合代数的基础上</strong><br />
-<strong>域（domain）</strong>：域是一组具有相同数据类型的值的集合</li>
-<li>整数、实数、介于某个取值范围的整数、字符串集合、｛”男“，”女“｝等等<br />
-<strong>笛卡尔积</strong>：给定一组域$D_1,D_2,...,D_n$，这些域可以是相同的，也可以是不同的。$D_1,D_2,...,D_n$的笛卡尔积为：<p>$$D_1*D_2*...*D_n＝｛（d_1，d_2，...,d_n）|d_i\in{D_i}，i＝1，2，...，n｝所有域的所有取值的一个组合$$</p><br />
-举个例子：<br />
-<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260330-102819-display-0.png.png" alt="示意图" /><br />
-<strong>元组（Tuple）</strong>：笛卡尔积中每一个元素$(d_1,d_2,...,d_n)$称作一个n元组或简称元祖</li>
-<li>（张清玫，计算机专业，李勇）<br />
-<strong>分量</strong>：笛卡尔积元素$(d_1,d_2，...，d_n）$中的每一个值$d_i$称作一个分量</li>
-<li>张清玫、计算机专业、李勇、刘晨等都是分量<br />
-<strong>基数</strong>：若$D_i（i＝1，2，...，n）$为有限集，其基数为$m_i（i＝1，2，...，n）$，则$D_1*D_2*..*D_n$的基数M为：<p>$$M &#x3D; \prod_{i&#x3D;1}^{n} m_i$$</p></li>
-<li>一个集合的元素数量就是基数。比如$D_1&#x3D;\{瓶子君，范式\}$的基数就是2<br />
-<strong>笛卡尔积的表示方法</strong>：笛卡尔积可表示为二维表，表中每行对应一个元祖，表中的每列对应一个域</li>
-<li>举个例子：<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260330-111453-display-0.png.png" alt="示意图" /></li>
+<li>离散型随机变量$X$只可能离散地、孤立地取值，一但$X$的可能取值充满一个区间，就不再是离散型。</li>
 </ul>
 <hr />
-<p><strong>关系</strong>：</p>
+<p><strong>分布律</strong>：设离散型随机变量$X$所有可能取的值为$x_1,x_2,...,x_k,...$且$X$取各个可能值的概率，即事件{$X&#x3D;x_k$}的概率为：<p>$$P\{X&#x3D;x_k\}&#x3D;p_k,（k&#x3D;1,2,...)$$</p><br />
+称上式为离散型随机变量$X$的概率分布火分布律。<BR><br />
+分布律也可以用表格的形式来表示：<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260403-164309-display-0.png.png" alt="示意图" /></p>
+<hr />
+<p><strong>分布律的充要条件</strong>：</p>
+<ol>
+<li>$p_k&gt;&#x3D;0,k&#x3D;1,2,...$</li>
+<li>$全部加起来等于1$</li>
+</ol>
+<hr />
+<p><strong>离散型随机变量的分布函数</strong>：设离散型随机变量$X$的分布律为$P\{X&#x3D;x_k\}&#x3D;p_k，(k&#x3D;1,2,...)$，由概率的可列可加性得$X$的分布函数为<p>$$F(x) &#x3D; P\{X \leq x\} &#x3D; \sum_{x_k \leq x} P\{X &#x3D; x_k\} &#x3D; \sum_{x_k \leq x} p_k$$</p></p>
+<hr />
+<p>但凡说离散型，那么就有分布律。但是有分布律，不一定是离散。</p>
+<h2 id="离散型随机变量分布"><a class="markdownIt-Anchor" href="#离散型随机变量分布"></a> 离散型随机变量分布</h2>
+<p><img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260403-170347-display-0.png.png" alt="示意图" /><br />
+离散型随机变量我们将会讲很多分布方式，而这里我们要着重了解二项分布，而其他哪几种变量都算是二项分布的亲戚关系（这么理解就行）</p>
+<h2 id="二项分布"><a class="markdownIt-Anchor" href="#二项分布"></a> 二项分布</h2>
+<p><strong>定义</strong>：随即碧昂量$X$表示$n$重伯努利试验中事件$A$发生的次数，记每次试验中事件$A$发生的概率为$p$，则$X$的分布律为<p>$$P\{X &#x3D; k\} &#x3D; C_n^k p^k (1-p)^{n-k},\quad (k &#x3D; 0,1,\cdots,n)$$</p><br />
+其中$0&lt;p&lt;1$，则称$X$服从参数为$n,p$的二项分布，记为$X-B(n,p)$<BR><br />
+<strong>注</strong>：只有两个结果 $A$ 和 $\overline{A}$ 的试验称为伯努利（Bernoulli）试验，在相同条件下将伯努利试验独立重复进行 $n$ 次，则称为 $n$ 重伯努利试验。$n$ 重伯努利试验中，$n$ 次试验的结果相互独立，且每次试验中事件 $A$ 发生的概率相同。</p>
+<h2 id="0-1分布和几何分布"><a class="markdownIt-Anchor" href="#0-1分布和几何分布"></a> 0-1分布和几何分布</h2>
+<h3 id="0-1分布两点分布"><a class="markdownIt-Anchor" href="#0-1分布两点分布"></a> 0-1分布（两点分布）：</h3>
+<p>设随机变量$X$只可能取0与1两个值，它的分布律为<p>$$P\{X &#x3D; k\} &#x3D; p^k (1-p)^{1-k},\ k &#x3D; 0,1,\ (0 &lt; p &lt; 1)$$</p><br />
+或者<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260403-174509-display-0.png.png" alt="示意图" /><br />
+则称$X$服从参数为$p$的(0-1)分布或两点分布。其实也就是n取1时候的二项分布</p>
+<h3 id="几何分布"><a class="markdownIt-Anchor" href="#几何分布"></a> 几何分布</h3>
+<p>可列重伯努利试验中，记每次试验中事件A发生的概率为$p$，随机变量$X$表示事件$A$首次发生时的试验次数，其分布律为<p>$$P\{X &#x3D; k\} &#x3D; (1-p)^{k-1} p,\quad (k &#x3D; 1,2,\cdots)$$</p><br />
+其中0&lt;p&lt;1，则称$X$服从几何分布，记作X~Ge(p)<br><br />
+<strong>注</strong>：几何分布是负二项分布的特例，有点像是一直干到某件事就停止，这种感觉</p>
+<h2 id="泊松分布与泊松定理"><a class="markdownIt-Anchor" href="#泊松分布与泊松定理"></a> 泊松分布与泊松定理</h2>
+<h3 id="泊松分布"><a class="markdownIt-Anchor" href="#泊松分布"></a> 泊松分布</h3>
+<p><strong>定义</strong>：设随机变量$X$所有可能取值为$0,1,2,3,...，$其分布律为<p>$$ P\{X &#x3D; k\} &#x3D; \frac{\lambda^k e^{-\lambda}}{k!}, \quad (k &#x3D; 0,1,2,\dots) $$</p><br />
+其中$\lambda&gt;0$是常数，则称$X$服从参数为$\lambda$的泊松分布，记作$X \sim P(\lambda)$或$X \sim \pi(\lambda)$&gt;<br><br />
+<strong>在出泊松的题目时，题目当中一定会有泊松两个字</strong>，我们来看这道例题：<br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260404132708.png" alt="例题" /><br />
+我们直接来看X，可以解出$\lambda$<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260404132907.png" alt="示意图" /><br />
+接着带入X=1就能解出来了<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260404132943.png" alt="示意图" /></p>
+<hr />
+<h3 id="泊松定理"><a class="markdownIt-Anchor" href="#泊松定理"></a> 泊松定理</h3>
+<p><strong>泊松定理</strong>：设 $\lambda &gt; 0$ 是一个常数，$n$ 是任意正整数，设 $\lambda &#x3D; np_n$，则对于任意固定的非负整数 $k$ 有 <p>$$ \lim_{n \to \infty} P\{X &#x3D; k\} &#x3D; \lim_{n \to \infty} C_n^k p_n^k (1-p_n)^{n-k} \approx \frac{(np_n)^k}{k!} e^{-np_n} \quad (k &#x3D; 0,1,2,\dots) $$</p><br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260404133636.png" alt="示意图" /><br />
+我们可以得到以下这个：<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260404133733.png" alt="示意图" /><br />
+<strong>当然如果我们写题目的话，必须得出题人让你用你才能用，要不然继续使用二项分布计算。</strong></p>
 <ul>
-<li><strong>关系</strong>：$D_1*D_2*...*D_n$的子集称作在域$D_1,D_2,...,D_n$上的关系，表示为$R(D_1,D_2,...,D_n)$。R表示<strong>关系名</strong>，n表示关系的<strong>目的度</strong>。</li>
-<li><strong>元组</strong>：关系中的每个元素中的元组，通常用t表示</li>
-<li><strong>单元关系与二元关系</strong>：当n＝1时，称该关系为单元关系/一元关系；当n＝2时，也就是二元关系</li>
-<li><strong>关系的表示</strong>：关系也是一个二维表，表的每行对应一个元组，表的每列对应一个域，一个属性。如图：<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260330-112617-display-0.png.png" alt="示意图" /></li>
-<li><strong>属性</strong>：关系中不同列可以对应相同的域，为了加以区分，给列起一个名字，称为属性。n目关系必有n个属性。</li>
-<li><strong>码</strong>：
-<ul>
-<li><strong>候选码</strong>：若关系中的某一属性组的值能唯一的标识一个元组，则称该属性组为后选码。简单的情况：候选码只包含一个属性</li>
-<li><strong>全码</strong>：我们说的码不一定是一个属性，有时候仅靠一个属性组您你确定不了唯一元组，需要两个属性才可以。最极端的情况下，关系模式的所有属性组都是这个关系模式的候选码，称为全码</li>
-<li><strong>主码</strong>：若一个关系有多个候选码，则选定其中为主码</li>
-<li><strong>主属性</strong>：候选码的诸属性称为主属性</li>
-<li><strong>非主属性</strong>：不包含在任何候选码中的属性或非码属性</li>
-</ul>
+<li>
+<p>泊松定理直观解释：设一段时间内事件 $A$ 发生的次数 $X \sim P(\lambda)$ 表示，不妨记这段时间为 $[0,1]$ 并等分成 $n$ 段（$n$ 很大），每段时长 $\frac{1}{n}$。近似认为每段时间内 $A$ 发生的概率与时长成正比，即取 $p_n &#x3D; \frac{\lambda}{n}$，且因为 $\frac{1}{n}$ 足够短，$A$ 在每段时间内不可能发生两次以上。故每段时间内 $A$ 是否发生可近似视作伯努利试验，$X$ 近似服从$B\left(n, \frac{\lambda}{n}\right)$，当 $n \to \infty$ 时在数学上严格成立。</p>
 </li>
-<li><strong>三类关系</strong>：
-<ul>
-<li><strong>基本关系</strong>（基本表）：实际存在的表，是实际存储数据的逻辑表达</li>
-<li><strong>查询表</strong>：查询结果对应的表</li>
-<li><strong>视图表</strong>：由基本表或其他视图表导出的表，是虚表，不对应实际存储的数据</li>
-</ul>
-</li>
-<li><strong>基本关系的性质</strong>：
-<ul>
-<li>每列的性质都相同。</li>
-<li>不同的列可出自于同一个域，其中的每一列称为一个属性，不同的属性要给予不同的属性名</li>
-<li>列的顺序无所谓，列的次序可以任意交换</li>
-<li>任意两个元组的候选码不能相同</li>
-<li>行的顺序无所谓，行的次序可以任意交换</li>
-<li>分量必须取原子值，这是规范条件中最基本的一条。如图：<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260330143513.png" alt="示意图" /></li>
-</ul>
+<li>
+<p>一般当 $n$ 很大（$n \geq 20$），$p$ 很小（$p \leq 0.05$）时，二项分布 $B(n,p)$ 用泊松分布作近似效果较好。</p>
 </li>
 </ul>
-<hr />
-<h3 id="关系模式"><a class="markdownIt-Anchor" href="#关系模式"></a> 关系模式</h3>
-<p><strong>什么是关系模式</strong>：关系模式是对关系的描述。关系模式是型，关系是值。类似于类和对象。</p>
+<h2 id="超几何分布"><a class="markdownIt-Anchor" href="#超几何分布"></a> 超几何分布</h2>
+<p>超几何分布 若随机变量 $X$ 的分布律为 <p>$$ P\{X &#x3D; k\} &#x3D; \frac{C_M^k C_{N-M}^{n-k}}{C_N^n}, \quad k &#x3D; \max\{0, n-N+M\}, \dots, \min\{n, M\} $$</p> 其中 $M,N,n$ 都是正整数，则称 $X$ 服从参数为 $M,N,n$ 的超几何分布，记作 $X \sim H(n,M,N)$（无放回抽样）。</p>
 <ul>
-<li><strong>元组集合的结构</strong>：属性构成、属性来自的域、属性和域之间的的映像关系</li>
-<li><strong>一个关系通常由赋予它的元组语义定义</strong></li>
-<li><strong>现实的世界中还存在着完整性约束</strong><br />
-<strong>定义关系模式</strong>：关系模式可以形式化地表示为：R（U，D，DOM，F）。和关系的表示不一样。</li>
-<li>R：关系名</li>
-<li>U：组成该关系地属性名集合</li>
-<li>D：属性组U中属性所来自的域</li>
-<li>DOM：属性向域的映象集合</li>
-<li>F：属性间的数据依赖关系集合<br />
-<strong>关系模式与关系</strong></li>
-<li>关系模式是静态的、稳定的</li>
-<li>关系是动态的、随时间不断变化的</li>
-<li>关系是关系模式在某一时刻的状态或内容，在实际工作中关系模式和关系往往统称为关系，需要结合上下文语境。</li>
+<li>超几何分布的背景——设 $N$ 件产品中有 $M$ 件次品，从中无放回取 $n$ 次，则取到次品数 $X$ 服从超几何分布 $H(n,M,N)$</li>
+<li>当 $n$ 和 $\displaystyle \frac{M}{N}$ 固定，$N \to \infty$ 时，$X$ 近似服从二项分布 $X \sim B\left(n, \frac{M}{N}\right)$。<strong>其实就是数据量足够大的时候，取一个完全不影响</strong><br />
+<strong>其实本质就是无放回抽样，也就是说一次取n件</strong></li>
 </ul>
-<hr />
-<h3 id="关系数据库"><a class="markdownIt-Anchor" href="#关系数据库"></a> 关系数据库</h3>
-<p><strong>关系数据库</strong>：在一个给定的应用领域中，所有关系的集合构成一个关系数据库<br><br />
-<strong>关系数据库的型与值</strong>：</p>
-<ul>
-<li><strong>关系数据库的型</strong>：关系数据库模式，对关系数据库的描述</li>
-<li><strong>关系数据库模式</strong>：若干域的定义，在这些域上定义的若干关系模式。类似于正则。</li>
-<li><strong>关系数据库的值</strong>：关系模式在某一时刻对应的关系的集合，简称关系数据库</li>
-</ul>
-<hr />
-<h3 id="关系模型的存储结构"><a class="markdownIt-Anchor" href="#关系模型的存储结构"></a> 关系模型的存储结构</h3>
-<p>有的关系数据库管理系统中一个表对应一个操作系统文件，将物理数据组织交给操作系统完成。<br><br />
-有的关系数据库管理系统从操作系统那里申请若干个大的文件，自己划分文件空间，组织表、索引等存储结构，并进行存储管理。</p>
 
     </div>
     <footer class="article-footer">
-        <a data-aos="zoom-in" href="/2026/03/30/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA-%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%85%B3%E7%B3%BB%E4%B8%8E%E5%85%B6%E6%A8%A1%E5%BC%8F/#comments" class="article-comment-link">
-          <span class="post-comments-count twikoo-comment-count" data-path="/2026/03/30/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA-%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%85%B3%E7%B3%BB%E4%B8%8E%E5%85%B6%E6%A8%A1%E5%BC%8F/" itemprop="commentCount"></span>
+        <a data-aos="zoom-in" href="/2026/04/05/%E6%A6%82%E7%8E%87%E8%AE%BA%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%85%B6%E5%88%86%E5%B8%83%E6%96%B9%E6%B3%95/#comments" class="article-comment-link">
+          <span class="post-comments-count twikoo-comment-count" data-path="/2026/04/05/%E6%A6%82%E7%8E%87%E8%AE%BA%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%85%B6%E5%88%86%E5%B8%83%E6%96%B9%E6%B3%95/" itemprop="commentCount"></span>
           留言
         </a>
-        <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/" title="笔记" data-aos="zoom-in">笔记</a><a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA/" title="数据库系统概论" data-aos="zoom-in">数据库系统概论</a><a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA/%E7%AC%AC%E4%BA%8C%E7%AB%A0/" title="第二章" data-aos="zoom-in">第二章</a><a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA/%E7%AC%AC%E4%BA%8C%E7%AB%A0/%E7%AC%AC%E4%B8%80%E8%8A%82/" title="第一节" data-aos="zoom-in">第一节</a>
+        <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/" title="笔记" data-aos="zoom-in">笔记</a><a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/%E6%A6%82%E7%8E%87%E8%AE%BA/" title="概率论" data-aos="zoom-in">概率论</a><a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/%E6%A6%82%E7%8E%87%E8%AE%BA/%E7%AC%AC%E4%BA%8C%E7%AB%A0/" title="第二章" data-aos="zoom-in">第二章</a>
 
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag" title="数据库">数据库</a></li></ul>
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E6%A6%82%E7%8E%87%E8%AE%BA/" rel="tag" title="概率论">概率论</a></li></ul>
 
     </footer>
   </div>
     <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
       <div class="article-nav-link-wrap left">
-          <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260401215053.png" data-sizes="auto" alt="概率论第二章-随机变量与分布函数" class="lazyload">
-        <a href="/2026/04/01/%E6%A6%82%E7%8E%87%E8%AE%BA%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E4%B8%8E%E5%88%86%E5%B8%83%E5%87%BD%E6%95%B0/" aria-label="前一篇: 概率论第二章-随机变量与分布函数" title="前一篇: 概率论第二章-随机变量与分布函数"></a>
+          <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260407134941.png" data-sizes="auto" alt="概率论第二章-连续性随机变量的概念与性质" class="lazyload">
+        <a href="/2026/04/07/%E6%A6%82%E7%8E%87%E8%AE%BA%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E8%BF%9E%E7%BB%AD%E6%80%A7%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%9A%84%E6%A6%82%E5%BF%B5%E4%B8%8E%E6%80%A7%E8%B4%A8/" aria-label="前一篇: 概率论第二章-连续性随机变量的概念与性质" title="前一篇: 概率论第二章-连续性随机变量的概念与性质"></a>
         <div class="article-nav-caption">前一篇</div>
         <h3 class="article-nav-title">
-            概率论第二章-随机变量与分布函数
+            概率论第二章-连续性随机变量的概念与性质
         </h3>
       </div>
     <div class="article-nav-link-wrap right">
-        <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260327092156.png" data-sizes="auto" alt="计算机组成原理第二章-浮点数的一切" class="lazyload">
-      <a href="/2026/03/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E4%B8%80%E5%88%87/" aria-label="后一篇: 计算机组成原理第二章-浮点数的一切"  title="后一篇: 计算机组成原理第二章-浮点数的一切"></a>
+        <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260401220401.png" data-sizes="auto" alt="数据库系统概论-第二章-关系的完整性" class="lazyload">
+      <a href="/2026/04/01/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA-%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%85%B3%E7%B3%BB%E7%9A%84%E5%AE%8C%E6%95%B4%E6%80%A7/" aria-label="后一篇: 数据库系统概论-第二章-关系的完整性"  title="后一篇: 数据库系统概论-第二章-关系的完整性"></a>
       <div class="article-nav-caption">后一篇</div>
       <h3 class="article-nav-title">
-          计算机组成原理第二章-浮点数的一切
+          数据库系统概论-第二章-关系的完整性
       </h3>
     </div>
   </nav>
@@ -426,7 +402,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84%E5%8F%8A%E5%BD%A2%E5%BC%8F%E5%8C%96%E5%AE%9A%E4%B9%89"><span class="toc-number">1.</span> <span class="toc-text"> 数据系统结构及形式化定义</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB"><span class="toc-number">1.1.</span> <span class="toc-text"> 关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.2.</span> <span class="toc-text"> 关系模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.3.</span> <span class="toc-text"> 关系数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84"><span class="toc-number">1.4.</span> <span class="toc-text"> 关系模型的存储结构</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A6%BB%E6%95%A3%E5%9E%8B%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F"><span class="toc-number">1.</span> <span class="toc-text"> 离散型随机变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A6%BB%E6%95%A3%E5%9E%8B%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%88%86%E5%B8%83"><span class="toc-number">2.</span> <span class="toc-text"> 离散型随机变量分布</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E9%A1%B9%E5%88%86%E5%B8%83"><span class="toc-number">3.</span> <span class="toc-text"> 二项分布</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0-1%E5%88%86%E5%B8%83%E5%92%8C%E5%87%A0%E4%BD%95%E5%88%86%E5%B8%83"><span class="toc-number">4.</span> <span class="toc-text"> 0-1分布和几何分布</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0-1%E5%88%86%E5%B8%83%E4%B8%A4%E7%82%B9%E5%88%86%E5%B8%83"><span class="toc-number">4.1.</span> <span class="toc-text"> 0-1分布（两点分布）：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%A0%E4%BD%95%E5%88%86%E5%B8%83"><span class="toc-number">4.2.</span> <span class="toc-text"> 几何分布</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%8A%E6%9D%BE%E5%88%86%E5%B8%83%E4%B8%8E%E6%B3%8A%E6%9D%BE%E5%AE%9A%E7%90%86"><span class="toc-number">5.</span> <span class="toc-text"> 泊松分布与泊松定理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%8A%E6%9D%BE%E5%88%86%E5%B8%83"><span class="toc-number">5.1.</span> <span class="toc-text"> 泊松分布</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%8A%E6%9D%BE%E5%AE%9A%E7%90%86"><span class="toc-number">5.2.</span> <span class="toc-text"> 泊松定理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B6%85%E5%87%A0%E4%BD%95%E5%88%86%E5%B8%83"><span class="toc-number">6.</span> <span class="toc-text"> 超几何分布</span></a></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -569,14 +545,14 @@
       <script data-pjax>
         window.REIMU_POST = {
           author: "Stvfen",
-          title: "数据库系统概论-第二章-关系与其模式",
-          url: "http://example.com/2026/03/30/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA-%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%85%B3%E7%B3%BB%E4%B8%8E%E5%85%B6%E6%A8%A1%E5%BC%8F/",
+          title: "概率论第二章-随机变量类型及其分布方法",
+          url: "http://example.com/2026/04/05/%E6%A6%82%E7%8E%87%E8%AE%BA%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%85%B6%E5%88%86%E5%B8%83%E6%96%B9%E6%B3%95/",
           excerpt: "",
           description: "",
-          stripContent: " 1970年IBGM提出关系数据模型。 1972年提出了关系的第一、第二、第三范式 1974年提出了关系的BC范式 80年代后，关系数据库系统成为最重要、最流行的数据库系统   数据系统结构及形式化定义  关系  单一的数据结构——关系 逻辑结构——二维表 关系模型是建立在集合代数的基础上 域（domain）：域是一组具有相同数据类型的值的集合 整数、实数、介于某个取值范围的整数、字符串集合、｛”男“，”女“｝等等 笛卡尔积：给定一组域$D_1,D_2,...,D_n$，这些域可以是相同的，也可",
-          date: "Mon Mar 30 2026 15:08:07 GMT+0800",
-          updated: "Mon Mar 30 2026 15:09:19 GMT+0800",
-          cover: "https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/9814c5e3be9c2cb413bbefe8fcc94a19.png",
+          stripContent: " 离散型随机变量 离散型随机变量：若随机变量全部可能取到的值是有限个或可列无限多个，这种随机变量称为离散型随机变量。  离散型随机变量$X$只可能离散地、孤立地取值，一但$X$的可能取值充满一个区间，就不再是离散型。   分布律：设离散型随机变量$X$所有可能取的值为$x_1,x_2,...,x_k,...$且$X$取各个可能值的概率，即事件{$X&amp;#x3D;x_k$}的概率为：$$P\{X&amp;#x3D;x_k\}&amp;#x3D;p_k,（k&amp;#x3D;1,2,...)$$ 称上式为离散型随机变量$X",
+          date: "Sun Apr 05 2026 21:49:00 GMT+0800",
+          updated: "Tue Apr 07 2026 13:41:50 GMT+0800",
+          cover: "https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/1588615715103cdb64434d38931ae9f4.png",
         };
       </script>
         
