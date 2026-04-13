@@ -9,7 +9,7 @@
   
   <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_4k4bc36ef96';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
   <title>
-    数据库系统概论-第二章-关系数据结构 | 史蒂芬の电台
+    数据库系统概论-第二章-关系代数 | 史蒂芬の电台
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
@@ -17,18 +17,29 @@
     
 <link rel="stylesheet" href="/css/loader.css">
 
-    <meta name="description" content="基本关系操作  常用的关系操作 查询：选择、投影、连接、除、并、交、差等，其中投影、并、差、笛卡尔积是五种基本操作。 数据更新：插入、删除、修改 查询的表达能力是其中最主要的部分   关系操作的特点 集合操作方式：操作的对象和结果都是集合，一次一集合的方式。  关系数据库语言的分类  关系代数语言 用对关系的运算来表达查询要求。代表：ISBL语言  关系演算语言 用谓词来表示查询要求：  元祖组">
+    <meta name="description" content="一种抽象查询语言，用运算对象是关系的表达，结果也是关系。一般有以下两种↓  集合运算：集合运算是从关系的水平方向即行的角度进行 专门的关系运算：专门的关系运算不仅涉及行并且涉及列 两者的运算符号如下：   传统的集合运算  并 R和S两个表都有n个属性，相应的属性都取自于同一个域。结果就是把两个表合并起来了。$$ R \cup S &#x3D; { t \mid t \in R \lor t \in S }">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据库系统概论-第二章-关系数据结构">
-<meta property="og:url" content="http://example.com/2026/04/01/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA-%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/index.html">
+<meta property="og:title" content="数据库系统概论-第二章-关系代数">
+<meta property="og:url" content="http://example.com/2026/04/13/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA-%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0/index.html">
 <meta property="og:site_name" content="史蒂芬の电台">
-<meta property="og:description" content="基本关系操作  常用的关系操作 查询：选择、投影、连接、除、并、交、差等，其中投影、并、差、笛卡尔积是五种基本操作。 数据更新：插入、删除、修改 查询的表达能力是其中最主要的部分   关系操作的特点 集合操作方式：操作的对象和结果都是集合，一次一集合的方式。  关系数据库语言的分类  关系代数语言 用对关系的运算来表达查询要求。代表：ISBL语言  关系演算语言 用谓词来表示查询要求：  元祖组">
+<meta property="og:description" content="一种抽象查询语言，用运算对象是关系的表达，结果也是关系。一般有以下两种↓  集合运算：集合运算是从关系的水平方向即行的角度进行 专门的关系运算：专门的关系运算不仅涉及行并且涉及列 两者的运算符号如下：   传统的集合运算  并 R和S两个表都有n个属性，相应的属性都取自于同一个域。结果就是把两个表合并起来了。$$ R \cup S &#x3D; { t \mid t \in R \lor t \in S }">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2026-04-01T13:58:33.000Z">
-<meta property="article:modified_time" content="2026-04-01T14:00:40.486Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260413-100845-display-0.png.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260413145244.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260413145516.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260413145911.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260413152039.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260413153244.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260413153610.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260413201116.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260413201522.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260413202752.png">
+<meta property="article:published_time" content="2026-04-13T12:43:38.000Z">
+<meta property="article:modified_time" content="2026-04-13T12:44:26.851Z">
 <meta property="article:author" content="Stvfen">
 <meta property="article:tag" content="数据库">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260413-100845-display-0.png.png">
     <link rel="alternate" href="/atom.xml" title="史蒂芬の电台" type="application/atom+xml">
     <link rel="shortcut icon" href="/images/favicon.ico">
   
@@ -129,11 +140,11 @@
 </div>
 <header id="header" aria-label="Site header">
     <picture></picture>
-    <img  fetchpriority="high" src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260401220031.png" alt="数据库系统概论-第二章-关系数据结构">
+    <img  fetchpriority="high" src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/409f0a8e02a680f3202067f417dcc944.png" alt="数据库系统概论-第二章-关系代数">
   <div id="header-outer">
     <div id="header-title">
           <span id="logo">
-            <h1 data-aos="slide-up">数据库系统概论-第二章-关系数据结构</h1>
+            <h1 data-aos="slide-up">数据库系统概论-第二章-关系代数</h1>
           </span>
         <h2 id="subtitle-wrap" data-aos="slide-down">
         </h2>
@@ -148,7 +159,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%85%B3%E7%B3%BB%E6%93%8D%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text"> 基本关系操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84%E5%85%B3%E7%B3%BB%E6%93%8D%E4%BD%9C"><span class="toc-number">1.1.</span> <span class="toc-text"> 常用的关系操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E6%93%8D%E4%BD%9C%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-number">1.2.</span> <span class="toc-text"> 关系操作的特点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AF%AD%E8%A8%80%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-number">2.</span> <span class="toc-text"> 关系数据库语言的分类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0%E8%AF%AD%E8%A8%80"><span class="toc-number">2.1.</span> <span class="toc-text"> 关系代数语言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E6%BC%94%E7%AE%97%E8%AF%AD%E8%A8%80"><span class="toc-number">2.2.</span> <span class="toc-text"> 关系演算语言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B7%E6%9C%89%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0%E5%92%8C%E5%85%B3%E7%B3%BB%E6%BC%94%E7%AE%97%E5%8F%8C%E9%87%8D%E7%89%B9%E7%82%B9%E7%9A%84%E8%AF%AD%E8%A8%80"><span class="toc-number">2.3.</span> <span class="toc-text"> ⭐具有关系代数和关系演算双重特点的语言</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%A0%E7%BB%9F%E7%9A%84%E9%9B%86%E5%90%88%E8%BF%90%E7%AE%97"><span class="toc-number">1.</span> <span class="toc-text"> 传统的集合运算</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B9%B6"><span class="toc-number">1.1.</span> <span class="toc-text"> 并</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%89%E6%8B%A9"><span class="toc-number">1.2.</span> <span class="toc-text"> 选择</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%95%E5%BD%B1"><span class="toc-number">1.3.</span> <span class="toc-text"> 投影</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9E%E6%8E%A5"><span class="toc-number">1.4.</span> <span class="toc-text"> 连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%99%A4"><span class="toc-number">1.5.</span> <span class="toc-text"> 除</span></a></li></ol></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -217,13 +228,13 @@
   </div>
 </aside>
 
-          <section id="main" aria-label="Main content"><article id="post-数据库系统概论-第二章-关系数据结构" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+          <section id="main" aria-label="Main content"><article id="post-数据库系统概论-第二章-关系代数" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner" data-aos="fade-up">
     <div class="article-meta">
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
-    <time datetime="2026-04-01T13:58:33.000Z" itemprop="datePublished">2026-04-01</time>
-    <time style="display: none;" id="post-update-time">2026-04-01</time>
+    <time datetime="2026-04-13T12:43:38.000Z" itemprop="datePublished">2026-04-13</time>
+    <time style="display: none;" id="post-update-time">2026-04-13</time>
   </span>
 </div>
 
@@ -232,34 +243,74 @@
     <div class="hr-line"></div>
     
     <div class="e-content article-entry" itemprop="articleBody">
-        <h2 id="基本关系操作"><a class="markdownIt-Anchor" href="#基本关系操作"></a> 基本关系操作</h2>
-<h3 id="常用的关系操作"><a class="markdownIt-Anchor" href="#常用的关系操作"></a> 常用的关系操作</h3>
-<p><strong>查询</strong>：选择、投影、连接、除、并、交、差等，其中投影、并、差、笛卡尔积是五种基本操作。<BR><br />
-<strong>数据更新</strong>：插入、删除、修改<BR><br />
-<strong>查询的表达能力是其中最主要的部分</strong></p>
-<hr />
-<h3 id="关系操作的特点"><a class="markdownIt-Anchor" href="#关系操作的特点"></a> 关系操作的特点</h3>
-<p><strong>集合操作方式</strong>：操作的对象和结果都是集合，一次一集合的方式。</p>
-<h2 id="关系数据库语言的分类"><a class="markdownIt-Anchor" href="#关系数据库语言的分类"></a> 关系数据库语言的分类</h2>
-<h3 id="关系代数语言"><a class="markdownIt-Anchor" href="#关系代数语言"></a> 关系代数语言</h3>
-<p>用对关系的运算来表达查询要求。代表：ISBL语言</p>
-<h3 id="关系演算语言"><a class="markdownIt-Anchor" href="#关系演算语言"></a> 关系演算语言</h3>
-<p>用<strong>谓词</strong>来表示查询要求：</p>
-<ol>
-<li><strong>元祖组关系演算语言</strong>：谓词变元的基本对象是元组变量。代表：APLH,QUEL语言</li>
-<li><strong>域关系演算语言</strong>：谓词变元的基本对象是域变量。代表：QBF</li>
-</ol>
-<hr />
-<h3 id="具有关系代数和关系演算双重特点的语言"><a class="markdownIt-Anchor" href="#具有关系代数和关系演算双重特点的语言"></a> ⭐具有关系代数和关系演算双重特点的语言</h3>
-<p>代表：SQL</p>
+        <p>一种抽象查询语言，用运算对象是关系的表达，结果也是关系。一般有以下两种↓</p>
+<ul>
+<li><strong>集合运算</strong>：集合运算是从关系的水平方向即行的角度进行</li>
+<li><strong>专门的关系运算</strong>：专门的关系运算不仅涉及行并且涉及列<br />
+两者的运算符号如下：<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260413-100845-display-0.png.png" alt="示意图" /></li>
+</ul>
+<h2 id="传统的集合运算"><a class="markdownIt-Anchor" href="#传统的集合运算"></a> 传统的集合运算</h2>
+<h3 id="并"><a class="markdownIt-Anchor" href="#并"></a> 并</h3>
+<p>R和S两个表都有n个属性，相应的属性都取自于同一个域。结果就是把两个表合并起来了。$$<br />
+R \cup S = { t \mid t \in R \lor t \in S }</p>
+<p>$$![示意图](https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;Stvfen&#x2F;tuchuang@main&#x2F;img&#x2F;Screenshot_20260413-103504-display-0.png.png)
+如图会进行一个查重的操作
+
+### 差
+R-S就是R有但是把S的删去了。$$</p><p>R - S = { t \mid t \in R \land t \notin S }</p>
+<p>$$### 交
+R和S都有的才留下来成表。$$</p><p>R \cap S = { t \mid t \in R \land t \in S }</p>
+<p>$$交运算也可以通过并运算和差运算推导得出：
+$$</p><p>R \cap S = R - (R - S)</p>
+<p>$$### 笛卡尔积
+笛卡尔积可以两个表属性不同。
+- R：n列，$k_1$行
+- S：m列，$k_2$行
+$$</p><p>R \times S = { \overbrace{t_r t_s} \mid t_r \in R \land t_s \in S }</p>
+<p>$$结果是$k_1 * k_2$个元组，n+m列
+![示意图](https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;Stvfen&#x2F;tuchuang@main&#x2F;img&#x2F;Screenshot_20260413-105024-display-0.png.png)
+## 专门的关系运算
+**相关记号说明：**
+- ① 关系模式为 $R(A_1, A_2, \dots, A_n)$，它的一个关系为 $R$，$t \in R$ 表示 $t$ 是 $R$ 的一个元组。$t[A_i]$ 则表示元组 $t$ 中相应于属性 $A_i$ 的一个分量。
+- ② 若 $A &#x3D; \{A_{i_1}, A_{i_2}, \dots, A_{i_k}\}$，其中 $A_{i_1}, A_{i_2}, \dots, A_{i_k}$ 是 $A_1, A_2, \dots, A_n$ 中的一部分，则 $A$ 称为属性列或属性组。
+- $t[A] &#x3D; (t[A_{i_1}], t[A_{i_2}], \dots, t[A_{i_k}])$ 表示元组 $t$ 在属性列上诸分量的集合。$\overline{A}$ 则表示 $\{A_1, A_2, \dots, A_n\}$ 中去掉 $\{A_{i_1}, A_{i_2}, \dots, A_{i_k}\}$ 后剩余的属性组。
+- ③ $R$ 为 $n$ 目关系，$S$ 为 $m$ 目关系，$t_r \in R$，$t_s \in S$，$\overset{\frown}{t_r t_s}$ 称为元组的连接。$\overset{\frown}{t_r t_s}$ 是一个 $n+m$ 列的元组，前 $n$ 个分量为 $R$ 中的一个 $n$ 元组，后 $m$ 个分量为 $S$ 中的一个 $m$ 元组。 （笛卡尔积）
+$$</p><hr />
+<h3 id="选择"><a class="markdownIt-Anchor" href="#选择"></a> 选择</h3>
+<p>选择符合条件的<strong>行</strong></p>
+<p>$$\sigma_F(R) &#x3D; \{ t \mid t \in R \land F(t) &#x3D; &#39;真&#39; \} 
+$$</p><p>其中： $F$ 为选择条件，而R就是要选择的表。其中F的基本形式为： <p>$$ X_1 \theta Y_1 $$</p>其中，$\theta$ 表示比较运算符，它可以是 $&gt;$，$\geqslant$，$&lt;$，$\leqslant$，$&lt;&gt;$。 $X_1$，$Y_1$ 等是属性名，或为常量，或为简单函数；属性用它的序号来代替。比如Age&lt;18不能看某些东西。<br><br />
+例题：<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260413145244.png" alt="示意图" /><br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260413145516.png" alt="示意图" /></p>
+<h3 id="投影"><a class="markdownIt-Anchor" href="#投影"></a> 投影</h3>
+<p>选择<strong>列</strong></p>
+<p>$$\pi_A(R) &#x3D; \{ t[A] \mid t \in R \} 
+$$</p><p>这里的A就是选择哪个属性（哪一列）R就是哪个表，最终显示的是不重复的记录<br><br />
+例题<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260413145911.png" alt="示意图" /></p>
+<h3 id="连接"><a class="markdownIt-Anchor" href="#连接"></a> 连接</h3>
+<p>表示两个关系的笛卡尔积中选取属性间满足一定条件的元组。<p>$$ R \underset{A\theta B}{\bowtie} S &#x3D; \left\{ \overset{\frown}{t_r t_s} \mid t_r \in R \land t_s \in S \land t_r[A] \theta t_s[B] \right\} $$</p> $A$ 和 $B$：分别为 $R$ 和 $S$ 上度数相等且可比的属性组。 $\theta$：比较运算符。<br />
+<strong>自然连接（Natural join） 自然连接是一种特殊的等值连接，两个关系中进行比较的分量必须是相同属性组，在结果中把重复的属性列去掉。 自然连接的含义：$R$ 和 $S$ 具有相同的属性组 $B$。 <p>$$ R \bowtie S &#x3D; \left\{ \overset{\frown}{t_r t_s} \mid t_r \in R \land t_s \in S \land t_r[B] &#x3D; t_s[B] \right\} $$</p></strong><br />
+例题：<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260413152039.png" alt="示意图" /></p>
+<ul>
+<li><strong>悬浮元组</strong>：两个关系 $R$ 和 $S$ 在自然连接时，关系 $R$ 和 $S$ 中被舍弃的元组称为悬浮元组。</li>
+<li><strong>外连接</strong>：如果把悬浮元组（被舍弃的元组）也保存在结果关系中，在其他属性上填空值（$\text{Null}$），这种连接就叫做外连接（$\text{JOIN}$）。 <img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260413153244.png" alt="示意图" />绿色的就是悬浮元组，外连接就是把这个东西连到结果上去。</li>
+<li><strong>左外连接</strong>：如果只保留左边关系 $R$ 中的悬浮元组叫做左外连接（$\text{LEFT OUTER JOIN}$ 或 $\text{LEFT JOIN}$）。</li>
+<li><strong>右外连接</strong>：如果只保留右边关系 $S$ 中的悬浮元组叫做右外连接（$\text{RIGHT OUTER JOIN}$ 或 $\text{RIGHT JOIN}$）。<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260413153610.png" alt="示意图" /></li>
+</ul>
+<h3 id="除"><a class="markdownIt-Anchor" href="#除"></a> 除</h3>
+<p>除的概念直接看容易看不懂，我们直接看公式和例题<p>$$ R \div S &#x3D; \{ t_r[X] \mid t_r \in R \land \pi_Y(S) \subseteq Y_{t_r[X]} \} $$</p><br />
+例题<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260413201116.png" alt="示意图" /><br />
+其实就是找R和S都有的属性，接着找属性A的象集，如果该象集包含S中BC全部的话，那么就输出该属性A的值。<br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260413201522.png" alt="示意图" /><br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260413202752.png" alt="示意图" /></p>
 
     </div>
     <footer class="article-footer">
-        <a data-aos="zoom-in" href="/2026/04/01/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA-%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/#comments" class="article-comment-link">
-          <span class="post-comments-count twikoo-comment-count" data-path="/2026/04/01/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA-%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" itemprop="commentCount"></span>
+        <a data-aos="zoom-in" href="/2026/04/13/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA-%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0/#comments" class="article-comment-link">
+          <span class="post-comments-count twikoo-comment-count" data-path="/2026/04/13/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA-%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0/" itemprop="commentCount"></span>
           留言
         </a>
-        <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/" title="笔记" data-aos="zoom-in">笔记</a><a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA/" title="数据库系统概论" data-aos="zoom-in">数据库系统概论</a><a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA/%E7%AC%AC%E4%BA%8C%E7%AB%A0/" title="第二章" data-aos="zoom-in">第二章</a><a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA/%E7%AC%AC%E4%BA%8C%E7%AB%A0/%E7%AC%AC%E4%BA%8C%E8%8A%82/" title="第二节" data-aos="zoom-in">第二节</a>
+        <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/" title="笔记" data-aos="zoom-in">笔记</a><a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA/" title="数据库系统概论" data-aos="zoom-in">数据库系统概论</a><a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA/%E7%AC%AC%E4%BA%8C%E7%AB%A0/" title="第二章" data-aos="zoom-in">第二章</a><a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA/%E7%AC%AC%E4%BA%8C%E7%AB%A0/%E7%AC%AC%E5%9B%9B%E8%8A%82/" title="第四节" data-aos="zoom-in">第四节</a>
 
         <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag" title="数据库">数据库</a></li></ul>
 
@@ -267,19 +318,19 @@
   </div>
     <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
       <div class="article-nav-link-wrap left">
-          <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260401220401.png" data-sizes="auto" alt="数据库系统概论-第二章-关系的完整性" class="lazyload">
-        <a href="/2026/04/01/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA-%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%85%B3%E7%B3%BB%E7%9A%84%E5%AE%8C%E6%95%B4%E6%80%A7/" aria-label="前一篇: 数据库系统概论-第二章-关系的完整性" title="前一篇: 数据库系统概论-第二章-关系的完整性"></a>
+          <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/6f5cdb749c7938a2f8e1aab950c56ad3.png" data-sizes="auto" alt="计算机组成原理第三章-主存储器的基本组成" class="lazyload">
+        <a href="/2026/04/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E7%AC%AC%E4%B8%89%E7%AB%A0-%E4%B8%BB%E5%AD%98%E5%82%A8%E5%99%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%84%E6%88%90/" aria-label="前一篇: 计算机组成原理第三章-主存储器的基本组成" title="前一篇: 计算机组成原理第三章-主存储器的基本组成"></a>
         <div class="article-nav-caption">前一篇</div>
         <h3 class="article-nav-title">
-            数据库系统概论-第二章-关系的完整性
+            计算机组成原理第三章-主存储器的基本组成
         </h3>
       </div>
     <div class="article-nav-link-wrap right">
-        <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/b9e24f77-9d7e-4934-85f6-b2626cce6c64.png" data-sizes="auto" alt="计算机组成原理第三章-存储系统基本概念" class="lazyload">
-      <a href="/2026/04/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" aria-label="后一篇: 计算机组成原理第三章-存储系统基本概念"  title="后一篇: 计算机组成原理第三章-存储系统基本概念"></a>
+        <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260407134941.png" data-sizes="auto" alt="概率论第二章-连续性随机变量的概念与性质" class="lazyload">
+      <a href="/2026/04/07/%E6%A6%82%E7%8E%87%E8%AE%BA%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E8%BF%9E%E7%BB%AD%E6%80%A7%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%9A%84%E6%A6%82%E5%BF%B5%E4%B8%8E%E6%80%A7%E8%B4%A8/" aria-label="后一篇: 概率论第二章-连续性随机变量的概念与性质"  title="后一篇: 概率论第二章-连续性随机变量的概念与性质"></a>
       <div class="article-nav-caption">后一篇</div>
       <h3 class="article-nav-title">
-          计算机组成原理第三章-存储系统基本概念
+          概率论第二章-连续性随机变量的概念与性质
       </h3>
     </div>
   </nav>
@@ -349,7 +400,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%85%B3%E7%B3%BB%E6%93%8D%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text"> 基本关系操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84%E5%85%B3%E7%B3%BB%E6%93%8D%E4%BD%9C"><span class="toc-number">1.1.</span> <span class="toc-text"> 常用的关系操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E6%93%8D%E4%BD%9C%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-number">1.2.</span> <span class="toc-text"> 关系操作的特点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AF%AD%E8%A8%80%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-number">2.</span> <span class="toc-text"> 关系数据库语言的分类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0%E8%AF%AD%E8%A8%80"><span class="toc-number">2.1.</span> <span class="toc-text"> 关系代数语言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E6%BC%94%E7%AE%97%E8%AF%AD%E8%A8%80"><span class="toc-number">2.2.</span> <span class="toc-text"> 关系演算语言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B7%E6%9C%89%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0%E5%92%8C%E5%85%B3%E7%B3%BB%E6%BC%94%E7%AE%97%E5%8F%8C%E9%87%8D%E7%89%B9%E7%82%B9%E7%9A%84%E8%AF%AD%E8%A8%80"><span class="toc-number">2.3.</span> <span class="toc-text"> ⭐具有关系代数和关系演算双重特点的语言</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%A0%E7%BB%9F%E7%9A%84%E9%9B%86%E5%90%88%E8%BF%90%E7%AE%97"><span class="toc-number">1.</span> <span class="toc-text"> 传统的集合运算</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B9%B6"><span class="toc-number">1.1.</span> <span class="toc-text"> 并</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%89%E6%8B%A9"><span class="toc-number">1.2.</span> <span class="toc-text"> 选择</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%95%E5%BD%B1"><span class="toc-number">1.3.</span> <span class="toc-text"> 投影</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9E%E6%8E%A5"><span class="toc-number">1.4.</span> <span class="toc-text"> 连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%99%A4"><span class="toc-number">1.5.</span> <span class="toc-text"> 除</span></a></li></ol></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -492,14 +543,14 @@
       <script data-pjax>
         window.REIMU_POST = {
           author: "Stvfen",
-          title: "数据库系统概论-第二章-关系数据结构",
-          url: "http://example.com/2026/04/01/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA-%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/",
+          title: "数据库系统概论-第二章-关系代数",
+          url: "http://example.com/2026/04/13/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA-%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0/",
           excerpt: "",
           description: "",
-          stripContent: " 基本关系操作  常用的关系操作 查询：选择、投影、连接、除、并、交、差等，其中投影、并、差、笛卡尔积是五种基本操作。 数据更新：插入、删除、修改 查询的表达能力是其中最主要的部分   关系操作的特点 集合操作方式：操作的对象和结果都是集合，一次一集合的方式。  关系数据库语言的分类  关系代数语言 用对关系的运算来表达查询要求。代表：ISBL语言  关系演算语言 用谓词来表示查询要求：  元祖组关系演算语言：谓词变元的基本对象是元组变量。代表：APLH,QUEL语言 域关系演算语言：谓词变元的",
-          date: "Wed Apr 01 2026 21:58:33 GMT+0800",
-          updated: "Wed Apr 01 2026 22:00:40 GMT+0800",
-          cover: "https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260401220031.png",
+          stripContent: "一种抽象查询语言，用运算对象是关系的表达，结果也是关系。一般有以下两种↓  集合运算：集合运算是从关系的水平方向即行的角度进行 专门的关系运算：专门的关系运算不仅涉及行并且涉及列 两者的运算符号如下：   传统的集合运算  并 R和S两个表都有n个属性，相应的属性都取自于同一个域。结果就是把两个表合并起来了。$$ R \cup S = { t \mid t \in R \lor t \in S } $$![示意图](https:&amp;#x2F;&amp;#x2F;cdn.jsdelivr.net&amp;#x2F;",
+          date: "Mon Apr 13 2026 20:43:38 GMT+0800",
+          updated: "Mon Apr 13 2026 20:44:26 GMT+0800",
+          cover: "https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/409f0a8e02a680f3202067f417dcc944.png",
         };
       </script>
         
