@@ -9,7 +9,7 @@
   
   <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_4k4bc36ef96';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
   <title>
-    计算机组成原理第三章-主存储器的基本组成 | 史蒂芬の电台
+    概率论第二章-常见连续型随机变量的分布（三种） | 史蒂芬の电台
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
@@ -17,34 +17,20 @@
     
 <link rel="stylesheet" href="/css/loader.css">
 
-    <meta name="description" content="基本的半导体元件及原理 存储体中的数据由二进制来进行存储，而每一位都是一个存储元。存储元的结构如下图所示：   MOS管：MOS管可理解为一种电控开关，输入电压达到某个阈值时，MOS管就可以连通 叫它半导体的原因就是，它既不是导体也不是半导体，给够足够电压才能连通。 原理：当我们上方给一个足够高的电压时候，电容上板电压会高，而下面是接地的，高电压差将会在电容器中间存储电荷，我们根据存储了多少电荷">
+    <meta name="description" content="均匀分布 它的样子一定是一段是常数一段是0。 $$f(x) &#x3D; \begin{cases} \dfrac{1}{b-a}, &amp; a &lt; x &lt; b, \\[6pt] 0, &amp; \text{其他}, \end{cases} $$则称 $X$ 在区间 $(a,b)$ 上服从均匀分布，记为 $X \sim U(a,b)$。 $X$ 的分布函数为 $$F(x)&amp;#x">
 <meta property="og:type" content="article">
-<meta property="og:title" content="计算机组成原理第三章-主存储器的基本组成">
-<meta property="og:url" content="http://example.com/2026/04/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E7%AC%AC%E4%B8%89%E7%AB%A0-%E4%B8%BB%E5%AD%98%E5%82%A8%E5%99%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%84%E6%88%90/index.html">
+<meta property="og:title" content="概率论第二章-常见连续型随机变量的分布（三种）">
+<meta property="og:url" content="http://example.com/2026/04/15/%E6%A6%82%E7%8E%87%E8%AE%BA%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%B8%B8%E8%A7%81%E8%BF%9E%E7%BB%AD%E5%9E%8B%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%9A%84%E5%88%86%E5%B8%83%EF%BC%88%E4%B8%89%E7%A7%8D%EF%BC%89/index.html">
 <meta property="og:site_name" content="史蒂芬の电台">
-<meta property="og:description" content="基本的半导体元件及原理 存储体中的数据由二进制来进行存储，而每一位都是一个存储元。存储元的结构如下图所示：   MOS管：MOS管可理解为一种电控开关，输入电压达到某个阈值时，MOS管就可以连通 叫它半导体的原因就是，它既不是导体也不是半导体，给够足够电压才能连通。 原理：当我们上方给一个足够高的电压时候，电容上板电压会高，而下面是接地的，高电压差将会在电容器中间存储电荷，我们根据存储了多少电荷">
+<meta property="og:description" content="均匀分布 它的样子一定是一段是常数一段是0。 $$f(x) &#x3D; \begin{cases} \dfrac{1}{b-a}, &amp; a &lt; x &lt; b, \\[6pt] 0, &amp; \text{其他}, \end{cases} $$则称 $X$ 在区间 $(a,b)$ 上服从均匀分布，记为 $X \sim U(a,b)$。 $X$ 的分布函数为 $$F(x)&amp;#x">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260403-102011-display-0.png.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260403-102913-display-0.png.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260403-103603-display-0.png.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260403-104210-display-0.png.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260403-105243-display-0.png.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260403-105515-display-0.png.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260403-110121-display-0.png.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260403-110528-display-0.png.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260403-111308-display-0.png.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260407-200422-display-0.png.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260407-200422-display-0.png.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260407-201244-display-0_EDIT_1775564002006.png_EDIT_1775564002006.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260407-201622-display-0_EDIT_1775564248233.png_EDIT_1775564248233.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260407-203145-display-0.png.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260407-203452-display-0.png.png">
-<meta property="article:published_time" content="2026-04-13T12:45:19.000Z">
-<meta property="article:modified_time" content="2026-04-13T12:46:04.713Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260414-200209-display-0.png.png">
+<meta property="article:published_time" content="2026-04-15T05:55:00.000Z">
+<meta property="article:modified_time" content="2026-04-15T05:56:07.926Z">
 <meta property="article:author" content="Stvfen">
-<meta property="article:tag" content="计算机组成原理">
+<meta property="article:tag" content="概率论">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260403-102011-display-0.png.png">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260414-200209-display-0.png.png">
     <link rel="alternate" href="/atom.xml" title="史蒂芬の电台" type="application/atom+xml">
     <link rel="shortcut icon" href="/images/favicon.ico">
   
@@ -145,11 +131,11 @@
 </div>
 <header id="header" aria-label="Site header">
     <picture></picture>
-    <img  fetchpriority="high" src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/6f5cdb749c7938a2f8e1aab950c56ad3.png" alt="计算机组成原理第三章-主存储器的基本组成">
+    <img  fetchpriority="high" src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/b14beae57e56ccebebeffd0e255f36c6.png" alt="概率论第二章-常见连续型随机变量的分布（三种）">
   <div id="header-outer">
     <div id="header-title">
           <span id="logo">
-            <h1 data-aos="slide-up">计算机组成原理第三章-主存储器的基本组成</h1>
+            <h1 data-aos="slide-up">概率论第二章-常见连续型随机变量的分布（三种）</h1>
           </span>
         <h2 id="subtitle-wrap" data-aos="slide-down">
         </h2>
@@ -164,7 +150,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%9A%84%E5%8D%8A%E5%AF%BC%E4%BD%93%E5%85%83%E4%BB%B6%E5%8F%8A%E5%8E%9F%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text"> 基本的半导体元件及原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E5%99%A8%E8%8A%AF%E7%89%87%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text"> ⭐存储器芯片的基本原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BB%E5%9D%80"><span class="toc-number">3.</span> <span class="toc-text"> 寻址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sram%E5%92%8Cdram"><span class="toc-number">4.</span> <span class="toc-text"> SRAM和DRAM</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#dram%E8%8A%AF%E7%89%87"><span class="toc-number">4.1.</span> <span class="toc-text"> DRAM芯片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%85%E6%9E%81%E7%94%B5%E5%AE%B9vs%E5%8F%8C%E7%A8%B3%E6%80%81%E8%A7%A6%E5%8F%91%E5%99%A8"><span class="toc-number">4.2.</span> <span class="toc-text"> 栅极电容VS双稳态触发器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%BB%E5%86%99%E9%80%9F%E5%BA%A6%E4%B8%8A"><span class="toc-number">4.2.1.</span> <span class="toc-text"> 读写速度上</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%88%90%E6%9C%AC%E4%B8%8A"><span class="toc-number">4.2.2.</span> <span class="toc-text"> 成本上</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">4.2.3.</span> <span class="toc-text"> 总结</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dram%E7%9A%84%E5%88%B7%E6%96%B0"><span class="toc-number">4.3.</span> <span class="toc-text"> DRAM的刷新</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%81%E8%A1%8C%E5%88%97%E5%9C%B0%E5%9D%80%E7%9A%84%E5%A4%8D%E7%94%A8"><span class="toc-number">4.4.</span> <span class="toc-text"> 送行列地址的复用</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9D%87%E5%8C%80%E5%88%86%E5%B8%83"><span class="toc-number">1.</span> <span class="toc-text"> 均匀分布</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E6%95%B0%E5%88%86%E5%B8%83"><span class="toc-number">2.</span> <span class="toc-text"> 指数分布</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83%E5%85%AC%E5%BC%8F%E7%9B%B4%E6%8E%A5%E8%83%8C"><span class="toc-number">3.</span> <span class="toc-text"> 正态分布（公式直接背）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83%E5%9B%BE%E5%BD%A2%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="toc-number">3.1.</span> <span class="toc-text"> 正态分布图形的性质：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83%E6%9B%B2%E7%BA%BF%E7%A4%BA%E6%84%8F%E5%9B%BEascii"><span class="toc-number">3.1.1.</span> <span class="toc-text"> 正态分布曲线示意图（ASCII）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83%E7%9A%84%E5%B8%B8%E7%94%A8%E7%BB%93%E8%AE%BA"><span class="toc-number">3.2.</span> <span class="toc-text"> 正态分布的常用结论：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E5%87%86%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="toc-number">3.3.</span> <span class="toc-text"> 标准正态分布的性质：</span></a></li></ol></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -233,13 +219,13 @@
   </div>
 </aside>
 
-          <section id="main" aria-label="Main content"><article id="post-计算机组成原理第三章-主存储器的基本组成" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+          <section id="main" aria-label="Main content"><article id="post-概率论第二章-常见连续型随机变量的分布（三种）" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner" data-aos="fade-up">
     <div class="article-meta">
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
-    <time datetime="2026-04-13T12:45:19.000Z" itemprop="datePublished">2026-04-13</time>
-    <time style="display: none;" id="post-update-time">2026-04-13</time>
+    <time datetime="2026-04-15T05:55:00.000Z" itemprop="datePublished">2026-04-15</time>
+    <time style="display: none;" id="post-update-time">2026-04-15</time>
   </span>
 </div>
 
@@ -248,133 +234,134 @@
     <div class="hr-line"></div>
     
     <div class="e-content article-entry" itemprop="articleBody">
-        <h2 id="基本的半导体元件及原理"><a class="markdownIt-Anchor" href="#基本的半导体元件及原理"></a> 基本的半导体元件及原理</h2>
-<p>存储体中的数据由二进制来进行存储，而每一位都是一个存储元。存储元的结构如下图所示：<br />
-<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260403-102011-display-0.png.png" alt="示意图" /></p>
-<ul>
-<li><strong>MOS管</strong>：MOS管可理解为一种电控开关，输入电压达到某个阈值时，MOS管就可以连通<br />
-叫它半导体的原因就是，它既不是导体也不是半导体，给够足够电压才能连通。<BR><br />
-<strong>原理</strong>：当我们上方给一个足够高的电压时候，电容上板电压会高，而下面是接地的，高电压差将会在电容器中间存储电荷，我们根据存储了多少电荷来判断二进制是否为1。<BR><br />
-我们如果将多个存储元连接，那就可以存储一串二进制数据，如图：<br />
-<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260403-102913-display-0.png.png" alt="示意图" /><br />
-这个红色的线连接了每个存储元的MOS管，如果红线是5V，那么所有MOS管都会连通，此时绿色的线处如果有电流，就为1，否则为0。</li>
-</ul>
-<h2 id="存储器芯片的基本原理"><a class="markdownIt-Anchor" href="#存储器芯片的基本原理"></a> ⭐存储器芯片的基本原理</h2>
-<p>我们现在要了解如何根据地址来知道我们要读或者写哪个存储字呢？<br />
-<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260403-103603-display-0.png.png" alt="示意图" /><br />
-这个时候我们就需要**译码器*的作用：</p>
-<ul>
-<li>它能将n位地址–&gt;$2^n$个存储单元</li>
-<li>地址总线和CPU相同，将地址通过MAR给编码器</li>
-<li>接着编码器根据地址选取字选线（也就是红色的线）</li>
-<li>给该线高电压，就可以通过数据线（绿色）获取该字二进制</li>
-<li>最后CPU通过数据总线取走整个字的数据<p>$$总容量&#x3D;存储单元个数*存储字长&#x3D;2^3*8Bit&#x3D;2^3*1Byte＝8B
-$$</p>但我们还需要一点补充，由于MAR里面的电信号可能<strong>不稳定</strong>，所以我们还需要一个<strong>控制信号</strong>。</li>
-<li>控制电路会<strong>先</strong>空值MAR,让MAR先稳定，<strong>接</strong>着将电信号再传给译码器。</li>
-<li>然后通过控制电路来开关译码器。</li>
-<li>只有当电信号稳定后，控制电路才会认为这个数据字是正确的。<br />
-另一个方面，控制电路也需要<strong>片选线</strong>的链接<br />
-<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260403-104210-display-0.png.png" alt="示意图" /></li>
-<li>片选线头上划线表示该信号低电平有效。<br />
-并且片选线下面那了条线分别是<strong>读控制线和写控制线</strong>：</li>
-<li>两根读/写线
-<ul>
-<li>$\overline{WE}$允许写</li>
-<li>$\overline{OE}$允许读</li>
-</ul>
+        <h2 id="均匀分布"><a class="markdownIt-Anchor" href="#均匀分布"></a> 均匀分布</h2>
+<p>它的样子一定是一段是常数一段是0。</p>
+<p>$$f(x) &#x3D;
+\begin{cases}
+\dfrac{1}{b-a}, &amp; a &lt; x &lt; b, \\[6pt]
+0, &amp; \text{其他},
+\end{cases}
+$$</p><p>则称 $X$ 在区间 $(a,b)$ 上服从均匀分布，记为 $X \sim U(a,b)$。<br><br />
+$X$ 的分布函数为</p>
+<p>$$F(x)&#x3D;
+\begin{cases}
+0, &amp; x &lt; a, \\[6pt]
+\dfrac{x-a}{b-a}, &amp; a \leq x &lt; b, \\[6pt]
+1, &amp; x \geq b.
+\end{cases}
+$$</p><h2 id="指数分布"><a class="markdownIt-Anchor" href="#指数分布"></a> 指数分布</h2>
+<p>指数分布：设连续型随机变量 $X$ 的概率密度为</p>
+<p>$$f(x)&#x3D;
+\begin{cases}
+\lambda e^{-\lambda x}, &amp; x &gt; 0, \\
+0, &amp; x \le 0,
+\end{cases}
+$$</p><p>其中 $\lambda &gt; 0$ 为常数，则称 $X$ 服从参数为 $\lambda$ 的<strong>指数分布</strong>，记为 $X \sim E(\lambda)$。</p>
+<p>$X$ 的分布函数为</p>
+<p>$$F(x)&#x3D;
+\begin{cases}
+1 - e^{-\lambda x}, &amp; x \ge 0, \\
+0, &amp; x &lt; 0.
+\end{cases}
+$$</p><p>一些计算技巧：当 $a&gt;0$，且 $X \sim E(\lambda)$</p>
+<p>$$P\{X &gt; a\} &#x3D; 1 - F(a) &#x3D; e^{-\lambda a} 
+$$</p><p>指数函数具有<strong>无记忆性</strong>，我从头开始使用一个物品&gt;=10小时的概率，等于我已经用了2h后再用&gt;=10小时的概率。</p>
+<h2 id="正态分布公式直接背"><a class="markdownIt-Anchor" href="#正态分布公式直接背"></a> 正态分布（公式直接背）</h2>
+<p>正态分布：设连续型随机变量 $X$ 的概率密度为</p>
+<p>$$f(x) &#x3D; \frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{(x-\mu)^2}{2\sigma^2}}, \quad -\infty &lt; x &lt; +\infty
+$$</p><p>其中 $\mu, \sigma(\sigma&gt;0)$ 为常数，则称 $X$ 服从参数为 $\mu, \sigma$ 的<strong>正态（Normal）分布</strong>或高斯（Gauss）分布，记为 $X \sim N(\mu, \sigma^2)$。</p>
+<h3 id="正态分布图形的性质"><a class="markdownIt-Anchor" href="#正态分布图形的性质"></a> 正态分布图形的性质：</h3>
+<ol>
+<li>
+<p>曲线关于 $x&#x3D;\mu$ 对称，且当 $x&#x3D;\mu$ 时，$f(x)$ 取最大值：</p>
+<p>$$f(\mu) &#x3D; \frac{1}{\sqrt{2\pi}\sigma}
+$$</p></li>
+<li>
+<p>曲线以 $Ox$ 轴为水平渐近线。</p>
 </li>
-<li>一根读/写线
-<ul>
-<li>$\overline{WE}$低电平写，高电平读<br />
-<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260403-105243-display-0.png.png" alt="示意图" /><br />
-我们可以将其封装成如下图：</li>
-</ul>
+</ol>
+<hr />
+<h4 id="正态分布曲线示意图ascii"><a class="markdownIt-Anchor" href="#正态分布曲线示意图ascii"></a> 正态分布曲线示意图（ASCII）</h4>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">        y</span><br><span class="line">        |</span><br><span class="line">        |        .--.</span><br><span class="line">        |      .&#x27;    `.</span><br><span class="line">        |     /        \</span><br><span class="line">        |    /          \</span><br><span class="line">        |   /            \</span><br><span class="line">        |  /              \</span><br><span class="line">--------+------------------→ x</span><br><span class="line">        |       μ</span><br></pre></td></tr></table></figure>
+<h3 id="正态分布的常用结论"><a class="markdownIt-Anchor" href="#正态分布的常用结论"></a> 正态分布的常用结论：</h3>
+<ol>
+<li>
+<p>$P\{X &gt; \mu\} &#x3D; P\{X &lt; \mu\} &#x3D; \dfrac{1}{2}$</p>
 </li>
-<li><strong>译码驱动</strong>：译码器加后面的一个驱动器，这个驱动器增强信号作用</li>
-<li><strong>读写线路</strong>：也就是控制电路和那些红红绿绿的线</li>
-<li><strong>片选线</strong>：读取存储矩阵中哪一个存储元件，这边用内存条来展示下：<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260403-105515-display-0.png.png" alt="示意图" />这里每个黑黑的都是一个芯片，片选器就是选一个芯片来读，人如其名。并且内存条内有很多金属引脚，引脚的个数也就是地址线的个数，片选线，数据线，控制线的和<br />
-<strong>之后我们还会遇到如下图的表示方法，前面的数字是存储单元，后面的是字长，记住就好：</strong><img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260403-110121-display-0.png.png" alt="示意图" /></li>
-</ul>
-<h2 id="寻址"><a class="markdownIt-Anchor" href="#寻址"></a> 寻址</h2>
-<p><img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260403-110528-display-0.png.png" alt="示意图" /></p>
-<h2 id="sram和dram"><a class="markdownIt-Anchor" href="#sram和dram"></a> SRAM和DRAM</h2>
-<ul>
-<li>Dynamic Random Access Memory ，即动态RAM</li>
-<li>Static Random Access Memory，即静态RAM<br />
-DRAM用于主存、SRAM用于Cache（高速缓冲存储器）</li>
-</ul>
-<h3 id="dram芯片"><a class="markdownIt-Anchor" href="#dram芯片"></a> DRAM芯片</h3>
-<p>就是我们上一小节学到的芯片。</p>
-<ul>
-<li>DRAM芯片：使用栅极电容存储信息(就是上小节那一堆电容)</li>
-<li>SRAM芯片：使用双稳态触发器存储信息<br />
-<strong>核心区别</strong>：存储元不一样</li>
-</ul>
+<li>
+<p>$Y &#x3D; aX + b \sim N(a\mu + b, a^2\sigma^2), a \neq 0$，即正态随机变量的一次函数仍服从正态分布。</p>
+</li>
+<li>
+<p>$3\sigma$ 原理（了解）：$$<br />
+\begin{align*}<br />
+P{\mu - \sigma \le X \le \mu + \sigma} &amp;= 0.6827 \<br />
+P{\mu - 2\sigma \le X \le \mu + 2\sigma} &amp;= 0.9545 \<br />
+P{\mu - 3\sigma \le X \le \mu + 3\sigma} &amp;= 0.9973<br />
+\end{align*}</p>
+<p>$$$$</p></li>
+<li>
+<p><strong>定义</strong>：当 $\mu&#x3D;0, \sigma&#x3D;1$ 时，称 $X$ 服从标准正态分布，记为 $X \sim N(0,1)$，其概率密度为</p>
+<p>$$\varphi(x) &#x3D; \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}}, \quad -\infty &lt; x &lt; +\infty
+$$</p><p>分布函数用 $\Phi(x)$ 表示。</p>
+</li>
+<li>
+<p><strong>正态分布的标准化</strong>：<br />
+若 $X \sim N(\mu, \sigma^2)$，则</p>
+<p>$$Z &#x3D; \frac{X - \mu}{\sigma} \sim N(0,1)
+$$</p></li>
+</ol>
 <hr />
-<h3 id="栅极电容vs双稳态触发器"><a class="markdownIt-Anchor" href="#栅极电容vs双稳态触发器"></a> 栅极电容VS双稳态触发器</h3>
-<p><img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260403-111308-display-0.png.png" alt="示意图" /><br />
-👈🏻栅极电容，👉🏻双稳态触发器<BR><br />
-双稳态触发器我们这边只做了解，看下图就好了：</p>
+<p><strong>注：正态分布标准化证明</strong></p>
+<p>证明 设 $X \sim N(\mu, \sigma^2)$，令 $Z &#x3D; \frac{X - \mu}{\sigma}$，则</p>
+<p>$$\begin{align*}
+F_Z(z) &amp;&#x3D; P\{Z \le z\} \\
+&amp;&#x3D; P\left\{ \frac{X - \mu}{\sigma} \le z \right\} \\
+&amp;&#x3D; P\{X \le \sigma z + \mu\} \\
+&amp;&#x3D; \frac{1}{\sqrt{2\pi}\sigma} \int_{-\infty}^{\sigma z + \mu} e^{-\frac{(x-\mu)^2}{2\sigma^2}} dx \\
+&amp;&#x3D; \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{z} e^{-\frac{t^2}{2}} dt \\
+&amp;&#x3D; \Phi(z)
+\end{align*}
+$$</p><p>若 $X \sim N(\mu, \sigma^2)$，则 $X$ 的分布函数为</p>
+<p>$$F(x) &#x3D; P\{X \le x\} &#x3D; P\left\{ \frac{X - \mu}{\sigma} \le \frac{x - \mu}{\sigma} \right\} &#x3D; \Phi\left( \frac{x - \mu}{\sigma} \right)
+$$</p><p>这个其实很好证明，X和x同时减和除同一个数，在逻辑上，只要X&lt;=x的发生，那么这个也会必定发生，所以概率本身是没有变的。<br><br />
+若 $X \sim N(\mu, \sigma^2)$，则区间概率公式为：</p>
+<p>$$P\{a &lt; X \le b\} &#x3D; P\left\{ \frac{a-\mu}{\sigma} &lt; \frac{X-\mu}{\sigma} \le \frac{b-\mu}{\sigma} \right\} &#x3D; \Phi\left( \frac{b-\mu}{\sigma} \right) - \Phi\left( \frac{a-\mu}{\sigma} \right)
+$$</p><p>这个可以根据上面那个推出来的。</p>
+<h3 id="标准正态分布的性质"><a class="markdownIt-Anchor" href="#标准正态分布的性质"></a> 标准正态分布的性质：</h3>
 <ul>
-<li>1：A高B低</li>
-<li>0：A低B高</li>
-<li>上面的是写入，读取的话就是给电压看BL和BLX谁输出电信号就行了</li>
+<li>$\Phi(-a) &#x3D; 1 - \Phi(a),\ \forall a \in \mathbb{R}$；</li>
+<li>$\Phi(0) &#x3D; \dfrac{1}{2}$；</li>
+<li>$P\{|X| \le a\} &#x3D; 2\Phi(a) - 1$，其中 $a &gt; 0$。</li>
 </ul>
-<h4 id="读写速度上"><a class="markdownIt-Anchor" href="#读写速度上"></a> 读写速度上</h4>
-<ul>
-<li><strong>栅极电容</strong>：电容放电信息被破坏，是<mark>破坏性读出</mark>，付出后应有重写操作，也称再生。</li>
-<li><strong>双稳态触发器</strong>：读出数据，触发器状态保持稳定，是非破坏性读出，无需重写<br />
-由于栅极电容需要重写，而双稳态触发器不需要，所以读写速度上前者慢于后者。</li>
-</ul>
-<h4 id="成本上"><a class="markdownIt-Anchor" href="#成本上"></a> 成本上</h4>
-<ul>
-<li><strong>栅极电容</strong>：每个存储元制造成本更低，集成度高，功耗低</li>
-<li><strong>双稳态触发器</strong>：每个存储元制造成本更高，集成度低，功耗大</li>
-</ul>
-<h4 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h4>
-<p><img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260407-200422-display-0.png.png" alt="示意图" /></p>
-<hr />
-<h3 id="dram的刷新"><a class="markdownIt-Anchor" href="#dram的刷新"></a> DRAM的刷新</h3>
-<p>由于电容不通电的情况下可能会自己慢慢流逝，导致二进制从0变成1之类的问题，所以为了避免丢失，我们需要一个操作叫做刷新，那么多久刷新一次呢，一般是<strong>2ms</strong></p>
-<ul>
-<li>多久刷新一次：<strong>2ms</strong></li>
-<li>每次刷新多少存储单元：<strong>以行为单位，每次刷新一行存储单元</strong></li>
-<li>如何刷新：<strong>有硬件(刷新电路）支持，读出一行的信息后重新存入，占用一个读/写周期</strong><br />
-我们原来说，一个存储单元，对应一根译码器的线。如果译码器有n个线，那么就会有$2^n$个存储单元，这样会非常麻烦排线：<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260407-200422-display-0.png.png" alt="示意图" /><br />
-有一种解决方式就是把存储单元变成二维排列：<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260407-201244-display-0_EDIT_1775564002006.png_EDIT_1775564002006.png" alt="示意图" /><br />
-接着来讲解一下如何读取现代的DRAM行：<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260407-201622-display-0_EDIT_1775564248233.png_EDIT_1775564248233.png" alt="示意图" /><br />
-把地址分成两半，前面是行，后面是列。那么最后的最后我们来讨论下何时刷新：<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260407-203145-display-0.png.png" alt="示意图" /></li>
-</ul>
-<h3 id="送行列地址的复用"><a class="markdownIt-Anchor" href="#送行列地址的复用"></a> 送行列地址的复用</h3>
-<p>DRAM地址线分两次送，可以有效减少地址线的数量：<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260407-203452-display-0.png.png" alt="示意图" />这样子可以变成只使用n/2地址线，地址线减半也就意味着存储芯片上的金属引脚减半，节约成本。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260414-200209-display-0.png.png" alt="示意图" /></p>
 
     </div>
     <footer class="article-footer">
-        <a data-aos="zoom-in" href="/2026/04/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E7%AC%AC%E4%B8%89%E7%AB%A0-%E4%B8%BB%E5%AD%98%E5%82%A8%E5%99%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%84%E6%88%90/#comments" class="article-comment-link">
-          <span class="post-comments-count twikoo-comment-count" data-path="/2026/04/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E7%AC%AC%E4%B8%89%E7%AB%A0-%E4%B8%BB%E5%AD%98%E5%82%A8%E5%99%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%84%E6%88%90/" itemprop="commentCount"></span>
+        <a data-aos="zoom-in" href="/2026/04/15/%E6%A6%82%E7%8E%87%E8%AE%BA%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%B8%B8%E8%A7%81%E8%BF%9E%E7%BB%AD%E5%9E%8B%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%9A%84%E5%88%86%E5%B8%83%EF%BC%88%E4%B8%89%E7%A7%8D%EF%BC%89/#comments" class="article-comment-link">
+          <span class="post-comments-count twikoo-comment-count" data-path="/2026/04/15/%E6%A6%82%E7%8E%87%E8%AE%BA%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%B8%B8%E8%A7%81%E8%BF%9E%E7%BB%AD%E5%9E%8B%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%9A%84%E5%88%86%E5%B8%83%EF%BC%88%E4%B8%89%E7%A7%8D%EF%BC%89/" itemprop="commentCount"></span>
           留言
         </a>
-        <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/" title="笔记" data-aos="zoom-in">笔记</a><a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" title="计算机组成原理" data-aos="zoom-in">计算机组成原理</a><a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/%E7%AC%AC%E4%B8%89%E7%AB%A0/" title="第三章" data-aos="zoom-in">第三章</a>
+        <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/" title="笔记" data-aos="zoom-in">笔记</a><a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/%E6%A6%82%E7%8E%87%E8%AE%BA/" title="概率论" data-aos="zoom-in">概率论</a><a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/%E6%A6%82%E7%8E%87%E8%AE%BA/%E7%AC%AC%E4%BA%8C%E7%AB%A0/" title="第二章" data-aos="zoom-in">第二章</a>
 
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag" title="计算机组成原理">计算机组成原理</a></li></ul>
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E6%A6%82%E7%8E%87%E8%AE%BA/" rel="tag" title="概率论">概率论</a></li></ul>
 
     </footer>
   </div>
     <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
       <div class="article-nav-link-wrap left">
-          <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/b14beae57e56ccebebeffd0e255f36c6.png" data-sizes="auto" alt="概率论第二章-常见连续型随机变量的分布（三种）" class="lazyload">
-        <a href="/2026/04/15/%E6%A6%82%E7%8E%87%E8%AE%BA%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%B8%B8%E8%A7%81%E8%BF%9E%E7%BB%AD%E5%9E%8B%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%9A%84%E5%88%86%E5%B8%83%EF%BC%88%E4%B8%89%E7%A7%8D%EF%BC%89/" aria-label="前一篇: 概率论第二章-常见连续型随机变量的分布（三种）" title="前一篇: 概率论第二章-常见连续型随机变量的分布（三种）"></a>
+          <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/af542c3b0912c5a4cd3838fdbe29accf.png" data-sizes="auto" alt="数据库系统概论-第三章-SQL数据定义" class="lazyload">
+        <a href="/2026/04/15/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA-%E7%AC%AC%E4%B8%89%E7%AB%A0-SQL%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89/" aria-label="前一篇: 数据库系统概论-第三章-SQL数据定义" title="前一篇: 数据库系统概论-第三章-SQL数据定义"></a>
         <div class="article-nav-caption">前一篇</div>
         <h3 class="article-nav-title">
-            概率论第二章-常见连续型随机变量的分布（三种）
+            数据库系统概论-第三章-SQL数据定义
         </h3>
       </div>
     <div class="article-nav-link-wrap right">
-        <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/409f0a8e02a680f3202067f417dcc944.png" data-sizes="auto" alt="数据库系统概论-第二章-关系代数" class="lazyload">
-      <a href="/2026/04/13/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA-%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0/" aria-label="后一篇: 数据库系统概论-第二章-关系代数"  title="后一篇: 数据库系统概论-第二章-关系代数"></a>
+        <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/6f5cdb749c7938a2f8e1aab950c56ad3.png" data-sizes="auto" alt="计算机组成原理第三章-主存储器的基本组成" class="lazyload">
+      <a href="/2026/04/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E7%AC%AC%E4%B8%89%E7%AB%A0-%E4%B8%BB%E5%AD%98%E5%82%A8%E5%99%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%84%E6%88%90/" aria-label="后一篇: 计算机组成原理第三章-主存储器的基本组成"  title="后一篇: 计算机组成原理第三章-主存储器的基本组成"></a>
       <div class="article-nav-caption">后一篇</div>
       <h3 class="article-nav-title">
-          数据库系统概论-第二章-关系代数
+          计算机组成原理第三章-主存储器的基本组成
       </h3>
     </div>
   </nav>
@@ -444,7 +431,7 @@ DRAM用于主存、SRAM用于Cache（高速缓冲存储器）</li>
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%9A%84%E5%8D%8A%E5%AF%BC%E4%BD%93%E5%85%83%E4%BB%B6%E5%8F%8A%E5%8E%9F%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text"> 基本的半导体元件及原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E5%99%A8%E8%8A%AF%E7%89%87%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text"> ⭐存储器芯片的基本原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BB%E5%9D%80"><span class="toc-number">3.</span> <span class="toc-text"> 寻址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sram%E5%92%8Cdram"><span class="toc-number">4.</span> <span class="toc-text"> SRAM和DRAM</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#dram%E8%8A%AF%E7%89%87"><span class="toc-number">4.1.</span> <span class="toc-text"> DRAM芯片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%85%E6%9E%81%E7%94%B5%E5%AE%B9vs%E5%8F%8C%E7%A8%B3%E6%80%81%E8%A7%A6%E5%8F%91%E5%99%A8"><span class="toc-number">4.2.</span> <span class="toc-text"> 栅极电容VS双稳态触发器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%BB%E5%86%99%E9%80%9F%E5%BA%A6%E4%B8%8A"><span class="toc-number">4.2.1.</span> <span class="toc-text"> 读写速度上</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%88%90%E6%9C%AC%E4%B8%8A"><span class="toc-number">4.2.2.</span> <span class="toc-text"> 成本上</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">4.2.3.</span> <span class="toc-text"> 总结</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dram%E7%9A%84%E5%88%B7%E6%96%B0"><span class="toc-number">4.3.</span> <span class="toc-text"> DRAM的刷新</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%81%E8%A1%8C%E5%88%97%E5%9C%B0%E5%9D%80%E7%9A%84%E5%A4%8D%E7%94%A8"><span class="toc-number">4.4.</span> <span class="toc-text"> 送行列地址的复用</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9D%87%E5%8C%80%E5%88%86%E5%B8%83"><span class="toc-number">1.</span> <span class="toc-text"> 均匀分布</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E6%95%B0%E5%88%86%E5%B8%83"><span class="toc-number">2.</span> <span class="toc-text"> 指数分布</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83%E5%85%AC%E5%BC%8F%E7%9B%B4%E6%8E%A5%E8%83%8C"><span class="toc-number">3.</span> <span class="toc-text"> 正态分布（公式直接背）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83%E5%9B%BE%E5%BD%A2%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="toc-number">3.1.</span> <span class="toc-text"> 正态分布图形的性质：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83%E6%9B%B2%E7%BA%BF%E7%A4%BA%E6%84%8F%E5%9B%BEascii"><span class="toc-number">3.1.1.</span> <span class="toc-text"> 正态分布曲线示意图（ASCII）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83%E7%9A%84%E5%B8%B8%E7%94%A8%E7%BB%93%E8%AE%BA"><span class="toc-number">3.2.</span> <span class="toc-text"> 正态分布的常用结论：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E5%87%86%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="toc-number">3.3.</span> <span class="toc-text"> 标准正态分布的性质：</span></a></li></ol></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -587,14 +574,14 @@ DRAM用于主存、SRAM用于Cache（高速缓冲存储器）</li>
       <script data-pjax>
         window.REIMU_POST = {
           author: "Stvfen",
-          title: "计算机组成原理第三章-主存储器的基本组成",
-          url: "http://example.com/2026/04/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E7%AC%AC%E4%B8%89%E7%AB%A0-%E4%B8%BB%E5%AD%98%E5%82%A8%E5%99%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%84%E6%88%90/",
+          title: "概率论第二章-常见连续型随机变量的分布（三种）",
+          url: "http://example.com/2026/04/15/%E6%A6%82%E7%8E%87%E8%AE%BA%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%B8%B8%E8%A7%81%E8%BF%9E%E7%BB%AD%E5%9E%8B%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%9A%84%E5%88%86%E5%B8%83%EF%BC%88%E4%B8%89%E7%A7%8D%EF%BC%89/",
           excerpt: "",
           description: "",
-          stripContent: " 基本的半导体元件及原理 存储体中的数据由二进制来进行存储，而每一位都是一个存储元。存储元的结构如下图所示：   MOS管：MOS管可理解为一种电控开关，输入电压达到某个阈值时，MOS管就可以连通 叫它半导体的原因就是，它既不是导体也不是半导体，给够足够电压才能连通。 原理：当我们上方给一个足够高的电压时候，电容上板电压会高，而下面是接地的，高电压差将会在电容器中间存储电荷，我们根据存储了多少电荷来判断二进制是否为1。 我们如果将多个存储元连接，那就可以存储一串二进制数据，如图：  这个红色的线",
-          date: "Mon Apr 13 2026 20:45:19 GMT+0800",
-          updated: "Mon Apr 13 2026 20:46:04 GMT+0800",
-          cover: "https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/6f5cdb749c7938a2f8e1aab950c56ad3.png",
+          stripContent: " 均匀分布 它的样子一定是一段是常数一段是0。 $$f(x) &amp;#x3D; \begin{cases} \dfrac{1}{b-a}, &amp;amp; a &amp;lt; x &amp;lt; b, \\[6pt] 0, &amp;amp; \text{其他}, \end{cases} $$则称 $X$ 在区间 $(a,b)$ 上服从均匀分布，记为 $X \sim U(a,b)$。 $X$ 的分布函数为 $$F(x)&amp;#x3D; \begin{cases} 0, &amp;amp; x &amp;lt; a, \\[6pt] \dfra",
+          date: "Wed Apr 15 2026 13:55:00 GMT+0800",
+          updated: "Wed Apr 15 2026 13:56:07 GMT+0800",
+          cover: "https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/b14beae57e56ccebebeffd0e255f36c6.png",
         };
       </script>
         
