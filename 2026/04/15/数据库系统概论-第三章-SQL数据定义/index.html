@@ -25,7 +25,7 @@
 <meta property="og:description" content="SQL概述 语言简介，易学易用。SQL功能极强，完成核心功能只用了9个动词：  数据查询：SELECT 数据定义：CREATE,DROP,ALTER 数据操纵：INSERT,UPDATE,DELETE 数据控制：GRANT,REVOKE   数据定义 SQLD额数据定义功能：模式定义，表定义、视图索引定义    操作对象 创建 (CREATE) 删除 (DROP) 修改 (ALTER)">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-04-15T05:57:20.000Z">
-<meta property="article:modified_time" content="2026-04-15T05:57:52.688Z">
+<meta property="article:modified_time" content="2026-04-15T12:19:43.251Z">
 <meta property="article:author" content="Stvfen">
 <meta property="article:tag" content="数据库">
 <meta name="twitter:card" content="summary">
@@ -148,7 +148,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#sql%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text"> SQL概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89"><span class="toc-number">2.</span> <span class="toc-text"> 数据定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E5%88%A0%E9%99%A4"><span class="toc-number">3.</span> <span class="toc-text"> 模式的定义和删除</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-number">3.1.</span> <span class="toc-text"> 模式的定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%88%A0%E9%99%A4"><span class="toc-number">3.2.</span> <span class="toc-text"> 模式的删除</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E8%A1%A8%E7%9A%84%E5%AE%9A%E4%B9%89-%E5%88%A0%E9%99%A4%E4%B8%8E%E4%BF%AE%E6%94%B9"><span class="toc-number">4.</span> <span class="toc-text"> 基本表的定义、删除与修改</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E5%9F%BA%E6%9C%AC%E8%A1%A8"><span class="toc-number">4.1.</span> <span class="toc-text"> 定义基本表</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#sql%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text"> SQL概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89"><span class="toc-number">2.</span> <span class="toc-text"> 数据定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E5%88%A0%E9%99%A4"><span class="toc-number">3.</span> <span class="toc-text"> 模式的定义和删除</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-number">3.1.</span> <span class="toc-text"> 模式的定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%88%A0%E9%99%A4"><span class="toc-number">3.2.</span> <span class="toc-text"> 模式的删除</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E8%A1%A8%E7%9A%84%E5%AE%9A%E4%B9%89-%E5%88%A0%E9%99%A4%E4%B8%8E%E4%BF%AE%E6%94%B9"><span class="toc-number">4.</span> <span class="toc-text"> 基本表的定义、删除与修改</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E5%9F%BA%E6%9C%AC%E8%A1%A8"><span class="toc-number">4.1.</span> <span class="toc-text"> 定义基本表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">4.2.</span> <span class="toc-text"> 数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E5%BC%8F%E4%B8%8E%E8%A1%A8"><span class="toc-number">4.3.</span> <span class="toc-text"> 模式与表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E5%BC%8F%E4%B8%8B%E5%88%9B%E5%BB%BA%E5%9F%BA%E6%9C%AC%E8%A1%A8"><span class="toc-number">4.4.</span> <span class="toc-text"> 模式下创建基本表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E5%9F%BA%E6%9C%AC%E8%A1%A8"><span class="toc-number">4.5.</span> <span class="toc-text"> 修改基本表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E5%9F%BA%E6%9C%AC%E8%A1%A8"><span class="toc-number">4.6.</span> <span class="toc-text"> 删除基本表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E7%9A%84%E5%BB%BA%E7%AB%8B%E5%92%8C%E5%88%A0%E9%99%A4"><span class="toc-number">5.</span> <span class="toc-text"> 索引的建立和删除</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%88%97%E5%BB%BA%E7%AB%8B%E7%B4%A2%E5%BC%95"><span class="toc-number">5.1.</span> <span class="toc-text"> 自定义列建立索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E7%B4%A2%E5%BC%95"><span class="toc-number">5.2.</span> <span class="toc-text"> 删除索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8"><span class="toc-number">5.3.</span> <span class="toc-text"> 数据字典</span></a></li></ol></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -159,7 +159,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">39</div>
+    <div class="sidebar-state-number">40</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -287,7 +287,7 @@
 <p>并且<code>CREATE SCHEMA</code>还支持在其中直接创建表，视图，授权。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> SCHEMA &quot;模式名&quot; <span class="keyword">AUTHORIZATION</span> 用户名[表定义语句<span class="operator">|</span>视图定义语句<span class="operator">|</span>授权定义语句];</span><br></pre></td></tr></table></figure>
 <p>举个例子吧：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> SCHEMA &quot;TEST&quot; <span class="keyword">AUTHORIZATION</span> ZHANG</span><br><span class="line"><span class="keyword">CREATE TABLE</span> TABL(COL1 <span class="type">SMALLINT</span>,</span><br><span class="line">				  COL2, <span class="type">INT</span>)；</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> SCHEMA &quot;TEST&quot; <span class="keyword">AUTHORIZATION</span> ZHANG</span><br><span class="line">    <span class="keyword">CREATE TABLE</span> TABL(COL1 <span class="type">SMALLINT</span>,</span><br><span class="line">                      COL2, <span class="type">INT</span>)；</span><br></pre></td></tr></table></figure>
 <p>执行创建模式语句必须拥有数据库管理员DBA的权限，或者DBA授予的权限</p>
 <hr />
 <h3 id="模式的删除"><a class="markdownIt-Anchor" href="#模式的删除"></a> 模式的删除</h3>
@@ -303,11 +303,133 @@
 <p>语句格式：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE TABLE</span> 表名(</span><br><span class="line">	列名 数据类型 [列级完整性约束条件],</span><br><span class="line">	列名 数据类型 [列级完整性约束条件],</span><br><span class="line">	[表级完整性约束条件]</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
 <p>建立学生表Student，学号是主码，姓名取唯一值</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE TABLE</span> Student(</span><br><span class="line">	Sno <span class="type">CHAR</span>(<span class="number">9</span>) <span class="keyword">PRIMARY KEY</span>,</span><br><span class="line">	Sname <span class="type">CHAR</span>(<span class="number">20</span>) <span class="keyword">UNIQUE</span>,</span><br><span class="line">	Ssex <span class="type">CHAR</span>(<span class="number">2</span>),</span><br><span class="line">	Sage <span class="type">SMALLINT</span>,</span><br><span class="line">	Sdept <span class="type">CHAR</span>(<span class="number">20</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE TABLE</span> Student(</span><br><span class="line">                        Sno <span class="type">CHAR</span>(<span class="number">9</span>) <span class="keyword">PRIMARY KEY</span>,</span><br><span class="line">                        Sname <span class="type">CHAR</span>(<span class="number">20</span>) <span class="keyword">UNIQUE</span>,</span><br><span class="line">                        Ssex <span class="type">CHAR</span>(<span class="number">2</span>),</span><br><span class="line">                        Sage <span class="type">SMALLINT</span>,</span><br><span class="line">                        Sdept <span class="type">CHAR</span>(<span class="number">20</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
 <p>建立一个课程表Course，这里Cpno是先导课，被参照表是本身Course中的Cno；举个例子，有课程1,2,3,4。他们的先导课可能是4,3,2,1。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE TABLE</span> Course(</span><br><span class="line">	Cno <span class="type">CHAR</span>(<span class="number">4</span>) <span class="keyword">PRIMARY KEY</span>,</span><br><span class="line">	Cname <span class="type">CHAR</span>(<span class="number">40</span>),</span><br><span class="line">	Cpno <span class="type">CHAR</span>(<span class="number">4</span>),</span><br><span class="line">	Ccredit <span class="type">SMALLINT</span>,</span><br><span class="line">	<span class="keyword">FOREIGN KEY</span>(Cpno) <span class="keyword">REFERENCES</span> Course(Cno)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
 <p>建立一个学生选课表SC</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE TABLE</span> SC(</span><br><span class="line">	Sno <span class="type">CHAR</span>(<span class="number">9</span>),</span><br><span class="line">	Cno <span class="type">CHAR</span>(<span class="number">4</span>),</span><br><span class="line">	Grade <span class="type">SMALLINT</span>,</span><br><span class="line">	<span class="keyword">PRIMARY KEY</span>(Sno,Cno),</span><br><span class="line">	<span class="comment">--主码由两个属性构成，必须作为表级完整性进行定义--</span></span><br><span class="line">	<span class="keyword">FOREIGN KEY</span>(Sno) <span class="keyword">REFERENCES</span> Student(Sno),</span><br><span class="line">	<span class="comment">--表级完整性约束条件，Sno是外码，被参照表是Student--</span></span><br><span class="line">	<span class="keyword">FOREIGN KEY</span>(Cno) <span class="keyword">REFERENCES</span> Course(Cno)</span><br><span class="line">	<span class="comment">--表级完整性约束条件，Cno是外码，被参照表是Course--</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<hr />
+<h3 id="数据类型"><a class="markdownIt-Anchor" href="#数据类型"></a> 数据类型</h3>
+<table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CHAR(n)</code></td>
+<td>长度为 <code>n</code> 的定长字符串</td>
+</tr>
+<tr>
+<td><code>VARCHAR(n)</code></td>
+<td>最大长度为 <code>n</code> 的变长字符串</td>
+</tr>
+<tr>
+<td><code>INT</code></td>
+<td>长整数（也可写作 <code>INTEGER</code>）</td>
+</tr>
+<tr>
+<td><code>SMALLINT</code></td>
+<td>短整数</td>
+</tr>
+<tr>
+<td><code>NUMERIC(p, d)</code></td>
+<td>定点数，由 <code>p</code> 位数字（不含符号和小数点）组成，小数部分占 <code>d</code> 位</td>
+</tr>
+<tr>
+<td><code>REAL</code></td>
+<td>取决于机器精度的浮点数</td>
+</tr>
+<tr>
+<td><code>Double Precision</code></td>
+<td>取决于机器精度的双精度浮点数</td>
+</tr>
+<tr>
+<td><code>FLOAT(n)</code></td>
+<td>浮点数，精度至少为 <code>n</code> 位数字</td>
+</tr>
+<tr>
+<td><code>DATE</code></td>
+<td>日期，包含年、月、日，格式为 <code>YYYY-MM-DD</code></td>
+</tr>
+<tr>
+<td><code>TIME</code></td>
+<td>时间，包含一日的时、分、秒，格式为 <code>HH:MM:SS</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="模式与表"><a class="markdownIt-Anchor" href="#模式与表"></a> 模式与表</h3>
+<p>每一个表都有一个自己的模式，如果创建表时没有指定模式的话，系统会根据搜索路径来确定该对象所属的模式。<BR><br />
+显示当前的搜索路径：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> search_path;</span><br></pre></td></tr></table></figure>
+<p>上面搜索路径会显示下面这个👇🏻，user可能是用户名之类的，然后如果找不到的话，就会放到一个公共区域：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$<span class="keyword">user</span>, PUBLIC;</span><br></pre></td></tr></table></figure>
+<p>DBA管理员也可以设置搜索路径，后面的PUBLIC意思是，你没有模式名的话，就会设置一个公共的模式：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SET</span> search_path <span class="keyword">TO</span> 模式名 , PUBLIC;</span><br></pre></td></tr></table></figure>
+<hr />
+<h3 id="模式下创建基本表"><a class="markdownIt-Anchor" href="#模式下创建基本表"></a> 模式下创建基本表</h3>
+<p>创建表的时候给出模式：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE TABLE</span> &quot;S-T&quot; Student();</span><br><span class="line"><span class="keyword">CREATE TABLE</span> &quot;S-T&quot; Course();</span><br></pre></td></tr></table></figure>
+<p>创建模式的时候给出表：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> SCHEMA &quot;TEST&quot; <span class="keyword">AUTHORIZATION</span> ZHANG</span><br><span class="line"><span class="keyword">CREATE TABLE</span> TABL(COL1 <span class="type">SMALLINT</span>,</span><br><span class="line">				  COL2, <span class="type">INT</span>)；</span><br></pre></td></tr></table></figure>
+<p>设置所属模式，在创建表名中不必给出模式名：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SET</span> search_path <span class="keyword">TO</span> 模式名 , PUBLIC;</span><br></pre></td></tr></table></figure>
+<h3 id="修改基本表"><a class="markdownIt-Anchor" href="#修改基本表"></a> 修改基本表</h3>
+<p>语句格式：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER TABLE</span> 表名</span><br><span class="line"><span class="keyword">ADD</span> [<span class="keyword">COLUMN</span>] 新列名 数据类型 [完整性约束条件]</span><br><span class="line"><span class="keyword">ADD</span> 表级完整性约束</span><br><span class="line"><span class="comment">--用于增加新列、新的列级完整性约束条件和新的表级完整性约束--</span></span><br><span class="line"><span class="keyword">DROP</span> [<span class="keyword">COLUMN</span>] 列名 [CASCADE<span class="operator">|</span>RESTRICT]</span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">CONSTRAINT</span> 完整性约束名 [CASCADE<span class="operator">|</span>RESTRICT]</span><br><span class="line"><span class="comment">--如果指定了CASCADE短语，则自动删除引用该列的其他对象--</span></span><br><span class="line"><span class="comment">--如果指定了RESTRICT短语，则如果该列被其他对象引用，将会拒绝删除--</span></span><br><span class="line"><span class="comment">--DROP CONSTRAINT子句用于删除指定的完整性约束条件--</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">COLUMN</span> 列名 数据类型;</span><br><span class="line"><span class="comment">--ALTER COLUMN子句用于修改原有的列定义，包括修改列的数据类型--</span></span><br></pre></td></tr></table></figure>
+<p>向Student表增加“入学时间”列，其数据类型为日期：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER TABLE</span> Student <span class="keyword">ADD</span> S_entrance <span class="type">DATE</span>;</span><br></pre></td></tr></table></figure>
+<p>将年龄的数据类型由字符型转换为整数</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER TABLE</span> Student <span class="keyword">ALTER</span> <span class="keyword">COLUMN</span> Sage <span class="type">INT</span>;</span><br></pre></td></tr></table></figure>
+<p>增加课程名称必须取唯一值的约束条件：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER TABLE</span> Course <span class="keyword">ADD</span> <span class="keyword">UNIQUE</span>(Cname);</span><br></pre></td></tr></table></figure>
+<hr />
+<h3 id="删除基本表"><a class="markdownIt-Anchor" href="#删除基本表"></a> 删除基本表</h3>
+<p>语句格式：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> 表名 [RESTRICT<span class="operator">|</span>CASCADE];</span><br><span class="line"><span class="comment">--RESTRICT：若有引用，无法删除，有视图也删不了🤔不过这个视图是我们人为规定的--</span></span><br><span class="line"><span class="comment">--CASCADE：谁用我这个表嘞也会删除--</span></span><br></pre></td></tr></table></figure>
+<p>删除Student表：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> Student CASCADE;</span><br></pre></td></tr></table></figure>
+<hr />
+<h2 id="索引的建立和删除"><a class="markdownIt-Anchor" href="#索引的建立和删除"></a> 索引的建立和删除</h2>
+<p>索引就是一本书的目录。</p>
+<ul>
+<li><strong>建立索引的目的</strong>：加快查询速度</li>
+<li><strong>谁可以建立索引</strong>：DBA或表的主人。DBMS一般会自动建立索引，在有以下命令的条件下：
+<ul>
+<li>PRIMARY KEY</li>
+<li>UNIQUE<br />
+类似于直接建立了一个字典，好查找。也就是哈希或者B+树</li>
+</ul>
+</li>
+</ul>
+<h3 id="自定义列建立索引"><a class="markdownIt-Anchor" href="#自定义列建立索引"></a> 自定义列建立索引</h3>
+<p>语句格式：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> [<span class="keyword">UNIQUE</span>] [CLUSTER] INDEX 索引名 <span class="keyword">ON</span> 表名(</span><br><span class="line">	列名[次序],</span><br><span class="line">	列名[次序]</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>UNIQUE表明此索引每一个索引值只对应唯一的数据，为学生-课程数据库中的Student，Course，SC三个表建立索引：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> INDEX Stusno <span class="keyword">ON</span> Student(Sno);</span><br><span class="line"><span class="comment">--Student表按照学号升序建立唯一索引--</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> INDEX Coucno <span class="keyword">ON</span> Course(Cno);</span><br><span class="line"><span class="comment">--Course表按照课程号升序建立唯一索引--</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> INDEX SCno <span class="keyword">ON</span> SC(Sno <span class="keyword">ASC</span>,Cno <span class="keyword">DESC</span>);</span><br><span class="line"><span class="comment">--SC表按学号升序和课程号降序建唯一索引--</span></span><br></pre></td></tr></table></figure>
+<p>CLUSTER表示要建立的索引是聚簇索引，聚簇索引是表中该列的顺序在硬盘上也要按照这个排序，算是直接操控了物理。在Student表的Sname列上建立聚簇索引：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> CLUSTER INDEX Stusname <span class="keyword">ON</span> Student(Sname);</span><br></pre></td></tr></table></figure>
+<p>为什么聚簇索引会这样？因为我们的表中排序正确并不代表本地正确，毕竟计算机就是直接找一个地方塞进去，让内存最大化。当然这样也会让查找速度变慢。</p>
+<ul>
+<li>在最经常查询的列上建立聚簇索引</li>
+<li>一个基本表上最多只能建立一个聚簇索引</li>
+<li>经常更新的列不建议建立聚簇索引</li>
+</ul>
+<h3 id="删除索引"><a class="markdownIt-Anchor" href="#删除索引"></a> 删除索引</h3>
+<p>语句格式：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> INDEX 索引名</span><br></pre></td></tr></table></figure>
+<p>删除索引时，系统会从数据字典中删去有关该索引的描述<BR><br />
+删除Student表的Stusname索引：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> INDEX Stusname;</span><br></pre></td></tr></table></figure>
+<h3 id="数据字典"><a class="markdownIt-Anchor" href="#数据字典"></a> 数据字典</h3>
+<ul>
+<li>数据字典时关系数据库管理系统内部的一组系统表</li>
+<li>数据字典记录了数据库中所有的定义信息，包括模式定义、视图定义、索引定义、完整性约束定义、各类用户对数据库操作权限、统计信息等。</li>
+<li>我们执行SQL数据定义时，实际就是更新数据字典</li>
+</ul>
 
     </div>
     <footer class="article-footer">
@@ -322,6 +444,14 @@
     </footer>
   </div>
     <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
+      <div class="article-nav-link-wrap left">
+          <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260415202721.png" data-sizes="auto" alt="概率论第二章-随机变量函数Y=g(x)的分布（建议复习的时候直接看视频）" class="lazyload">
+        <a href="/2026/04/15/%E6%A6%82%E7%8E%87%E8%AE%BA%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%87%BD%E6%95%B0Y-g-x-%E7%9A%84%E5%88%86%E5%B8%83%EF%BC%88%E5%BB%BA%E8%AE%AE%E5%A4%8D%E4%B9%A0%E7%9A%84%E6%97%B6%E5%80%99%E7%9B%B4%E6%8E%A5%E7%9C%8B%E8%A7%86%E9%A2%91%EF%BC%89/" aria-label="前一篇: 概率论第二章-随机变量函数Y=g(x)的分布（建议复习的时候直接看视频）" title="前一篇: 概率论第二章-随机变量函数Y=g(x)的分布（建议复习的时候直接看视频）"></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">
+            概率论第二章-随机变量函数Y=g(x)的分布（建议复习的时候直接看视频）
+        </h3>
+      </div>
     <div class="article-nav-link-wrap right">
         <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/b14beae57e56ccebebeffd0e255f36c6.png" data-sizes="auto" alt="概率论第二章-常见连续型随机变量的分布（三种）" class="lazyload">
       <a href="/2026/04/15/%E6%A6%82%E7%8E%87%E8%AE%BA%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%B8%B8%E8%A7%81%E8%BF%9E%E7%BB%AD%E5%9E%8B%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%9A%84%E5%88%86%E5%B8%83%EF%BC%88%E4%B8%89%E7%A7%8D%EF%BC%89/" aria-label="后一篇: 概率论第二章-常见连续型随机变量的分布（三种）"  title="后一篇: 概率论第二章-常见连续型随机变量的分布（三种）"></a>
@@ -372,10 +502,10 @@
       </div>
       <div>
         <span class="icon-brush"></span>
-        96.4k
+        97.9k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        06:32
+        06:39
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -397,7 +527,7 @@
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#sql%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text"> SQL概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89"><span class="toc-number">2.</span> <span class="toc-text"> 数据定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E5%88%A0%E9%99%A4"><span class="toc-number">3.</span> <span class="toc-text"> 模式的定义和删除</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-number">3.1.</span> <span class="toc-text"> 模式的定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%88%A0%E9%99%A4"><span class="toc-number">3.2.</span> <span class="toc-text"> 模式的删除</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E8%A1%A8%E7%9A%84%E5%AE%9A%E4%B9%89-%E5%88%A0%E9%99%A4%E4%B8%8E%E4%BF%AE%E6%94%B9"><span class="toc-number">4.</span> <span class="toc-text"> 基本表的定义、删除与修改</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E5%9F%BA%E6%9C%AC%E8%A1%A8"><span class="toc-number">4.1.</span> <span class="toc-text"> 定义基本表</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#sql%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text"> SQL概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89"><span class="toc-number">2.</span> <span class="toc-text"> 数据定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%AE%9A%E4%B9%89%E5%92%8C%E5%88%A0%E9%99%A4"><span class="toc-number">3.</span> <span class="toc-text"> 模式的定义和删除</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-number">3.1.</span> <span class="toc-text"> 模式的定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%88%A0%E9%99%A4"><span class="toc-number">3.2.</span> <span class="toc-text"> 模式的删除</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E8%A1%A8%E7%9A%84%E5%AE%9A%E4%B9%89-%E5%88%A0%E9%99%A4%E4%B8%8E%E4%BF%AE%E6%94%B9"><span class="toc-number">4.</span> <span class="toc-text"> 基本表的定义、删除与修改</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E5%9F%BA%E6%9C%AC%E8%A1%A8"><span class="toc-number">4.1.</span> <span class="toc-text"> 定义基本表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">4.2.</span> <span class="toc-text"> 数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E5%BC%8F%E4%B8%8E%E8%A1%A8"><span class="toc-number">4.3.</span> <span class="toc-text"> 模式与表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E5%BC%8F%E4%B8%8B%E5%88%9B%E5%BB%BA%E5%9F%BA%E6%9C%AC%E8%A1%A8"><span class="toc-number">4.4.</span> <span class="toc-text"> 模式下创建基本表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E5%9F%BA%E6%9C%AC%E8%A1%A8"><span class="toc-number">4.5.</span> <span class="toc-text"> 修改基本表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E5%9F%BA%E6%9C%AC%E8%A1%A8"><span class="toc-number">4.6.</span> <span class="toc-text"> 删除基本表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E7%9A%84%E5%BB%BA%E7%AB%8B%E5%92%8C%E5%88%A0%E9%99%A4"><span class="toc-number">5.</span> <span class="toc-text"> 索引的建立和删除</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%88%97%E5%BB%BA%E7%AB%8B%E7%B4%A2%E5%BC%95"><span class="toc-number">5.1.</span> <span class="toc-text"> 自定义列建立索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E7%B4%A2%E5%BC%95"><span class="toc-number">5.2.</span> <span class="toc-text"> 删除索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%AD%97%E5%85%B8"><span class="toc-number">5.3.</span> <span class="toc-text"> 数据字典</span></a></li></ol></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -408,7 +538,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">39</div>
+    <div class="sidebar-state-number">40</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -546,7 +676,7 @@
           description: "",
           stripContent: " SQL概述 语言简介，易学易用。SQL功能极强，完成核心功能只用了9个动词：  数据查询：SELECT 数据定义：CREATE,DROP,ALTER 数据操纵：INSERT,UPDATE,DELETE 数据控制：GRANT,REVOKE   数据定义 SQLD额数据定义功能：模式定义，表定义、视图索引定义    操作对象 创建 (CREATE) 删除 (DROP) 修改 (ALTER)     模式 CREATE SCHEMA DROP SCHEMA    表 CREATE TABLE DRO",
           date: "Wed Apr 15 2026 13:57:20 GMT+0800",
-          updated: "Wed Apr 15 2026 13:57:52 GMT+0800",
+          updated: "Wed Apr 15 2026 20:19:43 GMT+0800",
           cover: "https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/af542c3b0912c5a4cd3838fdbe29accf.png",
         };
       </script>
@@ -613,7 +743,7 @@
               envId: 'https://pinglunqu.vercel.app',
               region: '',
               urls: [
-                '/categories/index.html'
+                '/2026/04/15/%E6%A6%82%E7%8E%87%E8%AE%BA%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%87%BD%E6%95%B0Y-g-x-%E7%9A%84%E5%88%86%E5%B8%83%EF%BC%88%E5%BB%BA%E8%AE%AE%E5%A4%8D%E4%B9%A0%E7%9A%84%E6%97%B6%E5%80%99%E7%9B%B4%E6%8E%A5%E7%9C%8B%E8%A7%86%E9%A2%91%EF%BC%89/'
               ],
               includeReply: false
             }).then((res) => {
