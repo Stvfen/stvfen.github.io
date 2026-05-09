@@ -155,7 +155,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">46</div>
+    <div class="sidebar-state-number">48</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -241,7 +241,7 @@
           <div class="post-categories-cover">
               <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/%E6%88%91%E5%96%9C%E6%AC%A2%E7%9A%84.jpg" data-sizes="auto" alt="笔记" class="lazyload">
             <h2>笔记</h2>
-            <h3>44 篇文章</h3>
+            <h3>46 篇文章</h3>
           </div>
         </div>
         <div class="post-categories-wrap">
@@ -270,6 +270,58 @@
       <article class="post-article">
           文章的封面以及评论区等都为外网地址，并且由于图床搭建在github仓库的原因，所以国内访问这些图片有些不会显示，食用魔⭐法效果最佳
 
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2026/05/10/Java%E6%B3%9B%E5%9E%8B/" aria-label="Java泛型" title="Java泛型"></a>
+    <div class="post-cover right">
+        <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/33fcfa952ea2eb7f9cb97d022b4460de.png" data-sizes="auto" alt="Java泛型" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-05-10</span>
+        <span><span class="icon-pencil"></span>776 字</span>
+        <span><span class="icon-clock"></span>4 分钟</span>
+      </div>
+      <h2 class="post-title">Java泛型</h2>
+      <article class="post-article">
+           什么是泛型
+Java泛式其实就是我们一开始并不知道这个类或者变量是什么数据类型，但这个类或者变量就存在在那里，会根据我们导入的参数之类的数据类型来判断，从而创建改数据类型的数据。
+作用：规定集合/类只能存指定类型，编译时做类型校验。
+ 没有泛型会怎么样
+集合类默认存Object，什么类型都能放。所以我们取数据的时候必须强制向下转型，而这个过程很容易抛出错误。
+12345ArrayList list = new ArrayList();list.add(123);list.add(&amp;quot;张三&amp;quot;);// 取出要强转String s = (String) list.get(0); 
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2026/05/10/Java%E5%8F%8D%E5%B0%84/" aria-label="Java反射" title="Java反射"></a>
+    <div class="post-cover left">
+        <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/6c7f5ff77095199f105ded499506fe3d.png" data-sizes="auto" alt="Java反射" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-05-10</span>
+        <span><span class="icon-pencil"></span>886 字</span>
+        <span><span class="icon-clock"></span>4 分钟</span>
+      </div>
+      <h2 class="post-title">Java反射</h2>
+      <article class="post-article">
+           什么是反射
+反射：程序在运行时动态获取类的信息、调用方法/属性/构造器。
+我们来看下正常类操作和反射类操作的区别：
+
+正常编码：先有类 -&amp;gt; new 对象
+反射：拿到对象/类名 -&amp;gt; 反向拆解类的所有结构
+这里该怎么理解呢，就是每一个类其实都自我存在一个CLASS对象，而我们可以从这个对象中拿到这个类的所有相关信息。
+
+ 获取Class方式
+12345678910//1. 对象.getClass()User user = new User();Class&amp;lt;?&amp;gt; c1 = user.getClass();//2. 类名.classClass&amp;lt;?&amp;gt; c2 = 
       </article>
     </div>
   </div>
@@ -472,96 +524,6 @@ $P\{X &amp;#x3D; x_k\} &amp;#x3D; p_k,\quad (k &amp;#x3D; 1,2,\dots,n)$
     </div>
   </div>
 </div>
-      <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2026/04/15/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA-%E7%AC%AC%E4%B8%89%E7%AB%A0-SQL%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89/" aria-label="数据库系统概论-第三章-SQL数据定义" title="数据库系统概论-第三章-SQL数据定义"></a>
-    <div class="post-cover left">
-        <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/af542c3b0912c5a4cd3838fdbe29accf.png" data-sizes="auto" alt="数据库系统概论-第三章-SQL数据定义" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2026-04-15</span>
-        <span><span class="icon-pencil"></span>1.9k 字</span>
-        <span><span class="icon-clock"></span>8 分钟</span>
-      </div>
-      <h2 class="post-title">数据库系统概论-第三章-SQL数据定义</h2>
-      <article class="post-article">
-           SQL概述
-语言简介，易学易用。SQL功能极强，完成核心功能只用了9个动词：
-
-数据查询：SELECT
-数据定义：CREATE,DROP,ALTER
-数据操纵：INSERT,UPDATE,DELETE
-数据控制：GRANT,REVOKE
-
- 数据定义
-SQLD额数据定义功能：模式定义，表定义、视图索引定义
-
-
-
-操作对象
-创建 (CREATE)
-删除 (DROP)
-修改 (ALTER)
-
-
-
-
-模式
-CREATE SCHEMA
-DROP SCHEMA
-
-
-
-表
-CREATE TABLE
-DROP TABLE
-ALTER TABLE
-
-
-视图
-CREATE VIEW
-DROP VIEW
-
-
-
-
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2026/04/15/%E6%A6%82%E7%8E%87%E8%AE%BA%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%B8%B8%E8%A7%81%E8%BF%9E%E7%BB%AD%E5%9E%8B%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%9A%84%E5%88%86%E5%B8%83%EF%BC%88%E4%B8%89%E7%A7%8D%EF%BC%89/" aria-label="概率论第二章-常见连续型随机变量的分布（三种）" title="概率论第二章-常见连续型随机变量的分布（三种）"></a>
-    <div class="post-cover right">
-        <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/b14beae57e56ccebebeffd0e255f36c6.png" data-sizes="auto" alt="概率论第二章-常见连续型随机变量的分布（三种）" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2026-04-15</span>
-        <span><span class="icon-pencil"></span>924 字</span>
-        <span><span class="icon-clock"></span>5 分钟</span>
-      </div>
-      <h2 class="post-title">概率论第二章-常见连续型随机变量的分布（三种）</h2>
-      <article class="post-article">
-           均匀分布
-它的样子一定是一段是常数一段是0。
-$$f(x) &amp;#x3D;
-\begin{cases}
-\dfrac{1}{b-a}, &amp;amp; a &amp;lt; x &amp;lt; b, \\[6pt]
-0, &amp;amp; \text{其他},
-\end{cases}
-$$则称 $X$ 在区间 $(a,b)$ 上服从均匀分布，记为 $X \sim U(a,b)$。
-$X$ 的分布函数为
-$$F(x)&amp;#x3D;
-\begin{cases}
-0, &amp;amp; x &amp;lt; a, \\[6pt]
-\dfrac{x-a}{b-a}, &amp;amp; a \leq x &amp;lt; b, \\[6pt]
-1, &amp;am
-      </article>
-    </div>
-  </div>
-</div>
   <nav id="page-nav" aria-label="Pagination navigation" data-aos="fade-up">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
   </nav>
@@ -585,10 +547,10 @@ $$F(x)&amp;#x3D;
       </div>
       <div>
         <span class="icon-brush"></span>
-        104.4k
+        106.1k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        07:09
+        07:17
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -616,7 +578,7 @@ $$F(x)&amp;#x3D;
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">46</div>
+    <div class="sidebar-state-number">48</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>

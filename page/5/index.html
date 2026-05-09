@@ -155,7 +155,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">46</div>
+    <div class="sidebar-state-number">48</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -241,7 +241,7 @@
           <div class="post-categories-cover">
               <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/%E6%88%91%E5%96%9C%E6%AC%A2%E7%9A%84.jpg" data-sizes="auto" alt="笔记" class="lazyload">
             <h2>笔记</h2>
-            <h3>44 篇文章</h3>
+            <h3>46 篇文章</h3>
           </div>
         </div>
         <div class="post-categories-wrap">
@@ -253,6 +253,69 @@
           </div>
         </div>
     </div>
+      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2026/03/04/%E4%BA%8C%E5%8F%89%E6%9F%A5%E6%89%BE%E6%A0%91%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/" aria-label="二叉查找树的设计与实现" title="二叉查找树的设计与实现"></a>
+    <div class="post-cover left">
+        <img data-src="/../image/%E4%BA%8C%E5%8F%89%E6%9F%A5%E6%89%BE%E6%A0%91.webp" data-sizes="auto" alt="二叉查找树的设计与实现" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-03-04</span>
+        <span><span class="icon-pencil"></span>1.5k 字</span>
+        <span><span class="icon-clock"></span>6 分钟</span>
+      </div>
+      <h2 class="post-title">二叉查找树的设计与实现</h2>
+      <article class="post-article">
+           什么是二叉查找树
+二叉查找树本质就是通过二分搜索的方法来快速查找
+二叉查找树也叫二叉搜索树或是二叉排序树，它具有一定的规则：
+
+左子树中所有结点的值，均小于其根结点的值。
+右子树中所有结点的值，均大于其根结点的值。
+二叉搜索树的子树也是二叉搜索树。
+一棵二叉搜索树长这样：
+
+查找值为15的结点：
+
+
+从根结点18开始，因为15小于18，所以从左边开始找。
+接着来到10，发现10比15小，所以继续往右边走。
+来到15，成功找到。
+实际上，我们在对普通二叉树进行搜索时，可能需要挨个进行查看比较，而有了二叉搜索树，查找效率就大大提升了，它就像我们前面的二分搜索那样。
+因为二叉搜索树要求比较严格，所
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2026/03/02/%E7%BA%BF%E7%B4%A2%E5%8C%96%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/" aria-label="线索化二叉树的设计与实现" title="线索化二叉树的设计与实现"></a>
+    <div class="post-cover right">
+        <img data-src="/../image/%E7%BA%BF%E7%B4%A2%E5%8C%96%E4%BA%8C%E5%8F%89%E6%A0%91.webp" data-sizes="auto" alt="线索化二叉树的设计与实现" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-03-02</span>
+        <span><span class="icon-pencil"></span>2.6k 字</span>
+        <span><span class="icon-clock"></span>11 分钟</span>
+      </div>
+      <h2 class="post-title">线索化二叉树的设计与实现</h2>
+      <article class="post-article">
+           线索化二叉树
+我们知道一棵二叉树实际上可以由多个结点组成，每个结点都有一个左右指针，指向其左右孩子。我们在最后也讲解了二叉树的遍历，包括前序、中序、后序以及层序遍历。只不过在遍历时实在是太麻烦了，我们需要借助栈来帮助我们完成这项遍历操作。
+一棵二叉树的某些结点会存在NULL的情况，我们可以利用这些为NULL的指针，将其线索化为某一种顺序遍历的指向下一个按顺序的结点的指针，这样我们在进行遍历的时候，就会很方便了。
+线索化的规则为：
+
+结点的左指针，指向其当前遍历顺序的前驱结点。
+结点的右指针，指向其当前遍历顺序的后继结点。
+在线索化之后，G的指向情况如下：
+
+这样，G原本两个为NULL的指针就
+      </article>
+    </div>
+  </div>
+</div>
       <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/03/01/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0(%E6%A0%91%E7%9A%84%E5%BC%80%E7%AF%87)/" aria-label="二叉树的设计与实现(树的开篇)" title="二叉树的设计与实现(树的开篇)"></a>
@@ -441,10 +504,10 @@ push：入栈操作，向栈中压入一个新的元素。
       </div>
       <div>
         <span class="icon-brush"></span>
-        104.4k
+        106.1k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        07:09
+        07:17
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -472,7 +535,7 @@ push：入栈操作，向栈中压入一个新的元素。
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">46</div>
+    <div class="sidebar-state-number">48</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
