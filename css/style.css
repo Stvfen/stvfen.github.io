@@ -26,23 +26,23 @@
   --color-h2-after: var(--red-1);
   --color-red-6-shadow: rgba(156, 136, 255, 0.6);
   --color-red-3-shadow: rgba(156, 136, 255, 0.3);
-  --highlight-nav: #f5f2ff;
-  --highlight-scrollbar: #dcd4f0;
-  --highlight-background: #fdfbff;
-  --highlight-selection: #e9e4f888;
+  --highlight-nav: #f5f5f5;
+  --highlight-scrollbar: #d6d6d6;
+  --highlight-background: #fdfdfd;
+  --highlight-selection: #e9e9e988;
   --highlight-foreground: #24292e;
   --highlight-comment: #7d7d7d;
-  --highlight-red: #8a72e8;
-  --highlight-orange: #a28bff;
-  --highlight-yellow: #b8a4ff;
-  --highlight-green: #7b68d8;
-  --highlight-aqua: #6c58c9;
-  --highlight-blue: #5b47b8;
-  --highlight-purple: #7e65e0;
-  --highlight-deletion: #705cd0;
-  --highlight-deletion-bg: #f0ecff;
-  --highlight-addition: #7b68d8;
-  --highlight-addition-bg: #f3f0ff;
+  --highlight-red: #d73a49;
+  --highlight-orange: #e36209;
+  --highlight-yellow: #cb911d;
+  --highlight-green: #22863a;
+  --highlight-aqua: #005cc5;
+  --highlight-blue: #032f62;
+  --highlight-purple: #6f42c1;
+  --highlight-deletion: #b31d28;
+  --highlight-deletion-bg: #ffeef0;
+  --highlight-addition: #22863a;
+  --highlight-addition-bg: #f0fff4;
   --cursor-default: url("../images/cursor/reimu-cursor-default.png"), auto;
   --cursor-pointer: url("../images/cursor/reimu-cursor-pointer.png"), pointer;
   --cursor-text: url("../images/cursor/reimu-cursor-text.png"), text;
@@ -73,23 +73,23 @@
   --color-h2-border: #47474a;
   --color-meta-shadow: rgba(0,0,0,0.2);
   --color-hover-shadow: rgba(0,0,0,0.2);
-  --highlight-nav: #2b2742;
-  --highlight-scrollbar: #403b60;
-  --highlight-background: #1f1c33;
-  --highlight-selection: #5c568055;
-  --highlight-foreground: #d4cfff;
-  --highlight-comment: #948fc0;
-  --highlight-red: #b19fff;
-  --highlight-orange: #c2b2ff;
-  --highlight-yellow: #d1c4ff;
-  --highlight-green: #9c88ff;
-  --highlight-aqua: #8a72e8;
-  --highlight-blue: #7e65e0;
-  --highlight-purple: #b19fff;
-  --highlight-deletion: #a28bff;
-  --highlight-deletion-bg: #2e294a;
-  --highlight-addition: #9c88ff;
-  --highlight-addition-bg: #27233d;
+  --highlight-nav: #222830;
+  --highlight-scrollbar: #454d59;
+  --highlight-background: #1e2027;
+  --highlight-selection: #51515155;
+  --highlight-foreground: #c9d1d9;
+  --highlight-comment: #8b949e;
+  --highlight-red: #ff7b72;
+  --highlight-orange: #ffa657;
+  --highlight-yellow: #ffcc66;
+  --highlight-green: #7ee787;
+  --highlight-aqua: #a5d6ff;
+  --highlight-blue: #79c0ff;
+  --highlight-purple: #d2a8ff;
+  --highlight-deletion: #ffa198;
+  --highlight-deletion-bg: #490202;
+  --highlight-addition: #7ee787;
+  --highlight-addition-bg: #04260f;
 }
 [data-theme='dark']:root img {
   filter: brightness(70%);
@@ -3378,6 +3378,90 @@ pre .emphasis {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+}
+.aplayer {
+  margin: 0 0 40px !important;
+  border-radius: 12px !important;
+  background: var(--color-wrap) !important;
+  transition: all 0.3s;
+  font-family: 'Mulish','Noto Serif SC', '-apple-system','PingFang SC','Microsoft YaHei','sans-serif' !important;
+  box-shadow: none !important;
+}
+.aplayer button:hover path,
+.aplayer .aplayer-icon:hover path {
+  fill: var(--color-link) !important;
+}
+.aplayer:hover {
+  box-shadow: var(--shadow-card-hover) !important;
+}
+.aplayer-after-sidebar .aplayer,
+.aplayer.aplayer-after-sidebar,
+.aplayer-after-widget .aplayer,
+.aplayer.aplayer-after-widget {
+  margin: 40px 0 0 0 !important;
+}
+.aplayer .aplayer-miniswitcher {
+  background: var(--red-5-5) !important;
+}
+.aplayer.aplayer-fixed {
+  margin: 0 !important;
+}
+.aplayer.aplayer-fixed .aplayer-body {
+  background: var(--color-wrap) !important;
+  transition: all 0.3s;
+}
+.aplayer.aplayer-fixed .aplayer-info {
+  transition: all 0.3s;
+  border-top: 1px solid var(--color-h2-border) !important;
+}
+.aplayer.aplayer-fixed .aplayer-list {
+  border: 1px solid var(--color-h2-border) !important;
+  transition: all 0.3s;
+}
+.aplayer.aplayer-withlist .aplayer-info {
+  transition: all 0.3s;
+  border-bottom: 1px solid var(--color-h2-border) !important;
+}
+.aplayer-title,
+.aplayer-list-title,
+.aplayer-music {
+  color: var(--color-link) !important;
+}
+.aplayer .aplayer-list ol li {
+  transition: all 0.3s;
+  border-top: 1px solid var(--color-h2-border) !important;
+}
+.aplayer-lrc::before {
+  background: none !important;
+}
+.aplayer-lrc::after {
+  background: none !important;
+}
+.aplayer-list ol li.aplayer-list-light {
+  background: var(--color-hover-shadow) !important;
+}
+.aplayer-list ol li:hover {
+  background: var(--color-hover-shadow) !important;
+}
+.aplayer-lrc-contents,
+.aplayer-music {
+  cursor: var(--cursor-default) !important;
+}
+.aplayer-pic,
+body .aplayer .aplayer-info .aplayer-controller .aplayer-bar-wrap,
+.aplayer-list-cur,
+.aplayer-list-index,
+.aplayer-list-author,
+.aplayer-list ol li,
+body .aplayer .aplayer-info .aplayer-controller .aplayer-volume-wrap,
+.aplayer-thumb,
+.aplayer-icon {
+  cursor: var(--cursor-pointer) !important;
+}
+.aplayer-author,
+.aplayer-lrc p,
+.aplayer-list-author {
+  color: var(--grey-7) !important;
 }
 .pullquote.left {
   float: left;

@@ -1,0 +1,954 @@
+  <!DOCTYPE html>
+  <html lang="zh-CN"  
+      data-theme-mode="auto"
+  >
+  <head>
+  <meta charset="utf-8">
+  
+  
+  
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_4k4bc36ef96';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
+  <title>
+    数据库系统概论-第四章-数据库安全 | 史蒂芬の电台
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_4k4bc36ef96.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="数据库安全性概述  数据库的不安全因素  非授权用户对数据库的恶意存储和破坏 数据库中重要或敏感的数据被泄露 安全环境的脆弱性（自己的硬件）   TCCSEC&#x2F;TDI 更安全系统设计数据库等级  D级：不符合更高标准的系统 C1级：非常初级的自主安全保护 C2级：安全产品的最低档次 B1级：标记安全保护（给数据加标签） B2级：结构化保护 B3级：安全域（对用户身份进行跟踪，并且备份还原） A1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库系统概论-第四章-数据库安全">
+<meta property="og:url" content="http://example.com/2026/05/19/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA-%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8/index.html">
+<meta property="og:site_name" content="史蒂芬の电台">
+<meta property="og:description" content="数据库安全性概述  数据库的不安全因素  非授权用户对数据库的恶意存储和破坏 数据库中重要或敏感的数据被泄露 安全环境的脆弱性（自己的硬件）   TCCSEC&#x2F;TDI 更安全系统设计数据库等级  D级：不符合更高标准的系统 C1级：非常初级的自主安全保护 C2级：安全产品的最低档次 B1级：标记安全保护（给数据加标签） B2级：结构化保护 B3级：安全域（对用户身份进行跟踪，并且备份还原） A1">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-05-18T17:06:23.000Z">
+<meta property="article:modified_time" content="2026-05-18T17:07:01.758Z">
+<meta property="article:author" content="Stvfen">
+<meta property="article:tag" content="数据库">
+<meta name="twitter:card" content="summary">
+    <link rel="alternate" href="/atom.xml" title="史蒂芬の电台" type="application/atom+xml">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
+      <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.css" integrity="sha384-tTgKLjMYmJr94v8qu2PE5MUGSMbyN2xiH266JUB3gpm8vnnJywd1dWSOEfrFz+YI" crossorigin="anonymous">
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+    <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/aplayer@1.10.1/dist/APlayer.min.css" integrity="sha384-tLMkTWh2pfXNWGFlUS0w1TFtRG5xZ9lPWFOooj+vDDLIL+xBGQU/voDBY5XE2lVh" crossorigin="anonymous">
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+  <body>
+      <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+      </div>
+      <div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script>
+<div id="copy-tooltip"></div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation">
+        <a class="main-nav-link-wrap" href="/">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">首页</span>
+        </span>
+        <a class="main-nav-link-wrap" href="/archives">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">藏书阁</span>
+        </span>
+        <a class="main-nav-link-wrap" href="/about">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">关于</span>
+        </span>
+        <a class="main-nav-link-wrap" href="/friend">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">友链</span>
+        </span>
+    <a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation">
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅" aria-label="RSS 订阅" target="_blank"></a>
+      <a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索" aria-label="搜索"></a>
+  </nav>
+</div>
+<header id="header" aria-label="Site header">
+    <picture></picture>
+    <img  fetchpriority="high" src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260519010359.png" alt="数据库系统概论-第四章-数据库安全">
+  <div id="header-outer">
+    <div id="header-title">
+          <span id="logo">
+            <h1 data-aos="slide-up">数据库系统概论-第四章-数据库安全</h1>
+          </span>
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+        </h2>
+    </div>
+  </div>
+</header>
+
+        <div id="content" aria-label="Page content" class="sidebar-left"  >
+          <aside id="sidebar" aria-label="Sidebar">
+  <div class="sidebar-wrapper-container sticky">
+      <div id="aplayer" theme="var(--color-link)" data-aos="fade-up"></div>
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8%E6%80%A7%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text"> 数据库安全性概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E4%B8%8D%E5%AE%89%E5%85%A8%E5%9B%A0%E7%B4%A0"><span class="toc-number">1.1.</span> <span class="toc-text"> 数据库的不安全因素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tccsectdi-%E6%9B%B4%E5%AE%89%E5%85%A8%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AD%89%E7%BA%A7"><span class="toc-number">1.2.</span> <span class="toc-text"> TCCSEC&#x2F;TDI 更安全系统设计数据库等级</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8%E6%80%A7%E6%8E%A7%E5%88%B6"><span class="toc-number">2.</span> <span class="toc-text"> 数据库安全性控制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E8%BA%AB%E4%BB%BD%E9%89%B4%E5%88%AB"><span class="toc-number">2.1.</span> <span class="toc-text"> 用户身份鉴别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%98%E5%8F%96%E6%8E%A7%E5%88%B6"><span class="toc-number">2.2.</span> <span class="toc-text"> 存取控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E4%B8%BB%E5%AD%98%E5%8F%96%E6%8E%A7%E5%88%B6%E6%96%B9%E6%B3%95"><span class="toc-number">2.3.</span> <span class="toc-text"> 自主存取控制方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%88%E4%BA%88%E6%9D%83%E9%99%90%E6%8E%88%E4%BA%88%E4%B8%8E%E5%9B%9E%E6%94%B6"><span class="toc-number">2.4.</span> <span class="toc-text"> 授予权限：授予与回收</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#grant%E6%8E%88%E6%9D%83"><span class="toc-number">2.4.1.</span> <span class="toc-text"> GRANT授权</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A7%92%E8%89%B2%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1"><span class="toc-number">3.</span> <span class="toc-text"> 数据库角色（面向对象？！）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E8%A7%92%E8%89%B2"><span class="toc-number">3.1.</span> <span class="toc-text"> 创建角色</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%99%E8%A7%92%E8%89%B2%E6%8E%88%E6%9D%83"><span class="toc-number">3.2.</span> <span class="toc-text"> 给角色授权</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%86%E4%B8%80%E4%B8%AA%E8%A7%92%E8%89%B2%E6%8E%88%E6%9D%83%E5%85%B6%E4%BB%96%E7%9A%84%E8%A7%92%E8%89%B2%E6%88%96%E7%94%A8%E6%88%B7"><span class="toc-number">3.3.</span> <span class="toc-text"> 将一个角色授权其他的角色或用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%92%E8%89%B2%E6%9D%83%E9%99%90%E6%94%B6%E5%9B%9E"><span class="toc-number">3.4.</span> <span class="toc-text"> 角色权限收回</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%BA%E5%88%B6%E5%AD%98%E5%8F%96%E6%8E%A7%E5%88%B6%E6%96%B9%E6%B3%95"><span class="toc-number">4.</span> <span class="toc-text"> 强制存取控制方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%8A%A9%E5%AD%98%E5%8F%96%E6%8E%A7%E5%88%B6dac%E7%9A%84%E7%BC%BA%E7%82%B9"><span class="toc-number">4.1.</span> <span class="toc-text"> 自助存取控制DAC的缺点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%BA%E5%88%B6%E5%AD%98%E5%8F%96%E6%8E%A7%E5%88%B6mac"><span class="toc-number">4.2.</span> <span class="toc-text"> 强制存取控制(MAC)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%A8%E5%BC%BA%E5%88%B6%E5%AD%98%E5%8F%96%E6%8E%A7%E5%88%B6%E4%B8%AD%E5%AE%9E%E4%BD%93%E5%88%86%E7%B1%BB"><span class="toc-number">4.2.1.</span> <span class="toc-text"> 在强制存取控制中实体分类：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%8F%E6%84%9F%E5%BA%A6%E6%A0%87%E8%AE%B0lable"><span class="toc-number">4.2.2.</span> <span class="toc-text"> 敏感度标记(Lable)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%BA%E5%88%B6%E5%AD%98%E5%8F%96%E6%8E%A7%E5%88%B6%E8%A7%84%E5%88%99"><span class="toc-number">4.3.</span> <span class="toc-text"> 强制存取控制规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dac-mac%E5%AE%89%E5%85%A8%E6%A3%80%E6%9F%A5"><span class="toc-number">4.4.</span> <span class="toc-text"> DAC + MAC安全检查</span></a></li></ol></li></ol>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Stvfen" class="lazyload">
+  <div class="sidebar-author-name">Stvfen</div>
+  <div class="sidebar-description">电台组组长</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">53</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">26</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">22</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/3546704989129249?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="藏书阁"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">藏书阁</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+    </div>
+  </div>
+  <div class="sidebar-widget">
+  </div>
+  </div>
+</aside>
+
+          <section id="main" aria-label="Main content"><article id="post-数据库系统概论-第四章-数据库安全" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2026-05-18T17:06:23.000Z" itemprop="datePublished">2026-05-19</time>
+    <time style="display: none;" id="post-update-time">2026-05-19</time>
+  </span>
+</div>
+
+    </div>
+    
+    <div class="hr-line"></div>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+        <h2 id="数据库安全性概述"><a class="markdownIt-Anchor" href="#数据库安全性概述"></a> 数据库安全性概述</h2>
+<h3 id="数据库的不安全因素"><a class="markdownIt-Anchor" href="#数据库的不安全因素"></a> 数据库的不安全因素</h3>
+<ul>
+<li>非授权用户对数据库的恶意存储和破坏</li>
+<li>数据库中重要或敏感的数据被泄露</li>
+<li>安全环境的脆弱性（自己的硬件）</li>
+</ul>
+<h3 id="tccsectdi-更安全系统设计数据库等级"><a class="markdownIt-Anchor" href="#tccsectdi-更安全系统设计数据库等级"></a> TCCSEC/TDI 更安全系统设计数据库等级</h3>
+<ul>
+<li>D级：不符合更高标准的系统</li>
+<li>C1级：非常初级的自主安全保护</li>
+<li>C2级：安全产品的最低档次</li>
+<li>B1级：标记安全保护（给数据加标签）</li>
+<li>B2级：结构化保护</li>
+<li>B3级：安全域（对用户身份进行跟踪，并且备份还原）</li>
+<li>A1级：验证设计</li>
+</ul>
+<h2 id="数据库安全性控制"><a class="markdownIt-Anchor" href="#数据库安全性控制"></a> 数据库安全性控制</h2>
+<h3 id="用户身份鉴别"><a class="markdownIt-Anchor" href="#用户身份鉴别"></a> 用户身份鉴别</h3>
+<ul>
+<li>每次用户进入时都要系统核对，通过鉴定后提供数据库管理系统的使用权限。它是系统提供的最外层安全保护措施</li>
+<li>用户标识组成：由用户名和用户标识号组成，用户标识号在系统整个生命周期内唯一。</li>
+<li>用户身份验证鉴别方法：
+<ul>
+<li>静态口令鉴别</li>
+<li>动态口令鉴别</li>
+<li>生物特征鉴别</li>
+<li>智能卡鉴别</li>
+</ul>
+</li>
+</ul>
+<h3 id="存取控制"><a class="markdownIt-Anchor" href="#存取控制"></a> 存取控制</h3>
+<p>用户权限定义和合法权检查机制一起组成了数据库管理系统的存储控制子系统。</p>
+<ul>
+<li>定义用户权限</li>
+<li>合法权限检查</li>
+<li>自主存取控制：不同用户的权限可以不同，并且可以将权限传给其他人</li>
+<li>强制存取控制：给每个数据对象贴一个标签</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>对象类型</th>
+<th>对象操作类型</th>
+<th>权限操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数据库模式</td>
+<td>模式</td>
+<td>CREATE SCHEMA</td>
+</tr>
+<tr>
+<td>数据库模式</td>
+<td>基本表</td>
+<td>CREATE TABLE, ALTER TABLE</td>
+</tr>
+<tr>
+<td>数据库模式</td>
+<td>视图</td>
+<td>CREATE VIEW</td>
+</tr>
+<tr>
+<td>数据库模式</td>
+<td>索引</td>
+<td>CREATE INDEX</td>
+</tr>
+<tr>
+<td>数据</td>
+<td>基本表和视图</td>
+<td>SELECT, INSERT, UPDATE, DELETE, REFERENCES, ALL PRIVILEGES</td>
+</tr>
+<tr>
+<td>数据</td>
+<td>属性列</td>
+<td>SELECT, INSERT, UPDATE, REFERENCES, ALL PRIVILEGES</td>
+</tr>
+</tbody>
+</table>
+<h3 id="自主存取控制方法"><a class="markdownIt-Anchor" href="#自主存取控制方法"></a> 自主存取控制方法</h3>
+<p>用户权限的含义就是可以操作上面哪些对象，以及对对象进行哪些操作，甚至可以给别人权限。</p>
+<h3 id="授予权限授予与回收"><a class="markdownIt-Anchor" href="#授予权限授予与回收"></a> 授予权限：授予与回收</h3>
+<p>这里我们要记住，所有用户的代称是<code>PUBLIC</code> <BR></p>
+<h4 id="grant授权"><a class="markdownIt-Anchor" href="#grant授权"></a> GRANT授权</h4>
+<p>首先我们可以使用<code>GRANT</code>来进行授权权限：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">GRANT &lt;权限&gt;[,&lt;权限&gt;]...</span><br><span class="line">ON &lt;对象类型&gt; &lt;对象名&gt;[,&lt;对象类型&gt; &lt;对象名]...</span><br><span class="line">TO &lt;用户&gt;[,&lt;用户&gt;]...</span><br><span class="line">[WITH GRANT OPTION]</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>GRANT</code>使用者可以是数据库管理员、数据库对象创造者、用拥有该权限的用户</li>
+<li>接受权限的用户可以是一个或多个具体用户</li>
+<li><code>WITH GRANT OPTION</code>子句：表示该权限可以再给其他。</li>
+<li>SQL标准不允许循环授权：用户1给用户2权限，用户2给用户3权限，那么用户3无法直接对用户1授权。<br />
+比如我们把查询Student表权限授权给用户U1：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GRANT SELECT</span><br><span class="line">ON TABLE Student</span><br><span class="line">TO U1;</span><br></pre></td></tr></table></figure>
+<p>把查询Student表和修改学生学号的权限授权给U4：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GRANT UPDATE(Sno), SELECT</span><br><span class="line">ON TABLE Student</span><br><span class="line">TO U4;</span><br></pre></td></tr></table></figure>
+<BR>
+#### REVOKE 回收权限
+接着我们来讲解一下如何使用`REVOKE`收回授权权限，==授予的权限可以由数据库管理员或其他授权者用REVOKE语句收回==：
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">REVOKE &lt;权限&gt; [,&lt;权限&gt;]...</span><br><span class="line">ON &lt;对象类型&gt; &lt;对象名&gt; [,&lt;对象类型&gt; &lt;对象名&gt;]</span><br><span class="line">FROM &lt;用户&gt; [,&lt;用户&gt;] ... [CASCADE|RESTRICT]</span><br></pre></td></tr></table></figure>
+例如把用户U4修改学生学号的权限收回：
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">REVOKE UPDATE(Sno)</span><br><span class="line">ON TABLE Student</span><br><span class="line">FROM U4;</span><br></pre></td></tr></table></figure>
+把用户U5对SC表的INSERT权限收回：
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">REVOKE INSERT</span><br><span class="line">ON TABLE SC</span><br><span class="line">FROM U5 CASCADE;</span><br></pre></td></tr></table></figure>
+我将用户U5的INSERT权限收回的时候应该使用`CASCADE`，否则拒绝执行该语句。因为U5->U6->U7，U5都没权限了，那后面的肯定也不能用这个权限了。
+- 数据管理员的授权：拥有所有对象的所有权限，根据实际情况不同的权限授予不同的用户
+- 用户的授权：拥有自己建立的对象的全部操作权限，可以使用`GRANT`，把权限给其他用户
+- 被授权用户的授权：如果拥有“继续授权”的许可，可以把获得的权限再给其他用户
+- 所有授予出去的权力在必要时又都可用REVOKE语句收回。
+#### CREATE USER创建数据库模式的权限
+数据库管理员在创建用户时实现对创建数据库模式的权限
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CREATE USER &lt;username&gt;</span><br><span class="line">[WITH][DBA|RESOURCE|CONNECT];</span><br></pre></td></tr></table></figure>
+- 只有DBA才可以创建新的数据库用户
+- 新创建的数据库用户有三种权限：CONNECT\RESOURCE和DBA。如果没有指定权限，默认拥有CONNECT权限，拥有CONNECT权限的用户不能创建新用户，不能创建模式，不能创建基本表，只能登录数据库。
+- 拥有RESOUCE权限的用户能创建基本表和视图，成为所有对象的属主。但不能创建模式，也不能创建新的用户
+- 拥有DBA的话，基本就是想干啥干啥。
+<table>
+<thead>
+<tr>
+<th>角色权限</th>
+<th>CREATE USER</th>
+<th>CREATE SCHEMA</th>
+<th>CREATE TABLE</th>
+<th>登录数据库、查询/操纵数据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>DBA</strong></td>
+<td>✅ 可以</td>
+<td>✅ 可以</td>
+<td>✅ 可以</td>
+<td>✅ 可以（拥有全部权限）</td>
+</tr>
+<tr>
+<td><strong>RESOURCE</strong></td>
+<td>❌ 不可以</td>
+<td>❌ 不可以</td>
+<td>✅ 可以</td>
+<td>✅ 可以（能建表、操作自己的数据）</td>
+</tr>
+<tr>
+<td><strong>CONNECT</strong></td>
+<td>❌ 不可以</td>
+<td>❌ 不可以</td>
+<td>❌ 不可以</td>
+<td>⚠️ 可以登录，但操作数据必须有相应额外权限</td>
+</tr>
+</tbody>
+</table>
+<h2 id="数据库角色面向对象"><a class="markdownIt-Anchor" href="#数据库角色面向对象"></a> 数据库角色（面向对象？！）</h2>
+<p>如果用户很多，但是他们其实都是同一种权限种类。那么我们可以用<code>CREATE ROLE</code>创建一个角色卡，接着用<code>GRANT</code>给角色卡权限，用<code>REVOKE</code>收回角色的权限。然后把用户都定义为这个角色，就很方便。</p>
+<h3 id="创建角色"><a class="markdownIt-Anchor" href="#创建角色"></a> 创建角色</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE ROLE &lt;角色名&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="给角色授权"><a class="markdownIt-Anchor" href="#给角色授权"></a> 给角色授权</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GRANT &lt;权限&gt; [,&lt;权限&gt;]...</span><br><span class="line">ON &lt;对象类型&gt; &lt;对象名&gt;</span><br><span class="line">TO &lt;角色&gt; [,&lt;角色名&gt;]...;</span><br></pre></td></tr></table></figure>
+<h3 id="将一个角色授权其他的角色或用户"><a class="markdownIt-Anchor" href="#将一个角色授权其他的角色或用户"></a> 将一个角色授权其他的角色或用户</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GRANT &lt;角色1&gt; [,&lt;角色2&gt;]...</span><br><span class="line">TO &lt;角色3&gt; [,&lt;用户1&gt;]...</span><br><span class="line">[WITH ADMIN OPTION];</span><br></pre></td></tr></table></figure>
+<p>指定了<code>WITH ADMIN OPTION</code>则获得某种权限的角色或用户可以把这种权限授予其他角色。</p>
+<h3 id="角色权限收回"><a class="markdownIt-Anchor" href="#角色权限收回"></a> 角色权限收回</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">REVOKE &lt;权限&gt; [,&lt;权限&gt;]...</span><br><span class="line">ON &lt;对象类型&gt; &lt;对象名&gt;</span><br><span class="line">FROM &lt;角色&gt; [,&lt;角色&gt;]...</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>例题：通过角色来实现将一组权限授予一个用户。<bR><br />
+首先创建一个角色R1</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE ROLE R1;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>然后使用<code>GRANT</code>语句，使角色R1拥有Student表的SELECT、UPDATE、INSERT权限</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GRANT SELECT,UPDATE,INSERT</span><br><span class="line">ON TABLE Student</span><br><span class="line">TO R1;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>将这个角色授权王平，张明，赵玲。是他们拥有角色所包含的全部权限</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GRANT R1</span><br><span class="line">TO 王平,张明,赵玲;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>可以一次性通过R1来回首王平的这3个权限</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">REVOKE R1</span><br><span class="line">FROM 王平;</span><br></pre></td></tr></table></figure>
+<h2 id="强制存取控制方法"><a class="markdownIt-Anchor" href="#强制存取控制方法"></a> 强制存取控制方法</h2>
+<h3 id="自助存取控制dac的缺点"><a class="markdownIt-Anchor" href="#自助存取控制dac的缺点"></a> 自助存取控制DAC的缺点</h3>
+<p>可能会存在数据“无意泄露”</p>
+<ul>
+<li>原因：这种机制仅仅通过对数据的存取权限来进行安全控制，而数据本身并无安全性标记</li>
+<li>解决：对系统控制下的所有住课题实施强制存取控制策略。</li>
+</ul>
+<h3 id="强制存取控制mac"><a class="markdownIt-Anchor" href="#强制存取控制mac"></a> 强制存取控制(MAC)</h3>
+<p>保证更高程度的安全、用户不能直接感知或进行控制。</p>
+<h4 id="在强制存取控制中实体分类"><a class="markdownIt-Anchor" href="#在强制存取控制中实体分类"></a> 在强制存取控制中实体分类：</h4>
+<ul>
+<li>主体：主体是系统中的活动实体，无论用户还是程序。</li>
+<li>客体：数据库里的这些数据。</li>
+</ul>
+<h4 id="敏感度标记lable"><a class="markdownIt-Anchor" href="#敏感度标记lable"></a> 敏感度标记(Lable)</h4>
+<p>对于主体和客体，DBMS为它们每个实例（值）指派一个敏感度标记</p>
+<ul>
+<li>绝密TS</li>
+<li>机密S</li>
+<li>可信C</li>
+<li>公开P<br />
+主体的敏感度标记称为<strong>许可证级别</strong>，客体的敏感度标记称为<strong>密级</strong>。</li>
+</ul>
+<h3 id="强制存取控制规则"><a class="markdownIt-Anchor" href="#强制存取控制规则"></a> 强制存取控制规则</h3>
+<ul>
+<li>仅当主体许可证级别大于或等于客体的密级时，该主体才能读取相应的客体。</li>
+<li>仅当主体的许可证级别小于或等于客梯的密级时，改主体才能写相应的客体。<br />
+在现代计算机当中，自主存取控制与强制存取控制共同构成了安全机制。如果没有自主存取控制，name是无法实施强制存取控制的。</li>
+</ul>
+<h3 id="dac-mac安全检查"><a class="markdownIt-Anchor" href="#dac-mac安全检查"></a> DAC + MAC安全检查</h3>
+<p>系统首先进行自主存取控制检查，通过自主存取控制检查的数据对象再由系统进行强制存取控制检查，只有通过强制存取控制检查的数据对象方可存取。</p>
+
+    </div>
+    <footer class="article-footer">
+        <a data-aos="zoom-in" href="/2026/05/19/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA-%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8/#comments" class="article-comment-link">
+          <span class="post-comments-count twikoo-comment-count" data-path="/2026/05/19/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA-%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8/" itemprop="commentCount"></span>
+          留言
+        </a>
+        <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/" title="笔记" data-aos="zoom-in">笔记</a><a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA/" title="数据库系统概论" data-aos="zoom-in">数据库系统概论</a><a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA/%E7%AC%AC%E5%9B%9B%E7%AB%A0/" title="第四章" data-aos="zoom-in">第四章</a>
+
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag" title="数据库">数据库</a></li></ul>
+
+    </footer>
+  </div>
+    <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
+      <div class="article-nav-link-wrap left">
+          <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260519010454.png" data-sizes="auto" alt="概率论第三章-二维随机变量及其分布" class="lazyload">
+        <a href="/2026/05/19/%E6%A6%82%E7%8E%87%E8%AE%BA%E7%AC%AC%E4%B8%89%E7%AB%A0-%E4%BA%8C%E7%BB%B4%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%8F%8A%E5%85%B6%E5%88%86%E5%B8%83/" aria-label="前一篇: 概率论第三章-二维随机变量及其分布" title="前一篇: 概率论第三章-二维随机变量及其分布"></a>
+        <div class="article-nav-caption">前一篇</div>
+        <h3 class="article-nav-title">
+            概率论第三章-二维随机变量及其分布
+        </h3>
+      </div>
+    <div class="article-nav-link-wrap right">
+        <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/6c709dd4be17a0a16fcf08ee68e8d040.png" data-sizes="auto" alt="计算机组成原理第二章-编码-湖科大版" class="lazyload">
+      <a href="/2026/05/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%BC%96%E7%A0%81-%E6%B9%96%E7%A7%91%E5%A4%A7%E7%89%88/" aria-label="后一篇: 计算机组成原理第二章-编码-湖科大版"  title="后一篇: 计算机组成原理第二章-编码-湖科大版"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+          计算机组成原理第二章-编码-湖科大版
+      </h3>
+    </div>
+  </nav>
+
+</article>
+
+  <section id="comments" data-aos="fade-up">
+    <div class="comment-header">
+        
+      <h2 class="comment-title">说些什么吧！</h2>
+      <div class="comment-selector">
+        <div class="comment-selector-wrap">
+            <div class="selector-item" data-selector="twikoo">
+              <span>twikoo</span>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="comment-content">
+          <div class="comment twikoo-comment" data-aos="fade-up"
+            id="twikoo-comment">
+          </div>
+    </div>
+  </section>
+
+</section>
+        </div>
+        <footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    <div>
+      <span class="icon-copyright"></span>
+        2020-2026
+        <span class="footer-info-sep rotate"></span>
+      Stvfen
+    </div>
+      <div>
+        <span class="icon-brush"></span>
+        113k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        07:49
+      </div>
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+  </div>
+</footer>
+
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap">
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8%E6%80%A7%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text"> 数据库安全性概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E4%B8%8D%E5%AE%89%E5%85%A8%E5%9B%A0%E7%B4%A0"><span class="toc-number">1.1.</span> <span class="toc-text"> 数据库的不安全因素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tccsectdi-%E6%9B%B4%E5%AE%89%E5%85%A8%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AD%89%E7%BA%A7"><span class="toc-number">1.2.</span> <span class="toc-text"> TCCSEC&#x2F;TDI 更安全系统设计数据库等级</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8%E6%80%A7%E6%8E%A7%E5%88%B6"><span class="toc-number">2.</span> <span class="toc-text"> 数据库安全性控制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E8%BA%AB%E4%BB%BD%E9%89%B4%E5%88%AB"><span class="toc-number">2.1.</span> <span class="toc-text"> 用户身份鉴别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%98%E5%8F%96%E6%8E%A7%E5%88%B6"><span class="toc-number">2.2.</span> <span class="toc-text"> 存取控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E4%B8%BB%E5%AD%98%E5%8F%96%E6%8E%A7%E5%88%B6%E6%96%B9%E6%B3%95"><span class="toc-number">2.3.</span> <span class="toc-text"> 自主存取控制方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%88%E4%BA%88%E6%9D%83%E9%99%90%E6%8E%88%E4%BA%88%E4%B8%8E%E5%9B%9E%E6%94%B6"><span class="toc-number">2.4.</span> <span class="toc-text"> 授予权限：授予与回收</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#grant%E6%8E%88%E6%9D%83"><span class="toc-number">2.4.1.</span> <span class="toc-text"> GRANT授权</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%A7%92%E8%89%B2%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1"><span class="toc-number">3.</span> <span class="toc-text"> 数据库角色（面向对象？！）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E8%A7%92%E8%89%B2"><span class="toc-number">3.1.</span> <span class="toc-text"> 创建角色</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%99%E8%A7%92%E8%89%B2%E6%8E%88%E6%9D%83"><span class="toc-number">3.2.</span> <span class="toc-text"> 给角色授权</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%86%E4%B8%80%E4%B8%AA%E8%A7%92%E8%89%B2%E6%8E%88%E6%9D%83%E5%85%B6%E4%BB%96%E7%9A%84%E8%A7%92%E8%89%B2%E6%88%96%E7%94%A8%E6%88%B7"><span class="toc-number">3.3.</span> <span class="toc-text"> 将一个角色授权其他的角色或用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%92%E8%89%B2%E6%9D%83%E9%99%90%E6%94%B6%E5%9B%9E"><span class="toc-number">3.4.</span> <span class="toc-text"> 角色权限收回</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%BA%E5%88%B6%E5%AD%98%E5%8F%96%E6%8E%A7%E5%88%B6%E6%96%B9%E6%B3%95"><span class="toc-number">4.</span> <span class="toc-text"> 强制存取控制方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%8A%A9%E5%AD%98%E5%8F%96%E6%8E%A7%E5%88%B6dac%E7%9A%84%E7%BC%BA%E7%82%B9"><span class="toc-number">4.1.</span> <span class="toc-text"> 自助存取控制DAC的缺点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%BA%E5%88%B6%E5%AD%98%E5%8F%96%E6%8E%A7%E5%88%B6mac"><span class="toc-number">4.2.</span> <span class="toc-text"> 强制存取控制(MAC)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9C%A8%E5%BC%BA%E5%88%B6%E5%AD%98%E5%8F%96%E6%8E%A7%E5%88%B6%E4%B8%AD%E5%AE%9E%E4%BD%93%E5%88%86%E7%B1%BB"><span class="toc-number">4.2.1.</span> <span class="toc-text"> 在强制存取控制中实体分类：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%8F%E6%84%9F%E5%BA%A6%E6%A0%87%E8%AE%B0lable"><span class="toc-number">4.2.2.</span> <span class="toc-text"> 敏感度标记(Lable)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%BA%E5%88%B6%E5%AD%98%E5%8F%96%E6%8E%A7%E5%88%B6%E8%A7%84%E5%88%99"><span class="toc-number">4.3.</span> <span class="toc-text"> 强制存取控制规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dac-mac%E5%AE%89%E5%85%A8%E6%A3%80%E6%9F%A5"><span class="toc-number">4.4.</span> <span class="toc-text"> DAC + MAC安全检查</span></a></li></ol></li></ol>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Stvfen" class="lazyload">
+  <div class="sidebar-author-name">Stvfen</div>
+  <div class="sidebar-description">电台组组长</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">53</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">26</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">22</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/3546704989129249?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="藏书阁"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">藏书阁</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+  </div>
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+</nav>
+
+    </div>
+      <div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/images/reimu.png"/>
+        </div>
+      </div>
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+  
+<script src="/js/generator_search.js" defer></script>
+
+
+
+  <script>
+    var setupFirework = () => {
+      if (!false || !window.matchMedia('(max-width: 768px)').matches) {
+        window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'));
+      }
+    }
+  </script>
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.2.0/dist/index.umd.js" integrity="sha384-qi9WggRt19tv8Vc7pCHW3ulMNLwrn515zaLEWZjl1px07vz8+pUoWX8n1rgq282T" crossorigin="anonymous" onload="setupFirework()" defer></script>
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "Stvfen",
+          title: "数据库系统概论-第四章-数据库安全",
+          url: "http://example.com/2026/05/19/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA-%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8/",
+          excerpt: "",
+          description: "",
+          stripContent: " 数据库安全性概述  数据库的不安全因素  非授权用户对数据库的恶意存储和破坏 数据库中重要或敏感的数据被泄露 安全环境的脆弱性（自己的硬件）   TCCSEC/TDI 更安全系统设计数据库等级  D级：不符合更高标准的系统 C1级：非常初级的自主安全保护 C2级：安全产品的最低档次 B1级：标记安全保护（给数据加标签） B2级：结构化保护 B3级：安全域（对用户身份进行跟踪，并且备份还原） A1级：验证设计   数据库安全性控制  用户身份鉴别  每次用户进入时都要系统核对，通过鉴定后提供数据",
+          date: "Tue May 19 2026 01:06:23 GMT+0800",
+          updated: "Tue May 19 2026 01:07:01 GMT+0800",
+          cover: "https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260519010359.png",
+        };
+      </script>
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+      
+<script src="/js/tabs.js" data-pjax defer></script>
+
+      <script type="module" data-pjax>
+        (async () => {
+          const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+          const initPswp = (gallery, children) => {
+            if (_$$(`${gallery} ${children}`).length > 0) {
+              new PhotoSwipeLightbox({
+                gallery,
+                children,
+                pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+              }).init();
+            }
+          }
+          const pswp = () => {
+            initPswp('.article-entry', 'a.article-gallery-item');
+            initPswp('.article-gallery', 'a.article-gallery-item');
+          }
+          pswp();
+        })();
+      </script>
+        
+
+<script data-pjax>
+  var loadScript = (src, integrity) => {
+    const script = document.createElement('script');
+    script.src = src;
+    if (integrity) script.integrity = integrity;
+    script.crossOrigin = 'anonymous';
+    return script;
+  };
+
+  var commentConfigKeys = ["twikoo"];
+  var commentConfig = {
+    twikoo: {
+      enable: true,
+      load: () => {
+        const container = document.querySelector('.twikoo-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        const script = loadScript(
+          'https://npm.webcache.cn/twikoo@1.6.44/dist/twikoo.all.min.js',
+          'sha384-kwWLC0HjeZZnVPqCJ1AncI8tsk+kQqF9TbAmCclcc9Z0hGkfgHRzeQZxmdmZhE0K'
+        );
+
+        script.onload = () => {
+          if (window.twikoo) {
+            twikoo.init({
+              envId: 'https://pinglunqu.vercel.app',
+              el: '.twikoo-comment',
+              region: '',
+              lang: document.documentElement.lang || 'en',
+            });
+
+            twikoo.getCommentsCount({
+              envId: 'https://pinglunqu.vercel.app',
+              region: '',
+              urls: [
+                '/friend/index.html'
+              ],
+              includeReply: false
+            }).then((res) => {
+              _$('.twikoo-comment-count').innerText = res[0].count;
+            }).catch((err) => {
+              console.error(err);
+            });
+          }
+        } 
+        document.head.appendChild(script);
+      }
+    },
+  }
+  commentConfig.enable = commentConfigKeys.some(key => commentConfig[key].enable);
+
+  var defaultComment = '';
+  if (commentConfig.enable) {
+    // 1. 首先检查localStorage中是否有保存的评论类型
+    var savedCommentType = localStorage.getItem('commentType');
+    
+    // 2. 如果localStorage中有值且对应的评论系统可用，就使用它
+    if (savedCommentType) {
+      if (commentConfig[savedCommentType]?.enable) {
+        defaultComment = savedCommentType;
+      }
+    }
+    
+    // 3. 如果localStorage无效，检查配置的默认评论系统
+    if (!defaultComment) {
+      var configDefault = 'waline';
+      if (commentConfig[configDefault]?.enable) {
+        defaultComment = configDefault;
+      }
+    }
+    
+    // 4. 如果前两项都无效，按指定顺序找到第一个可用的评论系统
+    if (!defaultComment) {
+      defaultComment = commentConfigKeys.find(sys => commentConfig[sys].enable) || '';
+    }
+  }
+  function loadComments() {
+    if (!commentConfig.enable) return;
+    const loadedComments = {
+      valine: false,
+      waline: false,
+      twikoo: false,
+      gitalk: false,
+      giscus: false
+    };
+
+    // 隐藏所有评论容器
+    const hideAllComments = () => {
+      const commentContainers = document.querySelectorAll('.comment');
+      commentContainers.forEach(container => {
+        container.style.display = 'none';
+      });
+    };
+
+    // 按需加载评论系统
+    const loadCommentSystem = (type) => {
+      if (loadedComments[type]) {
+        // 如果已加载，只需显示对应容器
+        document.querySelector(`.${type}-comment`).style.display = 'block';
+        return;
+      }
+
+      // 根据类型加载对应的脚本
+      commentConfig[type]?.load();
+      loadedComments[type] = true;
+    };
+
+    // 评论组件选择器
+    const changeActiveCommentItems = (item) => {
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let i = 0; i < commentItems.length; i++) {
+        commentItems[i].classList.remove('active');
+      }
+      item.classList.add('active');
+
+      // 获取要加载的评论系统类型
+      const commentType = item.getAttribute('data-selector');
+
+      // 隐藏所有评论系统
+      hideAllComments();
+
+      // 加载选中的评论系统
+      loadCommentSystem(commentType);
+    };
+
+    const commentInit = () => {
+      // 评论组件选择器点击事件
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let item of commentItems) {
+        item.addEventListener('click', () => {
+          // 保存选择器状态
+          const commentType = item.getAttribute('data-selector');
+          window.localStorage.setItem('commentType', commentType);
+          // 切换选中状态
+          changeActiveCommentItems(item);
+        });
+      }
+
+      // 检查是否需要加载默认评论系统
+      if (defaultComment) {
+        const defaultSelectorItem = document.querySelector(`[data-selector="${defaultComment}"]`);
+        if (!defaultSelectorItem) return;
+        defaultSelectorItem.style.display = 'block';
+        defaultSelectorItem.classList.add('active');
+        loadCommentSystem(defaultComment);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', commentInit);
+    } else {
+      commentInit();
+    }
+  };
+  loadComments();
+</script>
+
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.12.1' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+    
+<script src="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.js" integrity="sha384-MWNUH0WmtsYGhn2cbH6ELRCbf9LG3QDqCC+gqPB3IBNO35xjZK3Ejb6oONRpDbPg" crossorigin="anonymous" defer data-pjax></script>
+
+    
+<script src="https://npm.webcache.cn/katex@0.16.24/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous" defer onload="renderMathInElement(_$(&#39;article&#39;), {delimiters: [{left: &#39;$$&#39;, right: &#39;$$&#39;, display: true},{left: &#39;$&#39;, right: &#39;$&#39;, display: false}]});" data-pjax></script>
+
+  
+    <script>
+    var setupAPlayer = () => {
+      if (!false || !window.matchMedia('(max-width: 768px)').matches) {
+        if (window.matchMedia('(max-width: 959px)').matches) {
+          const aplayer = _$('#aplayer');
+          if (aplayer) {
+            const aside = aplayer.parentNode?.parentNode;
+            if (aside?.tagName === 'ASIDE') {
+              aplayer.removeAttribute('data-aos');
+              aplayer.parentNode.removeChild(aplayer);
+              document.body.appendChild(aplayer);
+            }
+          }
+        }
+        new APlayer({
+          theme: "var(--color-link)",
+          container: document.getElementById('aplayer'),
+          audio: [{"name":"人造卫星","artist":"星尘","url":"https://videotourl.com/audio/1779027755492-d071c6b4-d2b9-4b34-8cb3-7753fd5b298a.mp3","cover":"https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/33fcfa952ea2eb7f9cb97d022b4460de.png"}] || [],
+          fixed: false || false,
+          autoplay: false || false,
+          loop: 'all' || 'all',
+          order: 'list' || 'list',
+          preload: 'auto' || 'auto',
+          volume: 0.7 || 0.7,
+          mutex: true || true,
+          listFolded: false || false,
+          lrcType: 0 || 0,
+        });
+      }
+    }
+    </script>
+  
+<script src="https://npm.webcache.cn/aplayer@1.10.1/dist/APlayer.min.js" integrity="sha384-gdGYZwHnfJM54evoZhpO0s6ZF5BQiybkiyW7VXr+h5UfruuRL&#x2F;aORyw+5+HZoU6e" crossorigin="anonymous" defer onload="setupAPlayer()"></script>
+
+
+
+  </body>
+  </html>
