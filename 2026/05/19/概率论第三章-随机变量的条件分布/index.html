@@ -9,7 +9,7 @@
   
   <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_4k4bc36ef96';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
   <title>
-    概率论第二章-随机变量函数Y=g(x)的分布（建议复习的时候直接看视频） | 史蒂芬の电台
+    概率论第三章-随机变量的条件分布 | 史蒂芬の电台
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
@@ -17,21 +17,20 @@
     
 <link rel="stylesheet" href="/css/loader.css">
 
-    <meta name="description" content="离散型随机变量函数的分布 设离散型随机变量 $X$ 的分布律为 $P\{X &#x3D; x_k\} &#x3D; p_k,\quad (k &#x3D; 1,2,\dots,n)$ 则求随机变量 $X$ 的函数 $Y &#x3D; g(X)$ 的概率分布，步骤如下：   计算 $Y$ 所有可能取到的值，即求出 $g(x_1),g(x_2),\dots,g(x_n)$，有重复的只取其一，记为 $">
+    <meta name="description" content="离散型随机变量的条件分布  联合分布表 $(X,Y)$    $X \setminus Y$ $0$ $1$ 边缘和 $P_{i\cdot}$     $1$ $0.2$ $0.3$ $0.5$   $2$ $0.1$ $0.4$ $0.5$   边缘和 $P_{\cdot j}$ $0.3$ $0.7$ $1$      条件概率计算示例  已知 $X&#x3D;1$ 时，$Y$ 的条件分布">
 <meta property="og:type" content="article">
-<meta property="og:title" content="概率论第二章-随机变量函数Y&#x3D;g(x)的分布（建议复习的时候直接看视频）">
-<meta property="og:url" content="http://example.com/2026/04/15/%E6%A6%82%E7%8E%87%E8%AE%BA%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%87%BD%E6%95%B0Y-g-x-%E7%9A%84%E5%88%86%E5%B8%83%EF%BC%88%E5%BB%BA%E8%AE%AE%E5%A4%8D%E4%B9%A0%E7%9A%84%E6%97%B6%E5%80%99%E7%9B%B4%E6%8E%A5%E7%9C%8B%E8%A7%86%E9%A2%91%EF%BC%89/index.html">
+<meta property="og:title" content="概率论第三章-随机变量的条件分布">
+<meta property="og:url" content="http://example.com/2026/05/19/%E6%A6%82%E7%8E%87%E8%AE%BA%E7%AC%AC%E4%B8%89%E7%AB%A0-%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%9A%84%E6%9D%A1%E4%BB%B6%E5%88%86%E5%B8%83/index.html">
 <meta property="og:site_name" content="史蒂芬の电台">
-<meta property="og:description" content="离散型随机变量函数的分布 设离散型随机变量 $X$ 的分布律为 $P\{X &#x3D; x_k\} &#x3D; p_k,\quad (k &#x3D; 1,2,\dots,n)$ 则求随机变量 $X$ 的函数 $Y &#x3D; g(X)$ 的概率分布，步骤如下：   计算 $Y$ 所有可能取到的值，即求出 $g(x_1),g(x_2),\dots,g(x_n)$，有重复的只取其一，记为 $">
+<meta property="og:description" content="离散型随机变量的条件分布  联合分布表 $(X,Y)$    $X \setminus Y$ $0$ $1$ 边缘和 $P_{i\cdot}$     $1$ $0.2$ $0.3$ $0.5$   $2$ $0.1$ $0.4$ $0.5$   边缘和 $P_{\cdot j}$ $0.3$ $0.7$ $1$      条件概率计算示例  已知 $X&#x3D;1$ 时，$Y$ 的条件分布">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260415-145524-display-0.png.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260415-145546-display-0.png.png">
-<meta property="article:published_time" content="2026-04-15T12:20:27.000Z">
-<meta property="article:modified_time" content="2026-05-19T10:37:13.597Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260519175640.png">
+<meta property="article:published_time" content="2026-05-19T10:37:27.000Z">
+<meta property="article:modified_time" content="2026-05-19T10:39:42.576Z">
 <meta property="article:author" content="Stvfen">
 <meta property="article:tag" content="概率论">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260415-145524-display-0.png.png">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260519175640.png">
     <link rel="alternate" href="/atom.xml" title="史蒂芬の电台" type="application/atom+xml">
     <link rel="shortcut icon" href="/images/favicon.ico">
   
@@ -133,11 +132,11 @@
 </div>
 <header id="header" aria-label="Site header">
     <picture></picture>
-    <img  fetchpriority="high" src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260415202721.png" alt="概率论第二章-随机变量函数Y=g(x)的分布（建议复习的时候直接看视频）">
+    <img  fetchpriority="high" src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260519183928.png" alt="概率论第三章-随机变量的条件分布">
   <div id="header-outer">
     <div id="header-title">
           <span id="logo">
-            <h1 data-aos="slide-up">概率论第二章-随机变量函数Y=g(x)的分布（建议复习的时候直接看视频）</h1>
+            <h1 data-aos="slide-up">概率论第三章-随机变量的条件分布</h1>
           </span>
         <h2 id="subtitle-wrap" data-aos="slide-down">
         </h2>
@@ -153,7 +152,7 @@
     <div class="sidebar-wrap" data-aos="fade-up">
           <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A6%BB%E6%95%A3%E5%9E%8B%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%87%BD%E6%95%B0%E7%9A%84%E5%88%86%E5%B8%83"><span class="toc-number">1.</span> <span class="toc-text"> 离散型随机变量函数的分布</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9E%E7%BB%AD%E5%9E%8B%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%87%BD%E6%95%B0%E7%9A%84%E5%88%86%E5%B8%83"><span class="toc-number">2.</span> <span class="toc-text"> 连续型随机变量函数的分布</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A6%BB%E6%95%A3%E5%9E%8B%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%9A%84%E6%9D%A1%E4%BB%B6%E5%88%86%E5%B8%83"><span class="toc-number">1.</span> <span class="toc-text"> 离散型随机变量的条件分布</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%81%94%E5%90%88%E5%88%86%E5%B8%83%E8%A1%A8-xy"><span class="toc-number">1.1.</span> <span class="toc-text"> 联合分布表 $(X,Y)$</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E6%A6%82%E7%8E%87%E8%AE%A1%E7%AE%97%E7%A4%BA%E4%BE%8B"><span class="toc-number">1.2.</span> <span class="toc-text"> 条件概率计算示例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B7%B2%E7%9F%A5-x1-%E6%97%B6y-%E7%9A%84%E6%9D%A1%E4%BB%B6%E5%88%86%E5%B8%83"><span class="toc-number">1.2.1.</span> <span class="toc-text"> 已知 $X&#x3D;1$ 时，$Y$ 的条件分布</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B7%B2%E7%9F%A5-y0-%E6%97%B6x-%E7%9A%84%E6%9D%A1%E4%BB%B6%E5%88%86%E5%B8%83"><span class="toc-number">1.2.2.</span> <span class="toc-text"> 已知 $Y&#x3D;0$ 时，$X$ 的条件分布</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E5%88%86%E5%B8%83%E5%85%AC%E5%BC%8F"><span class="toc-number">1.3.</span> <span class="toc-text"> 条件分布公式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-number">1.4.</span> <span class="toc-text"> 例题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9E%E7%BB%AD%E5%9E%8B%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%9A%84%E6%9D%A1%E4%BB%B6%E5%AF%86%E5%BA%A6"><span class="toc-number">2.</span> <span class="toc-text"> 连续型随机变量的条件密度</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E5%AF%86%E5%BA%A6%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-number">2.1.</span> <span class="toc-text"> 条件密度的定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E5%AF%86%E5%BA%A6%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="toc-number">2.2.</span> <span class="toc-text"> 条件密度的性质</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98%E4%BA%8C%E7%BB%B4%E5%9D%87%E5%8C%80%E5%88%86%E5%B8%83%E5%9C%86%E5%9F%9F%E7%9A%84%E6%9D%A1%E4%BB%B6%E5%AF%86%E5%BA%A6"><span class="toc-number">2.3.</span> <span class="toc-text"> 例题，二维均匀分布（圆域）的条件密度</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E8%AE%BE%E5%AE%9A"><span class="toc-number">2.3.1.</span> <span class="toc-text"> 题目设定</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%81%94%E5%90%88%E6%A6%82%E7%8E%87%E5%AF%86%E5%BA%A6"><span class="toc-number">2.3.2.</span> <span class="toc-text"> 联合概率密度</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%B9%E7%BC%98%E6%A6%82%E7%8E%87%E5%AF%86%E5%BA%A6"><span class="toc-number">2.3.3.</span> <span class="toc-text"> 边缘概率密度</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E6%A6%82%E7%8E%87%E5%AF%86%E5%BA%A6"><span class="toc-number">2.3.4.</span> <span class="toc-text"> 条件概率密度</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-yy-%E6%9D%A1%E4%BB%B6%E4%B8%8B-x-%E7%9A%84%E6%9D%A1%E4%BB%B6%E5%AF%86%E5%BA%A6-f_xyxy"><span class="toc-number">2.3.4.1.</span> <span class="toc-text"> (1) $Y&#x3D;y$ 条件下 $X$ 的条件密度 $f_{X|Y}(x|y)$</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-xx-%E6%9D%A1%E4%BB%B6%E4%B8%8B-y-%E7%9A%84%E6%9D%A1%E4%BB%B6%E5%AF%86%E5%BA%A6-f_yxyx"><span class="toc-number">2.3.4.2.</span> <span class="toc-text"> (2) $X&#x3D;x$ 条件下 $Y$ 的条件密度 $f_{Y|X}(y|x)$</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98%E4%BA%8C"><span class="toc-number">2.4.</span> <span class="toc-text"> 例题二</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A41%E5%86%99%E5%87%BA-x-%E7%9A%84%E8%BE%B9%E7%BC%98%E5%AF%86%E5%BA%A6"><span class="toc-number">2.4.1.</span> <span class="toc-text"> 步骤1：写出 $X$ 的边缘密度</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A42%E5%86%99%E5%87%BA%E6%9D%A1%E4%BB%B6%E5%AF%86%E5%BA%A6-f_yxyx"><span class="toc-number">2.4.2.</span> <span class="toc-text"> 步骤2：写出条件密度 $f_{Y|X}(y|x)$</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A43%E6%B1%82%E8%81%94%E5%90%88%E5%AF%86%E5%BA%A6-fxy"><span class="toc-number">2.4.3.</span> <span class="toc-text"> 步骤3：求联合密度 $f(x,y)$</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A44%E6%B1%82-y-%E7%9A%84%E8%BE%B9%E7%BC%98%E5%AF%86%E5%BA%A6-f_yy"><span class="toc-number">2.4.4.</span> <span class="toc-text"> 步骤4：求 $Y$ 的边缘密度 $f_Y(y)$</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
           <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -222,12 +221,12 @@
   </div>
 </aside>
 
-          <section id="main" aria-label="Main content"><article id="post-概率论第二章-随机变量函数Y-g-x-的分布（建议复习的时候直接看视频）" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+          <section id="main" aria-label="Main content"><article id="post-概率论第三章-随机变量的条件分布" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-inner" data-aos="fade-up">
     <div class="article-meta">
       <div class="article-date">
   <span class="article-date-link icon-calendar" data-aos="zoom-in">
-    <time datetime="2026-04-15T12:20:27.000Z" itemprop="datePublished">2026-04-15</time>
+    <time datetime="2026-05-19T10:37:27.000Z" itemprop="datePublished">2026-05-19</time>
     <time style="display: none;" id="post-update-time">2026-05-19</time>
   </span>
 </div>
@@ -237,39 +236,200 @@
     <div class="hr-line"></div>
     
     <div class="e-content article-entry" itemprop="articleBody">
-        <h2 id="离散型随机变量函数的分布"><a class="markdownIt-Anchor" href="#离散型随机变量函数的分布"></a> 离散型随机变量函数的分布</h2>
-<p>设离散型随机变量 $X$ 的分布律为<br />
-$P\{X &#x3D; x_k\} &#x3D; p_k,\quad (k &#x3D; 1,2,\dots,n)$</p>
-<p>则求随机变量 $X$ 的函数 $Y &#x3D; g(X)$ 的概率分布，步骤如下：</p>
+        <h2 id="离散型随机变量的条件分布"><a class="markdownIt-Anchor" href="#离散型随机变量的条件分布"></a> 离散型随机变量的条件分布</h2>
+<h3 id="联合分布表-xy"><a class="markdownIt-Anchor" href="#联合分布表-xy"></a> 联合分布表 $(X,Y)$</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">$X \setminus Y$</th>
+<th style="text-align:center">$0$</th>
+<th style="text-align:center">$1$</th>
+<th style="text-align:center">边缘和 $P_{i\cdot}$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$1$</td>
+<td style="text-align:center">$0.2$</td>
+<td style="text-align:center">$0.3$</td>
+<td style="text-align:center">$0.5$</td>
+</tr>
+<tr>
+<td style="text-align:center">$2$</td>
+<td style="text-align:center">$0.1$</td>
+<td style="text-align:center">$0.4$</td>
+<td style="text-align:center">$0.5$</td>
+</tr>
+<tr>
+<td style="text-align:center">边缘和 $P_{\cdot j}$</td>
+<td style="text-align:center">$0.3$</td>
+<td style="text-align:center">$0.7$</td>
+<td style="text-align:center">$1$</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="条件概率计算示例"><a class="markdownIt-Anchor" href="#条件概率计算示例"></a> 条件概率计算示例</h3>
+<h4 id="已知-x1-时y-的条件分布"><a class="markdownIt-Anchor" href="#已知-x1-时y-的条件分布"></a> 已知 $X&#x3D;1$ 时，$Y$ 的条件分布</h4>
+<ul>
+<li>$P\{Y&#x3D;0 \mid X&#x3D;1\} &#x3D; \dfrac{P\{X&#x3D;1,Y&#x3D;0\}}{P\{X&#x3D;1\}} &#x3D; \dfrac{0.2}{0.5} &#x3D; 0.4$</li>
+<li>$P\{Y&#x3D;1 \mid X&#x3D;1\} &#x3D; \dfrac{P\{X&#x3D;1,Y&#x3D;1\}}{P\{X&#x3D;1\}} &#x3D; \dfrac{0.3}{0.5} &#x3D; 0.6$</li>
+</ul>
+<p>对应的条件分布表：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">$Y$</th>
+<th style="text-align:center">$0$</th>
+<th style="text-align:center">$1$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$P\{Y \mid X&#x3D;1\}$</td>
+<td style="text-align:center">$0.4$</td>
+<td style="text-align:center">$0.6$</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="已知-y0-时x-的条件分布"><a class="markdownIt-Anchor" href="#已知-y0-时x-的条件分布"></a> 已知 $Y&#x3D;0$ 时，$X$ 的条件分布</h4>
+<ul>
+<li>$P\{X&#x3D;1 \mid Y&#x3D;0\} &#x3D; \dfrac{P\{X&#x3D;1,Y&#x3D;0\}}{P\{Y&#x3D;0\}} &#x3D; \dfrac{0.2}{0.3} &#x3D; \dfrac{2}{3}$</li>
+<li>$P\{X&#x3D;2 \mid Y&#x3D;0\} &#x3D; \dfrac{P\{X&#x3D;2,Y&#x3D;0\}}{P\{Y&#x3D;0\}} &#x3D; \dfrac{0.1}{0.3} &#x3D; \dfrac{1}{3}$</li>
+</ul>
+<hr />
+<h3 id="条件分布公式"><a class="markdownIt-Anchor" href="#条件分布公式"></a> 条件分布公式</h3>
+<ul>
+<li>$P\{X&#x3D;x_i \mid Y&#x3D;y_j\} &#x3D; \dfrac{P\{X&#x3D;x_i,Y&#x3D;y_j\}}{P\{Y&#x3D;y_j\}} &#x3D; \dfrac{p_{ij}}{P_{\cdot j}}$</li>
+<li>$P\{Y&#x3D;y_j \mid X&#x3D;x_i\} &#x3D; \dfrac{P\{X&#x3D;x_i,Y&#x3D;y_j\}}{P\{X&#x3D;x_i\}} &#x3D; \dfrac{p_{ij}}{P_{i\cdot}}$</li>
+</ul>
+<hr />
+<h3 id="例题"><a class="markdownIt-Anchor" href="#例题"></a> 例题</h3>
+<p><img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260519175640.png" alt="示意图" /><br />
+<a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260519175714.png">答案</a></p>
+<h2 id="连续型随机变量的条件密度"><a class="markdownIt-Anchor" href="#连续型随机变量的条件密度"></a> 连续型随机变量的条件密度</h2>
+<h3 id="条件密度的定义"><a class="markdownIt-Anchor" href="#条件密度的定义"></a> 条件密度的定义</h3>
+<ul>
+<li>给定 $y$，若 $f_Y(y) &gt; 0$，则 $X$ 在 $Y&#x3D;y$ 条件下的条件密度：<p>$$f_{X|Y}(x \mid y) &#x3D; \frac{f(x,y)}{f_Y(y)}
+$$</p></li>
+<li>给定 $x$，若 $f_X(x) &gt; 0$，则 $Y$ 在 $X&#x3D;x$ 条件下的条件密度：<p>$$f_{Y|X}(y \mid x) &#x3D; \frac{f(x,y)}{f_X(x)}
+$$</p></li>
+</ul>
+<hr />
+<h3 id="条件密度的性质"><a class="markdownIt-Anchor" href="#条件密度的性质"></a> 条件密度的性质</h3>
 <ol>
 <li>
-<p>计算 $Y$ 所有可能取到的值，即求出 $g(x_1),g(x_2),\dots,g(x_n)$，有重复的只取其一，记为 $y_1,y_2,\dots,y_m$；</p>
-</li>
+<p>非负性与归一性：</p>
+<p>$$f_{X|Y}(x \mid y) \ge 0, \quad \int_{-\infty}^{+\infty} f_{X|Y}(x \mid y) \, dx &#x3D; 1
+$$</p></li>
 <li>
-<p>依次计算 $Y$ 取到 $y_1,y_2,\dots,y_m$ 的概率：$P\{Y &#x3D; y_i\} &#x3D; \sum_{\{k\mid g(x_k)&#x3D;y_i\}} P\{X &#x3D; x_k\}$由此得到 $Y &#x3D; g(X)$ 的概率分布。</p>
-</li>
+<p>分布间的推导关系：</p>
+<p>$$f(x,y) \rightleftharpoons f_X(x), f_Y(y) \rightarrow f_{X|Y}(x \mid y), f_{Y|X}(y \mid x)
+$$</p><p>其中，联合密度 $f(x,y)$ 可由边缘密度和条件密度还原：</p>
+<p>$$f(x,y) &#x3D; f_X(x) \cdot f_{Y|X}(y \mid x) &#x3D; f_Y(y) \cdot f_{X|Y}(x \mid y)
+$$</p></li>
+<li>
+<p>独立性条件：<br />
+若 $X$ 与 $Y$ 相互独立，则：</p>
+<p>$$f(x,y) &#x3D; f_X(x) \cdot f_Y(y)
+$$</p><p>此时条件密度退化为边缘密度：</p>
+<p>$$f_{X|Y}(x \mid y) &#x3D; f_X(x), \quad f_{Y|X}(y \mid x) &#x3D; f_Y(y)
+$$</p></li>
 </ol>
-<h2 id="连续型随机变量函数的分布"><a class="markdownIt-Anchor" href="#连续型随机变量函数的分布"></a> 连续型随机变量函数的分布</h2>
-<p>设连续型随机变量 $X$ 的概率密度为 $f_X(x)$，$-\infty &lt; x &lt; +\infty$，则求 $X$ 的函数 $Y &#x3D; g(X)$ 的分布，步骤如下：</p>
-<p>$$F_Y(y) &#x3D; P\{Y \le y\} &#x3D; P\{g(X) \le y\} &#x3D; \int_{g(x) \le y} f_X(x) dx
+<h3 id="例题二维均匀分布圆域的条件密度"><a class="markdownIt-Anchor" href="#例题二维均匀分布圆域的条件密度"></a> 例题，二维均匀分布（圆域）的条件密度</h3>
+<h4 id="题目设定"><a class="markdownIt-Anchor" href="#题目设定"></a> 题目设定</h4>
+<p>设随机变量 $(X,Y)$ 在圆域 $G&#x3D;\{(x,y)\mid x^2+y^2\le R^2\}$ 上服从均匀分布，求条件概率密度。</p>
+<hr />
+<h4 id="联合概率密度"><a class="markdownIt-Anchor" href="#联合概率密度"></a> 联合概率密度</h4>
+<p>$$f(x,y)&#x3D;
+\begin{cases}
+\dfrac{1}{\pi R^2}, &amp; x^2+y^2\le R^2 \\[6pt]
+0, &amp; \text{其他}
+\end{cases}
 $$</p><hr />
-<p>【例2.29】设随机变量 $X$ 具有概率密度：</p>
+<h4 id="边缘概率密度"><a class="markdownIt-Anchor" href="#边缘概率密度"></a> 边缘概率密度</h4>
+<ul>
+<li>
+<p>$X$ 的边缘密度：</p>
+<p>$$f_X(x)&#x3D;
+\begin{cases}
+\dfrac{2\sqrt{R^2-x^2}}{\pi R^2}, &amp; |x|\le R \\[6pt]
+0, &amp; \text{其他}
+\end{cases}
+$$</p></li>
+<li>
+<p>$Y$ 的边缘密度：</p>
+<p>$$f_Y(y)&#x3D;
+\begin{cases}
+\dfrac{2\sqrt{R^2-y^2}}{\pi R^2}, &amp; |y|\le R \\[6pt]
+0, &amp; \text{其他}
+\end{cases}
+$$</p></li>
+</ul>
+<hr />
+<h4 id="条件概率密度"><a class="markdownIt-Anchor" href="#条件概率密度"></a> 条件概率密度</h4>
+<h5 id="1-yy-条件下-x-的条件密度-f_xyxy"><a class="markdownIt-Anchor" href="#1-yy-条件下-x-的条件密度-f_xyxy"></a> (1) $Y&#x3D;y$ 条件下 $X$ 的条件密度 $f_{X|Y}(x|y)$</h5>
+<p>当 $|y|&lt;R$（此时 $f_Y(y)&gt;0$）时：</p>
+<p>$$f_{X|Y}(x|y)&#x3D;
+\begin{cases}
+\dfrac{1}{2\sqrt{R^2-y^2}}, &amp; -\sqrt{R^2-y^2}\le x\le\sqrt{R^2-y^2} \\[6pt]
+0, &amp; \text{其他}
+\end{cases}
+$$</p><p>推导：</p>
+<p>$$f_{X|Y}(x|y)&#x3D;\frac{f(x,y)}{f_Y(y)}&#x3D;\frac{\dfrac{1}{\pi R^2}}{\dfrac{2\sqrt{R^2-y^2}}{\pi R^2}}&#x3D;\frac{1}{2\sqrt{R^2-y^2}}
+$$</p><hr />
+<h5 id="2-xx-条件下-y-的条件密度-f_yxyx"><a class="markdownIt-Anchor" href="#2-xx-条件下-y-的条件密度-f_yxyx"></a> (2) $X&#x3D;x$ 条件下 $Y$ 的条件密度 $f_{Y|X}(y|x)$</h5>
+<p>当 $|x|&lt;R$（此时 $f_X(x)&gt;0$）时：</p>
+<p>$$f_{Y|X}(y|x)&#x3D;
+\begin{cases}
+\dfrac{1}{2\sqrt{R^2-x^2}}, &amp; -\sqrt{R^2-x^2}\le y\le\sqrt{R^2-x^2} \\[6pt]
+0, &amp; \text{其他}
+\end{cases}
+$$</p><p>推导：</p>
+<p>$$f_{Y|X}(y|x)&#x3D;\frac{f(x,y)}{f_X(x)}&#x3D;\frac{\dfrac{1}{\pi R^2}}{\dfrac{2\sqrt{R^2-x^2}}{\pi R^2}}&#x3D;\frac{1}{2\sqrt{R^2-x^2}}
+$$</p><h3 id="例题二"><a class="markdownIt-Anchor" href="#例题二"></a> 例题二</h3>
+<p>设随机变量 $X \sim U(0,1)$（在 $(0,1)$ 上均匀分布），当 $X&#x3D;x$（$0&lt;x&lt;1$）时，$Y$ 在区间 $(x,1)$ 上均匀分布。求 $Y$ 的边缘密度 $f_Y(y)$。</p>
+<hr />
+<h4 id="步骤1写出-x-的边缘密度"><a class="markdownIt-Anchor" href="#步骤1写出-x-的边缘密度"></a> 步骤1：写出 $X$ 的边缘密度</h4>
 <p>$$f_X(x) &#x3D;
 \begin{cases}
-\frac{x}{8}, &amp; 0 &lt; x &lt; 4, \\
-0, &amp; \text{其他.}
+1, &amp; 0 &lt; x &lt; 1 \\[6pt]
+0, &amp; \text{其他}
 \end{cases}
-$$</p><p>求随机变量 $Y &#x3D; 2X + 8$ 的概率密度。</p>
-<blockquote>
-<p>求 $F_Y(y)$：先抓 $Y$ 可能取值范围，秒杀 0,1！<br />
-答案<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260415-145524-display-0.png.png" alt="示意图" /><br />
-<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/Screenshot_20260415-145546-display-0.png.png" alt="示意图" /></p>
-</blockquote>
-
+$$</p><hr />
+<h4 id="步骤2写出条件密度-f_yxyx"><a class="markdownIt-Anchor" href="#步骤2写出条件密度-f_yxyx"></a> 步骤2：写出条件密度 $f_{Y|X}(y|x)$</h4>
+<p>当 $0 &lt; x &lt; 1$ 时，$Y \sim U(x,1)$，故：</p>
+<p>$$f_{Y|X}(y|x) &#x3D;
+\begin{cases}
+\dfrac{1}{1-x}, &amp; x &lt; y &lt; 1 \\[6pt]
+0, &amp; \text{其他}
+\end{cases}
+$$</p><hr />
+<h4 id="步骤3求联合密度-fxy"><a class="markdownIt-Anchor" href="#步骤3求联合密度-fxy"></a> 步骤3：求联合密度 $f(x,y)$</h4>
+<p>根据条件密度公式 $f(x,y) &#x3D; f_X(x) \cdot f_{Y|X}(y|x)$，可得：</p>
+<p>$$f(x,y) &#x3D;
+\begin{cases}
+\dfrac{1}{1-x}, &amp; 0 &lt; x &lt; 1,\ x &lt; y &lt; 1 \\[6pt]
+0, &amp; \text{其他}
+\end{cases}
+$$</p><hr />
+<h4 id="步骤4求-y-的边缘密度-f_yy"><a class="markdownIt-Anchor" href="#步骤4求-y-的边缘密度-f_yy"></a> 步骤4：求 $Y$ 的边缘密度 $f_Y(y)$</h4>
+<p>当 $0 &lt; y &lt; 1$ 时：</p>
+<p>$$f_Y(y) &#x3D; \int_{-\infty}^{+\infty} f(x,y) dx &#x3D; \int_{0}^{y} \frac{1}{1-x} dx
+$$</p><p>计算积分：</p>
+<p>$$\int_{0}^{y} \frac{1}{1-x} dx &#x3D; -\ln(1-x)\bigg|_{0}^{y} &#x3D; -\ln(1-y) + \ln(1-0) &#x3D; -\ln(1-y)
+$$</p><p>因此：</p>
+<p>$$f_Y(y) &#x3D;
+\begin{cases}
+-\ln(1-y), &amp; 0 &lt; y &lt; 1 \\[6pt]
+0, &amp; \text{其他}
+\end{cases}
+$$</p>
     </div>
     <footer class="article-footer">
-        <a data-aos="zoom-in" href="/2026/04/15/%E6%A6%82%E7%8E%87%E8%AE%BA%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%87%BD%E6%95%B0Y-g-x-%E7%9A%84%E5%88%86%E5%B8%83%EF%BC%88%E5%BB%BA%E8%AE%AE%E5%A4%8D%E4%B9%A0%E7%9A%84%E6%97%B6%E5%80%99%E7%9B%B4%E6%8E%A5%E7%9C%8B%E8%A7%86%E9%A2%91%EF%BC%89/#comments" class="article-comment-link">
-          <span class="post-comments-count twikoo-comment-count" data-path="/2026/04/15/%E6%A6%82%E7%8E%87%E8%AE%BA%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%87%BD%E6%95%B0Y-g-x-%E7%9A%84%E5%88%86%E5%B8%83%EF%BC%88%E5%BB%BA%E8%AE%AE%E5%A4%8D%E4%B9%A0%E7%9A%84%E6%97%B6%E5%80%99%E7%9B%B4%E6%8E%A5%E7%9C%8B%E8%A7%86%E9%A2%91%EF%BC%89/" itemprop="commentCount"></span>
+        <a data-aos="zoom-in" href="/2026/05/19/%E6%A6%82%E7%8E%87%E8%AE%BA%E7%AC%AC%E4%B8%89%E7%AB%A0-%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%9A%84%E6%9D%A1%E4%BB%B6%E5%88%86%E5%B8%83/#comments" class="article-comment-link">
+          <span class="post-comments-count twikoo-comment-count" data-path="/2026/05/19/%E6%A6%82%E7%8E%87%E8%AE%BA%E7%AC%AC%E4%B8%89%E7%AB%A0-%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%9A%84%E6%9D%A1%E4%BB%B6%E5%88%86%E5%B8%83/" itemprop="commentCount"></span>
           留言
         </a>
         <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/" title="笔记" data-aos="zoom-in">笔记</a><a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/%E6%A6%82%E7%8E%87%E8%AE%BA/" title="概率论" data-aos="zoom-in">概率论</a>
@@ -279,20 +439,12 @@ $$</p><p>求随机变量 $Y &#x3D; 2X + 8$ 的概率密度。</p>
     </footer>
   </div>
     <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
-      <div class="article-nav-link-wrap left">
-          <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260417001402.png" data-sizes="auto" alt="数据库系统概论-第三章-SQL数据查询" class="lazyload">
-        <a href="/2026/04/17/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA-%E7%AC%AC%E4%B8%89%E7%AB%A0-SQL%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2/" aria-label="前一篇: 数据库系统概论-第三章-SQL数据查询" title="前一篇: 数据库系统概论-第三章-SQL数据查询"></a>
-        <div class="article-nav-caption">前一篇</div>
-        <h3 class="article-nav-title">
-            数据库系统概论-第三章-SQL数据查询
-        </h3>
-      </div>
     <div class="article-nav-link-wrap right">
-        <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/af542c3b0912c5a4cd3838fdbe29accf.png" data-sizes="auto" alt="数据库系统概论-第三章-SQL数据定义" class="lazyload">
-      <a href="/2026/04/15/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA-%E7%AC%AC%E4%B8%89%E7%AB%A0-SQL%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89/" aria-label="后一篇: 数据库系统概论-第三章-SQL数据定义"  title="后一篇: 数据库系统概论-第三章-SQL数据定义"></a>
+        <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260519010518.png" data-sizes="auto" alt="概率论第三章-边缘分布" class="lazyload">
+      <a href="/2026/05/19/%E6%A6%82%E7%8E%87%E8%AE%BA%E7%AC%AC%E4%B8%89%E7%AB%A0-%E8%BE%B9%E7%BC%98%E5%88%86%E5%B8%83/" aria-label="后一篇: 概率论第三章-边缘分布"  title="后一篇: 概率论第三章-边缘分布"></a>
       <div class="article-nav-caption">后一篇</div>
       <h3 class="article-nav-title">
-          数据库系统概论-第三章-SQL数据定义
+          概率论第三章-边缘分布
       </h3>
     </div>
   </nav>
@@ -358,7 +510,7 @@ $$</p><p>求随机变量 $Y &#x3D; 2X + 8$ 的概率密度。</p>
   <div class="sidebar-wrap">
         <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
 <div class="sidebar-toc-wrapper toc-div-class" >
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A6%BB%E6%95%A3%E5%9E%8B%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%87%BD%E6%95%B0%E7%9A%84%E5%88%86%E5%B8%83"><span class="toc-number">1.</span> <span class="toc-text"> 离散型随机变量函数的分布</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9E%E7%BB%AD%E5%9E%8B%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%87%BD%E6%95%B0%E7%9A%84%E5%88%86%E5%B8%83"><span class="toc-number">2.</span> <span class="toc-text"> 连续型随机变量函数的分布</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A6%BB%E6%95%A3%E5%9E%8B%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%9A%84%E6%9D%A1%E4%BB%B6%E5%88%86%E5%B8%83"><span class="toc-number">1.</span> <span class="toc-text"> 离散型随机变量的条件分布</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%81%94%E5%90%88%E5%88%86%E5%B8%83%E8%A1%A8-xy"><span class="toc-number">1.1.</span> <span class="toc-text"> 联合分布表 $(X,Y)$</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E6%A6%82%E7%8E%87%E8%AE%A1%E7%AE%97%E7%A4%BA%E4%BE%8B"><span class="toc-number">1.2.</span> <span class="toc-text"> 条件概率计算示例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B7%B2%E7%9F%A5-x1-%E6%97%B6y-%E7%9A%84%E6%9D%A1%E4%BB%B6%E5%88%86%E5%B8%83"><span class="toc-number">1.2.1.</span> <span class="toc-text"> 已知 $X&#x3D;1$ 时，$Y$ 的条件分布</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B7%B2%E7%9F%A5-y0-%E6%97%B6x-%E7%9A%84%E6%9D%A1%E4%BB%B6%E5%88%86%E5%B8%83"><span class="toc-number">1.2.2.</span> <span class="toc-text"> 已知 $Y&#x3D;0$ 时，$X$ 的条件分布</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E5%88%86%E5%B8%83%E5%85%AC%E5%BC%8F"><span class="toc-number">1.3.</span> <span class="toc-text"> 条件分布公式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-number">1.4.</span> <span class="toc-text"> 例题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9E%E7%BB%AD%E5%9E%8B%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%9A%84%E6%9D%A1%E4%BB%B6%E5%AF%86%E5%BA%A6"><span class="toc-number">2.</span> <span class="toc-text"> 连续型随机变量的条件密度</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E5%AF%86%E5%BA%A6%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-number">2.1.</span> <span class="toc-text"> 条件密度的定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E5%AF%86%E5%BA%A6%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="toc-number">2.2.</span> <span class="toc-text"> 条件密度的性质</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98%E4%BA%8C%E7%BB%B4%E5%9D%87%E5%8C%80%E5%88%86%E5%B8%83%E5%9C%86%E5%9F%9F%E7%9A%84%E6%9D%A1%E4%BB%B6%E5%AF%86%E5%BA%A6"><span class="toc-number">2.3.</span> <span class="toc-text"> 例题，二维均匀分布（圆域）的条件密度</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E8%AE%BE%E5%AE%9A"><span class="toc-number">2.3.1.</span> <span class="toc-text"> 题目设定</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%81%94%E5%90%88%E6%A6%82%E7%8E%87%E5%AF%86%E5%BA%A6"><span class="toc-number">2.3.2.</span> <span class="toc-text"> 联合概率密度</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%B9%E7%BC%98%E6%A6%82%E7%8E%87%E5%AF%86%E5%BA%A6"><span class="toc-number">2.3.3.</span> <span class="toc-text"> 边缘概率密度</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E6%A6%82%E7%8E%87%E5%AF%86%E5%BA%A6"><span class="toc-number">2.3.4.</span> <span class="toc-text"> 条件概率密度</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-yy-%E6%9D%A1%E4%BB%B6%E4%B8%8B-x-%E7%9A%84%E6%9D%A1%E4%BB%B6%E5%AF%86%E5%BA%A6-f_xyxy"><span class="toc-number">2.3.4.1.</span> <span class="toc-text"> (1) $Y&#x3D;y$ 条件下 $X$ 的条件密度 $f_{X|Y}(x|y)$</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-xx-%E6%9D%A1%E4%BB%B6%E4%B8%8B-y-%E7%9A%84%E6%9D%A1%E4%BB%B6%E5%AF%86%E5%BA%A6-f_yxyx"><span class="toc-number">2.3.4.2.</span> <span class="toc-text"> (2) $X&#x3D;x$ 条件下 $Y$ 的条件密度 $f_{Y|X}(y|x)$</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98%E4%BA%8C"><span class="toc-number">2.4.</span> <span class="toc-text"> 例题二</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A41%E5%86%99%E5%87%BA-x-%E7%9A%84%E8%BE%B9%E7%BC%98%E5%AF%86%E5%BA%A6"><span class="toc-number">2.4.1.</span> <span class="toc-text"> 步骤1：写出 $X$ 的边缘密度</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A42%E5%86%99%E5%87%BA%E6%9D%A1%E4%BB%B6%E5%AF%86%E5%BA%A6-f_yxyx"><span class="toc-number">2.4.2.</span> <span class="toc-text"> 步骤2：写出条件密度 $f_{Y|X}(y|x)$</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A43%E6%B1%82%E8%81%94%E5%90%88%E5%AF%86%E5%BA%A6-fxy"><span class="toc-number">2.4.3.</span> <span class="toc-text"> 步骤3：求联合密度 $f(x,y)$</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A44%E6%B1%82-y-%E7%9A%84%E8%BE%B9%E7%BC%98%E5%AF%86%E5%BA%A6-f_yy"><span class="toc-number">2.4.4.</span> <span class="toc-text"> 步骤4：求 $Y$ 的边缘密度 $f_Y(y)$</span></a></li></ol></li></ol></li></ol>
 </div>
 </div>
         <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
@@ -501,14 +653,14 @@ $$</p><p>求随机变量 $Y &#x3D; 2X + 8$ 的概率密度。</p>
       <script data-pjax>
         window.REIMU_POST = {
           author: "Stvfen",
-          title: "概率论第二章-随机变量函数Y=g(x)的分布（建议复习的时候直接看视频）",
-          url: "http://example.com/2026/04/15/%E6%A6%82%E7%8E%87%E8%AE%BA%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%87%BD%E6%95%B0Y-g-x-%E7%9A%84%E5%88%86%E5%B8%83%EF%BC%88%E5%BB%BA%E8%AE%AE%E5%A4%8D%E4%B9%A0%E7%9A%84%E6%97%B6%E5%80%99%E7%9B%B4%E6%8E%A5%E7%9C%8B%E8%A7%86%E9%A2%91%EF%BC%89/",
+          title: "概率论第三章-随机变量的条件分布",
+          url: "http://example.com/2026/05/19/%E6%A6%82%E7%8E%87%E8%AE%BA%E7%AC%AC%E4%B8%89%E7%AB%A0-%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%9A%84%E6%9D%A1%E4%BB%B6%E5%88%86%E5%B8%83/",
           excerpt: "",
           description: "",
-          stripContent: " 离散型随机变量函数的分布 设离散型随机变量 $X$ 的分布律为 $P\{X &amp;#x3D; x_k\} &amp;#x3D; p_k,\quad (k &amp;#x3D; 1,2,\dots,n)$ 则求随机变量 $X$ 的函数 $Y &amp;#x3D; g(X)$ 的概率分布，步骤如下：   计算 $Y$ 所有可能取到的值，即求出 $g(x_1),g(x_2),\dots,g(x_n)$，有重复的只取其一，记为 $y_1,y_2,\dots,y_m$；   依次计算 $Y$ 取到 $y_1,y_2,\dots,y",
-          date: "Wed Apr 15 2026 20:20:27 GMT+0800",
-          updated: "Tue May 19 2026 18:37:13 GMT+0800",
-          cover: "https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260415202721.png",
+          stripContent: " 离散型随机变量的条件分布  联合分布表 $(X,Y)$    $X \setminus Y$ $0$ $1$ 边缘和 $P_{i\cdot}$     $1$ $0.2$ $0.3$ $0.5$   $2$ $0.1$ $0.4$ $0.5$   边缘和 $P_{\cdot j}$ $0.3$ $0.7$ $1$      条件概率计算示例  已知 $X&amp;#x3D;1$ 时，$Y$ 的条件分布  $P\{Y&amp;#x3D;0 \mid X&amp;#x3D;1\} &amp;#x3D; \dfrac{P\{X&amp;#",
+          date: "Tue May 19 2026 18:37:27 GMT+0800",
+          updated: "Tue May 19 2026 18:39:42 GMT+0800",
+          cover: "https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260519183928.png",
         };
       </script>
         
