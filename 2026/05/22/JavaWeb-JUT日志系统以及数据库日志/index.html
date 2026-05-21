@@ -1,0 +1,882 @@
+  <!DOCTYPE html>
+  <html lang="zh-CN"  
+      data-theme-mode="auto"
+  >
+  <head>
+  <meta charset="utf-8">
+  
+  
+  
+  <script>window.REIMU_CONFIG = {};window.REIMU_CONFIG.icon_font = '4552607_4k4bc36ef96';window.REIMU_CONFIG.clipboard_tips = {"success":{"zh-CN":"复制成功 (*^▽^*)"},"fail":{"zh-CN":"复制失败 (ﾟ⊿ﾟ)ﾂ"},"copyright":{"enable":false,"count":50,"license_type":"by-nc-sa"}};window.REIMU_CONFIG.clipboard_tips.copyright.content = '本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！';window.REIMU_CONFIG.code_block = {"expand":true};window.REIMU_CONFIG.base = 'http://example.com';</script>
+  <title>
+    JavaWeb-JUT日志系统以及数据库日志 | 史蒂芬の电台
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic|Noto Serif SC:400,400italic,700,700italic&display=swap" media="print" onload="this.media='all'">
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_4k4bc36ef96.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="尝试JUT JDK自带的日志系统也就是JUT，如果我们一直用System.out.println()来在控制台输出信息的话，我们有时候还得找这个东西在哪，如果调试算法题的话应该深有体会。那么Java自己就有一个类java.util.logging包下，实现日志打印： 12345678public class Main &#123;    public static void main(Strin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaWeb-JUT日志系统以及数据库日志">
+<meta property="og:url" content="http://example.com/2026/05/22/JavaWeb-JUT%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F%E4%BB%A5%E5%8F%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E6%97%A5%E5%BF%97/index.html">
+<meta property="og:site_name" content="史蒂芬の电台">
+<meta property="og:description" content="尝试JUT JDK自带的日志系统也就是JUT，如果我们一直用System.out.println()来在控制台输出信息的话，我们有时候还得找这个东西在哪，如果调试算法题的话应该深有体会。那么Java自己就有一个类java.util.logging包下，实现日志打印： 12345678public class Main &#123;    public static void main(Strin">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260521221550.png">
+<meta property="article:published_time" content="2026-05-21T16:58:37.000Z">
+<meta property="article:modified_time" content="2026-05-21T16:59:50.328Z">
+<meta property="article:author" content="Stvfen">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="JavaWeb">
+<meta property="article:tag" content="Mybatis">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260521221550.png">
+    <link rel="alternate" href="/atom.xml" title="史蒂芬の电台" type="application/atom+xml">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css" integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
+      <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.css" integrity="sha384-tTgKLjMYmJr94v8qu2PE5MUGSMbyN2xiH266JUB3gpm8vnnJywd1dWSOEfrFz+YI" crossorigin="anonymous">
+    
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js" integrity="sha384-k6YtvFUEIuEFBdrLKJ3YAUbBki333tj1CSUisai5Cswsg9wcLNaPzsTHDswp4Az8" crossorigin="anonymous"></script>
+
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@reimujs/aos@0.1.2/dist/aos.css" integrity="sha384-GMRP93c6Hkz9JVKGAuRR3nTS7M07RwPgTFenXiosjq2VbVgvdDNcz1g6Mkj8AONa" crossorigin="anonymous">
+
+    <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://npm.webcache.cn/aplayer@1.10.1/dist/APlayer.min.css" integrity="sha384-tLMkTWh2pfXNWGFlUS0w1TFtRG5xZ9lPWFOooj+vDDLIL+xBGQU/voDBY5XE2lVh" crossorigin="anonymous">
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+  <body>
+      <div id='loader'>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi rotate">
+          <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+            <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="var(--red-1, #ff5252)" />
+            <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+           M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z" fill="var(--red-1, #ff5252)" />
+          </svg>
+      </div>
+      <div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    var loaderEl = document.getElementById('loader');
+    var startLoading = () => {
+      time = Date.now();
+      loaderEl.classList.remove("loading");
+    }
+    var hideLoader = () => {
+      document.body.style.overflow = 'auto';
+      loader.classList.add('loading');
+    };
+
+    var endLoading = () => {
+      if (!time) {
+        hideLoader();
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          hideLoader();
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('DOMContentLoaded', endLoading);
+    loaderEl.addEventListener('click', endLoading);
+  </script>
+<div id="copy-tooltip"></div>
+<div id="heatmap-tooltip"></div>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav" aria-label="Primary navigation">
+        <a class="main-nav-link-wrap" href="/">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">首页</span>
+        </span>
+        <a class="main-nav-link-wrap" href="/archives">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">藏书阁</span>
+        </span>
+        <a class="main-nav-link-wrap" href="/about">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">关于</span>
+        </span>
+        <a class="main-nav-link-wrap" href="/friend">
+            <div class="main-nav-icon icon rotate">
+                &#xe62b;
+            </div>
+          <span class="main-nav-link">友链</span>
+        </span>
+    <a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation">
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅" aria-label="RSS 订阅" target="_blank"></a>
+      <a id="nav-search-btn" class="nav-icon popup-trigger" title="搜索" aria-label="搜索"></a>
+  </nav>
+</div>
+<header id="header" aria-label="Site header">
+    <picture></picture>
+    <img  fetchpriority="high" src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/03ae9e37f02daa9486db5489b48b9b2c.jpg" alt="JavaWeb-JUT日志系统以及数据库日志">
+  <div id="header-outer">
+    <div id="header-title">
+          <span id="logo">
+            <h1 data-aos="slide-up">JavaWeb-JUT日志系统以及数据库日志</h1>
+          </span>
+        <h2 id="subtitle-wrap" data-aos="slide-down">
+        </h2>
+    </div>
+  </div>
+</header>
+
+        <div id="content" aria-label="Page content" class="sidebar-left"  >
+          <aside id="sidebar" aria-label="Sidebar">
+  <div class="sidebar-wrapper-container sticky">
+      <div id="aplayer" theme="var(--color-link)" data-aos="fade-up"></div>
+  <div class="sidebar-wrapper">
+    <div class="sidebar-wrap" data-aos="fade-up">
+          <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%9D%E8%AF%95jut"><span class="toc-number">1.</span> <span class="toc-text"> 尝试JUT</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E7%AD%89%E7%BA%A7"><span class="toc-number">2.</span> <span class="toc-text"> 日志等级</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E6%97%A5%E5%BF%97%E5%A4%84%E7%90%86%E5%99%A8"><span class="toc-number">3.</span> <span class="toc-text"> 文件日志处理器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="toc-number">4.</span> <span class="toc-text"> 过滤器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#properties%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">5.</span> <span class="toc-text"> Properties配置文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E5%86%99%E6%97%A5%E5%BF%97%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">6.</span> <span class="toc-text"> 编写日志配置文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8lombok%E5%BF%AB%E6%8D%B7%E4%BD%BF%E7%94%A8log"><span class="toc-number">7.</span> <span class="toc-text"> 使用Lombok快捷使用log</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mybatis%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F"><span class="toc-number">8.</span> <span class="toc-text"> Mybatis日志系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%9B%9E%E9%A1%BE"><span class="toc-number">8.1.</span> <span class="toc-text"> 代码回顾</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%E6%89%A7%E8%A1%8C-mappergetstudentbysidandsex"><span class="toc-number">8.1.1.</span> <span class="toc-text"> 第一步：执行 mapper.getStudentBySidAndSex(...)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%E6%8B%BF%E5%88%B0-student-%E5%AF%B9%E8%B1%A1%E8%B0%83%E7%94%A8-tostring"><span class="toc-number">8.1.2.</span> <span class="toc-text"> 第二步：拿到 Student 对象，调用 .toString()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%E6%89%A7%E8%A1%8C-loginfo"><span class="toc-number">8.1.3.</span> <span class="toc-text"> 第三步：执行 log.info(...)</span></a></li></ol></li></ol></li></ol>
+</div>
+</div>
+          <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Stvfen" class="lazyload">
+  <div class="sidebar-author-name">Stvfen</div>
+  <div class="sidebar-description">电台组组长</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">58</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">15</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">24</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/3546704989129249?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="藏书阁"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">藏书阁</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+          <div class="sidebar-btn-wrapper" style="position:static">
+            <div class="sidebar-toc-btn current"></div>
+            <div class="sidebar-common-btn"></div>
+          </div>
+    </div>
+  </div>
+  <div class="sidebar-widget">
+  </div>
+  </div>
+</aside>
+
+          <section id="main" aria-label="Main content"><article id="post-JavaWeb-JUT日志系统以及数据库日志" class="h-entry article" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner" data-aos="fade-up">
+    <div class="article-meta">
+      <div class="article-date">
+  <span class="article-date-link icon-calendar" data-aos="zoom-in">
+    <time datetime="2026-05-21T16:58:37.000Z" itemprop="datePublished">2026-05-22</time>
+    <time style="display: none;" id="post-update-time">2026-05-22</time>
+  </span>
+</div>
+
+    </div>
+    
+    <div class="hr-line"></div>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+        <h2 id="尝试jut"><a class="markdownIt-Anchor" href="#尝试jut"></a> 尝试JUT</h2>
+<p>JDK自带的日志系统也就是JUT，如果我们一直用<code>System.out.println()</code>来在控制台输出信息的话，我们有时候还得找这个东西在哪，如果调试算法题的话应该深有体会。那么Java自己就有一个类<code>java.util.logging</code>包下，实现日志打印：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">      	<span class="comment">// 首先获取日志打印器</span></span><br><span class="line">        <span class="type">Logger</span> <span class="variable">logger</span> <span class="operator">=</span> Logger.getLogger(Main.class.getName());</span><br><span class="line">      	<span class="comment">// 调用info来输出一个普通的信息，直接填写字符串即可</span></span><br><span class="line">        logger.info(<span class="string">&quot;我是普通的日志&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>5月 21, 2026 9:40:20 下午 test.main main<br />
+信息: 我是普通的日志</p>
+</blockquote>
+<p>我们可以看到日志打印出来的效果会更完善。</p>
+<h2 id="日志等级"><a class="markdownIt-Anchor" href="#日志等级"></a> 日志等级</h2>
+<p>日志分为7个级别，详细信息我们可以在Level类中查看：</p>
+<ul>
+<li>SEVERE（最高值）- 一般用于代表严重错误</li>
+<li>WARNING - 一般用于表示某些警告，但是不足以判断为错误</li>
+<li>INFO （默认级别） - 常规消息</li>
+<li>CONFIG</li>
+<li>FINE</li>
+<li>FINER</li>
+<li>FINEST（最低值）<br />
+我们之前用的就是<code>logger.info</code>，但其实我们可以<code>logger.log(Level.等级,&quot;内容&quot;)</code>来实现：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    <span class="type">Logger</span> <span class="variable">logger</span> <span class="operator">=</span> Logger.getLogger(Main.class.getName());</span><br><span class="line">    logger.log(Level.SEVERE, <span class="string">&quot;严重的错误&quot;</span>, <span class="keyword">new</span> <span class="title class_">IOException</span>(<span class="string">&quot;我就是错误&quot;</span>));</span><br><span class="line">    logger.log(Level.WARNING, <span class="string">&quot;警告的内容&quot;</span>);</span><br><span class="line">    logger.log(Level.INFO, <span class="string">&quot;普通的信息&quot;</span>);</span><br><span class="line">    logger.log(Level.CONFIG, <span class="string">&quot;级别低于普通信息&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>5月 21, 2026 9:46:18 下午 test.main main<br />
+严重: 严重的错误<br />
+java.io.IOException: 我就是错误<br />
+at test.main.main(main.java:18)<br />
+5月 21, 2026 9:46:18 下午 test.main main<br />
+警告: 警告的内容<br />
+5月 21, 2026 9:46:18 下午 test.main main<br />
+信息: 普通的信息</p>
+</blockquote>
+<p>我们会发现<code>INFO</code>等级下面的不会输出到控制台，这是因为日志还有<strong>打印机别</strong>，打印机别同样也是可控的，我们来修改一下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    <span class="type">Logger</span> <span class="variable">logger</span> <span class="operator">=</span> Logger.getLogger(Main.class.getName());</span><br><span class="line"></span><br><span class="line">    <span class="comment">//修改日志级别</span></span><br><span class="line">    logger.setLevel(Level.CONFIG);</span><br><span class="line">    <span class="comment">//不使用父日志处理器</span></span><br><span class="line">    logger.setUseParentHandlers(<span class="literal">false</span>);</span><br><span class="line">    <span class="comment">//使用自定义日志处理器</span></span><br><span class="line">    <span class="type">ConsoleHandler</span> <span class="variable">handler</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ConsoleHandler</span>();</span><br><span class="line">    handler.setLevel(Level.CONFIG);</span><br><span class="line">    logger.addHandler(handler);</span><br><span class="line"></span><br><span class="line">    logger.log(Level.SEVERE, <span class="string">&quot;严重的错误&quot;</span>, <span class="keyword">new</span> <span class="title class_">IOException</span>(<span class="string">&quot;我就是错误&quot;</span>));</span><br><span class="line">    logger.log(Level.WARNING, <span class="string">&quot;警告的内容&quot;</span>);</span><br><span class="line">    logger.log(Level.INFO, <span class="string">&quot;普通的信息&quot;</span>);</span><br><span class="line">    logger.log(Level.CONFIG, <span class="string">&quot;级别低于普通信息&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里需要讲解一下：</p>
+<ul>
+<li>我们设置了日志等级，意思就是可以打印大于等于这个等级的</li>
+<li>我们不是用付日默认父日志器（根日志器）级别是 INFO，比 CONFIG 高，会挡住 CONFIG。我们关掉它，就不再受默认限制。</li>
+<li>设置处理器 ConsoleHandler 级别 = CONFIG处理器负责真正输出。它也只输出 ≥ CONFIG 的日志。</li>
+</ul>
+<blockquote>
+<p>5月 21, 2026 9:52:34 下午 test.main main<br />
+严重: 严重的错误<br />
+java.io.IOException: 我就是错误<br />
+at test.main.main(main.java:29)<br />
+5月 21, 2026 9:52:35 下午 test.main main<br />
+警告: 警告的内容<br />
+5月 21, 2026 9:52:35 下午 test.main main<br />
+信息: 普通的信息<br />
+5月 21, 2026 9:52:35 下午 test.main main<br />
+配置: 级别低于普通信息</p>
+</blockquote>
+<h2 id="文件日志处理器"><a class="markdownIt-Anchor" href="#文件日志处理器"></a> 文件日志处理器</h2>
+<p>我们通过使用自己日志处理器来自定义级别的信息打印到控制台，当然，日志处理器不仅仅只有控制台打印，我们也可以使用文件处理器来处理日志信息，我们继续添加一个处理器：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//添加输出到本地文件</span></span><br><span class="line"><span class="type">FileHandler</span> <span class="variable">fileHandler</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileHandler</span>(<span class="string">&quot;test.log&quot;</span>);</span><br><span class="line">fileHandler.setLevel(Level.WARNING);</span><br><span class="line">logger.addHandler(fileHandler);</span><br></pre></td></tr></table></figure>
+<p>这个时候我们有两个日志处理器，都会生效，不过这个时候打印出来的文件，我们会发现里面的格式不太一样，那是因为它默认的格式是xml。我们还可以自定义打印格式，比如我们控制台处理器就默认使用的是<code>SimpleFormatter</code>，而文件处理器则是使用的<code>XMLFormatter</code>，我们可以自定义：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//使用自定义日志处理器(控制台)</span></span><br><span class="line"><span class="type">SimpleFormatter</span> <span class="variable">formatter</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SimpleFormatter</span>();</span><br><span class="line"><span class="type">FileHandler</span> <span class="variable">fileHandler</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileHandler</span>(<span class="string">&quot;test.log&quot;</span>);</span><br><span class="line">fileHandler.setLevel(Level.WARNING);</span><br><span class="line">fileHandler.setFormatter(formatter)</span><br><span class="line">logger.addHandler(fileHandler);</span><br></pre></td></tr></table></figure>
+<p>同样的我们也可以把控制台的改成XML类型的，不过这里就自行查询把。可是我们现在又有一个问题，打印出的文件内容会覆盖，这样才能不覆盖往后追加呢？</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">FileHandler</span> <span class="variable">fileHandler</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileHandler</span>(<span class="string">&quot;test.log&quot;</span>,<span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
+<p>这样就好了。<br><br />
+我们可以直接配置为想要的打印格式，如果这些格式还不能满足你，那么我们也可以自行实现：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    <span class="type">Logger</span> <span class="variable">logger</span> <span class="operator">=</span> Logger.getLogger(Main.class.getName());</span><br><span class="line">    logger.setUseParentHandlers(<span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//为了让颜色变回普通的颜色，通过代码块在初始化时将输出流设定为System.out(黑色)，默认红色</span></span><br><span class="line">    <span class="type">ConsoleHandler</span> <span class="variable">handler</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ConsoleHandler</span>()&#123;&#123;</span><br><span class="line">        setOutputStream(System.out);</span><br><span class="line">    &#125;&#125;;</span><br><span class="line">    <span class="comment">//创建匿名内部类实现自定义的格式</span></span><br><span class="line">    handler.setFormatter(<span class="keyword">new</span> <span class="title class_">Formatter</span>() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> String <span class="title function_">format</span><span class="params">(LogRecord record)</span> &#123;</span><br><span class="line">            <span class="type">SimpleDateFormat</span> <span class="variable">format</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SimpleDateFormat</span>(<span class="string">&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;</span>);</span><br><span class="line">            <span class="type">String</span> <span class="variable">time</span> <span class="operator">=</span> format.format(<span class="keyword">new</span> <span class="title class_">Date</span>(record.getMillis()));  <span class="comment">//格式化日志时间</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">level</span> <span class="operator">=</span> record.getLevel().getName();  <span class="comment">// 获取日志级别名称</span></span><br><span class="line">            <span class="comment">// String level = record.getLevel().getLocalizedName();   // 获取本地化名称（语言跟随系统）</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">thread</span> <span class="operator">=</span> String.format(<span class="string">&quot;%10s&quot;</span>, Thread.currentThread().getName());  <span class="comment">//线程名称（做了格式化处理，留出10格空间）</span></span><br><span class="line">            <span class="type">long</span> <span class="variable">threadID</span> <span class="operator">=</span> record.getThreadID();   <span class="comment">//线程ID</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">className</span> <span class="operator">=</span> String.format(<span class="string">&quot;%-20s&quot;</span>, record.getSourceClassName());  <span class="comment">//发送日志的类名</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">msg</span> <span class="operator">=</span> record.getMessage();   <span class="comment">//日志消息</span></span><br><span class="line"></span><br><span class="line">          <span class="comment">//\033[33m作为颜色代码，30~37都有对应的颜色，38是没有颜色，IDEA能显示，但是某些地方可能不支持</span></span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;\033[38m&quot;</span> + time + <span class="string">&quot;  \033[33m&quot;</span> + level + <span class="string">&quot; \033[35m&quot;</span> + threadID</span><br><span class="line">                    + <span class="string">&quot;\033[38m --- [&quot;</span> + thread + <span class="string">&quot;] \033[36m&quot;</span> + className + <span class="string">&quot;\033[38m : &quot;</span> + msg + <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    logger.addHandler(handler);</span><br><span class="line"></span><br><span class="line">    logger.info(<span class="string">&quot;我是测试消息1...&quot;</span>);</span><br><span class="line">    logger.log(Level.INFO, <span class="string">&quot;我是测试消息2...&quot;</span>);</span><br><span class="line">    logger.log(Level.WARNING, <span class="string">&quot;我是测试消息3...&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="过滤器"><a class="markdownIt-Anchor" href="#过滤器"></a> 过滤器</h2>
+<p>日志可以设置过滤器，如果我们不希望某些日志信息被输出，我们可以配置过滤规则：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    <span class="type">Logger</span> <span class="variable">logger</span> <span class="operator">=</span> Logger.getLogger(Main.class.getName());</span><br><span class="line"></span><br><span class="line">    <span class="comment">//自定义过滤规则</span></span><br><span class="line">    logger.setFilter(record -&gt; !record.getMessage().contains(<span class="string">&quot;普通&quot;</span>));</span><br><span class="line"></span><br><span class="line">    logger.log(Level.SEVERE, <span class="string">&quot;严重的错误&quot;</span>, <span class="keyword">new</span> <span class="title class_">IOException</span>(<span class="string">&quot;我就是错误&quot;</span>));</span><br><span class="line">    logger.log(Level.WARNING, <span class="string">&quot;警告的内容&quot;</span>);</span><br><span class="line">    logger.log(Level.INFO, <span class="string">&quot;普通的信息&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里<code>setFilter</code>中放入的是接口实现类，所以我们这样写，那么只有带有<code>普通</code>的消息会打印出来。<br />
+<img src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260521221550.png" alt="示意图" /><br />
+流程是这个样子的，我们刚才写的是<code>Logger</code>这里的过滤器，在处理器中我们也可以塞过滤器。</p>
+<h2 id="properties配置文件"><a class="markdownIt-Anchor" href="#properties配置文件"></a> Properties配置文件</h2>
+<p>我们之前解析过XML文件，就和我们学的Python爬虫一样，最后转换为树，其实挺麻烦的。那么Java自带一种配置文件格式为<code>Properties</code>的，读取起来很简单，格式如下：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">name</span>=<span class="string">Test</span></span><br><span class="line"><span class="attr">desc</span>=<span class="string">Description</span></span><br></pre></td></tr></table></figure>
+<p>这其实本身类似于一个map，这个name就是key，而desc就是value。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    <span class="type">Properties</span> <span class="variable">properties</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Properties</span>();</span><br><span class="line">    properties.load(<span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;test.properties&quot;</span>));</span><br><span class="line">    System.out.println(properties);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里输出和map差不多，并且Properties本身就继承于哈希表，而哈希表又和map结构差不多。我们也可以往里面put一些东西打印出来，但并不会放入文件（注意value不能为空，而map可以，还是有点不同的）。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    <span class="type">Properties</span> <span class="variable">properties</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Properties</span>();</span><br><span class="line">  	<span class="comment">// properties.setProperty(&quot;test&quot;, &quot;lbwnb&quot;);  //和put效果一样</span></span><br><span class="line">    properties.put(<span class="string">&quot;test&quot;</span>, <span class="string">&quot;lbwnb&quot;</span>);</span><br><span class="line">    properties.store(System.out, <span class="string">&quot;????&quot;</span>);<span class="comment">//这里是输出到控制台，并且后面是注释</span></span><br><span class="line">  	<span class="comment">//properties.storeToXML(System.out, &quot;????&quot;);  保存为XML格式</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>只用 <code>put</code>，<strong>不调用 store/storeToXML</strong>：只在内存里，不会写到文件 / 控制台</li>
+<li>调用 <code>store</code>：<strong>内存里所有数据全部持久化输出</strong><br />
+但如果：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">properties.store(<span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(<span class="string">&quot;test.properties&quot;</span>), <span class="string">&quot;注释&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>就会了。</p>
+<h2 id="编写日志配置文件"><a class="markdownIt-Anchor" href="#编写日志配置文件"></a> 编写日志配置文件</h2>
+<p>我们可以在<code>properties</code>文件中放我们JUT的日志配置文件：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># RootLogger 的默认处理器为</span></span><br><span class="line"><span class="attr">handlers</span>= <span class="string">java.util.logging.ConsoleHandler</span></span><br><span class="line"><span class="comment"># RootLogger 的默认的日志级别</span></span><br><span class="line"><span class="attr">.level</span>= <span class="string">CONFIG</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>RootLogger = 你家祖宗</li>
+<li>你的 Logger = 你</li>
+<li>祖宗设置 <strong>级别 = CONFIG</strong><br />
+我们来尝试使用配置文件来进行配置：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    <span class="comment">//获取日志管理器</span></span><br><span class="line">    <span class="type">LogManager</span> <span class="variable">manager</span> <span class="operator">=</span> LogManager.getLogManager();</span><br><span class="line">    <span class="comment">//读取我们自己的配置文件</span></span><br><span class="line">    manager.readConfiguration(<span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;logging.properties&quot;</span>));</span><br><span class="line">    <span class="comment">//再获取日志打印器</span></span><br><span class="line">    <span class="type">Logger</span> <span class="variable">logger</span> <span class="operator">=</span> Logger.getLogger(Main.class.getName());</span><br><span class="line">    logger.log(Level.CONFIG, <span class="string">&quot;我是一条日志信息&quot;</span>);   <span class="comment">//通过自定义配置文件，我们发现默认级别不再是INFO了</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>你可以把 LogManager 理解成：<strong>日志的总控制器</strong></p>
+<ul>
+<li>整个 JVM 里<strong>只有一个</strong></li>
+<li>所有 Logger 都是它 “生” 出来的</li>
+<li>你给它读配置文件 = <strong>给整个日志系统统一设置</strong><br />
+我们也可以去修改<code>ConsoleHandler</code>的默认配置：</li>
+</ul>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 指定默认日志级别</span></span><br><span class="line"><span class="attr">java.util.logging.ConsoleHandler.level</span> = <span class="string">ALL</span></span><br><span class="line"><span class="comment"># 指定默认日志消息格式</span></span><br><span class="line"><span class="attr">java.util.logging.ConsoleHandler.formatter</span> = <span class="string">java.util.logging.SimpleFormatter</span></span><br><span class="line"><span class="comment"># 指定默认的字符集</span></span><br><span class="line"><span class="attr">java.util.logging.ConsoleHandler.encoding</span> = <span class="string">UTF-8</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>日志能输出 <strong>CONFIG 级别</strong></li>
+<li>控制台输出 <strong>不拦截任何日志</strong></li>
+<li><strong>中文不乱码</strong></li>
+<li>格式干净整洁</li>
+</ul>
+<h2 id="使用lombok快捷使用log"><a class="markdownIt-Anchor" href="#使用lombok快捷使用log"></a> 使用Lombok快捷使用log</h2>
+<p>Logger也是可以使用Lombok快速生成的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Log</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;自动生成的Logger名称：&quot;</span>+log.getName());</span><br><span class="line">        log.info(<span class="string">&quot;我是日志信息&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里的log是一个静态成员变量，我们也可以手动指定名称：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Log(topic = &quot;打工是不可能打工的&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;自动生成的Logger名称：&quot;</span>+log.getName());</span><br><span class="line">        log.info(<span class="string">&quot;我是日志信息&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="mybatis日志系统"><a class="markdownIt-Anchor" href="#mybatis日志系统"></a> Mybatis日志系统</h2>
+<p>我们需要在Mybatis配置文件设置中写入以下命令：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">&quot;logImpl&quot;</span> <span class="attr">value</span>=<span class="string">&quot;STDOUT_LOGGING&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p><code>logImpl</code>包括很多种配置项，包括 SLF4J | LOG4J | LOG4J2 | JDK_LOGGING | COMMONS_LOGGING | STDOUT_LOGGING | NO_LOGGING，而默认情况下是未配置，也就是说不打印。我们这里将其设定为STDOUT_LOGGING表示直接使用标准输出将日志信息打印到控制台，我们编写一个测试案例来看看效果：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TestMain</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> SqlSessionFactory sqlSessionFactory;</span><br><span class="line">    <span class="meta">@Before</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">before</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            sqlSessionFactory = <span class="keyword">new</span> <span class="title class_">SqlSessionFactoryBuilder</span>()</span><br><span class="line">                    .build(<span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;mybatis-config.xml&quot;</span>));</span><br><span class="line">        &#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">try</span>(<span class="type">SqlSession</span> <span class="variable">sqlSession</span> <span class="operator">=</span> sqlSessionFactory.openSession(<span class="literal">true</span>))&#123;</span><br><span class="line">            <span class="type">TestMapper</span> <span class="variable">mapper</span> <span class="operator">=</span> sqlSession.getMapper(TestMapper.class);</span><br><span class="line">            System.out.println(mapper.getStudentBySidAndSex(<span class="number">1</span>, <span class="string">&quot;男&quot;</span>));</span><br><span class="line">            System.out.println(mapper.getStudentBySidAndSex(<span class="number">1</span>, <span class="string">&quot;男&quot;</span>));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们发现，两次获取学生信息，只有第一次打开了数据库连接，而第二次并没有。<br><br />
+现在我们学习了JUT日志系统，那么我们来尝试使用JUT日志系统输出Mybatis的日志信息：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">&quot;logImpl&quot;</span> <span class="attr">value</span>=<span class="string">&quot;JDK_LOGGING&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>将其配置为JDK_LOGGING表示使用JUL进行日志打印，因为Mybatis的日志级别都比较低，因此我们需要设置一下<code>logging.properties</code>默认的日志级别：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">handlers</span>= <span class="string">java.util.logging.ConsoleHandler</span></span><br><span class="line"><span class="attr">.level</span>= <span class="string">ALL</span></span><br><span class="line"><span class="attr">java.util.logging.ConsoleHandler.level</span> = <span class="string">ALL</span></span><br></pre></td></tr></table></figure>
+<p>Java代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Log</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TestMain</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> SqlSessionFactory sqlSessionFactory;</span><br><span class="line">    <span class="meta">@Before</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">before</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            sqlSessionFactory = <span class="keyword">new</span> <span class="title class_">SqlSessionFactoryBuilder</span>()</span><br><span class="line">                    .build(<span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;mybatis-config.xml&quot;</span>));</span><br><span class="line">            <span class="type">LogManager</span> <span class="variable">manager</span> <span class="operator">=</span> LogManager.getLogManager();</span><br><span class="line">            manager.readConfiguration(<span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;logging.properties&quot;</span>));</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">try</span>(<span class="type">SqlSession</span> <span class="variable">sqlSession</span> <span class="operator">=</span> sqlSessionFactory.openSession(<span class="literal">true</span>))&#123;</span><br><span class="line">            <span class="type">TestMapper</span> <span class="variable">mapper</span> <span class="operator">=</span> sqlSession.getMapper(TestMapper.class);</span><br><span class="line">            log.info(mapper.getStudentBySidAndSex(<span class="number">1</span>, <span class="string">&quot;男&quot;</span>).toString());</span><br><span class="line">            log.info(mapper.getStudentBySidAndSex(<span class="number">1</span>, <span class="string">&quot;男&quot;</span>).toString());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但是我们发现，这样的日志信息根本没法看，因此我们需要修改一下日志的打印格式，我们自己创建一个格式化类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TestFormatter</span> <span class="keyword">extends</span> <span class="title class_">Formatter</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">format</span><span class="params">(LogRecord record)</span> &#123;</span><br><span class="line">        <span class="type">SimpleDateFormat</span> <span class="variable">format</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SimpleDateFormat</span>(<span class="string">&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;</span>);</span><br><span class="line">        <span class="type">String</span> <span class="variable">time</span> <span class="operator">=</span> format.format(<span class="keyword">new</span> <span class="title class_">Date</span>(record.getMillis()));  <span class="comment">//格式化日志时间</span></span><br><span class="line">        <span class="keyword">return</span> time + <span class="string">&quot; : &quot;</span> + record.getMessage() + <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>现在再来修改一下默认的格式化实现：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">handlers</span>= <span class="string">java.util.logging.ConsoleHandler</span></span><br><span class="line"><span class="attr">.level</span>= <span class="string">ALL</span></span><br><span class="line"><span class="attr">java.util.logging.ConsoleHandler.level</span> = <span class="string">ALL</span></span><br><span class="line"><span class="attr">java.util.logging.ConsoleHandler.formatter</span> = <span class="string">com.test.TestFormatter</span></span><br></pre></td></tr></table></figure>
+<p>现在就好看多了。</p>
+<h3 id="代码回顾"><a class="markdownIt-Anchor" href="#代码回顾"></a> 代码回顾</h3>
+<p>运行</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">log.info(mapper.getStudentBySidAndSex(<span class="number">1</span>, <span class="string">&quot;男&quot;</span>).toString());</span><br></pre></td></tr></table></figure>
+<hr />
+<h4 id="第一步执行-mappergetstudentbysidandsex"><a class="markdownIt-Anchor" href="#第一步执行-mappergetstudentbysidandsex"></a> 第一步：执行 <code>mapper.getStudentBySidAndSex(...)</code></h4>
+<p><strong>这里触发 MyBatis 执行 SQL</strong><br><br />
+👉 控制台先输出：<strong>MyBatis 的 SQL 日志</strong><br />
+<br></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">==&gt;  Preparing: select * from student where sid=? and sex=?</span><br><span class="line">==&gt; Parameters: 1(Integer), 男(String)</span><br><span class="line">&lt;==    Columns: sid,name,sex</span><br><span class="line">&lt;==        Row: 1,张三,男</span><br><span class="line">&lt;==      Total: 1</span><br></pre></td></tr></table></figure>
+<h4 id="第二步拿到-student-对象调用-tostring"><a class="markdownIt-Anchor" href="#第二步拿到-student-对象调用-tostring"></a> 第二步：拿到 Student 对象，调用 <code>.toString()</code></h4>
+<p>拿到字符串：<code>Student{sid=1,name=张三,sex=男}</code></p>
+<h4 id="第三步执行-loginfo"><a class="markdownIt-Anchor" href="#第三步执行-loginfo"></a> 第三步：执行 <code>log.info(...)</code></h4>
+<p>👉 控制台再输出：<strong>你自己的 java.util.logging 日志</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">五月 22, 2025 15:30:00 com.TestMain test</span><br><span class="line">信息: Student&#123;sid=1,name=张三,sex=男&#125;</span><br></pre></td></tr></table></figure>
+<p>我们会发现第二个根本没有SQL日志输出，因为从缓存调用了。</p>
+
+    </div>
+    <footer class="article-footer">
+        <a data-aos="zoom-in" href="/2026/05/22/JavaWeb-JUT%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F%E4%BB%A5%E5%8F%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E6%97%A5%E5%BF%97/#comments" class="article-comment-link">
+          <span class="post-comments-count twikoo-comment-count" data-path="/2026/05/22/JavaWeb-JUT%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F%E4%BB%A5%E5%8F%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E6%97%A5%E5%BF%97/" itemprop="commentCount"></span>
+          留言
+        </a>
+        <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/" title="笔记" data-aos="zoom-in">笔记</a><a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/JavaWeb%E5%AD%A6%E4%B9%A0/" title="JavaWeb学习" data-aos="zoom-in">JavaWeb学习</a><a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/JavaWeb%E5%AD%A6%E4%B9%A0/Java%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" title="Java网络编程" data-aos="zoom-in">Java网络编程</a>
+
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Java/" rel="tag" title="Java">Java</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/JavaWeb/" rel="tag" title="JavaWeb">JavaWeb</a></li><li class="article-tag-list-item" data-aos="zoom-in"><a class="article-tag-list-link" href="/tags/Mybatis/" rel="tag" title="Mybatis">Mybatis</a></li></ul>
+
+    </footer>
+  </div>
+    <nav id="article-nav" aria-label="Article navigation" data-aos="fade-up">
+    <div class="article-nav-link-wrap right">
+        <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/27964e91e5e2f76eaa24d357980e86aa.jpeg" data-sizes="auto" alt="JavaWeb-JUnit测试单元" class="lazyload">
+      <a href="/2026/05/22/JavaWeb-JUnit%E6%B5%8B%E8%AF%95%E5%8D%95%E5%85%83/" aria-label="后一篇: JavaWeb-JUnit测试单元"  title="后一篇: JavaWeb-JUnit测试单元"></a>
+      <div class="article-nav-caption">后一篇</div>
+      <h3 class="article-nav-title">
+          JavaWeb-JUnit测试单元
+      </h3>
+    </div>
+  </nav>
+
+</article>
+
+  <section id="comments" data-aos="fade-up">
+    <div class="comment-header">
+        
+      <h2 class="comment-title">说些什么吧！</h2>
+      <div class="comment-selector">
+        <div class="comment-selector-wrap">
+            <div class="selector-item" data-selector="twikoo">
+              <span>twikoo</span>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="comment-content">
+          <div class="comment twikoo-comment" data-aos="fade-up"
+            id="twikoo-comment">
+          </div>
+    </div>
+  </section>
+
+</section>
+        </div>
+        <footer id="footer" aria-label="Site footer">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div id="footer-info">
+    <div>
+      <span class="icon-copyright"></span>
+        2020-2026
+        <span class="footer-info-sep rotate"></span>
+      Stvfen
+    </div>
+      <div>
+        <span class="icon-brush"></span>
+        127.7k
+        &nbsp;|&nbsp;
+        <span class="icon-coffee"></span>
+        08:56
+      </div>
+      <div>
+        <span class="icon-eye"></span>
+        <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+        &nbsp;|&nbsp;
+        <span class="icon-user"></span>
+        <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+      </div>
+  </div>
+</footer>
+
+          <div class="sidebar-top">
+            <div class="sidebar-top-taichi rotate"></div>
+            <div class="arrow-up"></div>
+          </div>
+        <div id="mask" class="hide"></div>
+      </div>
+      <nav id="mobile-nav" aria-label="Mobile navigation">
+  <div class="sidebar-wrap">
+        <div class="sidebar-toc-sidebar"><h3 class="toc-title">文章目录</h3>
+<div class="sidebar-toc-wrapper toc-div-class" >
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%9D%E8%AF%95jut"><span class="toc-number">1.</span> <span class="toc-text"> 尝试JUT</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E7%AD%89%E7%BA%A7"><span class="toc-number">2.</span> <span class="toc-text"> 日志等级</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E6%97%A5%E5%BF%97%E5%A4%84%E7%90%86%E5%99%A8"><span class="toc-number">3.</span> <span class="toc-text"> 文件日志处理器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="toc-number">4.</span> <span class="toc-text"> 过滤器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#properties%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">5.</span> <span class="toc-text"> Properties配置文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E5%86%99%E6%97%A5%E5%BF%97%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">6.</span> <span class="toc-text"> 编写日志配置文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8lombok%E5%BF%AB%E6%8D%B7%E4%BD%BF%E7%94%A8log"><span class="toc-number">7.</span> <span class="toc-text"> 使用Lombok快捷使用log</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mybatis%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F"><span class="toc-number">8.</span> <span class="toc-text"> Mybatis日志系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%9B%9E%E9%A1%BE"><span class="toc-number">8.1.</span> <span class="toc-text"> 代码回顾</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%E6%89%A7%E8%A1%8C-mappergetstudentbysidandsex"><span class="toc-number">8.1.1.</span> <span class="toc-text"> 第一步：执行 mapper.getStudentBySidAndSex(...)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%E6%8B%BF%E5%88%B0-student-%E5%AF%B9%E8%B1%A1%E8%B0%83%E7%94%A8-tostring"><span class="toc-number">8.1.2.</span> <span class="toc-text"> 第二步：拿到 Student 对象，调用 .toString()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%E6%89%A7%E8%A1%8C-loginfo"><span class="toc-number">8.1.3.</span> <span class="toc-text"> 第三步：执行 log.info(...)</span></a></li></ol></li></ol></li></ol>
+</div>
+</div>
+        <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Stvfen" class="lazyload">
+  <div class="sidebar-author-name">Stvfen</div>
+  <div class="sidebar-description">电台组组长</div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>文章</div>
+    <div class="sidebar-state-number">58</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>分类</div>
+    <div class="sidebar-state-number">15</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>标签</div>
+    <div class="sidebar-state-number">24</div>
+  </div>
+</div>
+<div class="sidebar-social" >
+    <div class="icon-bilibili sidebar-social-icon">
+      <a href=https://space.bilibili.com/3546704989129249?spm_id_from=333.1007.0.0 itemprop="url" target="_blank" aria-label="bilibili" rel="noopener nofollow noreferrer"></a>
+    </div>
+</div>
+<div class="sidebar-menu">
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/" aria-label="首页"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">首页</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/archives" aria-label="藏书阁"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">藏书阁</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/about" aria-label="关于"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">关于</div>
+      </div>
+      <div class="sidebar-menu-link-wrap">
+        <a class="sidebar-menu-link-dummy" href="/friend" aria-label="友链"></a>
+          <div class="sidebar-menu-icon icon rotate">
+              &#xe62b;
+          </div>
+        <div class="sidebar-menu-link">友链</div>
+      </div>
+</div>
+</div>
+  </div>
+      <div class="sidebar-btn-wrapper">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+</nav>
+
+    </div>
+      <div class="site-search">
+        <div class="reimu-popup popup">
+          <div class="reimu-search">
+            <div class="reimu-search-input-icon"></div>
+            <div id="reimu-search-input"></div>
+            <div class="popup-btn-close"></div>
+          </div>
+          <div class="reimu-results">
+            <div id="reimu-stats"></div>
+            <div id="reimu-hits"></div>
+            <div id="reimu-pagination" class="reimu-pagination"></div>
+          </div>
+          <img class="reimu-bg" src="/images/reimu.png"/>
+        </div>
+      </div>
+    
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js" integrity="sha384-3gT&#x2F;vsepWkfz&#x2F;ff7PpWNUeMzeWoH3cDhm&#x2F;A8jM7ouoAK0&#x2F;fP&#x2F;9bcHHR5kHq2nf+e" crossorigin="anonymous"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js" integrity="sha384-J08i8An&#x2F;QeARD9ExYpvphB8BsyOj3Gh2TSh1aLINKO3L0cMSH2dN3E22zFoXEi0Q" crossorigin="anonymous"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  
+<script src="/js/aos.js"></script>
+
+  <script>
+    var aosInit = () => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease",
+        once: true,
+        offset: 50,
+      });
+    };
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', aosInit);
+    } else {
+      aosInit();
+    }
+  </script>
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+  
+<script src="/js/generator_search.js" defer></script>
+
+
+
+  <script>
+    var setupFirework = () => {
+      if (!false || !window.matchMedia('(max-width: 768px)').matches) {
+        window.firework && window.firework(JSON.parse('{"excludeElements":["a","button"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["var(--red-1)","var(--red-2)","var(--red-3)","var(--red-4)"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["var(--red-0)"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'));
+      }
+    }
+  </script>
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.2.0/dist/index.umd.js" integrity="sha384-qi9WggRt19tv8Vc7pCHW3ulMNLwrn515zaLEWZjl1px07vz8+pUoWX8n1rgq282T" crossorigin="anonymous" onload="setupFirework()" defer></script>
+
+
+
+
+
+
+<div id="lazy-script">
+  <div>
+      
+      
+      <script data-pjax>
+        window.REIMU_POST = {
+          author: "Stvfen",
+          title: "JavaWeb-JUT日志系统以及数据库日志",
+          url: "http://example.com/2026/05/22/JavaWeb-JUT%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F%E4%BB%A5%E5%8F%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E6%97%A5%E5%BF%97/",
+          excerpt: "",
+          description: "",
+          stripContent: " 尝试JUT JDK自带的日志系统也就是JUT，如果我们一直用System.out.println()来在控制台输出信息的话，我们有时候还得找这个东西在哪，如果调试算法题的话应该深有体会。那么Java自己就有一个类java.util.logging包下，实现日志打印： 12345678public class Main &amp;#123;    public static void main(String[] args) &amp;#123;       // 首先获取日志打印器        Logger ",
+          date: "Fri May 22 2026 00:58:37 GMT+0800",
+          updated: "Fri May 22 2026 00:59:50 GMT+0800",
+          cover: "https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/03ae9e37f02daa9486db5489b48b9b2c.jpg",
+        };
+      </script>
+        
+<script src="/js/insert_highlight.js" data-pjax></script>
+
+      
+<script src="/js/tabs.js" data-pjax defer></script>
+
+      <script type="module" data-pjax>
+        (async () => {
+          const PhotoSwipeLightbox = (await safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.min.js", "sha384-DiL6M/gG+wmTxmCRZyD1zee6lIhawn5TGvED0FOh7fXcN9B0aZ9dexSF/N6lrZi/")).default;
+          const initPswp = (gallery, children) => {
+            if (_$$(`${gallery} ${children}`).length > 0) {
+              new PhotoSwipeLightbox({
+                gallery,
+                children,
+                pswpModule: () => safeImport("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.min.js", "sha384-WkkO3GCmgkC3VQWpaV8DqhKJqpzpF9JoByxDmnV8+oTJ7m3DfYEWX1fu1scuS4+s")
+              }).init();
+            }
+          }
+          const pswp = () => {
+            initPswp('.article-entry', 'a.article-gallery-item');
+            initPswp('.article-gallery', 'a.article-gallery-item');
+          }
+          pswp();
+        })();
+      </script>
+        
+
+<script data-pjax>
+  var loadScript = (src, integrity) => {
+    const script = document.createElement('script');
+    script.src = src;
+    if (integrity) script.integrity = integrity;
+    script.crossOrigin = 'anonymous';
+    return script;
+  };
+
+  var commentConfigKeys = ["twikoo"];
+  var commentConfig = {
+    twikoo: {
+      enable: true,
+      load: () => {
+        const container = document.querySelector('.twikoo-comment');
+        if (!container) return;
+        container.style.display = 'block';
+
+        const script = loadScript(
+          'https://npm.webcache.cn/twikoo@1.6.44/dist/twikoo.all.min.js',
+          'sha384-kwWLC0HjeZZnVPqCJ1AncI8tsk+kQqF9TbAmCclcc9Z0hGkfgHRzeQZxmdmZhE0K'
+        );
+
+        script.onload = () => {
+          if (window.twikoo) {
+            twikoo.init({
+              envId: 'https://pinglunqu.vercel.app',
+              el: '.twikoo-comment',
+              region: '',
+              lang: document.documentElement.lang || 'en',
+            });
+
+            twikoo.getCommentsCount({
+              envId: 'https://pinglunqu.vercel.app',
+              region: '',
+              urls: [
+                '/friend/index.html'
+              ],
+              includeReply: false
+            }).then((res) => {
+              _$('.twikoo-comment-count').innerText = res[0].count;
+            }).catch((err) => {
+              console.error(err);
+            });
+          }
+        } 
+        document.head.appendChild(script);
+      }
+    },
+  }
+  commentConfig.enable = commentConfigKeys.some(key => commentConfig[key].enable);
+
+  var defaultComment = '';
+  if (commentConfig.enable) {
+    // 1. 首先检查localStorage中是否有保存的评论类型
+    var savedCommentType = localStorage.getItem('commentType');
+    
+    // 2. 如果localStorage中有值且对应的评论系统可用，就使用它
+    if (savedCommentType) {
+      if (commentConfig[savedCommentType]?.enable) {
+        defaultComment = savedCommentType;
+      }
+    }
+    
+    // 3. 如果localStorage无效，检查配置的默认评论系统
+    if (!defaultComment) {
+      var configDefault = 'waline';
+      if (commentConfig[configDefault]?.enable) {
+        defaultComment = configDefault;
+      }
+    }
+    
+    // 4. 如果前两项都无效，按指定顺序找到第一个可用的评论系统
+    if (!defaultComment) {
+      defaultComment = commentConfigKeys.find(sys => commentConfig[sys].enable) || '';
+    }
+  }
+  function loadComments() {
+    if (!commentConfig.enable) return;
+    const loadedComments = {
+      valine: false,
+      waline: false,
+      twikoo: false,
+      gitalk: false,
+      giscus: false
+    };
+
+    // 隐藏所有评论容器
+    const hideAllComments = () => {
+      const commentContainers = document.querySelectorAll('.comment');
+      commentContainers.forEach(container => {
+        container.style.display = 'none';
+      });
+    };
+
+    // 按需加载评论系统
+    const loadCommentSystem = (type) => {
+      if (loadedComments[type]) {
+        // 如果已加载，只需显示对应容器
+        document.querySelector(`.${type}-comment`).style.display = 'block';
+        return;
+      }
+
+      // 根据类型加载对应的脚本
+      commentConfig[type]?.load();
+      loadedComments[type] = true;
+    };
+
+    // 评论组件选择器
+    const changeActiveCommentItems = (item) => {
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let i = 0; i < commentItems.length; i++) {
+        commentItems[i].classList.remove('active');
+      }
+      item.classList.add('active');
+
+      // 获取要加载的评论系统类型
+      const commentType = item.getAttribute('data-selector');
+
+      // 隐藏所有评论系统
+      hideAllComments();
+
+      // 加载选中的评论系统
+      loadCommentSystem(commentType);
+    };
+
+    const commentInit = () => {
+      // 评论组件选择器点击事件
+      const commentItems = document.querySelectorAll('.selector-item');
+      for (let item of commentItems) {
+        item.addEventListener('click', () => {
+          // 保存选择器状态
+          const commentType = item.getAttribute('data-selector');
+          window.localStorage.setItem('commentType', commentType);
+          // 切换选中状态
+          changeActiveCommentItems(item);
+        });
+      }
+
+      // 检查是否需要加载默认评论系统
+      if (defaultComment) {
+        const defaultSelectorItem = document.querySelector(`[data-selector="${defaultComment}"]`);
+        if (!defaultSelectorItem) return;
+        defaultSelectorItem.style.display = 'block';
+        defaultSelectorItem.classList.add('active');
+        loadCommentSystem(defaultComment);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', commentInit);
+    } else {
+      commentInit();
+    }
+  };
+  loadComments();
+</script>
+
+  </div>
+</div>
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '1.12.1' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" integrity="sha384-0M75wtSkhjIInv4coYlaJU83+OypaRCIq2SukQVQX04eGTCBXJDuWAbJet56id+S" crossorigin="anonymous" async></script>
+
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
+  }
+</script>
+
+    
+<script src="https://npm.webcache.cn/katex@0.16.24/dist/katex.min.js" integrity="sha384-MWNUH0WmtsYGhn2cbH6ELRCbf9LG3QDqCC+gqPB3IBNO35xjZK3Ejb6oONRpDbPg" crossorigin="anonymous" defer data-pjax></script>
+
+    
+<script src="https://npm.webcache.cn/katex@0.16.24/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous" defer onload="renderMathInElement(_$(&#39;article&#39;), {delimiters: [{left: &#39;$$&#39;, right: &#39;$$&#39;, display: true},{left: &#39;$&#39;, right: &#39;$&#39;, display: false}]});" data-pjax></script>
+
+  
+    <script>
+    var setupAPlayer = () => {
+      if (!false || !window.matchMedia('(max-width: 768px)').matches) {
+        if (window.matchMedia('(max-width: 959px)').matches) {
+          const aplayer = _$('#aplayer');
+          if (aplayer) {
+            const aside = aplayer.parentNode?.parentNode;
+            if (aside?.tagName === 'ASIDE') {
+              aplayer.removeAttribute('data-aos');
+              aplayer.parentNode.removeChild(aplayer);
+              document.body.appendChild(aplayer);
+            }
+          }
+        }
+        new APlayer({
+          theme: "var(--color-link)",
+          container: document.getElementById('aplayer'),
+          audio: [{"name":"人造卫星","artist":"星尘","url":"https://videotourl.com/audio/1779027755492-d071c6b4-d2b9-4b34-8cb3-7753fd5b298a.mp3","cover":"https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/33fcfa952ea2eb7f9cb97d022b4460de.png"}] || [],
+          fixed: false || false,
+          autoplay: false || false,
+          loop: 'all' || 'all',
+          order: 'list' || 'list',
+          preload: 'auto' || 'auto',
+          volume: 0.7 || 0.7,
+          mutex: true || true,
+          listFolded: false || false,
+          lrcType: 0 || 0,
+        });
+      }
+    }
+    </script>
+  
+<script src="https://npm.webcache.cn/aplayer@1.10.1/dist/APlayer.min.js" integrity="sha384-gdGYZwHnfJM54evoZhpO0s6ZF5BQiybkiyW7VXr+h5UfruuRL&#x2F;aORyw+5+HZoU6e" crossorigin="anonymous" defer onload="setupAPlayer()"></script>
+
+
+
+  </body>
+  </html>
