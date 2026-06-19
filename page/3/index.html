@@ -157,7 +157,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">75</div>
+    <div class="sidebar-state-number">81</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -243,7 +243,7 @@
           <div class="post-categories-cover">
               <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/%E6%88%91%E5%96%9C%E6%AC%A2%E7%9A%84.jpg" data-sizes="auto" alt="笔记" class="lazyload">
             <h2>笔记</h2>
-            <h3>73 篇文章</h3>
+            <h3>79 篇文章</h3>
           </div>
         </div>
         <div class="post-categories-wrap">
@@ -255,6 +255,165 @@
           </div>
         </div>
     </div>
+      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2026/05/30/JavaWeb-Session/" aria-label="JavaWeb-Session" title="JavaWeb-Session"></a>
+    <div class="post-cover left">
+        <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/323f504474423286b4d81ade48c7b938.png" data-sizes="auto" alt="JavaWeb-Session" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-05-30</span>
+        <span><span class="icon-pencil"></span>468 字</span>
+        <span><span class="icon-clock"></span>2 分钟</span>
+      </div>
+      <h2 class="post-title">JavaWeb-Session</h2>
+      <article class="post-article">
+          这个东西反而没那么难，我们来解释下
+
+Session是服务器上的东西，有很多很多。而我们浏览器会对应一个Session，对应的方式就是我们浏览器Cookie会自带一串密钥，对应上服务器上的Session。我们可以通过请求头里面的密钥来控制服务器上的Session，也就是后端上面的。我们在Cookie当中有一个问题，就是如何让用户没登陆的情况下，也就是服务器没记住的情况下禁止没登陆前往首页。
+JSESSIONID 这个 Cookie，是服务器自动生成、自动发送的，不是你自己写的！
+浏览器第一次访问服务器时，就会自动拥有！
+
+那么现在，我们在用户登录成功之后，将用户对象添加到Session中，只要
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2026/05/30/JavaWeb-Cookie/" aria-label="JavaWeb-Cookie" title="JavaWeb-Cookie"></a>
+    <div class="post-cover right">
+        <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/fd6be3c0399e711d236d9489187d54de.png" data-sizes="auto" alt="JavaWeb-Cookie" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-05-30</span>
+        <span><span class="icon-pencil"></span>974 字</span>
+        <span><span class="icon-clock"></span>5 分钟</span>
+      </div>
+      <h2 class="post-title">JavaWeb-Cookie</h2>
+      <article class="post-article">
+          它可以在浏览器中保存一些信息，并且在下次请求时，请求头中会携带这些信息。
+我们先来写一个Cookie：
+123456// 1. 创建一个名叫 test，值是 yyds 的 CookieCookie cookie = new Cookie(&amp;quot;test&amp;quot;, &amp;quot;yyds&amp;quot;);// 2. 把 Cookie 交给响应 → 让浏览器保存resp.addCookie(cookie);// 3. 让浏览器跳转到 /time 路径resp.sendRedirect(&amp;quot;time&amp;quot;);
+只需要一次后，我们浏览器访问同域名下的所有地址，都会携带一个Cooki
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2026/05/28/JavaWeb-Servlet%E5%AE%B9%E5%99%A8/" aria-label="JavaWeb-Servlet容器" title="JavaWeb-Servlet容器"></a>
+    <div class="post-cover left">
+        <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20251127_140436.jpg" data-sizes="auto" alt="JavaWeb-Servlet容器" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-05-28</span>
+        <span><span class="icon-pencil"></span>3.2k 字</span>
+        <span><span class="icon-clock"></span>14 分钟</span>
+      </div>
+      <h2 class="post-title">JavaWeb-Servlet容器</h2>
+      <article class="post-article">
+          由官方定义的一系列借口，如Tmocat，最后交给Web服务器来运行我们编写的Servlet。
+不再是直接由Tomcat服务器发送编写好的静态网页内容如HTML文件，而是由我们通过JAVA代码进行拼接，更好地实现动态网页。
+ 注册Servlet
+
+这里的test是访问路径，我们HTTP协议URL中最后就是端口或者路径。
+
+123456789101112131415161718192021222324252627@WebServlet(&amp;quot;/test&amp;quot;)public class TestServlet implements Servlet&amp;#123;	@Override	publ
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2026/05/23/JavaWeb-Maven%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84/" aria-label="JavaWeb-Maven项目结构" title="JavaWeb-Maven项目结构"></a>
+    <div class="post-cover right">
+        <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/79728e8b420b9d343707de5760f35297.jpeg" data-sizes="auto" alt="JavaWeb-Maven项目结构" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-05-23</span>
+        <span><span class="icon-pencil"></span>4.1k 字</span>
+        <span><span class="icon-clock"></span>19 分钟</span>
+      </div>
+      <h2 class="post-title">JavaWeb-Maven项目结构</h2>
+      <article class="post-article">
+           什么是Maven
+Maven翻译过来是“专家“，是一个纯java开源项目。通过Maven，可以帮助我们做：
+
+项目的自动构建，包括代码的编译、测试、打包、安装、部署等操作。
+依赖管理，项目使用到哪些依赖，可以快速完成导入。
+把项目打包成jar或者从外部导入jar库包，就像我们之前学习一样，Jar包越来越多。所以我们需要一个更好的管理方式来导入这些Jar包。
+Maven也需要环境，不过Idea自带。
+我们如果创建好Maven项目后，会发现有如下不同：
+
+
+ Maven项目
+我们先创建一个Maven项目，里面长这样。
+
+
+java包：我们的代码一般写在java文件包当中。
+resources：J
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2026/05/22/JavaWeb-JUT%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F%E4%BB%A5%E5%8F%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E6%97%A5%E5%BF%97/" aria-label="JavaWeb-JUT日志系统以及数据库日志" title="JavaWeb-JUT日志系统以及数据库日志"></a>
+    <div class="post-cover left">
+        <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/03ae9e37f02daa9486db5489b48b9b2c.jpg" data-sizes="auto" alt="JavaWeb-JUT日志系统以及数据库日志" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-05-22</span>
+        <span><span class="icon-pencil"></span>3.2k 字</span>
+        <span><span class="icon-clock"></span>14 分钟</span>
+      </div>
+      <h2 class="post-title">JavaWeb-JUT日志系统以及数据库日志</h2>
+      <article class="post-article">
+           尝试JUT
+JDK自带的日志系统也就是JUT，如果我们一直用System.out.println()来在控制台输出信息的话，我们有时候还得找这个东西在哪，如果调试算法题的话应该深有体会。那么Java自己就有一个类java.util.logging包下，实现日志打印：
+12345678public class Main &amp;#123;    public static void main(String[] args) &amp;#123;      	// 首先获取日志打印器        Logger logger = Logger.getLogger(Main.class.getName());  
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2026/05/22/JavaWeb-JUnit%E6%B5%8B%E8%AF%95%E5%8D%95%E5%85%83/" aria-label="JavaWeb-JUnit测试单元" title="JavaWeb-JUnit测试单元"></a>
+    <div class="post-cover right">
+        <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/27964e91e5e2f76eaa24d357980e86aa.jpeg" data-sizes="auto" alt="JavaWeb-JUnit测试单元" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-05-22</span>
+        <span><span class="icon-pencil"></span>389 字</span>
+        <span><span class="icon-clock"></span>2 分钟</span>
+      </div>
+      <h2 class="post-title">JavaWeb-JUnit测试单元</h2>
+      <article class="post-article">
+           导入包
+肯定要导入包的啦
+ @Test
+我们可以直接在无参方法前面加上@Test注解，这样我们在Idea编译器中可以直接运行这个方法进行调试。
+
+
+方法必须是public的
+不能是静态方法
+返回值必须是void
+必须是没有任何参数的方法
+
+ 断言
+对于一个测试用例而言，我们想知道是否最后结果值符合我们的期望值，如果不符合就运行失败。
+1234567public class TestMain &amp;#123;    @Test    public void method()&amp;#123;        System.out.println(&amp;quot;我是测试案例！&amp;quot;);        A
+      </article>
+    </div>
+  </div>
+</div>
       <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/05/21/JavaWeb-Mybatis%E6%9B%B4%E7%AE%80%E5%8D%95%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93/" aria-label="JavaWeb-Mybatis更简单的数据库" title="JavaWeb-Mybatis更简单的数据库"></a>
@@ -420,205 +579,8 @@ $$F_Y(y) &amp;#x3D; P\{Y \le y\}
     </div>
   </div>
 </div>
-      <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2026/05/19/%E6%A6%82%E7%8E%87%E8%AE%BA%E7%AC%AC%E4%B8%89%E7%AB%A0-%E4%BA%8C%E7%BB%B4%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%8F%8A%E5%85%B6%E5%88%86%E5%B8%83/" aria-label="概率论第三章-二维随机变量及其分布" title="概率论第三章-二维随机变量及其分布"></a>
-    <div class="post-cover left">
-        <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260519010454.png" data-sizes="auto" alt="概率论第三章-二维随机变量及其分布" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2026-05-19</span>
-        <span><span class="icon-pencil"></span>790 字</span>
-        <span><span class="icon-clock"></span>4 分钟</span>
-      </div>
-      <h2 class="post-title">概率论第三章-二维随机变量及其分布</h2>
-      <article class="post-article">
-           二维随机变量及其联合分布函数
- 基本定义
-
-一维随机变量 $X$ 的分布函数： $$F(x) &amp;#x3D; P\{X \le x\}$$
-二维随机变量 $(X,Y)$ 的联合分布函数： $$F(x,y) &amp;#x3D; P\{X \le x,\ Y \le y\}$$
-几何意义：$F(x,y)$ 表示随机点 $(X,Y)$ 落在以 $(x,y)$ 为顶点、左下方无穷矩形区域内的概率。
-
-
-
- 核心性质
-
-
-取值范围与边界条件
-
-有界性：$0 \le F(x,y) \le 1$
-边界极限：$$\begin{align*}
-F(-\infty,\ y) &amp;amp;&amp;#x3D; 0 \\
-F(x,\
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2026/05/19/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA-%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8/" aria-label="数据库系统概论-第四章-数据库安全" title="数据库系统概论-第四章-数据库安全"></a>
-    <div class="post-cover right">
-        <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260519010359.png" data-sizes="auto" alt="数据库系统概论-第四章-数据库安全" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2026-05-19</span>
-        <span><span class="icon-pencil"></span>3.6k 字</span>
-        <span><span class="icon-clock"></span>13 分钟</span>
-      </div>
-      <h2 class="post-title">数据库系统概论-第四章-数据库安全</h2>
-      <article class="post-article">
-           数据库安全性概述
- 数据库的不安全因素
-
-非授权用户对数据库的恶意存储和破坏
-数据库中重要或敏感的数据被泄露
-安全环境的脆弱性（自己的硬件）
-
- TCCSEC/TDI 更安全系统设计数据库等级
-
-D级：不符合更高标准的系统
-C1级：非常初级的自主安全保护
-C2级：安全产品的最低档次
-B1级：标记安全保护（给数据加标签）
-B2级：结构化保护
-B3级：安全域（对用户身份进行跟踪，并且备份还原）
-A1级：验证设计
-
- 数据库安全性控制
- 用户身份鉴别
-
-每次用户进入时都要系统核对，通过鉴定后提供数据库管理系统的使用权限。它是系统提供的最外层安全保护措施
-用户标识组成：由用户名和用户标识号组成，用户
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2026/05/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%BC%96%E7%A0%81-%E6%B9%96%E7%A7%91%E5%A4%A7%E7%89%88/" aria-label="计算机组成原理第二章-编码-湖科大版" title="计算机组成原理第二章-编码-湖科大版"></a>
-    <div class="post-cover left">
-        <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/6c709dd4be17a0a16fcf08ee68e8d040.png" data-sizes="auto" alt="计算机组成原理第二章-编码-湖科大版" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2026-05-15</span>
-        <span><span class="icon-pencil"></span>1.3k 字</span>
-        <span><span class="icon-clock"></span>5 分钟</span>
-      </div>
-      <h2 class="post-title">计算机组成原理第二章-编码-湖科大版</h2>
-      <article class="post-article">
-           数与进制的规则
- 数的规则
-首先我们要确认了解以下规则，分别是：
-
-无符号数
-有符号数
-
-整数
-纯小数
-带小数
-而其中又有：
-
-
-定点数：小数点位置固定
-浮点数：小数点位置浮动
-
-
- 进制
- 何为进制
-进制的规则如图所示：
-
-在机器中，我们通常把真值用其他进制来表示，比如二进制。当然这里的真值指的是真正的值。而机器当中数值表示一共有以下几种：
- 十进制转任意进制
-我们先来看下整数是怎么转换的，如图所示：
-也就是说我们的基数r再除后，可以得到该进制的最右位数值，也就是说是这样进行的：
-
-
-接着我们来看看小数部分，其实整体思路和整数差不多，只有细微差别：
-
-这里我们会发现我们乘出来的数，求的是该
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2026/05/11/JAVA-JDBC/" aria-label="JAVA-JDBC" title="JAVA-JDBC"></a>
-    <div class="post-cover right">
-        <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260511232752.png" data-sizes="auto" alt="JAVA-JDBC" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2026-05-11</span>
-        <span><span class="icon-pencil"></span>1.6k 字</span>
-        <span><span class="icon-clock"></span>8 分钟</span>
-      </div>
-      <h2 class="post-title">JAVA-JDBC</h2>
-      <article class="post-article">
-           DriverManager
-现在JDBC的驱动都是靠DriverMannager来加载进去的，利用的是跟反射有关的东西，这里不必了解。本来我们是需要用forNname进行反射加载，然后直接会运行mysql驱动类内部的一个静态代码块，这个代码块会调用注册驱动，也就是下面这个方法↓，不过最新版本的JDBC可以自动加载。
-12345678910111213141516171819// 静态同步方法：注册数据库驱动public static synchronized void registerDriver(java.sql.Driver driver,        DriverAction da)
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2026/05/10/Java%E6%B3%9B%E5%9E%8B/" aria-label="Java泛型" title="Java泛型"></a>
-    <div class="post-cover left">
-        <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/33fcfa952ea2eb7f9cb97d022b4460de.png" data-sizes="auto" alt="Java泛型" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2026-05-10</span>
-        <span><span class="icon-pencil"></span>776 字</span>
-        <span><span class="icon-clock"></span>4 分钟</span>
-      </div>
-      <h2 class="post-title">Java泛型</h2>
-      <article class="post-article">
-           什么是泛型
-Java泛式其实就是我们一开始并不知道这个类或者变量是什么数据类型，但这个类或者变量就存在在那里，会根据我们导入的参数之类的数据类型来判断，从而创建改数据类型的数据。
-作用：规定集合/类只能存指定类型，编译时做类型校验。
- 没有泛型会怎么样
-集合类默认存Object，什么类型都能放。所以我们取数据的时候必须强制向下转型，而这个过程很容易抛出错误。
-12345ArrayList list = new ArrayList();list.add(123);list.add(&amp;quot;张三&amp;quot;);// 取出要强转String s = (String) list.get(0); 
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2026/05/10/Java%E5%8F%8D%E5%B0%84/" aria-label="Java反射" title="Java反射"></a>
-    <div class="post-cover right">
-        <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/6c7f5ff77095199f105ded499506fe3d.png" data-sizes="auto" alt="Java反射" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2026-05-10</span>
-        <span><span class="icon-pencil"></span>886 字</span>
-        <span><span class="icon-clock"></span>4 分钟</span>
-      </div>
-      <h2 class="post-title">Java反射</h2>
-      <article class="post-article">
-           什么是反射
-反射：程序在运行时动态获取类的信息、调用方法/属性/构造器。
-我们来看下正常类操作和反射类操作的区别：
-
-正常编码：先有类 -&amp;gt; new 对象
-反射：拿到对象/类名 -&amp;gt; 反向拆解类的所有结构
-这里该怎么理解呢，就是每一个类其实都自我存在一个CLASS对象，而我们可以从这个对象中拿到这个类的所有相关信息。
-
- 获取Class方式
-12345678910//1. 对象.getClass()User user = new User();Class&amp;lt;?&amp;gt; c1 = user.getClass();//2. 类名.classClass&amp;lt;?&amp;gt; c2 = 
-      </article>
-    </div>
-  </div>
-</div>
   <nav id="page-nav" aria-label="Pagination navigation" data-aos="fade-up">
-    <a class="extend prev" rel="prev" href="/page/2/">&laquo; 上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/4/">下一页 &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/2/">&laquo; 上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/4/">下一页 &raquo;</a>
   </nav>
 
 </section>
@@ -636,10 +598,10 @@ Java泛式其实就是我们一开始并不知道这个类或者变量是什么�
     </div>
       <div>
         <span class="icon-brush"></span>
-        142k
+        143k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        10:07
+        10:14
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -667,7 +629,7 @@ Java泛式其实就是我们一开始并不知道这个类或者变量是什么�
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">75</div>
+    <div class="sidebar-state-number">81</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>

@@ -157,7 +157,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">75</div>
+    <div class="sidebar-state-number">81</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
@@ -243,7 +243,7 @@
           <div class="post-categories-cover">
               <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/%E6%88%91%E5%96%9C%E6%AC%A2%E7%9A%84.jpg" data-sizes="auto" alt="笔记" class="lazyload">
             <h2>笔记</h2>
-            <h3>73 篇文章</h3>
+            <h3>79 篇文章</h3>
           </div>
         </div>
         <div class="post-categories-wrap">
@@ -255,6 +255,206 @@
           </div>
         </div>
     </div>
+      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2026/04/20/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA-%E7%AC%AC%E4%B8%89%E7%AB%A0-SQL%E6%95%B0%E6%8D%AE%E6%9B%B4%E6%96%B0%E4%B8%8E%E7%A9%BA%E5%80%BC%E5%A4%84%E7%90%86/" aria-label="数据库系统概论-第三章-SQL数据更新与空值处理" title="数据库系统概论-第三章-SQL数据更新与空值处理"></a>
+    <div class="post-cover left">
+        <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260420213959.png" data-sizes="auto" alt="数据库系统概论-第三章-SQL数据更新与空值处理" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-04-20</span>
+        <span><span class="icon-pencil"></span>417 字</span>
+        <span><span class="icon-clock"></span>2 分钟</span>
+      </div>
+      <h2 class="post-title">数据库系统概论-第三章-SQL数据更新与空值处理</h2>
+      <article class="post-article">
+          对每一个系，求学生的平均年龄，并把结果存入数据库
+12INSERT INTO Dept_age(Sdept,Avg_age)SELECT Sdept,AVG(Sage) FROM Student GROUP BY Sdept;
+ 修改数据
+语句格式：
+12UPDATE 表名SET 列名=表达式,列名=表达式 WHERE 条件;
+在执行修改语句时，会检查修改操作是否破坏了原本的完整性规则。而且这个会自动检查其他用到这个属性的表，里面也会进行修改。
+将学生200215121的年龄改为22岁：
+1UPDATE Student SET Sage = 22 WHERE Sno = &amp;#x27;20021
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2026/04/17/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA-%E7%AC%AC%E4%B8%89%E7%AB%A0-SQL%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2/" aria-label="数据库系统概论-第三章-SQL数据查询" title="数据库系统概论-第三章-SQL数据查询"></a>
+    <div class="post-cover right">
+        <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260417001402.png" data-sizes="auto" alt="数据库系统概论-第三章-SQL数据查询" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-04-17</span>
+        <span><span class="icon-pencil"></span>4.1k 字</span>
+        <span><span class="icon-clock"></span>18 分钟</span>
+      </div>
+      <h2 class="post-title">数据库系统概论-第三章-SQL数据查询</h2>
+      <article class="post-article">
+          语句格式：
+1234567SELECT [ALL|DISTINCT] 目标列表达式,目标类表达式--ALL：显示所有的----DISTINCT：没重复FROM 表名或视图名, 表名或视图名[WHERE 条件表达式][GROUP BY 列名1 [HAVING 条件表达式]] --分组--[ORDER BY 列名2 [ASC|DESC]]  --排序--
+ 单表查询
+ 选择表中的若干列
+ 查询指定列
+格式：在SELECT后面加列名，FROM后面加表名
+查询全体学生的学号和姓名：
+1SELECT Sno,Sname FROM Student;
+查询全体学生的姓名、学号、所在系：
+1SELECT Sn
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2026/04/15/%E6%A6%82%E7%8E%87%E8%AE%BA%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E5%87%BD%E6%95%B0Y-g-x-%E7%9A%84%E5%88%86%E5%B8%83%EF%BC%88%E5%BB%BA%E8%AE%AE%E5%A4%8D%E4%B9%A0%E7%9A%84%E6%97%B6%E5%80%99%E7%9B%B4%E6%8E%A5%E7%9C%8B%E8%A7%86%E9%A2%91%EF%BC%89/" aria-label="概率论第二章-随机变量函数Y=g(x)的分布（建议复习的时候直接看视频）" title="概率论第二章-随机变量函数Y=g(x)的分布（建议复习的时候直接看视频）"></a>
+    <div class="post-cover left">
+        <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260415202721.png" data-sizes="auto" alt="概率论第二章-随机变量函数Y=g(x)的分布（建议复习的时候直接看视频）" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-04-15</span>
+        <span><span class="icon-pencil"></span>281 字</span>
+        <span><span class="icon-clock"></span>2 分钟</span>
+      </div>
+      <h2 class="post-title">概率论第二章-随机变量函数Y=g(x)的分布（建议复习的时候直接看视频）</h2>
+      <article class="post-article">
+           离散型随机变量函数的分布
+设离散型随机变量 $X$ 的分布律为
+$P\{X &amp;#x3D; x_k\} &amp;#x3D; p_k,\quad (k &amp;#x3D; 1,2,\dots,n)$
+则求随机变量 $X$ 的函数 $Y &amp;#x3D; g(X)$ 的概率分布，步骤如下：
+
+
+计算 $Y$ 所有可能取到的值，即求出 $g(x_1),g(x_2),\dots,g(x_n)$，有重复的只取其一，记为 $y_1,y_2,\dots,y_m$；
+
+
+依次计算 $Y$ 取到 $y_1,y_2,\dots,y_m$ 的概率：$P\{Y &amp;#x3D; y_i\} &amp;#x3D; \sum_{\{k\mid g(
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2026/04/15/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA-%E7%AC%AC%E4%B8%89%E7%AB%A0-SQL%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89/" aria-label="数据库系统概论-第三章-SQL数据定义" title="数据库系统概论-第三章-SQL数据定义"></a>
+    <div class="post-cover right">
+        <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/af542c3b0912c5a4cd3838fdbe29accf.png" data-sizes="auto" alt="数据库系统概论-第三章-SQL数据定义" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-04-15</span>
+        <span><span class="icon-pencil"></span>1.9k 字</span>
+        <span><span class="icon-clock"></span>8 分钟</span>
+      </div>
+      <h2 class="post-title">数据库系统概论-第三章-SQL数据定义</h2>
+      <article class="post-article">
+           SQL概述
+语言简介，易学易用。SQL功能极强，完成核心功能只用了9个动词：
+
+数据查询：SELECT
+数据定义：CREATE,DROP,ALTER
+数据操纵：INSERT,UPDATE,DELETE
+数据控制：GRANT,REVOKE
+
+ 数据定义
+SQLD额数据定义功能：模式定义，表定义、视图索引定义
+
+
+
+操作对象
+创建 (CREATE)
+删除 (DROP)
+修改 (ALTER)
+
+
+
+
+模式
+CREATE SCHEMA
+DROP SCHEMA
+
+
+
+表
+CREATE TABLE
+DROP TABLE
+ALTER TABLE
+
+
+视图
+CREATE VIEW
+DROP VIEW
+
+
+
+
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap left" data-aos="fade-up">
+      <a class="post-link" href="/2026/04/15/%E6%A6%82%E7%8E%87%E8%AE%BA%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%B8%B8%E8%A7%81%E8%BF%9E%E7%BB%AD%E5%9E%8B%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E7%9A%84%E5%88%86%E5%B8%83%EF%BC%88%E4%B8%89%E7%A7%8D%EF%BC%89/" aria-label="概率论第二章-常见连续型随机变量的分布（三种）" title="概率论第二章-常见连续型随机变量的分布（三种）"></a>
+    <div class="post-cover left">
+        <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/b14beae57e56ccebebeffd0e255f36c6.png" data-sizes="auto" alt="概率论第二章-常见连续型随机变量的分布（三种）" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-04-15</span>
+        <span><span class="icon-pencil"></span>924 字</span>
+        <span><span class="icon-clock"></span>5 分钟</span>
+      </div>
+      <h2 class="post-title">概率论第二章-常见连续型随机变量的分布（三种）</h2>
+      <article class="post-article">
+           均匀分布
+它的样子一定是一段是常数一段是0。
+$$f(x) &amp;#x3D;
+\begin{cases}
+\dfrac{1}{b-a}, &amp;amp; a &amp;lt; x &amp;lt; b, \\[6pt]
+0, &amp;amp; \text{其他},
+\end{cases}
+$$则称 $X$ 在区间 $(a,b)$ 上服从均匀分布，记为 $X \sim U(a,b)$。
+$X$ 的分布函数为
+$$F(x)&amp;#x3D;
+\begin{cases}
+0, &amp;amp; x &amp;lt; a, \\[6pt]
+\dfrac{x-a}{b-a}, &amp;amp; a \leq x &amp;lt; b, \\[6pt]
+1, &amp;am
+      </article>
+    </div>
+  </div>
+</div>
+      <div class="post-wrapper">
+  <div class="post-wrap right" data-aos="fade-up">
+      <a class="post-link" href="/2026/04/13/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E7%AC%AC%E4%B8%89%E7%AB%A0-%E4%B8%BB%E5%AD%98%E5%82%A8%E5%99%A8%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%84%E6%88%90/" aria-label="计算机组成原理第三章-主存储器的基本组成" title="计算机组成原理第三章-主存储器的基本组成"></a>
+    <div class="post-cover right">
+        <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/6f5cdb749c7938a2f8e1aab950c56ad3.png" data-sizes="auto" alt="计算机组成原理第三章-主存储器的基本组成" class="lazyload">
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2026-04-13</span>
+        <span><span class="icon-pencil"></span>1.5k 字</span>
+        <span><span class="icon-clock"></span>6 分钟</span>
+      </div>
+      <h2 class="post-title">计算机组成原理第三章-主存储器的基本组成</h2>
+      <article class="post-article">
+           基本的半导体元件及原理
+存储体中的数据由二进制来进行存储，而每一位都是一个存储元。存储元的结构如下图所示：
+
+
+MOS管：MOS管可理解为一种电控开关，输入电压达到某个阈值时，MOS管就可以连通
+叫它半导体的原因就是，它既不是导体也不是半导体，给够足够电压才能连通。
+原理：当我们上方给一个足够高的电压时候，电容上板电压会高，而下面是接地的，高电压差将会在电容器中间存储电荷，我们根据存储了多少电荷来判断二进制是否为1。
+我们如果将多个存储元连接，那就可以存储一串二进制数据，如图：
+
+这个红色的线连接了每个存储元的MOS管，如果红线是5V，那么所有MOS管都会连通，此时绿色的线处如果有电流，就为
+      </article>
+    </div>
+  </div>
+</div>
       <div class="post-wrapper">
   <div class="post-wrap left" data-aos="fade-up">
       <a class="post-link" href="/2026/04/13/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA-%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0/" aria-label="数据库系统概论-第二章-关系代数" title="数据库系统概论-第二章-关系代数"></a>
@@ -377,206 +577,8 @@ $p_k&amp;gt;&amp;
     </div>
   </div>
 </div>
-      <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2026/04/01/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA-%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" aria-label="数据库系统概论-第二章-关系数据结构" title="数据库系统概论-第二章-关系数据结构"></a>
-    <div class="post-cover left">
-        <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260401220031.png" data-sizes="auto" alt="数据库系统概论-第二章-关系数据结构" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2026-04-01</span>
-        <span><span class="icon-pencil"></span>226 字</span>
-        <span><span class="icon-clock"></span>1 分钟</span>
-      </div>
-      <h2 class="post-title">数据库系统概论-第二章-关系数据结构</h2>
-      <article class="post-article">
-           基本关系操作
- 常用的关系操作
-查询：选择、投影、连接、除、并、交、差等，其中投影、并、差、笛卡尔积是五种基本操作。
-数据更新：插入、删除、修改
-查询的表达能力是其中最主要的部分
-
- 关系操作的特点
-集合操作方式：操作的对象和结果都是集合，一次一集合的方式。
- 关系数据库语言的分类
- 关系代数语言
-用对关系的运算来表达查询要求。代表：ISBL语言
- 关系演算语言
-用谓词来表示查询要求：
-
-元祖组关系演算语言：谓词变元的基本对象是元组变量。代表：APLH,QUEL语言
-域关系演算语言：谓词变元的基本对象是域变量。代表：QBF
-
-
- ⭐具有关系代数和关系演算双重特点的语言
-代表：SQL
-
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2026/04/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%AD%98%E5%82%A8%E7%B3%BB%E7%BB%9F%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" aria-label="计算机组成原理第三章-存储系统基本概念" title="计算机组成原理第三章-存储系统基本概念"></a>
-    <div class="post-cover right">
-        <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/b9e24f77-9d7e-4934-85f6-b2626cce6c64.png" data-sizes="auto" alt="计算机组成原理第三章-存储系统基本概念" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2026-04-01</span>
-        <span><span class="icon-pencil"></span>958 字</span>
-        <span><span class="icon-clock"></span>4 分钟</span>
-      </div>
-      <h2 class="post-title">计算机组成原理第三章-存储系统基本概念</h2>
-      <article class="post-article">
-           ⭐存储器的层次结构
-
-
-越往上速度越快
-越往上容量越小
-越往上价格越高
-有的教材把安装在电脑内部的磁盘称为”辅存”，把U盘、光盘等称为“外存”。也有的教材把磁盘、U盘、光盘等统称为“辅存”或“外存”
-由于辅存读取的速度较慢，CPU一般不能与辅存相连接，所以会先把APP放在内存。比如开游戏加载其实就是在把辅存保存在主存。也就是说辅存中的数据需要调入主存才能被CPU访问
-
-但是主存虽然已经很快了，但有些频繁访问的数据来讲还是不够快，这个时候就需要主存将一部分数据复制一份放在Cache中，来提高CPU读取速度。
-主存—辅存：实现了虚拟存储系统，解决了主存容量不够的问题
-Cache—主存：解决了主存
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2026/04/01/%E6%A6%82%E7%8E%87%E8%AE%BA%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F%E4%B8%8E%E5%88%86%E5%B8%83%E5%87%BD%E6%95%B0/" aria-label="概率论第二章-随机变量与分布函数" title="概率论第二章-随机变量与分布函数"></a>
-    <div class="post-cover left">
-        <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260401215053.png" data-sizes="auto" alt="概率论第二章-随机变量与分布函数" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2026-04-01</span>
-        <span><span class="icon-pencil"></span>717 字</span>
-        <span><span class="icon-clock"></span>3 分钟</span>
-      </div>
-      <h2 class="post-title">概率论第二章-随机变量与分布函数</h2>
-      <article class="post-article">
-           随机变量
-随机变量：只要有随机性，那么就可以随机变量。而随机性就是你能预测所有可能性结果。
-
-比如这道题我们可以预测X的所有结果，那么就是有随机性的。
-
-X可预测为X={0,1,2,3}
-那么这两问就可以表示为$P(X&amp;lt;&amp;#x3D;2),P(X&amp;#x3D;0)$
-它能把文字表达的东西都表示成数学。
-$$P(X&amp;gt;5)
-$$
-这道题我们一看并没有跟数字有关的随机性，但是我们可以把某些事件用数字来表示不同的一面。$$P(X&amp;#x3D;1)
-$$定义：设随机试验的样本空间为 $\Omega$，$X &amp;#x3D; X(\omega)$ 是定义在样本空间 $\Omega$ 上的实值单值函数，
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2026/03/30/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%AE%BA-%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%85%B3%E7%B3%BB%E4%B8%8E%E5%85%B6%E6%A8%A1%E5%BC%8F/" aria-label="数据库系统概论-第二章-关系与其模式" title="数据库系统概论-第二章-关系与其模式"></a>
-    <div class="post-cover right">
-        <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/9814c5e3be9c2cb413bbefe8fcc94a19.png" data-sizes="auto" alt="数据库系统概论-第二章-关系与其模式" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2026-03-30</span>
-        <span><span class="icon-pencil"></span>1.5k 字</span>
-        <span><span class="icon-clock"></span>6 分钟</span>
-      </div>
-      <h2 class="post-title">数据库系统概论-第二章-关系与其模式</h2>
-      <article class="post-article">
-          
-1970年IBGM提出关系数据模型。
-1972年提出了关系的第一、第二、第三范式
-1974年提出了关系的BC范式
-80年代后，关系数据库系统成为最重要、最流行的数据库系统
-
- 数据系统结构及形式化定义
- 关系
-
-单一的数据结构——关系
-逻辑结构——二维表
-关系模型是建立在集合代数的基础上
-域（domain）：域是一组具有相同数据类型的值的集合
-整数、实数、介于某个取值范围的整数、字符串集合、｛”男“，”女“｝等等
-笛卡尔积：给定一组域$D_1,D_2,...,D_n$，这些域可以是相同的，也可以是不同的。$D_1,D_2,...,D_n$的笛卡尔积为：$$D_1*D_2*...*D_n＝｛（
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
-      <a class="post-link" href="/2026/03/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E4%B8%80%E5%88%87/" aria-label="计算机组成原理第二章-浮点数的一切" title="计算机组成原理第二章-浮点数的一切"></a>
-    <div class="post-cover left">
-        <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260327092156.png" data-sizes="auto" alt="计算机组成原理第二章-浮点数的一切" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2026-03-27</span>
-        <span><span class="icon-pencil"></span>1.9k 字</span>
-        <span><span class="icon-clock"></span>7 分钟</span>
-      </div>
-      <h2 class="post-title">计算机组成原理第二章-浮点数的一切</h2>
-      <article class="post-article">
-           浮点数的表示_IEEE 754
- IEEE 754 标准的浮点数格式
-啥玩意是IEEE?答案就是电气电子工程师学会（Institute of Electrical and Electronics Engineers），简称IEEE。
-IEEE 754：由IEEE指定的二进制浮点数算术标准，规定了在计算机内部，如何使用二进制表示和运算符点数。主流的编程语言如C的float 32bit 单精度浮点型和double 64bit 双精度浮点型就是符合IEEE 754标准的浮点数格式。在考研上只用IEEE 754表示浮点数。
-
-
- 定点数的局限性
-比如302657264526，我们用4Byte的定点整
-      </article>
-    </div>
-  </div>
-</div>
-      <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
-      <a class="post-link" href="/2026/03/25/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E4%B8%8E%E5%8E%9F%E7%90%86%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%AE%9A%E7%82%B9%E6%95%B0%E8%BF%90%E7%AE%97%E4%B8%8E%E7%AE%97%E6%9C%AF%E9%80%BB%E8%BE%91%E5%8D%95%E5%85%83%EF%BC%88ALU%EF%BC%89/" aria-label="计算机组成与原理第二章-定点数运算与算术逻辑单元（ALU）" title="计算机组成与原理第二章-定点数运算与算术逻辑单元（ALU）"></a>
-    <div class="post-cover right">
-        <img data-src="https://cdn.jsdelivr.net/gh/Stvfen/tuchuang@main/img/20260325140807.png" data-sizes="auto" alt="计算机组成与原理第二章-定点数运算与算术逻辑单元（ALU）" class="lazyload">
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <span><span class="icon-calendar"></span>2026-03-25</span>
-        <span><span class="icon-pencil"></span>4.9k 字</span>
-        <span><span class="icon-clock"></span>18 分钟</span>
-      </div>
-      <h2 class="post-title">计算机组成与原理第二章-定点数运算与算术逻辑单元（ALU）</h2>
-      <article class="post-article">
-           加法器
- 如何用门电路实现一位加法
-举个例子，比如我们来计算如下二进制：
-
-比如我们来进行这两个二进制的加法，通过竖式我们会发现
-
-我们每一位的加法其实都是加上上一位的进位$C_{i－1}$，$A_i$，$B_i$。
-而我们产生的结果就是这一位的和$S_i$和下一位的进位$C_i$
-我们将1bit的加法器的逻辑写出来后，就如图所示。
-
-同样的我们可以把它的电路图给画出来：
-
-如果我们将其封装一下，就是我们的一位全加器：
-
-
-
- n位bit全加器
-我们只需要将n个1位加法器串联起来就可以得到一个n位全加器。
-
-
- 不足之处
-进位信息是串行产生的，计算速度取决于进位产生和传递的速度。位数越多，运
-      </article>
-    </div>
-  </div>
-</div>
   <nav id="page-nav" aria-label="Pagination navigation" data-aos="fade-up">
-    <a class="extend prev" rel="prev" href="/page/4/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/6/">下一页 &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/4/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/6/">下一页 &raquo;</a>
   </nav>
 
 </section>
@@ -594,10 +596,10 @@ IEEE 754：由IEEE指定的二进制浮点数算术标准，规定了在计算�
     </div>
       <div>
         <span class="icon-brush"></span>
-        142k
+        143k
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
-        10:07
+        10:14
       </div>
       <div>
         <span class="icon-eye"></span>
@@ -625,7 +627,7 @@ IEEE 754：由IEEE指定的二进制浮点数算术标准，规定了在计算�
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>文章</div>
-    <div class="sidebar-state-number">75</div>
+    <div class="sidebar-state-number">81</div>
   </div>
   <div class="sidebar-state-category">
     <div>分类</div>
